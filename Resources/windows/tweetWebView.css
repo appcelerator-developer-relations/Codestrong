@@ -1,0 +1,23 @@
+body.tweets {
+  background: white;
+  color: #444;
+  font: 15pt/19pt Arial, 'Helvetica Neue', sans-serif;
+  padding: 10px;
+}
+a {
+  color: #0779BE;
+  text-decoration: none;
+}
+
+.created-at {
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  display: block;
+  padding-bottom: 8px;
+}
+
+body.maps {
+  padding: 0;
+  margin: 0;
+}

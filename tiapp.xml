@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <deployment-targets>
+        <target device="mobileweb">true</target>
+        <target device="iphone">true</target>
+        <target device="ipad">true</target>
+        <target device="blackberry">false</target>
+        <target device="android">true</target>
+    </deployment-targets>
+    <id>com.appcelerator.codestrong</id>
+    <name>Codestrong</name>
+    <version>1.0</version>
+    <publisher>Appcelerator, Inc.</publisher>
+    <url>http://appcelerator.com</url>
+    <description>CODESTRONG Mobile Companion</description>
+    <copyright>2011 Appcelerator, Inc</copyright>
+    <icon>default_app_logo.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>1d61d498-4cc3-4336-9364-b6d200c4cd82</guid>
+    <iphone>
+        <orientations device="iphone">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
+        </orientations>
+        <icon>default_app_logo.png</icon>
+    </iphone>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <icon>default_app_logo.png</icon>
+    </android>
+    <modules/>
+</ti:app>

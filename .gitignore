@@ -1,0 +1,6 @@
+tmp
+build/android/*
+build/iphone/*
+.settings
+.project
+.DS_Store
