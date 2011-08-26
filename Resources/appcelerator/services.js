@@ -20,7 +20,7 @@ var Ti, Appcelerator;
 
 // Include the main Drupal library.
 if (!Drupal) {
-  Ti.include("appcelerator/drupal.js");
+  Ti.include("appcelerator/appcelerator.js");
 }
 
 /**

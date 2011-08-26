@@ -21,7 +21,7 @@ var rootPath = '../../../../../../../../../../';
 
 // Include the main Drupal library.
 if (!Drupal) {
-  Ti.include(rootPath+'appcelerator/drupal.js');
+  Ti.include(rootPath+'appcelerator/appcelerator.js');
 }
 
 /**
