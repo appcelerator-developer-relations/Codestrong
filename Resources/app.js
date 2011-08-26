@@ -31,8 +31,8 @@ Ti.include(
   'appcelerator/db.js',
   'appcelerator/entity.js',
 
-  'appcelerator/drupalcon.js',
-  'appcelerator/entity.js'
+  'codestrong/codestrong.js',
+  'codestrong/entity.js'
   // "lib/twitter_services.js"
 );
 
