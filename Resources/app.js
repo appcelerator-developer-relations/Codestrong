@@ -16,7 +16,7 @@
  */
 
 // Declaring variables to prevent implied global error in jslint
-var Ti, Titanium, Drupal, desc, menu, refresh, logout;
+var Ti, Titanium, Appcelerator, desc, menu, refresh, logout;
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#000');
