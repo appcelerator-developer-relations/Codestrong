@@ -26,7 +26,7 @@ Ti.include(
   'lib/phpjs.js',
   'lib/misc.js',
   'lib/menu.js',
-  'appcelerator/drupal.js',
+  'appcelerator/appcelerator.js',
   'appcelerator/services.js',
   'appcelerator/db.js',
   'appcelerator/entity.js',
