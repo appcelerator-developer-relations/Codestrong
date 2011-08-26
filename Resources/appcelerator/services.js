@@ -16,7 +16,7 @@
  */
 
 // Declaring variables to prevent implied global error in jslint
-var Ti, Drupal;
+var Ti, Appcelerator;
 
 // Include the main Drupal library.
 if (!Drupal) {
