@@ -26,17 +26,17 @@ Ti.include(
   'lib/phpjs.js',
   'lib/misc.js',
   'lib/menu.js',
-  'drupal/drupal.js',
-  'drupal/services.js',
-  'drupal/db.js',
-  'drupal/entity.js',
+  'appcelerator/drupal.js',
+  'appcelerator/services.js',
+  'appcelerator/db.js',
+  'appcelerator/entity.js',
 
-  'drupalcon/drupalcon.js',
-  'drupalcon/entity.js'
+  'appcelerator/drupalcon.js',
+  'appcelerator/entity.js'
   // "lib/twitter_services.js"
 );
 
-//Ti.include('drupalcon/entity.js');
+//Ti.include('appcelerator/entity.js');
 
 // Define our connection information.  This is very similar to the DB layer's
 // $databases array in settings.php.

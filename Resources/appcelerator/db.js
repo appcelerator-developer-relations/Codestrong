@@ -21,7 +21,7 @@ var rootPath = '../../../../../../../../../../';
 
 // Include the main Drupal library.
 if (!Drupal) {
-  Ti.include(rootPath+'drupal/drupal.js');
+  Ti.include(rootPath+'appcelerator/drupal.js');
 }
 
 /**
@@ -649,7 +649,7 @@ Drupal.db.Query.prototype.getComments = function() {
   return this.comments;
 };
 
-Ti.include(rootPath+'drupal/db.insert.js');
+Ti.include(rootPath+'appcelerator/db.insert.js');
 
 
 /* Kinda sorta unit tests, ish. */
