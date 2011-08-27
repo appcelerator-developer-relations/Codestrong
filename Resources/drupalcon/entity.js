@@ -189,8 +189,8 @@ Drupal.entity.sites.main.types.user.schema = {
    *   A callback functino that will be called when the fetch is complete.
    */
   defaultFetcher: function(bundle, store, func) {
-   this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://chicago2011.drupal.org/mobile/fetch/presenters']);
- //   this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://codestrong.com/mobile/speakers']);
+//   this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://chicago2011.drupal.org/mobile/fetch/presenters']);
+   this.prototype.defaultFetcher.apply(this, [bundle, store, func, 'http://codestrong.com/mobile/speakers']);
   }
 
 };
