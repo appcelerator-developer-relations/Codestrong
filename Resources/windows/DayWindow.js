@@ -1,12 +1,12 @@
 /**
- * This file is part of  CODESTRONG Mobile.
+ * This file is part of DrupalCon Mobile.
  *
- * CODESTRONG Mobile is free software: you can redistribute it and/or modify
+ * DrupalCon Mobile is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CODESTRONG Mobile is distributed in the hope that it will be useful,
+ * DrupalCon Mobile is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -23,19 +23,19 @@
 
     // Create table view data object.
     var data = [];
-    data.push({title:'Sunday, September 18', hasChild:true, color:'#000', backgroundColor:'#fff', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/registration.html'});
-    data.push({title:'Monday, September 19', hasChild:true, color:'#000', backgroundColor:'#fff', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/2011-03-07.html'});
-    data.push({title:'Tuesday, September 20', hasChild:true, color:'#000', backgroundColor:'#fff', backgroundSelectedColor:'#0779BE', start_date:'2011-03-08T00:00:00', end_date:'2011-03-09T00:00:00', scheduleListing: true});
-    data.push({title:'Hackathon', hasChild:true, color:'#000', backgroundColor:'#fff', backgroundSelectedColor:'#0779BE', start_date:'2011-03-09T00:00:00', end_date:'2011-03-10T00:00:00', scheduleListing: false, url: 'pages/hackathon.html'});
-    //data.push({title:'Thursday, March 10', hasChild:true, color:'#000', backgroundColor:'#fff', backgroundSelectedColor:'#0779BE', start_date:'2011-03-10T00:00:00', end_date:'2011-03-11T00:00:00', scheduleListing: true});
-    //data.push({title:'Friday, March 11', hasChild:true, color:'#000', backgroundColor:'#fff', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/2011-03-11.html'});
-    //data.push({title:'Birds of a Feather', hasChild:true, color:'#000', backgroundColor:'#fff', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/bofs.html'});
+    data.push({title:'Registration', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/registration.html'});
+    data.push({title:'Monday, March 7', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/2011-03-07.html'});
+    data.push({title:'Tuesday, March 8', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', start_date:'2011-03-08T00:00:00', end_date:'2011-03-09T00:00:00', scheduleListing: true});
+    data.push({title:'Wednesday, March 9', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', start_date:'2011-03-09T00:00:00', end_date:'2011-03-10T00:00:00', scheduleListing: true});
+    data.push({title:'Thursday, March 10', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', start_date:'2011-03-10T00:00:00', end_date:'2011-03-11T00:00:00', scheduleListing: true});
+    data.push({title:'Friday, March 11', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/2011-03-11.html'});
+    data.push({title:'Birds of a Feather', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/bofs.html'});
 
     var dayWindow = Titanium.UI.createWindow({
       id: 'win1',
       title: 'Schedule',
       backgroundColor: '#fff',
-      barColor: '#000',
+      barColor: '#414444',
       tabGroup: tabGroup
     });
 

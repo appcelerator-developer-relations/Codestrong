@@ -1,12 +1,12 @@
 /**
- * This file is part of  CODESTRONG Mobile.
+ * This file is part of DrupalCon Mobile.
  *
- * CODESTRONG Mobile is free software: you can redistribute it and/or modify
+ * DrupalCon Mobile is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CODESTRONG Mobile is distributed in the hope that it will be useful,
+ * DrupalCon Mobile is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -29,6 +29,7 @@
       id: 'twitterDetailWindow',
       title: settings.title,
       backgroundColor: '#FFF',
+      barColor: '#414444',
       tabGroup: settings.tabGroup
     });
     var baseHTMLStart = '<html><head><link rel="stylesheet" type="text/css" href="windows/tweetWebView.css" />' +

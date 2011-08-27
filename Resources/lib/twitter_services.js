@@ -1,12 +1,12 @@
 /**
- * This file is part of  CODESTRONG Mobile.
+ * This file is part of DrupalCon Mobile.
  *
- * CODESTRONG Mobile is free software: you can redistribute it and/or modify
+ * DrupalCon Mobile is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CODESTRONG Mobile is distributed in the hope that it will be useful,
+ * DrupalCon Mobile is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -20,7 +20,7 @@ var Ti;
 
 // Check for new tweets
 setInterval (function() {
-  var screen_name = 'appcelerator';
+  var screen_name = 'drupalcon';
   var net = Titanium.Network;
   var up = net.online;
   

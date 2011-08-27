@@ -1,22 +1,22 @@
 /**
- * This file is part of CODESTRONG Mobile.
+ * This file is part of DrupalCon Mobile.
  *
- * CODESTRONG Mobile is free software: you can redistribute it and/or modify
+ * DrupalCon Mobile is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CODESTRONG Mobile is distributed in the hope that it will be useful,
+ * DrupalCon Mobile is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with CODESTRONG Mobile.  If not, see <http://www.gnu.org/licenses/>.
+ * along with DrupalCon Mobile.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 // Declaring variables to prevent implied global error in jslint
-var Ti, Titanium, Appcelerator, desc, menu, refresh, logout;
+var Ti, Titanium, Drupal, desc, menu, refresh, logout;
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#000');
@@ -26,22 +26,22 @@ Ti.include(
   'lib/phpjs.js',
   'lib/misc.js',
   'lib/menu.js',
-  'appcelerator/appcelerator.js',
-  'appcelerator/services.js',
-  'appcelerator/db.js',
-  'appcelerator/entity.js',
+  'drupal/drupal.js',
+  'drupal/services.js',
+  'drupal/db.js',
+  'drupal/entity.js',
 
-  'codestrong/codestrong.js',
-  'codestrong/entity.js'
+  'drupalcon/drupalcon.js',
+  'drupalcon/entity.js'
   // "lib/twitter_services.js"
 );
 
-//Ti.include('appcelerator/entity.js');
+//Ti.include('drupalcon/entity.js');
 
 // Define our connection information.  This is very similar to the DB layer's
 // $databases array in settings.php.
 Drupal.services.addConnectionInfo('main', {
-  endpointUrl: 'http://codestrong.com/speakers',
+  endpointUrl: 'http://chicago2011.drupal.org/services/mobile',
   user: '',
   pass: ''
 });

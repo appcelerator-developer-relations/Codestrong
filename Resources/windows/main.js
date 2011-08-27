@@ -1,12 +1,12 @@
 /**
- * This file is part of  CODESTRONG Mobile.
+ * This file is part of DrupalCon Mobile.
  *
- * CODESTRONG Mobile is free software: you can redistribute it and/or modify
+ * DrupalCon Mobile is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CODESTRONG Mobile is distributed in the hope that it will be useful,
+ * DrupalCon Mobile is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -49,7 +49,7 @@
   tabGroup.addTab(Titanium.UI.createTab({
       icon: (isAndroid()) ? 'images/tabs/about_android.png' : 'images/tabs/about.png',
       title: 'About',
-      window: DrupalCon.ui.createHtmlWindow({title: 'About DrupalCon Chicago', url: 'pages/about.html', tabGroup: tabGroup})
+      window: DrupalCon.ui.createHtmlWindow({title: 'About CODESTRONG', url: 'pages/about.html', tabGroup: tabGroup})
   }));
 
   tabGroup.addEventListener('open',function() {

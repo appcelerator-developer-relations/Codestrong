@@ -1,12 +1,12 @@
 /**
- * This file is part of  CODESTRONG Mobile.
+ * This file is part of DrupalCon Mobile.
  *
- * CODESTRONG Mobile is free software: you can redistribute it and/or modify
+ * DrupalCon Mobile is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CODESTRONG Mobile is distributed in the hope that it will be useful,
+ * DrupalCon Mobile is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -16,16 +16,16 @@
  */
 
 // Declaring variables to prevent implied global error in jslint
-var Ti, Appcelerator;
+var Ti, Drupal;
 var rootPath = '../../../../../../../../../../';
 
 // Include the main Drupal library.
 if (!Drupal) {
-  Ti.include(rootPath+'appcelerator/appcelerator.js');
+  Ti.include(rootPath+'drupal/drupal.js');
 }
 
 if (!Drupal.db) {
-  Ti.include(rootPath+'appcelerator/db.js');
+  Ti.include(rootPath+'drupal/db.js');
 }
 
 /**
@@ -204,7 +204,7 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function(bundle, store, f
   }
 };
 
-Ti.include(rootPath+'appcelerator/entity.datastore.js');
+Ti.include(rootPath+'drupal/entity.datastore.js');
 
 
 //These kinda sorta serve as a unit test, ish, maybe, for now.

@@ -3,7 +3,7 @@
     <deployment-targets>
         <target device="mobileweb">true</target>
         <target device="iphone">true</target>
-        <target device="ipad">true</target>
+        <target device="ipad">false</target>
         <target device="blackberry">false</target>
         <target device="android">true</target>
     </deployment-targets>
@@ -22,7 +22,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>true</analytics>
-    <guid>1d61d498-4cc3-4336-9364-b6d200c4cd82</guid>
+    <guid>755a100d-f77d-48fc-ad53-80c6e1bad9dd</guid>
     <iphone>
         <orientations device="iphone">
             <orientation>Ti.UI.PORTRAIT</orientation>
