@@ -125,8 +125,8 @@ Drupal.entity.sites.main.types.node.schema = {
    */
   defaultFetcher: function(bundle, store, func) {
     // Set the base URL.
-    var url = 'http://chicago2011.drupal.org/mobile/fetch/' + bundle;
-
+    //var url = 'http://chicago2011.drupal.org/mobile/fetch/' + bundle;
+    var url = 'http://codestrong.com/mobile/sessions/' + bundle;
     //Only get those nodes that have been updated since we last requested an update.
     // This is bound to the view we're pulling from and configured there.
     // Note that we're using an ISO date rather than a unix timestamp because

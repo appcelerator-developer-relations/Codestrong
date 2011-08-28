@@ -24,12 +24,10 @@
     // Create table view data object.
     var data = [];
     data.push({title:'Registration', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/registration.html'});
-    data.push({title:'Monday, March 7', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/2011-03-07.html'});
-    data.push({title:'Tuesday, March 8', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', start_date:'2011-03-08T00:00:00', end_date:'2011-03-09T00:00:00', scheduleListing: true});
-    data.push({title:'Wednesday, March 9', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', start_date:'2011-03-09T00:00:00', end_date:'2011-03-10T00:00:00', scheduleListing: true});
-    data.push({title:'Thursday, March 10', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', start_date:'2011-03-10T00:00:00', end_date:'2011-03-11T00:00:00', scheduleListing: true});
-    data.push({title:'Friday, March 11', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/2011-03-11.html'});
-    data.push({title:'Birds of a Feather', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/bofs.html'});
+    data.push({title:'Sunday, September 18th', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/2011-03-07.html'});
+    data.push({title:'Monday, September 19th', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', start_date:'2011-03-08T00:00:00', end_date:'2011-03-09T00:00:00', scheduleListing: true});
+    data.push({title:'Tuesday, September 20th', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', start_date:'2011-03-09T00:00:00', end_date:'2011-03-10T00:00:00', scheduleListing: true});
+    data.push({title:'Hackathon', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/bofs.html'});
 
     var dayWindow = Titanium.UI.createWindow({
       id: 'win1',
