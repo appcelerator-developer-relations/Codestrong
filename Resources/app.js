@@ -53,7 +53,8 @@ Drupal.db.addConnectionInfo('main');
 // Pre-create the database.  This is a snapshot of the dataset taken shortly
 // prior to shipping.
 var dbVersion = 1.0;
-Ti.Database.install('main.sql', 'codestrong' + dbVersion);
+//Ti.Database.install('main.sql', 'codestrong' + dbVersion);
+Ti.Database.install('main.sql', 'main');
 
 // If we haven't created the tables yet, make empty ones to ensure that the
 // app doesn't crash.
