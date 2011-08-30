@@ -75,8 +75,8 @@ span.sponsor {
 /* About page 
 -------------------------------- */
 body.about {
-  background: url('tower.png') no-repeat top right;
-  padding-top: 310px;
+/*   background: url('tower.png') no-repeat top right; */
+  padding-top: 10px; */
   margin: 0 20px 10px;  
 }
 .about h1,
