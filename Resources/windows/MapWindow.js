@@ -22,7 +22,7 @@
   DrupalCon.ui.createMapWindow = function(tabGroup) {
     var mapWindow = Titanium.UI.createWindow({
       id: 'mapWindow',
-      title: 'Sheraton Maps',
+      title: 'Meeting Room Maps',
       backgroundColor: '#FFF',
       barColor: '#414444',
       tabGroup: tabGroup
@@ -30,10 +30,9 @@
 
     // create table view data object
     var data = [
-      {title: 'Level 1 - Exhibit Hall',info:true, hasChild:true, backgroundSelectedColor:'#0779BE', color: '#000', image:'images/maps/level1.png'},
-      {title: 'Level 2 - Meeting Rooms', hasChild:true, backgroundSelectedColor:'#0779BE', color: '#000', image:'images/maps/level2.png'},
-      {title: 'Level 3 - Lobby', hasChild:true, backgroundSelectedColor:'#0779BE', color: '#000', image:'images/maps/level3.png'},
-      {title: 'Level 4 - Ballroom', hasChild:true, backgroundSelectedColor:'#0779BE', color: '#000', image:'images/maps/level4.png'}
+      {title: 'Floor 3 - Grand Ballroom', hasChild:true, backgroundSelectedColor:'#0779BE', color: '#000', image:'images/maps/3rd.png'},
+      {title: 'Floor 4 - Pacific Terrace', hasChild:true, backgroundSelectedColor:'#0779BE', color: '#000', image:'images/maps/4th.png'},
+      {title: 'Floor 5 - Intercontinental Ballroom', hasChild:true, backgroundSelectedColor:'#0779BE', color: '#000', image:'images/maps/5th.png'}
     ];
 
     // create table view
