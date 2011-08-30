@@ -34,6 +34,9 @@
       tabGroup: tabGroup
     });
     
+    // TODO: fter first run of this app, it throws an error on htmlWindow.add() if this isn't here. WTF?!
+    Ti.API.debug(htmlWindow);
+    
     htmlWindow.add(Ti.UI.createWebView({
       url: settings.url
     }));
