@@ -144,22 +144,7 @@
 //    if (presenterData.data.facebook != undefined){
 //
 //    }
-    if (presenterData.bio != undefined) {
-      var bio = Ti.UI.createLabel({
-        text: cleanSpecialChars(presenterData.bio.replace('\n','\n\n')),
-        backgroundColor:'#fff',
-        textAlign:'left',
-        color:'#000',
-        height:'auto',
-        width:'auto',
-        left:10,
-        right:10,
-        top:10,
-        bottom:10
-      });
-      bioRow.add(bio);
-      tvData.push(bioRow);
-    }
+    
 
 //    var sessionsTitle = Ti.UI.createLabel({
 //      text:"Session(s)",
@@ -215,6 +200,23 @@
       });
       tvData.push(sessionRow);
 
+    }
+    
+    if (presenterData.bio != undefined) {
+      var bio = Ti.UI.createLabel({
+        text: cleanSpecialChars(presenterData.bio.replace('\n','\n\n')),
+        backgroundColor:'#fff',
+        textAlign:'left',
+        color:'#000',
+        height:'auto',
+        width:'auto',
+        left:10,
+        right:10,
+        top:10,
+        bottom:10
+      });
+      bioRow.add(bio);
+      tvData.push(bioRow);
     }
 
     tv.setData(tvData);
