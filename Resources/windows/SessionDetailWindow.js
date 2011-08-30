@@ -94,15 +94,13 @@
         right: commonPadding,
         height: 'auto'
       });
-      headerRow.add(presenterName);
+      //headerRow.add(presenterName);
     }
 
     if (sessionData.start_date) {
       //var startDate = parseISO8601(sessionData.start_date + ':00');
       var matches = /^(\d{4})\-(\d{2})\-(\d{2})/.exec(sessionData.start_date);
-      Ti.API.debug(matches);
       var startDate = new Date(matches[1], matches[2]-1, matches[3]);
-      Ti.API.debug(startDate);
       var datetime = Ti.UI.createLabel({
         text: cleanDate(startDate) + ', ' + cleanTime(sessionData.start_date),
         font: {fontSize: 18, fontWeight: 'normal'},
@@ -140,7 +138,7 @@
       });
       headerRow.add(room);
     }
-
+    
     if (sessionData.body) {
       var body = Ti.UI.createLabel({
         text: cleanSpecialChars(sessionData.body.replace('\n','\n\n')),
@@ -215,6 +213,23 @@
     }
 
     tvData.push(headerRow);
+    
+    //if (sessionData.instructors && sessionData.instructors.length) {
+    if (sessionData.instructors) {
+      var instructorList = sessionData.instructors.split(",");
+      for (var k = 0; k < instructorList.length; k++) {
+      	instructorList[k] = instructorList[k].replace(/^\s+|\s+$/g, '');
+      }
+    	
+      // Get the presenter information.
+      var presenterData = Drupal.entity.db('main', 'user').loadByField('full_name', instructorList);//sessionData.instructors);
+
+      for (var j in presenterData) {
+        tvData.push(renderPresenter(presenterData[j]));
+      }
+    }
+
+    
 
     if (sessionData.type === 'session') {
       var feedbackTitle = Ti.UI.createLabel({
@@ -298,14 +313,7 @@
     }
 
 
-    if (sessionData.instructors && sessionData.instructors.length) {
-      // Get the presenter information.
-      var presenterData = Drupal.entity.db('main', 'user').loadByField('name', sessionData.instructors);
-
-      for (var j in presenterData) {
-        tvData.push(renderPresenter(presenterData[j]));
-      }
-    }
+    
 
     tv.addEventListener('click', function(e) {
       if (e.source.presenter != undefined){
@@ -326,8 +334,8 @@
 
   function renderPresenter(presenter) {
 
-    var userPict = avatarPath(presenter.uid);
-	//var userPict = presenter.picture;
+    //var userPict = avatarPath(presenter.uid);
+	var userPict = presenter.picture.replace(/^\s+|\s+$/g, '') || 'images/userpict-large.png';
 
     var av = Ti.UI.createImageView({
       image:userPict,
@@ -361,7 +369,7 @@
     dpm(presenter.full_name);
     var presenterName2 = Ti.UI.createLabel({
       presenter: presenter,
-      text: presenter.name,
+      text: presenter.company,
       font:{fontSize:14, fontWeight:'normal'},
       left: 90,
       top: (presenter.full_name != null) ? 5 : 0,
