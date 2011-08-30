@@ -34,13 +34,10 @@ var Drupal, Ti;
  * @return Drupal.entity.Datastore
  */
 Drupal.entity.Datastore = function(site, connection, entityType, entityInfo) {
-
   this.site = site;
   this.connection = connection;
   this.entityType = entityType;
-
   this.entityInfo = entityInfo;
-  
   this.idField = this.getIdField();
 
   this.schemaDefinition = null;

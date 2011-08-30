@@ -26,7 +26,9 @@
     });
 
     // var presenterData = settings.data;
+    Ti.API.debug("uid: " + settings.uid);
     var presenterData = Drupal.entity.db('main', 'user').load(settings.uid);
+	Ti.API.debug('after');
 
     var presenterDetailWindow = Titanium.UI.createWindow({
       id: 'presenterDetailWindow',

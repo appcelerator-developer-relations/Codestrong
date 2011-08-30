@@ -89,7 +89,7 @@
       // Android can't handle some of this label manipulation
       if (isAndroid()) {
         presenterRow.add(Ti.UI.createLabel({
-        text: fullName + '  ' + shortName,
+        text: fullName, // + '  ' + shortName,
         fontFamily:'sans-serif',
         left: (fullName != '') ? 9 : 0,
         height: 40,
@@ -125,16 +125,16 @@
           lastLeft = firstLeft + lastNameLabel.toImage().width;
         }
 
-        if (shortName != '') {
-          var shortNameLabel = Ti.UI.createLabel({
-            text: shortName,
-            font:'Helvetica',
-            left: lastLeft+10,
-            height: 40,
-            color: '#666'
-          });
-          presenterRow.add(shortNameLabel);
-        }
+        // if (shortName != '') {
+          // var shortNameLabel = Ti.UI.createLabel({
+            // text: shortName,
+            // font:'Helvetica',
+            // left: lastLeft+10,
+            // height: 40,
+            // color: '#666'
+          // });
+          // presenterRow.add(shortNameLabel);
+        // }
         
       }
 
@@ -171,7 +171,7 @@
         }
         // event data
         var index = e.index;
-        var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : PresentersWindow.tabGroup.activeTab;
+        var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : PresentersWindow.tabGroup.activeTab;
         currentTab.open(DrupalCon.ui.createPresenterDetailWindow({
           title: e.rowData.name,
           uid: e.rowData.uid,

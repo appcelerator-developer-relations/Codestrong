@@ -17,7 +17,8 @@
 
 // Declaring variables to prevent implied global error in jslint
 var Ti, Drupal;
-var rootPath = '../../../../../../../../../../';
+var rootPath = (Ti.Platform.osname == 'android') ? '/' : '../../../../../../../../../../';
+//var rootPath = 
 
 // Include the main Drupal library.
 if (!Drupal) {
