@@ -89,16 +89,16 @@
       headerRow.add(fullName);
     }
 
-    var name = Ti.UI.createLabel({
-      text: (presenterData.full_name !== presenterData.name) ? cleanSpecialChars(presenterData.name) : '',
-      font: {fontSize: 14, fontWeight: 'bold'},
-      textAlign: 'left',
-      color: '#04679C',
-      height: 'auto',
-      left: 120,
-      top: (presenterData.full_name != undefined) ? 2 : -95
-    });
-    headerRow.add(name);
+    // var name = Ti.UI.createLabel({
+      // text: (presenterData.full_name !== presenterData.name) ? cleanSpecialChars(presenterData.name) : '',
+      // font: {fontSize: 14, fontWeight: 'bold'},
+      // textAlign: 'left',
+      // color: '#04679C',
+      // height: 'auto',
+      // left: 120,
+      // top: (presenterData.full_name != undefined) ? 2 : -95
+    // });
+    // headerRow.add(name);
 
     if (presenterData.company != undefined) {
       var company = Ti.UI.createLabel({
@@ -166,43 +166,52 @@
 
     var sessions = getRelatedSessions(presenterData.full_name);
     var sessionRow = [];
-    for (var i in sessions) {
-      sessionRow = Ti.UI.createTableViewRow({
-        hasChild:true,
-        sessionTitle:cleanSpecialChars(sessions[i].title),
-        nid:sessions[i].nid,
-        height: 'auto',
-        backgroundColor: '#dc5531'
-      });
-
-      var titleLabel = Ti.UI.createLabel({
-        text: cleanSpecialChars(sessions[i].title),
-        font: {fontSize:14, fontWeight:'normal'},
-        left: 10,
-        top: 10,
-        right: 10,
-        bottom: 10,
-        height: 'auto',
-        color: '#fff',
-        font:{fontWeight:'bold'}
-      });
-      sessionRow.add(titleLabel);
-      
-      // create table view event listener
-      sessionRow.addEventListener('click', function(e) {
-        var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : presenterDetailWindow.tabGroup.activeTab;
-        currentTab.open(DrupalCon.ui.createSessionDetailWindow({
-          title: e.rowData.sessionTitle,
-          nid: e.rowData.nid,
-          tabGroup: currentTab
-        }), {animated:true});
-
-      });
-      tvData.push(sessionRow);
-
+    if (sessions && sessions.length) {
+    	var sessionSection = Ti.UI.createTableViewSection({headerTitle:'Sessions'});
+    
+	    for (var i in sessions) {
+	      sessionRow = Ti.UI.createTableViewRow({
+	        hasChild:true,
+	        sessionTitle:cleanSpecialChars(sessions[i].title),
+	        nid:sessions[i].nid,
+	        height: 'auto',
+	        backgroundColor: '#dc5531'
+	      });
+	
+	      var titleLabel = Ti.UI.createLabel({
+	        text: cleanSpecialChars(sessions[i].title),
+	        font: {fontSize:14, fontWeight:'normal'},
+	        left: 10,
+	        top: 10,
+	        right: 10,
+	        bottom: 10,
+	        height: 'auto',
+	        color: '#fff',
+	        font:{fontWeight:'bold'}
+	      });
+	      sessionRow.add(titleLabel);
+	      
+	      // create table view event listener
+	      sessionRow.addEventListener('click', function(e) {
+	        var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : presenterDetailWindow.tabGroup.activeTab;
+	        currentTab.open(DrupalCon.ui.createSessionDetailWindow({
+	          title: e.rowData.sessionTitle,
+	          nid: e.rowData.nid,
+	          tabGroup: currentTab
+	        }), {animated:true});
+	
+	      });
+	      
+	      sessionSection.add(sessionRow);
+	      
+	      //tvData.push(sessionRow);
+	
+	    }
+	    tvData.push(sessionSection);
     }
     
     if (presenterData.bio != undefined) {
+      var bioSection = Ti.UI.createTableViewSection({headerTitle:'Biography'});
       var bio = Ti.UI.createLabel({
         text: cleanSpecialChars(presenterData.bio.replace('\n','\n\n')),
         backgroundColor:'#fff',
@@ -215,8 +224,10 @@
         top:10,
         bottom:10
       });
+
       bioRow.add(bio);
-      tvData.push(bioRow);
+      bioSection.add(bioRow);
+      tvData.push(bioSection);
     }
 
     tv.setData(tvData);

@@ -216,6 +216,7 @@
     
     //if (sessionData.instructors && sessionData.instructors.length) {
     if (sessionData.instructors) {
+      var speakerSection = Ti.UI.createTableViewSection({headerTitle:'Speaker(s)'});
       var instructorList = sessionData.instructors.split(",");
       for (var k = 0; k < instructorList.length; k++) {
       	instructorList[k] = instructorList[k].replace(/^\s+|\s+$/g, '');
@@ -225,8 +226,10 @@
       var presenterData = Drupal.entity.db('main', 'user').loadByField('full_name', instructorList);//sessionData.instructors);
 
       for (var j in presenterData) {
-        tvData.push(renderPresenter(presenterData[j]));
+      	speakerSection.add(renderPresenter(presenterData[j]));
+        //tvData.push(renderPresenter(presenterData[j]));
       }
+      tvData.push(speakerSection);
     }
 
     
@@ -265,7 +268,9 @@
       tvData.push(feedbackRow);
     }
 
-    tvData.push(bodyRow);
+	var bodySection = Ti.UI.createTableViewSection({headerTitle:'Description'});
+	bodySection.add(bodyRow);
+    tvData.push(bodySection);
 
     if (sessionData.audience) {
       var audienceRow = Ti.UI.createTableViewRow({height: 'auto', className: 'audienceRow', borderColor: '#fff'});
@@ -333,8 +338,6 @@
   };
 
   function renderPresenter(presenter) {
-
-    //var userPict = avatarPath(presenter.uid);
 	var userPict = presenter.picture.replace(/^\s+|\s+$/g, '') || 'images/userpict-large.png';
 
     var av = Ti.UI.createImageView({
@@ -351,9 +354,9 @@
       presenter: presenter,
       height: 80,
       className: 'presenterRow',
-      borderColor: '#fff',
+      borderColor: '#C4E2EF',
       hasChild: true,
-      backgroundColor: '#C4E2EF',
+      backgroundColor: '#fff',
       layout:'vertical'
     });
     presRow.add(av);
