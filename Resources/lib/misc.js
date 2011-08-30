@@ -300,5 +300,5 @@ function cleanDate(date) {
       label = 'th';
   }
 
-  return dayToName(date.getDay()) + ', ' + monthToName(date.getMonth()) + ' ' +  date.getDate() + label;
+  return dayToName(date.getDay()) + ', ' + monthToName(date.getMonth()+1) + ' ' +  date.getDate() + label;
 }
