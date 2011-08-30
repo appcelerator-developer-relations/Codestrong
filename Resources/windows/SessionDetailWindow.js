@@ -99,9 +99,12 @@
 
     if (sessionData.start_date) {
       //var startDate = parseISO8601(sessionData.start_date + ':00');
-      var startDate = sessionData.start_date;
+      var matches = /^(\d{4})\-(\d{2})\-(\d{2})/.exec(sessionData.start_date);
+      Ti.API.debug(matches);
+      var startDate = new Date(matches[1], matches[2]-1, matches[3]);
+      Ti.API.debug(startDate);
       var datetime = Ti.UI.createLabel({
-        text: cleanDate(new Date(startDate)) + ', ' + cleanTime(sessionData.start_date),
+        text: cleanDate(startDate) + ', ' + cleanTime(sessionData.start_date),
         font: {fontSize: 18, fontWeight: 'normal'},
         textAlign: 'left',
         color: '#000',
