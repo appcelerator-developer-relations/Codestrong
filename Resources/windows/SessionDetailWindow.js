@@ -33,6 +33,7 @@
     });
 
     // Build session data
+    //Ti.API.debug(settings.nid);
     var sessionData = Drupal.entity.db('main', 'node').load(settings.nid);
     
     // Build the page:
@@ -84,7 +85,7 @@
     // Some sessions have multiple presenters
     if (sessionData.instructors) {
       var presenterName = Ti.UI.createLabel({
-        text: cleanSpecialChars(sessionData.instructors.map(DrupalCon.util.getPresenterName).join(', ')),
+        text: sessionData.instructors, //cleanSpecialChars(sessionData.instructors.map(DrupalCon.util.getPresenterName).join(', ')),
         font: {fontSize:18, fontWeight:'normal'},
         color: '#000',
         left: commonPadding,
@@ -97,9 +98,10 @@
     }
 
     if (sessionData.start_date) {
-      var startDate = parseISO8601(sessionData.start_date + ':00');
+      //var startDate = parseISO8601(sessionData.start_date + ':00');
+      var startDate = sessionData.start_date;
       var datetime = Ti.UI.createLabel({
-        text: cleanDate(startDate) + ', ' + cleanTime(sessionData.start_date),
+        text: cleanDate(new Date(startDate)) + ', ' + cleanTime(sessionData.start_date),
         font: {fontSize: 18, fontWeight: 'normal'},
         textAlign: 'left',
         color: '#000',
@@ -123,7 +125,7 @@
 
     if (sessionData.room && !skipRoom) {
       var room = Ti.UI.createLabel({
-        text: sessionData.room.map(cleanSpecialChars).join(', '),
+        text: sessionData.room, //sessionData.room.map(cleanSpecialChars).join(', '),
         font: {fontSize: 18, fontWeight: 'normal'},
         textAlign: 'left',
         color: '#000',
@@ -322,6 +324,7 @@
   function renderPresenter(presenter) {
 
     var userPict = avatarPath(presenter.uid);
+	//var userPict = presenter.picture;
 
     var av = Ti.UI.createImageView({
       image:userPict,

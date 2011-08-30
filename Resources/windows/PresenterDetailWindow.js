@@ -47,11 +47,10 @@
       layout:'vertical'
     });
 
-    var userPict = avatarPath(presenterData.uid);
-    dpm(userPict);
+    //var userPict = avatarPath(presenterData.uid);
+    //dpm(userPict);
     
     var av = Ti.UI.createImageView({
-      //image:userPict,
       image:presenterData.picture.replace(/^\s+|\s+$/g, '') || 'images/userpict-large.png',
       left:0,
       top:0,
@@ -180,12 +179,7 @@
 //    tvData.push(sessionsTitleRow);
 
 
-
-
-    //var sessions = []; 
     var sessions = getRelatedSessions(presenterData.full_name);
-    
-    
     var sessionRow = [];
     for (var i in sessions) {
       sessionRow = Ti.UI.createTableViewRow({
@@ -208,6 +202,7 @@
         font:{fontWeight:'bold'}
       });
       sessionRow.add(titleLabel);
+      
       // create table view event listener
       sessionRow.addEventListener('click', function(e) {
         var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : presenterDetailWindow.tabGroup.activeTab;
