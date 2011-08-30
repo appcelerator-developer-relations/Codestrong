@@ -4,3 +4,4 @@ build/iphone/*
 .settings
 .project
 .DS_Store
+build.log
