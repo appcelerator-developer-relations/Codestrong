@@ -3,7 +3,7 @@
     <deployment-targets>
         <target device="mobileweb">true</target>
         <target device="iphone">true</target>
-        <target device="ipad">false</target>
+        <target device="ipad">true</target>
         <target device="blackberry">false</target>
         <target device="android">true</target>
     </deployment-targets>
