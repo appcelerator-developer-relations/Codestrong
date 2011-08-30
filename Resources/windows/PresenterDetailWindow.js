@@ -51,7 +51,8 @@
     dpm(userPict);
     
     var av = Ti.UI.createImageView({
-      image:userPict,
+      //image:userPict,
+      image:presenterData.picture.replace(/^\s+|\s+$/g, '') || 'images/userpict-large.png',
       left:0,
       top:0,
       height:110,
@@ -178,7 +179,13 @@
 //    sessionsTitleRow.add(sessionsTitle);
 //    tvData.push(sessionsTitleRow);
 
-    var sessions = getRelatedSessions(presenterData.name);
+
+
+
+    var sessions = []; //= getRelatedSessions(presenterData.name);
+    
+    
+    
     var sessionRow = [];
     for (var i in sessions) {
       sessionRow = Ti.UI.createTableViewRow({
