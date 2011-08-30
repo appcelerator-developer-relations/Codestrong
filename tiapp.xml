@@ -33,6 +33,9 @@
         <icon>default_app_logo.png</icon>
     </iphone>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
+    	<manifest>
+			<supports-screens android:anyDensity="false"/>
+		</manifest>
         <icon>default_app_logo.png</icon>
     </android>
     <modules/>
