@@ -182,8 +182,8 @@
 
 
 
-    var sessions = []; //= getRelatedSessions(presenterData.name);
-    
+    //var sessions = []; 
+    var sessions = getRelatedSessions(presenterData.full_name);
     
     
     var sessionRow = [];
@@ -237,7 +237,7 @@
       rows.next();
     }
     rows.close();
-
+	
     var sessions = Drupal.entity.db('main', 'node').loadMultiple(nids, ['start_date', 'nid']);
 
     return sessions;
