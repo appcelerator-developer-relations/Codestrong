@@ -33,7 +33,7 @@
 	Ti.API.debug(settings);
     var sessionsWindow = Titanium.UI.createWindow({
       id: 'sessionsWindow',
-      title: settings.title,
+      title: settings.titleShort,
       backgroundColor: '#FFF',
       barColor: '#414444',
       tabGroup: settings.tabGroup
@@ -70,6 +70,7 @@
       layout:'vertical'
     });
 
+/*
     // Add a menu or button for a track legend
     if (isAndroid()){
       // Android has a menu
@@ -105,6 +106,7 @@
 
       });
     }
+*/
 
     sessionsWindow.addEventListener('focus', function() {
       uiEnabled = true;

@@ -63,7 +63,7 @@
       '  <meta name="viewport" content="target-densityDpi=device-dpi, user-scalable=yes, width=device-width, initial-scale = .25, minimum-scale = .25, maximum-scale = 4.0" />' +
       '  <meta name="apple-mobile-web-app-capable" content="yes" />' +
       '<div class="map">' +
-      '<div><img src="' + mapImageFileName + '" /></div>' +
+      '<div><img src="' + mapImageFileName + '" style="width:100%"/></div>' +
       '</body></html>';
     var web = Ti.UI.createWebView({scalesPageToFit:true});
     mapDetailWindow.add(web);
