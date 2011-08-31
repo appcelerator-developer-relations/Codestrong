@@ -131,7 +131,7 @@ var Twitter = {
             var user_label = Ti.UI.createLabel({
               text:user,
               left:0,
-              width:80,
+              width:120,
               top:0,
               height:16,
               textAlign:'left',
