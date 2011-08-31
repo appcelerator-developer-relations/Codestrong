@@ -76,6 +76,8 @@ foreach my $entity (@{$json->{entities}}) {
 	$sql .= "'" . doEscape(encode_json($entity->{entity})) . "');\n";
 }
 $sql .= "\n";
+
+$sql .= "DELETE FROM node WHERE start_date = '' OR room = '';\n\n";
  
 $sql =~ s/[^[:print:]\r\n\t\s]+//g;
  
