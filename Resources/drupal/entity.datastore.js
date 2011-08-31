@@ -93,26 +93,46 @@ Drupal.entity.Datastore.prototype.save = function(entity) {
 Drupal.entity.Datastore.prototype.insert = function(entity) {
   //Ti.API.debug('In Datastore.insert()');
 
-  var fields = {};
+  // var fields = {};
 
-  // Get the basic fields first.
-  var properties = ['id', 'revision', 'bundle', 'label'];
-  var property;
-  for (var i = 0; i < properties.length; i++) {
-    property = properties[i];
-    if (this.entityInfo.entity_keys[property]) {
-      fields[this.entityInfo.entity_keys[property]] = entity[this.entityInfo.entity_keys[property]];
-    }
+  // // Get the basic fields first.
+  // var properties = ['id', 'revision', 'bundle', 'label'];
+  // var property;
+  // for (var i = 0; i < properties.length; i++) {
+    // property = properties[i];
+    // if (this.entityInfo.entity_keys[property]) {
+      // fields[this.entityInfo.entity_keys[property]] = entity[this.entityInfo.entity_keys[property]];
+    // }
+  // }
+  // fields = entity;
+	
+  if (this.entityInfo.label === 'Node') {
+  	var timeslot = entity['time'];
+  	var m  = /^(\d+)\s+([^\s]+)\s+(\d\d\:\d\d)\s*\-\s*(\d\d\:\d\d)/.exec(timeslot);
+  	if (m && m.length) {
+  		entity['start_date'] = '2011-09-' + m[1] + ' ' + m[3] + ':00.000';
+  		entity['end_date'] =   '2011-09-' + m[1] + ' ' + m[4] + ':00.000';
+  	} else {
+  		entity['start_date'] = '';
+  		entity['end_date'] =   '';	
+  	}
+  	
+  	delete entity['time'];
+  	if (!entity.room) {
+  		entity.room = '';
+  	}
   }
+  var fields = entity;
 
+  
   // Now let the defined schema add whatever additional 
   // fields it wants.  We pass it the field object for two 
   // reasons.  One, it lets it manipulate existing fields if
   // necessary.  Two, it means we don't need to figure
   // out how to merge two objects cleanly.'
-  if (this.entityInfo.schema.getFieldValues) {
-    this.entityInfo.schema.getFieldValues(entity, fields);
-  }
+  // if (this.entityInfo.schema.getFieldValues) {
+    // this.entityInfo.schema.getFieldValues(entity, fields);
+  // }
 
   // And finally, store the serialized entity object.
   fields.data = JSON.stringify(entity);
@@ -284,7 +304,6 @@ Drupal.entity.Datastore.prototype.loadByField = function(field, values, order) {
  */
 Drupal.entity.Datastore.prototype.remove = function(id) {
   this.connection.query("DELETE FROM " + this.entityType + " WHERE " + this.idField + " = ?", [id]);
-
   return this.connection.rowsAffected;
 };
 
