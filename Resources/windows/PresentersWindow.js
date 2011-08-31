@@ -100,7 +100,8 @@
 	        fontFamily:'sans-serif',
 	        left: (fullName != '') ? 9 : 0,
 	        height: 40,
-	        color: '#000'
+	        color: '#000',
+	        touchEnabled:false
 	        }));
 	
 	        
@@ -116,7 +117,8 @@
 	            font:'Helvetica',
 	            left: 10,
 	            height: 40,
-	            color: '#000'
+	            color: '#000',
+	        	touchEnabled:false
 	          });
 	          presenterRow.add(firstNameLabel);
 	          firstLeft = firstNameLabel.toImage().width+10;
@@ -126,7 +128,8 @@
 	            font:'Helvetica-Bold',
 	            left: firstLeft + 5,
 	            height: 40,
-	            color: '#000'
+	            color: '#000',
+	        	touchEnabled:false
 	          });
 	          presenterRow.add(lastNameLabel);
 	          lastLeft = firstLeft + lastNameLabel.toImage().width;

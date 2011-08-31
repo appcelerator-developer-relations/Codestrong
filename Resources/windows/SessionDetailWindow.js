@@ -54,7 +54,8 @@
       layout: 'vertical',
       className: 'headerRow',
       backgroundImage:'images/sessionbckgd@2x.png',
-      backgroundPosition:'bottom left'
+      backgroundPosition:'bottom left',
+      selectionStyle:'none'
     });
 
     var bodyRow = Ti.UI.createTableViewRow({
@@ -65,7 +66,8 @@
       top: -5,
       bottom: 10,
       layout: 'vertical',
-      className: 'bodyRow'
+      className: 'bodyRow',
+      selectionStyle:'none'
     });
 
     if (sessionData.title) {

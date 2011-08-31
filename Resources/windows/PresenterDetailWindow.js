@@ -65,12 +65,13 @@
       left:0,
       top:-5,
       bottom:0,
-      layout:'vertical'
+      layout:'vertical',
+      selectionStyle:'none'
     });
     var twitterRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
     var linkedinRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
     var facebookRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
-    var bioRow = Ti.UI.createTableViewRow({hasChild:false,height:'auto'});
+    var bioRow = Ti.UI.createTableViewRow({hasChild:false,height:'auto',selectionStyle:'none'});
 
     // Add the avatar image to the view
     headerRow.add(av);
