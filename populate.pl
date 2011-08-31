@@ -41,11 +41,10 @@ $sql .= "\n";
 
 # Process JSON for sessions
 my $json = decode_json(getJsonFromUrl('http://codestrong.com/mobile/sessions'));
-my $ctr = 0;
+#my $ctr = 0;
 foreach my $entity (@{$json->{entities}}) {
-	$ctr++;
 	$sql .= "INSERT INTO node(nid, title, instructors, body, room, start_date, end_date, data) VALUES (";
-	$sql .= "$ctr, ";
+	$sql .= $entity->{entity}->{nid} . ", ";
 	$sql .= "'" . doEscape($entity->{entity}->{title}) . "', ";
 	$sql .= "'" . doEscape($entity->{entity}->{instructors}) . "', ";
 	$sql .= "'" . doEscape($entity->{entity}->{body}) . "', ";
@@ -69,7 +68,6 @@ foreach my $entity (@{$json->{entities}}) {
 		$sql .= "NULL, ";
 	}
 	
-	$entity->{entity}->{nid} = $ctr;
 	$entity->{entity}->{start_date} = $startDate;
 	$entity->{entity}->{end_date} = $endDate;
 	
