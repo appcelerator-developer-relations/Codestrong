@@ -32,7 +32,7 @@
 
     var presenterDetailWindow = Titanium.UI.createWindow({
       id: 'presenterDetailWindow',
-      title: presenterData.name,
+      title: presenterData.full_name,
       backgroundColor: '#FFF',
       barColor: '#414444',
       tabGroup: settings.tabGroup
