@@ -30,6 +30,7 @@
       tabGroup: undefined
     });
 
+	Ti.API.debug(settings);
     var sessionsWindow = Titanium.UI.createWindow({
       id: 'sessionsWindow',
       title: settings.title,
@@ -42,8 +43,8 @@
 
     var conn = Drupal.db.getConnection('main');
     var rows = conn.query("SELECT nid FROM node WHERE start_date >= ? AND end_date <= ? ORDER BY start_date, nid", [settings.start_date, settings.end_date]);
-
     var nids = [];
+
     while(rows.isValidRow()) {
       nids.push(rows.fieldByName('nid'));
       rows.next();
@@ -53,12 +54,13 @@
     var sessions = Drupal.entity.db('main', 'node').loadMultiple(nids, ['start_date', 'nid']);
 
     for (var sessionNum = 0, numSessions = sessions.length; sessionNum < numSessions; sessionNum++) {
-      if (DrupalCon.renderers[sessions[sessionNum].type]) {
-        data.push(DrupalCon.renderers[sessions[sessionNum].type](sessions[sessionNum]));
-      }
-      else {
-        Ti.API.info('Not rendering for node type: ' + sessions[sessionNum].type);
-      }
+      // if (DrupalCon.renderers[sessions[sessionNum].type]) {
+        // data.push(DrupalCon.renderers[sessions[sessionNum].type](sessions[sessionNum]));
+      // }
+      // else {
+        // Ti.API.info('Not rendering for node type: ' + sessions[sessionNum].type);
+      // }
+      data.push(DrupalCon.renderers['session'](sessions[sessionNum]));
     }
 
     // create table view

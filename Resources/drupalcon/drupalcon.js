@@ -127,7 +127,7 @@ var DrupalCon = {
 
     // Some sessions have multiple presenters
     var presLabel = Ti.UI.createLabel({
-      text: cleanSpecialChars(session.instructors.map(DrupalCon.util.getPresenterName).join(', ')),
+      text: session.instructors, //cleanSpecialChars(session.instructors.map(DrupalCon.util.getPresenterName).join(', ')),
       font: {fontSize:14, fontWeight:'normal'},
       color: '#000',
       left: leftSpace,
@@ -139,7 +139,7 @@ var DrupalCon = {
 
     // Some things, like keynote, have multiple rooms
     var roomLabel = Ti.UI.createLabel({
-      text: session.room.map(cleanSpecialChars).join(', '),
+      text: session.room, //session.room.map(cleanSpecialChars).join(', '),
       font: {fontSize:14, fontWeight:'normal'},
       color: '#333',
       left: leftSpace,
