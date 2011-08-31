@@ -106,7 +106,7 @@
         text:presenterData.company,
         font:{fontSize: 14, fontWeight: 'bold'},
         textAlign: 'left',
-        color: '#999',
+        color: '#666',
         height: 'auto',
         left: 120
       });

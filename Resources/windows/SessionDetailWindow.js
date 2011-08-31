@@ -379,7 +379,7 @@
       left: 90,
       top: (presenter.full_name != null) ? 5 : 0,
       height: 'auto',
-      color: "#04679C"
+      color: "#666"
     });
 
     presRow.add(presenterFullName2);
