@@ -142,9 +142,9 @@
       // We also push a new index so we can create a right side index for iphone.
       if (headerLetter == '' || name.charAt(0).toUpperCase() != headerLetter) {
         headerLetter = name.charAt(0).toUpperCase();
-        presenterRow.header = headerLetter;
-        index.push({title:headerLetter,index:i});
-        index2.push({title:headerLetter+headerLetter,index:i});
+    	presenterRow.header = headerLetter;
+    	index.push({title:headerLetter,index:i});
+    	index2.push({title:headerLetter+headerLetter,index:i});
       }
 
       data.push(presenterRow);
@@ -166,9 +166,10 @@
     tableview.addEventListener('click', function(e) {
       if (uiEnabled) {
         uiEnabled = false;
-        if (e.index == 0) {
-          tableview.index = index2;
-        }
+        // if (e.index == 0) {
+          // tableview.index = index2;
+        // }
+        
         // event data
         var index = e.index;
         var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : PresentersWindow.tabGroup.activeTab;
