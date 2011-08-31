@@ -40,10 +40,11 @@
       window: DrupalCon.ui.createTwitterWindow(tabGroup)
   }));
 
+  var presentersWindow = DrupalCon.ui.createPresentersWindow(tabGroup);
   tabGroup.addTab(Titanium.UI.createTab({
       icon: (isAndroid()) ? 'images/tabs/bofs_android.png' : 'images/tabs/bofs.png',
       title: 'Speakers',
-      window: DrupalCon.ui.createPresentersWindow(tabGroup)
+      window: presentersWindow
   }));
 
   tabGroup.addTab(Titanium.UI.createTab({
@@ -108,6 +109,7 @@
   });
 
   Ti.addEventListener('drupal:entity:datastore:update_completed', function(e) {
+  	presentersWindow.doRefresh();
     Drupal.createNoticeDialog('Update completed.').show(2000);
     Ti.API.info('Update completed.');
   });
