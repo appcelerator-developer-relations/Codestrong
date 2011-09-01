@@ -106,13 +106,14 @@ function getPresenterData(names) {
   return nameList;
 }
 
+// Should be in a namespace, but then again, so should pretty much all of this
+var isAndroidValue = undefined;
+
 function isAndroid (){
-  if(Ti.Platform.name == 'android') {
-    return true;
-  }
-  else {
-    return false;
-  }
+	if (isAndroidValue === undefined) {
+		isAndroidValue = Ti.Platform.name;
+	} 
+	return isAndroidValue;
 }
 
 /*
