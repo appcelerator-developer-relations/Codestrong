@@ -105,7 +105,6 @@ Drupal.entity.Datastore.prototype.insert = function(entity) {
     // }
   // }
   // fields = entity;
-	
   if (this.entityInfo.label === 'Node') {
   	var timeslot = entity['time'];
   	var m  = /^(\d+)\s+([^\s]+)\s+(\d\d\:\d\d)\s*\-\s*(\d\d\:\d\d)/.exec(timeslot);
@@ -117,13 +116,23 @@ Drupal.entity.Datastore.prototype.insert = function(entity) {
   		entity['end_date'] =   '';	
   	}
   	
-  	delete entity['time'];
   	if (!entity.room) {
   		entity.room = '';
   	}
   }
-  var fields = entity;
-
+  
+  // For whatever reason, `delete` does not actually delete the property on Android
+  var fields = {};
+  if (isAndroid()) {
+  	for (var mykey in entity) {
+  		if (mykey !== 'time') {
+  			fields[mykey] = entity[mykey];	
+  		}
+  	}
+  } else {
+  	delete entity['time'];
+  	fields = entity;
+  }
   
   // Now let the defined schema add whatever additional 
   // fields it wants.  We pass it the field object for two 

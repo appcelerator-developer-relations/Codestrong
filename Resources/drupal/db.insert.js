@@ -103,7 +103,7 @@ Drupal.db.InsertQuery.prototype.fields = function(fields, values) {
         var keys = [];
         var arrValues = [];
         for (var prop in fields) {
-          if (fields.hasOwnProperty(prop)) {
+          if (isAndroid() || fields.hasOwnProperty(prop)) {
             keys.push(prop);
             arrValues.push(fields[prop]);
           }

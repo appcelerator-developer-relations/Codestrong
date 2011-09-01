@@ -52,7 +52,7 @@ Drupal.entity = {
        */
       types: {
         node: {
-          label: Ti.Locale.getString('Node'),
+          label: Ti.Locale.getString('Node', 'Node'),
           entity_keys: {
             id: 'nid',
             revision: 'vid',
@@ -65,7 +65,7 @@ Drupal.entity = {
           }
         },
         user: {
-          label: Ti.Locale.getString('User'),
+          label: Ti.Locale.getString('User', 'User'),
           entity_keys: {
             id: 'uid',
             bundle: null,
