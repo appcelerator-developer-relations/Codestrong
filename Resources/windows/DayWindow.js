@@ -73,20 +73,21 @@
       }
     });
 
-//    dayWindow.addEventListener('open', function() {
-//      var buttons = [];
-//      buttons.push({
-//        title: "Update",
-//        clickevent: function () {
-//          Ti.fireEvent('drupalcon:update_data');
-//        }
-//      });
-//      menu.init({
-//        win: dayWindow,
-//        buttons: buttons
-//      });
-//    });
-
+	if (isAndroid()) {
+	   dayWindow.addEventListener('open', function() {
+	     var buttons = [];
+	     buttons.push({
+	       title: "Update",
+	       clickevent: function () {
+	         Ti.fireEvent('drupalcon:update_data');
+	       }
+	     });
+	     menu.init({
+	       win: dayWindow,
+	       buttons: buttons
+	     });
+	   });
+	}
 
     return dayWindow;
   };
