@@ -147,13 +147,20 @@
         backgroundColor:'#fff',
         textAlign:'left',
         color:'#000',
-        left: commonPadding,
+        height: 'auto',
+        width: isAndroid() ? '92%' : 'auto',
         top: 15,
         bottom: 15,
-        right: commonPadding,
-        height: 'auto'
+        font: {
+        	fontSize:16
+        }
       });
       bodyRow.add(body);
+    }
+    
+    if (!isAndroid()) {
+      	body.right = commonPadding;
+      	body.left = commonPadding;
     }
 
     if (sessionData.core_problem) {
@@ -318,9 +325,6 @@
       audienceRow.add(textViewBottom);
       tvData.push(audienceRow);
     }
-
-
-    
 
     tv.addEventListener('click', function(e) {
       if (e.source.presenter != undefined){

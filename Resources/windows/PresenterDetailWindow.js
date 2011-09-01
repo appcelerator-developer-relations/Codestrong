@@ -44,7 +44,8 @@
     // Structure
     var tv = Ti.UI.createTableView({
       textAlign: 'left',
-      layout:'vertical'
+      width:'100%'
+      //layout:'vertical'
     });
 
     //var userPict = avatarPath(presenterData.uid);
@@ -71,7 +72,12 @@
     var twitterRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
     var linkedinRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
     var facebookRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
-    var bioRow = Ti.UI.createTableViewRow({hasChild:false,height:'auto',selectionStyle:'none'});
+    var bioRow = Ti.UI.createTableViewRow({
+    	hasChild:false,
+    	height:'auto',
+    	width:'100%',
+    	selectionStyle:'none'
+    });
 
     // Add the avatar image to the view
     headerRow.add(av);
@@ -212,20 +218,26 @@
     }
     
     if (presenterData.bio != undefined) {
-      var bioSection = Ti.UI.createTableViewSection({headerTitle:'Biography'});
+      var bioSection = Ti.UI.createTableViewSection({headerTitle:'Biography', width:'100%'});
       var bio = Ti.UI.createLabel({
-        text: cleanSpecialChars(presenterData.bio.replace('\n','\n\n')),
+        text: cleanSpecialChars(presenterData.bio.replace(/^[\s\n\r\t]+|[\s\n\r\t]+$/g, '').replace(/\n/g,"\n\n")),
         backgroundColor:'#fff',
         textAlign:'left',
         color:'#000',
         height:'auto',
-        width:'auto',
-        left:10,
-        right:10,
-        top:10,
-        bottom:10
+        width: isAndroid() ? '92%' : 'auto',
+        top: 10,
+        bottom: 10,
+        font: {
+        	fontSize:16
+        }
       });
-
+      
+      if (!isAndroid()) {
+      	bio.right = 10;
+      	bio.left = 10;
+      }
+      
       bioRow.add(bio);
       bioSection.add(bioRow);
       tvData.push(bioSection);
@@ -233,6 +245,7 @@
 
     tv.setData(tvData);
     presenterDetailWindow.add(tv);
+    
     return presenterDetailWindow;
   };
 
