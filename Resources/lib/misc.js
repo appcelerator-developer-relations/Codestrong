@@ -111,7 +111,7 @@ var isAndroidValue = undefined;
 
 function isAndroid (){
 	if (isAndroidValue === undefined) {
-		isAndroidValue = Ti.Platform.name;
+		isAndroidValue = (Ti.Platform.osname == 'android');
 	} 
 	return isAndroidValue;
 }
