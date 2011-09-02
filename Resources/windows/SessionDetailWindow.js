@@ -43,8 +43,14 @@
     // Structure
     var tv = Ti.UI.createTableView({
       textAlign: 'left',
-      layout:'vertical'
+      layout:'vertical',
+      separatorColor:'#fff'
     });
+    tv.footerView = Ti.UI.createView({
+    	height:1,
+    	opacity:0
+    });
+    
     var headerRow = Ti.UI.createTableViewRow({
       height: 'auto',
       backgroundColor: blueBg,
