@@ -22,18 +22,32 @@ var Twitter = {
 
 (function() {
   var tweetCount = 50;
+  var currentScrollable = undefined;
+  var createTwitterTable = function(search) {
+  	  return Ti.UI.createTableView({
+  	  	  height:'100%',
+          width:'100%',
+          viewTitle:search
+  	  });
+  }
   var viewsToLoad = [
     {
   		search:'@appcelerator',
-  		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=appcelerator&count=' + tweetCount
+  		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=appcelerator&count=' + tweetCount,
+  		table: createTwitterTable('@appcelerator'),
+  		isSearch: false
   	},
   	{
   		search:'@codestrong',
-  		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=codestrong&count=' + tweetCount
+  		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=codestrong&count=' + tweetCount,
+  		table: createTwitterTable('@codestrong'),
+  		isSearch: false
   	},
   	{
   		search:'#codestrong',
-  		url: 'http://search.twitter.com/search.json?q=%23codestrong&result_type=recent&rpp=' + tweetCount
+  		url: 'http://search.twitter.com/search.json?q=%23codestrong&result_type=recent&rpp=' + tweetCount,
+  		table: createTwitterTable('#codestrong'),
+  		isSearch: true
   	}
   ];
   var loadedViews = [];
@@ -44,17 +58,58 @@ var Twitter = {
       title: 'News',
       backgroundColor: '#FFF',
       barColor: '#414444',
-      tabGroup: tabGroup
+      tabGroup: tabGroup,
+      title: viewsToLoad[0].search
     });
+    for (var myEntry in viewsToLoad) {
+    	myEntry = viewsToLoad[myEntry];
+  		myEntry.table.addEventListener('click', function(e) {
+			var currentTab = isAndroid() ? Titanium.UI.currentTab : twitterWindow.tabGroup.activeTab;
+    		currentTab.open(DrupalCon.ui.createTwitterDetailWindow({
+      			title: e.rowData.user,
+      			text: e.rowData.tweet,
+      			name: e.rowData.user,
+      			date: e.rowData.date,
+      			tabGroup: currentTab
+    		}), {animated:true});
+		});
+    }
+    
+    var scrollable = Ti.UI.createScrollableView({
+		showPagingControl: true,
+		backgroundColor: '#000000',
+		height:'100%',
+		width:'100%',
+		views:[
+			viewsToLoad[0].table,
+			viewsToLoad[1].table,
+			viewsToLoad[2].table
+		]
+	});
+	scrollable.addEventListener('scroll', function(e) {
+		if (e.view) {
+			twitterWindow.title = e.view.viewTitle;
+		}
+	});
+	twitterWindow.add(scrollable);
+	var actInd = Titanium.UI.createActivityIndicator({
+	    bottom:10,
+	    height:50,
+	    width:210,
+	    style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN,
+	    color: 'white',
+	    message: 'Loading...',
+	    font: {
+	    	fontFamily:'Helvetica Neue',
+		    fontSize:15,
+		    fontWeight:'bold'
+	    }
+	});
 
     // Using the parsing method shown https://gist.github.com/819929
     var tweetWebJs = "document.body.addEventListener('touchmove', function(e) { e.preventDefault();}, false);";
     var baseHTMLStart = '<html><head></head><body>',
         baseHTMLEnd = '<script type="text/javascript">' + tweetWebJs + '</script></body></html>';
-
-    // set up a twitter screen name.
-    var twitter_name = 'appcelerator';
-    twitterWindow.title = '@' + twitter_name;
 
     // set this to true if you are only tracking one user
     var single = true;
@@ -63,23 +118,6 @@ var Twitter = {
     var up = net.online;
 
     var getTweets = function(entry) {
-      var actInd = Titanium.UI.createActivityIndicator({
-        bottom:10,
-        height:50,
-        width:10,
-        style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
-      });
-      actInd.style = Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN;
-      actInd.font = {
-        fontFamily:'Helvetica Neue',
-        fontSize:15,
-        fontWeight:'bold'
-      };
-      actInd.color = 'white';
-      actInd.message = 'Loading...';
-      actInd.width = 210;
-      actInd.show();
-
       // create table view data object
       var data = [];
 
@@ -90,18 +128,17 @@ var Twitter = {
       xhr.onload = function() {
         try {
           var json = eval('('+this.responseText+')');
-          var isSearch = (entry.search.charAt(0) != '@');
-          var tweets = isSearch ? json.results : json;
+          var tweets = entry.isSearch ? json.results : json;
           for (var c=0;c<tweets.length;c++) {
             var tweet = tweets[c].text;
-            var user = isSearch ? tweets[c].from_user : tweets[c].user.screen_name;
+            var user = entry.isSearch ? tweets[c].from_user : tweets[c].user.screen_name;
             var avatarWidth = 48;
             var avatar;
-            if (single ==  true && !isSearch) {
+            if (single ==  true && !entry.isSearch) {
               avatar = tweets[1].user.profile_image_url;
             }
             else {
-              avatar = isSearch ? tweets[c].profile_image_url : tweets[c].user.profile_image_url;
+              avatar = entry.isSearch ? tweets[c].profile_image_url : tweets[c].user.profile_image_url;
 
             }
             var created_at = prettyDate(strtotime(tweets[c].created_at));
@@ -111,7 +148,9 @@ var Twitter = {
               hasChild:true,
               backgroundColor:bgcolor,
               height:'auto',
-              date:created_at
+              date:created_at,
+              user:user,
+              tweet:tweet
             });
 
             // Create a vertical layout view to hold all the info labels and images for each tweet
@@ -173,7 +212,7 @@ var Twitter = {
               top:30,
               right:20,
               color:'#333',
-              width:'auto',
+              //width:'auto',
               height:'auto',
               textAlign:'left',
               bottom: 10,
@@ -188,47 +227,16 @@ var Twitter = {
           }
 
           Titanium.App.Properties.setString("lastTweet",tweet);
-
-          // Create the tableView and add it to the window.
-          var tableview = Titanium.UI.createTableView({
-            data:data,
-            height:'100%',
-            width:'100%',
-            viewTitle:entry.search
-          });
-          //twitterWindow.add(tableview);
-          //scrollable.addView(tableview);
-          loadedViews.push(tableview);
+          
+          Ti.API.debug(entry.table);
+          Ti.API.debug(data);
+          
+          entry.table.setData(data);
+          loadedViews.push(entry.table);
           if (loadedViews.length == viewsToLoad.length) {
-          	var scrollable = Ti.UI.createScrollableView({
-				showPagingControl: true,
-				backgroundColor: '#000000',
-				height:'100%',
-				width:'100%',
-				views:loadedViews
-			});
-			scrollable.addEventListener('scroll', function(e) {
-				if (e.view) {
-					twitterWindow.title = e.view.viewTitle;
-				}
-			});
-			twitterWindow.add(scrollable);
+			loadedViews = [];
+			actInd.hide();
           }
-          actInd.hide();
-
-
-          // create table view event listener
-          tableview.addEventListener('click', function(e) {
-
-            var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : twitterWindow.tabGroup.activeTab;
-            currentTab.open(DrupalCon.ui.createTwitterDetailWindow({
-              title: isSearch ? tweets[e.index].from_user : tweets[e.index].user.screen_name,
-              text: tweets[e.index].text,
-              name: isSearch ? tweets[e.index].from_user : tweets[e.index].user.screen_name,
-              date: e.rowData.date,
-              tabGroup: currentTab
-            }), {animated:true});
-          });
         }
         catch(e) {
           Ti.API.info(e);
@@ -239,6 +247,7 @@ var Twitter = {
     }
 
 	var reloadAllTweets = function() {
+		actInd.show();
 	  	for (var i = 0; i < viewsToLoad.length; i++) {
 	  		getTweets(viewsToLoad[i]);	
 	  	}
