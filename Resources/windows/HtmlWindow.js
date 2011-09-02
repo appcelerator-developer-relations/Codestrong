@@ -29,8 +29,8 @@
       title: settings.title,
       backgroundColor: '#FFF',
       barColor: '#414444',
-      width: 'auto',
-      height: 'auto',
+      width: '100%',
+      height: '100%',
       tabGroup: tabGroup
     });
     
