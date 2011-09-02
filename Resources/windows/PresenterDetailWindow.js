@@ -223,7 +223,7 @@
     }
     
       var bioSection = Ti.UI.createTableViewSection({headerTitle:'Biography', width:'100%'});
-      var bioText = (presenterData.bio === undefined) ? "No biography available" : cleanSpecialChars(presenterData.bio.replace(/^[\s\n\r\t]+|[\s\n\r\t]+$/g, '').replace(/\n/g,"\n\n"));
+      var bioText = (!presenterData.bio) ? "No biography available" : cleanSpecialChars(presenterData.bio.replace(/^[\s\n\r\t]+|[\s\n\r\t]+$/g, '').replace(/\n/g,"\n\n"));
       var bio = Ti.UI.createLabel({
         text: bioText,
         backgroundColor:'#fff',
