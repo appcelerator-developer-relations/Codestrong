@@ -84,20 +84,6 @@
       });
       headerRow.add(titleLabel);
     }
-    // Some sessions have multiple presenters
-    if (sessionData.instructors) {
-      var presenterName = Ti.UI.createLabel({
-        text: sessionData.instructors, //cleanSpecialChars(sessionData.instructors.map(DrupalCon.util.getPresenterName).join(', ')),
-        font: {fontSize:18, fontWeight:'normal'},
-        color: '#000',
-        left: commonPadding,
-        top: 'auto',
-        bottom: 5,
-        right: commonPadding,
-        height: 'auto'
-      });
-      //headerRow.add(presenterName);
-    }
 
     if (sessionData.start_date) {
       //var startDate = parseISO8601(sessionData.start_date + ':00');
@@ -225,8 +211,11 @@
     
     //if (sessionData.instructors && sessionData.instructors.length) {
     if (sessionData.instructors) {
-      var speakerSection = Ti.UI.createTableViewSection({headerTitle:'Speaker(s)'});
       var instructorList = sessionData.instructors.split(",");
+      var speakerSection = Ti.UI.createTableViewSection({
+      	headerTitle: (instructorList.length > 1) ? 'Speakers' : 'Speaker'	
+      });
+      
       for (var k = 0; k < instructorList.length; k++) {
       	instructorList[k] = instructorList[k].replace(/^\s+|\s+$/g, '');
       }
@@ -348,21 +337,22 @@
 
     var av = Ti.UI.createImageView({
       image:userPict,
-      left:0,
-      top:0,
-      height:80,
-      width:80,
+      left:5,
+      top:5,
+      height:50,
+      width:50,
       defaultImage:'images/userpict-large.png',
       backgroundColor: '#000'
     });
 
     var presRow = Ti.UI.createTableViewRow({
       presenter: presenter,
-      height: 80,
+      height: 60,
       className: 'presenterRow',
       borderColor: '#C4E2EF',
       hasChild: true,
-      backgroundColor: '#fff',
+      //backgroundColor: '#fff',
+      backgroundColor: '#dc5531',
       layout:'vertical'
     });
     presRow.add(av);
@@ -370,20 +360,21 @@
       presenter: presenter,
       text: cleanSpecialChars(presenter.full_name),
       font: {fontSize:18, fontWeight:'bold'},
-      left: 90,
-      top: -70,
+      left: 75,
+      top: -45,
       height: 'auto',
-      color: '#000'
+      color: '#fff'
     });
     dpm(presenter.full_name);
     var presenterName2 = Ti.UI.createLabel({
       presenter: presenter,
-      text: presenter.company,
+      text: cleanSpecialChars(presenter.company),
       font:{fontSize:14, fontWeight:'normal'},
-      left: 90,
-      top: (presenter.full_name != null) ? 5 : 0,
+      left: 75,
+      //top: (presenter.full_name != null) ? 5 : 0,
+      bottom: 10,
       height: 'auto',
-      color: "#666"
+      color: "#fff"
     });
 
     presRow.add(presenterFullName2);

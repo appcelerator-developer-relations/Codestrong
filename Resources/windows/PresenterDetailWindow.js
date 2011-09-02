@@ -109,7 +109,7 @@
 
     if (presenterData.company != undefined) {
       var company = Ti.UI.createLabel({
-        text:presenterData.company,
+        text:cleanSpecialChars(presenterData.company),
         font:{fontSize: 14, fontWeight: 'bold'},
         textAlign: 'left',
         color: '#666',

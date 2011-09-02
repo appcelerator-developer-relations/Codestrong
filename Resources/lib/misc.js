@@ -185,7 +185,7 @@ function cleanSpecialChars(str) {
   if (typeof str === 'string') {
     return  str
       .replace(/&quot;/g,'"')
-      .replace(/&amp;/g,"&")
+      .replace(/\&amp\;/g,"&")
       .replace(/&lt;/g,"<")
       .replace(/&gt;/g,">")
       .replace(/&#039;/g, "'");
