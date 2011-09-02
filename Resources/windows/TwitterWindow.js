@@ -228,9 +228,6 @@ var Twitter = {
 
           Titanium.App.Properties.setString("lastTweet",tweet);
           
-          Ti.API.debug(entry.table);
-          Ti.API.debug(data);
-          
           entry.table.setData(data);
           loadedViews.push(entry.table);
           if (loadedViews.length == viewsToLoad.length) {

@@ -108,15 +108,20 @@
     }
   });
 
+  var activityIndicator = Ti.UI.createActivityIndicator({
+  	message:'Updating sessions and speakers...'	
+  });
   Ti.addEventListener('drupal:entity:datastore:update_completed', function(e) {
   	presentersWindow.doRefresh();
-    Drupal.createNoticeDialog('Update completed.').show(2000);
-    Ti.API.info('Update completed.');
+  	activityIndicator.hide();
+    //Drupal.createNoticeDialog('Update completed.').show(2000);
+    //Ti.API.info('Update completed.');
   });
 
   Ti.addEventListener('drupalcon:update_data', function(e) {
-    Drupal.createNoticeDialog('Updating session and presenter data.').show(2000);
-    //Drupal.entity.db('main', 'node').fetchUpdates('all');
+    //Drupal.createNoticeDialog('Updating session and presenter data.').show(2000);
+    activityIndicator.show();
+    
     Drupal.entity.db('main', 'node').fetchUpdates('session');
     Drupal.entity.db('main', 'user').fetchUpdates('user');
   });
