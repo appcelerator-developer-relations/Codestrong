@@ -103,7 +103,7 @@
         win.rightNavButton = button;
         button.addEventListener('click', function() {
           Ti.fireEvent('drupalcon:update_data');
-        })
+        });
       }
     }
   });

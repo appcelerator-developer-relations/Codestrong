@@ -21,7 +21,23 @@ var Twitter = {
 };
 
 (function() {
-
+  var tweetCount = 50;
+  var viewsToLoad = [
+    {
+  		search:'@appcelerator',
+  		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=appcelerator&count=' + tweetCount
+  	},
+  	{
+  		search:'@codestrong',
+  		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=codestrong&count=' + tweetCount
+  	},
+  	{
+  		search:'#codestrong',
+  		url: 'http://search.twitter.com/search.json?q=%23codestrong&result_type=recent&rpp=' + tweetCount
+  	}
+  ];
+  var loadedViews = [];
+  
   DrupalCon.ui.createTwitterWindow = function(tabGroup) {
     var twitterWindow = Titanium.UI.createWindow({
       id: 'twitterWindow',
@@ -31,19 +47,6 @@ var Twitter = {
       tabGroup: tabGroup
     });
 
-//    // Trying out something a little different.  Why are we trying to create a
-//    // new twitter.com when we already have twitter.com?
-//    var webview = Ti.UI.createWebView({url:'http://mobile.twitter.com/drupalcon'});
-//    twitterWindow.add(webview);
-//
-//
-//    twitterWindow.addEventListener('focus', function() {
-//      var webview = Ti.UI.createWebView({url:'http://mobile.twitter.com/drupalcon'});
-//      twitterWindow.add(webview);
-//    });
-//    return twitterWindow;
-
-
     // Using the parsing method shown https://gist.github.com/819929
     var tweetWebJs = "document.body.addEventListener('touchmove', function(e) { e.preventDefault();}, false);";
     var baseHTMLStart = '<html><head></head><body>',
@@ -52,7 +55,6 @@ var Twitter = {
     // set up a twitter screen name.
     var twitter_name = 'appcelerator';
     twitterWindow.title = '@' + twitter_name;
-    var tweetCount = 50;
 
     // set this to true if you are only tracking one user
     var single = true;
@@ -60,7 +62,7 @@ var Twitter = {
     var net = Titanium.Network;
     var up = net.online;
 
-    function getTweets(screen_name) {
+    var getTweets = function(entry) {
       var actInd = Titanium.UI.createActivityIndicator({
         bottom:10,
         height:50,
@@ -83,21 +85,23 @@ var Twitter = {
 
       var xhr = Ti.Network.createHTTPClient();
       xhr.timeout = 100000;
-      var tweetParams = "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=" + screen_name + "&count=" + tweetCount;
-      xhr.open("GET", tweetParams);
+      xhr.open("GET", entry.url);
+      
       xhr.onload = function() {
         try {
-          var tweets = eval('('+this.responseText+')');
+          var json = eval('('+this.responseText+')');
+          var isSearch = (entry.search.charAt(0) != '@');
+          var tweets = isSearch ? json.results : json;
           for (var c=0;c<tweets.length;c++) {
             var tweet = tweets[c].text;
-            var user = tweets[c].user.screen_name;
+            var user = isSearch ? tweets[c].from_user : tweets[c].user.screen_name;
             var avatarWidth = 48;
             var avatar;
-            if (single ==  true) {
+            if (single ==  true && !isSearch) {
               avatar = tweets[1].user.profile_image_url;
             }
             else {
-              avatar = tweets[c].user.profile_image_url;
+              avatar = isSearch ? tweets[c].profile_image_url : tweets[c].user.profile_image_url;
 
             }
             var created_at = prettyDate(strtotime(tweets[c].created_at));
@@ -132,8 +136,8 @@ var Twitter = {
               text:user,
               left:0,
               width:120,
-              top:0,
-              height:16,
+              top:-3,
+              height:20,
               textAlign:'left',
               color:'#444444',
               font:{
@@ -147,9 +151,9 @@ var Twitter = {
 
             var date_label = Ti.UI.createLabel({
               text:created_at,
-              right:0,
-              top:0,
-              height:14,
+              right:20,
+              top:-2,
+              height:20,
               textAlign:'right',
               width:110,
               color:'#444444',
@@ -167,6 +171,7 @@ var Twitter = {
               text:tweet,
               left:64,
               top:30,
+              right:20,
               color:'#333',
               width:'auto',
               height:'auto',
@@ -186,29 +191,43 @@ var Twitter = {
 
           // Create the tableView and add it to the window.
           var tableview = Titanium.UI.createTableView({
-            data:data
+            data:data,
+            height:'100%',
+            width:'100%',
+            viewTitle:entry.search
           });
-          twitterWindow.add(tableview);
+          //twitterWindow.add(tableview);
+          //scrollable.addView(tableview);
+          loadedViews.push(tableview);
+          if (loadedViews.length == viewsToLoad.length) {
+          	var scrollable = Ti.UI.createScrollableView({
+				showPagingControl: true,
+				backgroundColor: '#000000',
+				height:'100%',
+				width:'100%',
+				views:loadedViews
+			});
+			scrollable.addEventListener('scroll', function(e) {
+				if (e.view) {
+					twitterWindow.title = e.view.viewTitle;
+				}
+			});
+			twitterWindow.add(scrollable);
+          }
           actInd.hide();
 
 
           // create table view event listener
           tableview.addEventListener('click', function(e) {
 
-            var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : twitterWindow.tabGroup.activeTab;
+            var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : twitterWindow.tabGroup.activeTab;
             currentTab.open(DrupalCon.ui.createTwitterDetailWindow({
-              title: tweets[e.index].user.screen_name,
+              title: isSearch ? tweets[e.index].from_user : tweets[e.index].user.screen_name,
               text: tweets[e.index].text,
-              name: tweets[e.index].user.screen_name,
+              name: isSearch ? tweets[e.index].from_user : tweets[e.index].user.screen_name,
               date: e.rowData.date,
               tabGroup: currentTab
             }), {animated:true});
-          });
-
-
-
-          tableview.addEventListener('click', function(e) {
-            //Ti.API.info(tweets[e.index].text);
           });
         }
         catch(e) {
@@ -219,26 +238,15 @@ var Twitter = {
       xhr.send();
     }
 
+	var reloadAllTweets = function() {
+	  	for (var i = 0; i < viewsToLoad.length; i++) {
+	  		getTweets(viewsToLoad[i]);	
+	  	}
+	  };
+
     // Get the tweets for 'twitter_name'
     if (up) {
-      getTweets(twitter_name);
-
-      // Refresh menu item
-
-      // WTF?  Why doesn't this work?
-      /*
-      var buttons = [];
-      buttons.push({
-        title: "Refresh Tweets",
-        clickevent: function () {
-          getTweets(twitter_name);
-        }
-      });
-      menu.init({
-        win: twitterWindow,
-        buttons: buttons
-      });
-      */
+      reloadAllTweets();
 
       if (Ti.Platform.name == 'android') {
         twitterWindow.activity.onCreateOptionsMenu = function(e) {
@@ -248,7 +256,7 @@ var Twitter = {
             title : 'Refresh Tweets'
           });
           m1.addEventListener('click', function(e) {
-            getTweets(twitter_name);
+            reloadAllTweets();
           });
         };
       }
@@ -261,7 +269,7 @@ var Twitter = {
         });
         twitterWindow.rightNavButton = button;
         button.addEventListener('click', function(e) {
-          getTweets(twitter_name);
+          reloadAllTweets();
         });
       }
     }
