@@ -29,8 +29,8 @@
 
     var mapDetailWindow = Titanium.UI.createWindow({
       id: 'mapDetailWindow',
-      width: 'auto',
-      height: 'auto',
+      width: '100%',
+      height: '100%',
       title: settings.mapName,
       barColor: '#414444',
       backgroundColor: '#ffffff',
