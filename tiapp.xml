@@ -39,4 +39,5 @@
         <icon>default_app_logo.png</icon>
     </android>
     <modules/>
+    <property name="ti.android.threadstacksize" type="int">32768</property>
 </ti:app>
