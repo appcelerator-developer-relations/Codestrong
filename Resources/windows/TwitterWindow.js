@@ -54,11 +54,10 @@ var Twitter = {
   DrupalCon.ui.createTwitterWindow = function(tabGroup) {
     var twitterWindow = Titanium.UI.createWindow({
       id: 'twitterWindow',
-      title: 'News',
+      title: 'Twitter News',
       backgroundColor: '#FFF',
       barColor: '#414444',
-      tabGroup: tabGroup,
-      title: viewsToLoad[0].search
+      tabGroup: tabGroup
     });
     var tabbedBarView = Ti.UI.createView({
     	backgroundColor:'#880000',
@@ -137,7 +136,7 @@ var Twitter = {
 	});
 	scrollable.addEventListener('scroll', function(e) {
 		if (e.view) {
-			twitterWindow.title = e.view.viewTitle;
+			//twitterWindow.title = e.view.viewTitle;
 			viewsToLoad[e.currentPage].tabView.fireEvent('click');
 		}
 	});
