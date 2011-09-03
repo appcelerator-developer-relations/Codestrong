@@ -109,18 +109,56 @@
   });
 
   var activityIndicator = Ti.UI.createActivityIndicator({
-  	message:'Updating sessions and speakers...'	
+  	message:'Updating sessions and speakers...',
+  	style: Titanium.UI.iPhone.ActivityIndicatorStyle.BIG,
+  	color:'#fff'
   });
   Ti.addEventListener('drupal:entity:datastore:update_completed', function(e) {
   	presentersWindow.doRefresh();
-  	activityIndicator.hide();
-    //Drupal.createNoticeDialog('Update completed.').show(2000);
-    //Ti.API.info('Update completed.');
+  	if (isAndroid()) {
+  		activityIndicator.hide();
+  	} else {
+  		tabGroup.activeTab.window.modalActivityIndicator.hideIndicator();
+  		tabGroup.activeTab.window.modalActivityIndicator.close({animated:false});
+  	}
   });
 
   Ti.addEventListener('drupalcon:update_data', function(e) {
+  	Ti.API.debug('update');
     //Drupal.createNoticeDialog('Updating session and presenter data.').show(2000);
-    activityIndicator.show();
+    if (!isAndroid()) {
+	    var tabWin = tabGroup.activeTab.window;
+	    if (!tabWin.modalActivityIndicator) {
+	    	tabWin.modalActivityIndicator = (function() {
+	    		var win = Ti.UI.createWindow({
+	    			backgroundColor:'#000000',
+	    			modal:false,
+	    			opacity:0.75,
+	    			height:'100%',
+	    			width:'100%',
+	    			navBarHidden:true
+	    		});
+	    		var ai = Ti.UI.createActivityIndicator({
+				  	message:'Updating sessions and speakers...',
+				  	style: Titanium.UI.iPhone.ActivityIndicatorStyle.BIG,
+				  	color:'#fff'
+				});
+				win.add(ai);
+				win.showIndicator = function() {
+					ai.show();
+				};
+				win.hideIndicator = function() {
+					ai.hide();	
+				}
+				return win;
+	    	})();
+	    }
+
+		tabWin.modalActivityIndicator.open({animated:false});
+	    tabWin.modalActivityIndicator.showIndicator();
+    } else {
+    	activityIndicator.show();
+    }
     
     Drupal.entity.db('main', 'node').fetchUpdates('session');
     Drupal.entity.db('main', 'user').fetchUpdates('user');
