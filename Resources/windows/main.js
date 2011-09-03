@@ -124,8 +124,6 @@
   });
 
   Ti.addEventListener('drupalcon:update_data', function(e) {
-  	Ti.API.debug('update');
-    //Drupal.createNoticeDialog('Updating session and presenter data.').show(2000);
     if (!isAndroid()) {
 	    var tabWin = tabGroup.activeTab.window;
 	    if (!tabWin.modalActivityIndicator) {

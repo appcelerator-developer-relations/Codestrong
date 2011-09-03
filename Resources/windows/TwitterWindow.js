@@ -232,7 +232,13 @@ var Twitter = {
           loadedViews.push(entry.table);
           if (loadedViews.length == viewsToLoad.length) {
 			loadedViews = [];
-			actInd.hide();
+			
+			if (isAndroid()) {
+				actInd.hide();
+			} else {
+				twitterWindow.modalActivityIndicator.hideIndicator();
+  				twitterWindow.modalActivityIndicator.close({animated:false});
+			}
           }
         }
         catch(e) {
@@ -244,7 +250,39 @@ var Twitter = {
     }
 
 	var reloadAllTweets = function() {
-		actInd.show();
+		if (isAndroid()) {
+			actInd.show();
+		} else {
+			var tabWin = twitterWindow;
+		    if (!tabWin.modalActivityIndicator) {
+		    	tabWin.modalActivityIndicator = (function() {
+		    		var win = Ti.UI.createWindow({
+		    			backgroundColor:'#000000',
+		    			modal:false,
+		    			opacity:0.75,
+		    			height:'100%',
+		    			width:'100%',
+		    			navBarHidden:true
+		    		});
+		    		var ai = Ti.UI.createActivityIndicator({
+					  	message:'Getting latest tweets...',
+					  	style: Titanium.UI.iPhone.ActivityIndicatorStyle.BIG,
+					  	color:'#fff'
+					});
+					win.add(ai);
+					win.showIndicator = function() {
+						ai.show();
+					};
+					win.hideIndicator = function() {
+						ai.hide();	
+					}
+					return win;
+		    	})();
+		    }
+	
+			tabWin.modalActivityIndicator.open({animated:false});
+		    tabWin.modalActivityIndicator.showIndicator();
+		}
 	  	for (var i = 0; i < viewsToLoad.length; i++) {
 	  		getTweets(viewsToLoad[i]);	
 	  	}
@@ -274,7 +312,7 @@ var Twitter = {
 
         });
         twitterWindow.rightNavButton = button;
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function(e) {	
           reloadAllTweets();
         });
       }
