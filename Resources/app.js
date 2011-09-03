@@ -82,6 +82,7 @@ if ('' == Titanium.App.Properties.getString('drupalcon:fetcher:lastNodeUpdate:se
 //Drupal.db.errorMode = Drupal.db.ERROR_LEVEL_DEBUG;
 
 Ti.include(
+  'windows/ModalActivityIndicatorWindow.js',	
   'windows/DayWindow.js',
   'windows/MapWindow.js',
   'windows/MapDetailWindow.js',
