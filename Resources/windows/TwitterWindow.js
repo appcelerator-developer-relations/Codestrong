@@ -141,6 +141,11 @@ var Twitter = {
 		}
 	});
 	
+	if (!isAndroid()) {
+		Titanium.Gesture.addEventListener('orientationchange', function(e){   
+	    	scrollable.scrollToView(scrollable.currentPage);   
+		});
+	}
 	twitterWindow.add(scrollable);
 	tabbedBarView.add(tabbedBar);	
 	twitterWindow.add(tabbedBarView);
