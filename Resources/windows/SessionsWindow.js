@@ -30,7 +30,6 @@
       tabGroup: undefined
     });
 
-	Ti.API.debug(settings);
     var sessionsWindow = Titanium.UI.createWindow({
       id: 'sessionsWindow',
       title: settings.titleShort,
