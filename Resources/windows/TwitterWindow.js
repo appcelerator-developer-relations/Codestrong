@@ -22,7 +22,6 @@ var Twitter = {
 
 (function() {
   var tweetCount = 50;
-  var currentScrollable = undefined;
   var createTwitterTable = function(search) {
   	  return Ti.UI.createTableView({
   	  	  height:'100%',
@@ -61,8 +60,21 @@ var Twitter = {
       tabGroup: tabGroup,
       title: viewsToLoad[0].search
     });
-    for (var myEntry in viewsToLoad) {
-    	myEntry = viewsToLoad[myEntry];
+    var tabbedBarView = Ti.UI.createView({
+    	backgroundColor:'#880000',
+    	borderColor: '#000',
+    	borderWidth: 1,
+    	top:0,
+    	height:36
+    });
+    var tabbedBar = Ti.UI.createView({
+    	height:36,
+    	width:306,
+    	layout:'horizontal'
+    });
+    
+    for (var index in viewsToLoad) {
+    	myEntry = viewsToLoad[index];
   		myEntry.table.addEventListener('click', function(e) {
 			var currentTab = isAndroid() ? Titanium.UI.currentTab : twitterWindow.tabGroup.activeTab;
     		currentTab.open(DrupalCon.ui.createTwitterDetailWindow({
@@ -73,13 +85,50 @@ var Twitter = {
       			tabGroup: currentTab
     		}), {animated:true});
 		});
+		
+		var tabView = Ti.UI.createView({
+			top:3,
+			backgroundColor: (index == 0) ? '#666' : '#222',
+			borderRadius:8,
+			borderColor:'#000',
+			borderWidth:1,
+			height:30,
+			width: 100,
+			index: index
+		});
+		var tabLabel = Ti.UI.createLabel({
+			text: myEntry.search,
+			textAlign:'center',
+			color: '#fff',
+			height:'auto',
+			width:'100%',
+			touchEnabled: false,
+			font: {
+				fontSize:14	
+			}
+		});
+		tabView.addEventListener('click', function(e) {
+			for (var i = 0; i < viewsToLoad.length; i++) {
+				viewsToLoad[i].tabView.backgroundColor = '#222';
+				if (e.source.index == i) {
+					scrollable.scrollToView(viewsToLoad[i].table);
+				}
+			}
+			e.source.backgroundColor = '#666';
+		});
+		
+		tabView.add(tabLabel);
+		if (index != 0) {
+			tabbedBar.add(Ti.UI.createView({width:3}));
+		}
+        tabbedBar.add(tabView);
+        myEntry.tabView = tabView;
     }
-    
+     
     var scrollable = Ti.UI.createScrollableView({
 		showPagingControl: true,
 		backgroundColor: '#000000',
-		height:'100%',
-		width:'100%',
+		top:30,
 		views:[
 			viewsToLoad[0].table,
 			viewsToLoad[1].table,
@@ -89,22 +138,13 @@ var Twitter = {
 	scrollable.addEventListener('scroll', function(e) {
 		if (e.view) {
 			twitterWindow.title = e.view.viewTitle;
+			viewsToLoad[e.currentPage].tabView.fireEvent('click');
 		}
 	});
+	
 	twitterWindow.add(scrollable);
-	var actInd = Titanium.UI.createActivityIndicator({
-	    bottom:10,
-	    height:50,
-	    width:210,
-	    style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN,
-	    color: 'white',
-	    message: 'Loading...',
-	    font: {
-	    	fontFamily:'Helvetica Neue',
-		    fontSize:15,
-		    fontWeight:'bold'
-	    }
-	});
+	tabbedBarView.add(tabbedBar);	
+	twitterWindow.add(tabbedBarView);
 
     // Using the parsing method shown https://gist.github.com/819929
     var tweetWebJs = "document.body.addEventListener('touchmove', function(e) { e.preventDefault();}, false);";
