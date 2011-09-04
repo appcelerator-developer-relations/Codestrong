@@ -85,7 +85,7 @@ Ti.include(
   'windows/ModalActivityIndicatorWindow.js',	
   'windows/DayWindow.js',
   'windows/MapWindow.js',
-  'windows/MapDetailWindow.js',
+  //'windows/MapDetailWindow.js',
   'windows/TwitterWindow.js',
   'windows/TwitterDetailWindow.js',
   'windows/StarredWindow.js',
@@ -94,7 +94,8 @@ Ti.include(
   'windows/SessionsWindow.js',
   'windows/SessionDetailWindow.js',
   'windows/PresenterDetailWindow.js',
-  'windows/HtmlWindow.js'
+  'windows/HtmlWindow.js',
+  'windows/AboutWindow.js'
 );
 
 Ti.include('windows/main.js');
