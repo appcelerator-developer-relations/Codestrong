@@ -50,7 +50,8 @@
   tabGroup.addTab(Titanium.UI.createTab({
       icon: (isAndroid()) ? 'images/tabs/about_android.png' : 'images/tabs/about.png',
       title: 'About',
-      window: DrupalCon.ui.createHtmlWindow({title: 'About CODESTRONG', url: 'pages/about.html', tabGroup: tabGroup})
+      window: DrupalCon.ui.createAboutWindow()
+      //window: DrupalCon.ui.createHtmlWindow({title: 'About CODESTRONG', url: 'pages/about.html', tabGroup: tabGroup})
   }));
 
   tabGroup.addEventListener('open',function() {
