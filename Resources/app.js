@@ -30,10 +30,8 @@ Ti.include(
   'drupal/services.js',
   'drupal/db.js',
   'drupal/entity.js',
-
   'drupalcon/drupalcon.js',
   'drupalcon/entity.js'
-  // "lib/twitter_services.js"
 );
 
 //Ti.include('drupalcon/entity.js');
@@ -68,9 +66,9 @@ if (!Drupal.db.getConnection('main').tableExists('user')) {
 // If there's no record of having synchronized data with the site before, default
 // to 15 Feb as the oldest to pull from.  That avoids ever downloading the entire
 // site, since we have a pre-loaded database.
-if ('' == Titanium.App.Properties.getString('drupalcon:fetcher:lastNodeUpdate:session', '')) {
-  Titanium.App.Properties.setString('drupalcon:fetcher:lastNodeUpdate:session', '2011-02-28T12:00:00');
-}
+// if ('' == Titanium.App.Properties.getString('drupalcon:fetcher:lastNodeUpdate:session', '')) {
+  // Titanium.App.Properties.setString('drupalcon:fetcher:lastNodeUpdate:session', '2011-02-28T12:00:00');
+// }
 
 // This is just for testing purposes. In practice we wouldn't
 // actually want to wipe the DB on every app start. :-)
