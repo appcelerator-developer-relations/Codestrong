@@ -108,44 +108,35 @@
 	      }
 	      else {
 	        // iPhone - make it fancy
-	        var firstLeft = 0;
-	        var lastLeft = 0;
-	
 	        if (fullName != '') {
+	          var nameView = Ti.UI.createView({
+	        	height:40,
+	        	layout:'horizontal'
+	          });
+	        	
 	          var firstNameLabel = Ti.UI.createLabel({
 	            text: firstName,
 	            font:'Helvetica',
 	            left: 10,
 	            height: 40,
+	            width: 'auto',
 	            color: '#000',
 	        	touchEnabled:false
 	          });
-	          presenterRow.add(firstNameLabel);
-	          firstLeft = firstNameLabel.toImage().width+10;
+	          nameView.add(firstNameLabel);
 	        
 	          var lastNameLabel = Ti.UI.createLabel({
 	            text: lastName,
 	            font:'Helvetica-Bold',
-	            left: firstLeft + 5,
+	            left: 5,
 	            height: 40,
+	            width: 'auto',
 	            color: '#000',
 	        	touchEnabled:false
 	          });
-	          presenterRow.add(lastNameLabel);
-	          lastLeft = firstLeft + lastNameLabel.toImage().width;
+	          nameView.add(lastNameLabel);
+	          presenterRow.add(nameView);
 	        }
-	
-	        // if (shortName != '') {
-	          // var shortNameLabel = Ti.UI.createLabel({
-	            // text: shortName,
-	            // font:'Helvetica',
-	            // left: lastLeft+10,
-	            // height: 40,
-	            // color: '#666'
-	          // });
-	          // presenterRow.add(shortNameLabel);
-	        // }
-	        
 	      }
 	
 	      // If there is a new last name first letter, insert a header in the table.
