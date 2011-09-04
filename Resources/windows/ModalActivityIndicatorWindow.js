@@ -1,5 +1,7 @@
 DrupalCon.ui.activityIndicator = (function() {
 	var activityIndicator;
+	var isShowing = false;
+	
 	if (isAndroid()) {
 		activityIndicator = Ti.UI.createActivityIndicator({
   			color:'#fff'
@@ -26,6 +28,10 @@ DrupalCon.ui.activityIndicator = (function() {
 	}
 	
 	activityIndicator.showModal = function(message) {
+		if (isShowing) {
+			return;	
+		}
+		isShowing = true;
 		if (isAndroid()) {
 			activityIndicator.message = message;
 			activityIndicator.show();			
@@ -43,6 +49,7 @@ DrupalCon.ui.activityIndicator = (function() {
 			activityIndicator.ai.hide();
 			activityIndicator.close({animated:false});	
 		}	
+		isShowing = false;
 	}
 	
 	return activityIndicator;
