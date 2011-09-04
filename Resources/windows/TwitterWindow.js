@@ -90,7 +90,7 @@ var Twitter = {
 			backgroundColor: (index == 0) ? '#666' : '#222',
 			borderRadius:8,
 			borderColor:'#000',
-			borderWidth:2,
+			borderWidth: isAndroid() ? 1 : 2,
 			height:30,
 			width: 100,
 			index: index
