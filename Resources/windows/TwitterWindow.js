@@ -270,7 +270,7 @@ var Twitter = {
             data[c] = row;
           }
 
-          Titanium.App.Properties.setString("lastTweet",tweet);
+          //Titanium.App.Properties.setString("lastTweet",tweet);
           
           entry.table.setData(data);
           loadedViews.push(entry.table);

@@ -109,9 +109,16 @@
     }
   });
 
+  var updateCount = 0;
   Ti.addEventListener('drupal:entity:datastore:update_completed', function(e) {
-  	presentersWindow.doRefresh();
-  	DrupalCon.ui.activityIndicator.hideModal();
+  	updateCount++;
+  	if (updateCount >= 2) {
+  		updateCount = 0;
+  		if (presentersWindow) {
+  			presentersWindow.doRefresh();
+  		}
+  		DrupalCon.ui.activityIndicator.hideModal();
+  	}
   });
 
   Ti.addEventListener('drupalcon:update_data', function(e) {
