@@ -7,7 +7,8 @@ DrupalCon.ui.activityIndicator = (function() {
 	} else {
 		var activityIndicator = Ti.UI.createWindow({
 			modal:false,
-			navBarHidden:true
+			navBarHidden:true,
+			touchEnabled:true
 		});
 		var view = Ti.UI.createView({
 			backgroundColor: '#000',
