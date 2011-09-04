@@ -131,14 +131,15 @@ Drupal.entity.sites.main.types.node.schema = {
     // This is bound to the view we're pulling from and configured there.
     // Note that we're using an ISO date rather than a unix timestamp because
     // the view doesn't work with a timestamp for some odd reason.
-    var lastUpdated = Titanium.App.Properties.getString('drupalcon:fetcher:lastNodeUpdate:' + bundle, '');
-    url += '?changed=' + lastUpdated;
+    
+    //var lastUpdated = Titanium.App.Properties.getString('drupalcon:fetcher:lastNodeUpdate:' + bundle, '');
+    //url += '?changed=' + lastUpdated;
 
     this.prototype.defaultFetcher.apply(this, [bundle, store, func, url]);
 
     // We need the date in UTC format, because that's what Drupal uses on its
     // side for the updated timestamp.
-    Ti.App.Properties.setString('drupalcon:fetcher:lastNodeUpdate:' + bundle, Drupal.getISODate(new Date(), true));
+    //Ti.App.Properties.setString('drupalcon:fetcher:lastNodeUpdate:' + bundle, Drupal.getISODate(new Date(), true));
   }
 };
 
