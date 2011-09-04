@@ -42,7 +42,7 @@
       },
       {
       	title: 'Floor 5 - Intercontinental Ballroom', 
-      	shortTitle:'Intercontinental Ballroom', 
+      	shortTitle:'Intercontinental', 
       	image:'images/maps/5th.png'
       }
     ];
@@ -52,10 +52,10 @@
     	borderColor: '#000',
     	borderWidth: 1,
     	top:0,
-    	height:46
+    	height:36
     });
     var tabbedBar = Ti.UI.createView({
-    	height:46,
+    	height:36,
     	width:306,
     	layout:'horizontal'
     });
@@ -78,7 +78,7 @@
 			borderRadius:8,
 			borderColor:'#000',
 			borderWidth:2,
-			height:40,
+			height:30,
 			width: 100,
 			index: i
 		});
@@ -114,7 +114,7 @@
     var scrollable = Ti.UI.createScrollableView({
 		showPagingControl: true,
 		backgroundColor: '#000000',
-		top:46,
+		top:30,
 		views:[
 			data[0].webview,
 			data[1].webview,
