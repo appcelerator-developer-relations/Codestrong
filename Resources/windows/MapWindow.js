@@ -30,49 +30,156 @@
 
     // create table view data object
     var data = [
-      {title: 'Floor 3 - Grand Ballroom', hasChild:true, backgroundSelectedColor:'#0779BE', color: '#000', image:'images/maps/3rd.png'},
-      {title: 'Floor 4 - Pacific Terrace', hasChild:true, backgroundSelectedColor:'#0779BE', color: '#000', image:'images/maps/4th.png'},
-      {title: 'Floor 5 - Intercontinental Ballroom', hasChild:true, backgroundSelectedColor:'#0779BE', color: '#000', image:'images/maps/5th.png'}
-    ];
-
-    // create table view
-    var tableview = Titanium.UI.createTableView({
-      data: data
-    });
-
-    // add table view to the window
-    mapWindow.add(tableview);
-
-    mapWindow.addEventListener('focus', function() {
-      uiEnabled = true;
-    });
-
-    // create table view event listener
-    tableview.addEventListener('click', function(e) {
-      var mapImage = Ti.UI.createImageView({
-        image: e.rowData.image
-      });
-
-      var map = Ti.UI.createWindow({
-        title: e.rowData.title
-      });
-
-      map.add(mapImage);
-      if (uiEnabled) {
-        uiEnabled = false;
-        var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : mapWindow.tabGroup.activeTab;
-        currentTab.open(DrupalCon.ui.createMapDetailWindow({
-          title: e.rowData.title,
-          mapName: e.rowData.title,
-          image: e.rowData.image,
-          info: e.rowData.info,
-          tabGroup: currentTab
-        }), {animated:true});
+      {
+      	title: 'Floor 3 - Grand Ballroom', 
+      	shortTitle:'Grand Ballroom', 
+      	image:'images/maps/3rd.png'
+      },
+      {
+      	title: 'Floor 4 - Pacific Terrace', 
+      	shortTitle:'Pacific Terrace', 
+      	image:'images/maps/4th.png'
+      },
+      {
+      	title: 'Floor 5 - Intercontinental Ballroom', 
+      	shortTitle:'Intercontinental Ballroom', 
+      	image:'images/maps/5th.png'
       }
+    ];
+    
+    var tabbedBarView = Ti.UI.createView({
+    	backgroundColor:'#880000',
+    	borderColor: '#000',
+    	borderWidth: 1,
+    	top:0,
+    	height:46
     });
-
-
+    var tabbedBar = Ti.UI.createView({
+    	height:46,
+    	width:306,
+    	layout:'horizontal'
+    });
+    
+    for (var i = 0; i < data.length; i++) {
+    	var myEntry = data[i];
+    	
+    	myEntry.webview = Ti.UI.createWebView({
+    		scalesPageToFit: true,
+    		html: '<html><head></head><body style="background-color: #fff;" class="maps">' +
+      			'  <meta name="viewport" content="target-densityDpi=device-dpi, user-scalable=yes, width=device-width, initial-scale = .25, minimum-scale = .25, maximum-scale = 4.0" />' +
+      			'  <meta name="apple-mobile-web-app-capable" content="yes" />' +
+      			'<img src="' + myEntry.image + '" style="width:100%;"/>' +
+      			'</body></html>'
+    	});
+    	
+    	var tabView = Ti.UI.createView({
+			top:3,
+			backgroundColor: (i == 0) ? '#666' : '#222',
+			borderRadius:8,
+			borderColor:'#000',
+			borderWidth:2,
+			height:40,
+			width: 100,
+			index: i
+		});
+		var tabLabel = Ti.UI.createLabel({
+			text: myEntry.shortTitle,
+			textAlign:'center',
+			color: '#fff',
+			height:'auto',
+			width:'100%',
+			touchEnabled: false,
+			font: {
+				fontSize:12	
+			}
+		});
+		tabView.addEventListener('click', function(e) {
+			for (var j = 0; j < data.length; j++) {
+				data[j].tabView.backgroundColor = '#222';
+				if (e.source.index == j) {
+					scrollable.scrollToView(data[j].webview);
+				}
+			}
+			e.source.backgroundColor = '#666';
+		});
+		
+		tabView.add(tabLabel);
+		if (i != 0) {
+			tabbedBar.add(Ti.UI.createView({width:3}));
+		}
+        tabbedBar.add(tabView);
+        myEntry.tabView = tabView;	
+    }
+    
+    var scrollable = Ti.UI.createScrollableView({
+		showPagingControl: true,
+		backgroundColor: '#000000',
+		top:30,
+		views:[
+			data[0].webview,
+			data[1].webview,
+			data[2].webview
+		]
+	});
+	scrollable.addEventListener('scroll', function(e) {
+		if (e.view) {
+			data[e.currentPage].tabView.fireEvent('click');
+		}
+	});
+	
+	if (!isAndroid()) {
+		Titanium.Gesture.addEventListener('orientationchange', function(e){   
+	    	scrollable.scrollToView(scrollable.currentPage);   
+		});
+	}
+	
+	mapWindow.add(scrollable);
+	tabbedBarView.add(tabbedBar);	
+	mapWindow.add(tabbedBarView);
+    
     return mapWindow;
+    
+    
+    
+
+    // // create table view
+    // var tableview = Titanium.UI.createTableView({
+      // data: data
+    // });
+// 
+    // // add table view to the window
+    // mapWindow.add(tableview);
+// 
+    // mapWindow.addEventListener('focus', function() {
+      // uiEnabled = true;
+    // });
+// 
+    // // create table view event listener
+    // tableview.addEventListener('click', function(e) {
+      // var mapImage = Ti.UI.createImageView({
+        // image: e.rowData.image
+      // });
+// 
+      // var map = Ti.UI.createWindow({
+        // title: e.rowData.title
+      // });
+// 
+      // map.add(mapImage);
+      // if (uiEnabled) {
+        // uiEnabled = false;
+        // var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : mapWindow.tabGroup.activeTab;
+        // currentTab.open(DrupalCon.ui.createMapDetailWindow({
+          // title: e.rowData.title,
+          // mapName: e.rowData.title,
+          // image: e.rowData.image,
+          // info: e.rowData.info,
+          // tabGroup: currentTab
+        // }), {animated:true});
+      // }
+    // });
+// 
+// 
+    // return mapWindow;
   };
 
 })();
