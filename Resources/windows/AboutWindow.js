@@ -129,8 +129,10 @@
 	tabbedBarView.add(tabbedBar);	
 	aboutWindow.add(tabbedBarView);
 	
-	Ti.App.addEventListener('app:open_link', function(e) {
-		Ti.Platform.openURL(e.link);
+	aboutWindow.addEventListener('open', function(e1) {
+		Ti.App.addEventListener('app:open_link', function(e) {
+			Ti.Platform.openURL(e.link);
+		});
 	});
     
     return aboutWindow;
