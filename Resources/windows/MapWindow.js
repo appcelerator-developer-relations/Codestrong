@@ -32,12 +32,12 @@
     var data = [
       {
       	title: 'Floor 3 - Grand Ballroom', 
-      	shortTitle:'Grand Ballroom', 
+      	shortTitle:'Floor 3 - Grand Ballroom', 
       	image: isIpad() ? 'images/maps/3rd_floor_ipad.png' : 'images/maps/3rd_floor_iphone.png'
       },
       {
       	title: 'Floor 4 - Pacific Terrace', 
-      	shortTitle:'Pacific Terrace', 
+      	shortTitle:'Floor 4 - Pacific Terrace', 
       	image: isIpad() ? 'images/maps/4th_floor_ipad.png' : 'images/maps/4th_floor_iphone.png'
       }
       // ,
@@ -57,7 +57,7 @@
     });
     var tabbedBar = Ti.UI.createView({
     	height:36,
-    	width:204,
+    	width:304,
     	layout:'horizontal'
     });
     
@@ -80,7 +80,7 @@
 			borderColor:'#000',
 			borderWidth: isAndroid() ? 1 : 2,
 			height:30,
-			width: 100,
+			width: 150,
 			index: i
 		});
 		var tabLabel = Ti.UI.createLabel({
@@ -120,7 +120,8 @@
 			data[0].webview,
 			data[1].webview
 			//data[2].webview
-		]
+		],
+		touchEnabled: true
 	});
 	scrollable.addEventListener('scroll', function(e) {
 		if (e.view) {
