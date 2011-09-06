@@ -91,9 +91,11 @@ Ti.include(
   'windows/SessionsWindow.js',
   'windows/SessionDetailWindow.js',
   'windows/PresenterDetailWindow.js',
-  'windows/HtmlWindow.js',
-  'windows/AboutWindow.js'
+  //'windows/AboutWindow.js',
+  'windows/HtmlWindow.js'
 );
+
+Ti.include('windows/AboutWindow.js');
 
 Ti.include('windows/main.js');
 
