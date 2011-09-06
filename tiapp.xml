@@ -14,7 +14,7 @@
     <url>http://appcelerator.com</url>
     <description>CODESTRONG Mobile Companion</description>
     <copyright>2011 Appcelerator, Inc</copyright>
-    <icon>default_app_logo.png</icon>
+    <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
     <statusbar-style>default</statusbar-style>
