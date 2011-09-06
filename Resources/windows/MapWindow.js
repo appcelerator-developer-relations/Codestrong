@@ -33,12 +33,12 @@
       {
       	title: 'Floor 3 - Grand Ballroom', 
       	shortTitle:'Grand Ballroom', 
-      	image:'images/maps/3rd.png'
+      	image: isIpad() ? 'images/maps/3rd_floor_ipad.png' : 'images/maps/3rd_floor_iphone.png'
       },
       {
       	title: 'Floor 4 - Pacific Terrace', 
       	shortTitle:'Pacific Terrace', 
-      	image:'images/maps/4th.png'
+      	image: isIpad() ? 'images/maps/4th_floor_ipad.png' : 'images/maps/4th_floor_iphone.png'
       },
       {
       	title: 'Floor 5 - Intercontinental Ballroom', 
@@ -68,7 +68,7 @@
     		html: '<html><head></head><body style="background-color: #fff;" class="maps">' +
       			'  <meta name="viewport" content="target-densityDpi=device-dpi, user-scalable=yes, width=device-width, initial-scale = .25, minimum-scale = .25, maximum-scale = 4.0" />' +
       			'  <meta name="apple-mobile-web-app-capable" content="yes" />' +
-      			'<img src="' + myEntry.image + '" style="width:100%;"/>' +
+      			'<img src="' + myEntry.image + '" style="height:100%;"/>' +
       			'</body></html>'
     	});
     	
@@ -138,48 +138,6 @@
 	mapWindow.add(tabbedBarView);
     
     return mapWindow;
-    
-    
-    
-
-    // // create table view
-    // var tableview = Titanium.UI.createTableView({
-      // data: data
-    // });
-// 
-    // // add table view to the window
-    // mapWindow.add(tableview);
-// 
-    // mapWindow.addEventListener('focus', function() {
-      // uiEnabled = true;
-    // });
-// 
-    // // create table view event listener
-    // tableview.addEventListener('click', function(e) {
-      // var mapImage = Ti.UI.createImageView({
-        // image: e.rowData.image
-      // });
-// 
-      // var map = Ti.UI.createWindow({
-        // title: e.rowData.title
-      // });
-// 
-      // map.add(mapImage);
-      // if (uiEnabled) {
-        // uiEnabled = false;
-        // var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : mapWindow.tabGroup.activeTab;
-        // currentTab.open(DrupalCon.ui.createMapDetailWindow({
-          // title: e.rowData.title,
-          // mapName: e.rowData.title,
-          // image: e.rowData.image,
-          // info: e.rowData.info,
-          // tabGroup: currentTab
-        // }), {animated:true});
-      // }
-    // });
-// 
-// 
-    // return mapWindow;
   };
 
 })();
