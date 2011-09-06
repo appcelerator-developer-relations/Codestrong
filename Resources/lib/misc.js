@@ -107,8 +107,16 @@ function getPresenterData(names) {
 }
 
 // Should be in a namespace, but then again, so should pretty much all of this
-var isAndroidValue = undefined;
+var isIpadValue = undefined;
+function isIpad (){
+	if (isIpadValue === undefined) {
+		isIpadValue = (Ti.Platform.osname == 'ipad');
+	} 
+	return isIpadValue;
+}
 
+// Should be in a namespace, but then again, so should pretty much all of this
+var isAndroidValue = undefined;
 function isAndroid (){
 	if (isAndroidValue === undefined) {
 		isAndroidValue = (Ti.Platform.osname == 'android');
