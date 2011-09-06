@@ -39,12 +39,13 @@
       	title: 'Floor 4 - Pacific Terrace', 
       	shortTitle:'Pacific Terrace', 
       	image: isIpad() ? 'images/maps/4th_floor_ipad.png' : 'images/maps/4th_floor_iphone.png'
-      },
-      {
-      	title: 'Floor 5 - Intercontinental Ballroom', 
-      	shortTitle:'Intercontinental', 
-      	image:'images/maps/5th.png'
       }
+      // ,
+      // {
+      	// title: 'Floor 5 - Intercontinental Ballroom', 
+      	// shortTitle:'Intercontinental', 
+      	// image:'images/maps/5th.png'
+      // }
     ];
     
     var tabbedBarView = Ti.UI.createView({
@@ -56,7 +57,7 @@
     });
     var tabbedBar = Ti.UI.createView({
     	height:36,
-    	width:306,
+    	width:204,
     	layout:'horizontal'
     });
     
@@ -117,8 +118,8 @@
 		top:30,
 		views:[
 			data[0].webview,
-			data[1].webview,
-			data[2].webview
+			data[1].webview
+			//data[2].webview
 		]
 	});
 	scrollable.addEventListener('scroll', function(e) {
