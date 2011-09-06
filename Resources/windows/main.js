@@ -113,7 +113,7 @@
 
   Drupal.navWindow = Ti.UI.createWindow();
   mainWindow = Ti.UI.createWindow({
-	backgroundImage: 'Default.png',
+	backgroundImage: (isIpad()) ? 'images/home_ipad.png' : 'images/home.png',
 	title: 'Dashboard',
 	navBarHidden: true
   });
