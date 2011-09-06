@@ -32,8 +32,9 @@
       id: 'win1',
       title: 'Schedule',
       backgroundColor: '#fff',
-      barColor: '#414444',
-      tabGroup: tabGroup
+      barColor: '#414444'
+      //,
+      //tabGroup: tabGroup
     });
 
     // create table view
@@ -52,22 +53,38 @@
     tableview.addEventListener('click', function(e) {
       if (uiEnabled) {
         uiEnabled = false;
-        var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : dayWindow.tabGroup.activeTab;
+        //var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : dayWindow.tabGroup.activeTab;
         if (e.rowData.scheduleListing) {
-          currentTab.open(DrupalCon.ui.createSessionsWindow({
+          // currentTab.open(DrupalCon.ui.createSessionsWindow({
+          	// titleShort: e.rowData.titleShort,
+            // title: e.rowData.title,
+            // start_date: e.rowData.start_date,
+            // end_date: e.rowData.end_date
+            // //,
+            // //tabGroup: currentTab
+          // }), {animated:true});
+          
+          Drupal.navGroup.open(DrupalCon.ui.createSessionsWindow({
           	titleShort: e.rowData.titleShort,
             title: e.rowData.title,
             start_date: e.rowData.start_date,
-            end_date: e.rowData.end_date,
-            tabGroup: currentTab
+            end_date: e.rowData.end_date
           }), {animated:true});
         }
         else {
-          currentTab.open(DrupalCon.ui.createHtmlWindow({
+          // currentTab.open(DrupalCon.ui.createHtmlWindow({
+            // title: e.rowData.titleShort,
+            // url: e.rowData.url
+            // //,
+            // //tabGroup: currentTab
+          // }), {animated:true});
+          
+          DrupalCon.ui.createHtmlWindow({
             title: e.rowData.titleShort,
-            url: e.rowData.url,
-            tabGroup: currentTab
-          }), {animated:true});
+            url: e.rowData.url
+            //,
+            //tabGroup: currentTab
+          }).open({animated:true});
         }
       }
     });

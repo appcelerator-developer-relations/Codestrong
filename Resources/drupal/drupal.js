@@ -38,6 +38,9 @@ var Drupal = {
    *   The settings object.
    */
   setDefaults: function(settings, defaults) {
+  	if (!settings) {
+  		settings = {};	
+  	}
     for (var key in defaults) {
       if (defaults.hasOwnProperty(key) && settings[key] === undefined) {
         settings[key] = defaults[key];

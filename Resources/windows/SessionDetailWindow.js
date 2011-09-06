@@ -324,11 +324,19 @@
     tv.addEventListener('click', function(e) {
       if (e.source.presenter != undefined){
         var fullName = e.source.presenter.full_name || '';
-        var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : sessionDetailWindow.tabGroup.activeTab;
-        currentTab.open(DrupalCon.ui.createPresenterDetailWindow({
+        //var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : sessionDetailWindow.tabGroup.activeTab;
+        // currentTab.open(DrupalCon.ui.createPresenterDetailWindow({
+          // title: fullName,
+          // uid: e.source.presenter.uid
+          // //,
+          // //tabGroup: currentTab
+        // }), {animated:true});
+        
+        Drupal.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
           title: fullName,
-          uid: e.source.presenter.uid,
-          tabGroup: currentTab
+          uid: e.source.presenter.uid
+          //,
+          //tabGroup: currentTab
         }), {animated:true});
       }
     });    

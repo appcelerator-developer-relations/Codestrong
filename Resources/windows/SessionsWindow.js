@@ -26,16 +26,18 @@
     Drupal.setDefaults(settings, {
       title: 'title here',
       start_date: '',
-      end_date: '',
-      tabGroup: undefined
+      end_date: ''
+      //,
+      //tabGroup: undefined
     });
 
     var sessionsWindow = Titanium.UI.createWindow({
       id: 'sessionsWindow',
       title: settings.titleShort,
       backgroundColor: '#FFF',
-      barColor: '#414444',
-      tabGroup: settings.tabGroup
+      barColor: '#414444'
+      //,
+      //tabGroup: settings.tabGroup
     });
 
     var data = [];
@@ -69,43 +71,6 @@
       layout:'vertical'
     });
 
-/*
-    // Add a menu or button for a track legend
-    if (isAndroid()){
-      // Android has a menu
-      var buttons = [];
-      sessionsWindow.activity.onCreateOptionsMenu = function(e) {
-        var menu = e.menu;
-
-        var m1 = menu.add({
-          title : 'Track Legend'
-        });
-        m1.addEventListener('click', function(e) {
-          var legendWin = Ti.UI.createWindow({ modal:true });
-          var wv = Ti.UI.createWebView({url: '../pages/legend.html', title: 'Track Legend'});
-          legendWin.add(wv);
-          legendWin.open();
-        });
-      };
-    }
-    else {
-      // iOS should only have the button.
-      var button = Ti.UI.createButton({
-        systemButton: Ti.UI.iPhone.SystemButton.INFO_LIGHT
-      });
-      var win = sessionsWindow;
-      win.rightNavButton = button;
-      button.addEventListener('click', function() {
-        var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : sessionsWindow.tabGroup.activeTab;
-          currentTab.open(DrupalCon.ui.createHtmlWindow({
-            title: 'Track Legend',
-            url: 'pages/legend.html',
-            tabGroup: currentTab
-        }), {animated:true});
-
-      });
-    }
-*/
 
     sessionsWindow.addEventListener('focus', function() {
       uiEnabled = true;
@@ -115,11 +80,19 @@
     tableview.addEventListener('click', function(e) {
       if (uiEnabled) {
         uiEnabled = false;
-        var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : sessionsWindow.tabGroup.activeTab;
-        currentTab.open(DrupalCon.ui.createSessionDetailWindow({
+        //var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : sessionsWindow.tabGroup.activeTab;
+        // currentTab.open(DrupalCon.ui.createSessionDetailWindow({
+          // title: e.rowData.sessionTitle,
+          // nid: e.rowData.nid
+          // //,
+          // //tabGroup: currentTab
+        // }), {animated:true});
+        
+        Drupal.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
           title: e.rowData.sessionTitle,
-          nid: e.rowData.nid,
-          tabGroup: currentTab
+          nid: e.rowData.nid
+          //,
+          //tabGroup: currentTab
         }), {animated:true});
       }
     });

@@ -112,7 +112,22 @@ var DrupalCon = {
     // If there is a new session time, insert a header in the table.
     if (lastTime == '' || session.start_date != lastTime) {
       lastTime = session.start_date;
-      sessionRow.header = cleanTime(lastTime) + " - " + cleanTime(session.end_date);
+      if (isAndroid()) {
+      	var headerView = Ti.UI.createView({
+      		height: 30
+      	});
+      	var headerLabel = Ti.UI.createLabel({
+      		text: cleanTime(lastTime) + " - " + cleanTime(session.end_date),
+      		font: {
+      			fontSize:16,
+      			fontWeight:'bold'	
+      		}
+      	});
+      	headerView.add(headerLabel);
+      	sessionRow.header = headerView;
+      } else {
+      	sessionRow.header = cleanTime(lastTime) + " - " + cleanTime(session.end_date);
+      }
     }
 
     var titleLabel = Ti.UI.createLabel({

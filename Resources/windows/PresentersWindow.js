@@ -171,12 +171,21 @@
         
         // event data
         var index = e.index;
-        var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : PresentersWindow.tabGroup.activeTab;
-        currentTab.open(DrupalCon.ui.createPresenterDetailWindow({
+        //var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : PresentersWindow.tabGroup.activeTab;
+        // currentTab.open(DrupalCon.ui.createPresenterDetailWindow({
+          // title: e.rowData.name,
+          // uid: e.rowData.uid,
+          // name: e.rowData.name
+          // //,
+          // //tabGroup: currentTab
+        // }), {animated:true});
+        
+        Drupal.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
           title: e.rowData.name,
           uid: e.rowData.uid,
-          name: e.rowData.name,
-          tabGroup: currentTab
+          name: e.rowData.name
+          //,
+          //tabGroup: currentTab
         }), {animated:true});
       }
     });
