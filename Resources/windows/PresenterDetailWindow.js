@@ -67,7 +67,8 @@
     });
     var headerRow = Ti.UI.createTableViewRow({
       height:110,
-      backgroundColor:blueBg,
+      //backgroundColor:blueBg,
+      backgroundImage:'images/sessionbckgd@2x.png',
       left:0,
       top:-5,
       bottom:0,
