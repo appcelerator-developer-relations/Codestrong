@@ -24,9 +24,20 @@
       id: 'aboutWindow',
       title: 'About',
       backgroundColor: '#FFF',
-      barColor: '#414444'
+      barColor: '#414444',
+      modal: true,
+      navBarHidden: false
       //tabGroup: tabGroup
     });
+    var leftButton = Ti.UI.createButton({
+    	backgroundImage: 'images/9dots.png',
+    	width: 41,
+    	height: 30
+    });
+    leftButton.addEventListener('click', function(e) {
+    	aboutWindow.close({animated:true});
+    });
+    aboutWindow.leftNavButton = leftButton;
 
     // create table view data object
     var data = [

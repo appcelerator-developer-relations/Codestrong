@@ -17,6 +17,7 @@
 
 (function() {
 
+/*
   // create tab group
   var tabGroup = Titanium.UI.createTabGroup({
     id:'tabGroup1'
@@ -108,6 +109,39 @@
       }
     }
   });
+*/
+
+  var win = Ti.UI.createWindow({
+	backgroundImage: 'Default.png'
+  });
+  var viewFade = Ti.UI.createView({
+  	backgroundColor: '#000',
+  	height: 170,
+  	width: 306,
+  	bottom: 20,
+  	opacity: 0.5,
+  	borderRadius: 8
+  });
+  var viewIcons = Ti.UI.createView({
+  	height: 170,
+  	width: 306,
+  	bottom: 20,
+  	borderRadius: 8,
+  	layout: 'horizontal'
+  });
+  var view1  = Ti.UI.createView({ backgroundImage:'images/dashboard/about.png', height:85, width: 102});
+  view1.addEventListener('click', function(e) {
+  	DrupalCon.ui.createAboutWindow().open({animated:true});
+  });
+  viewIcons.add(view1);
+  viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/maps.png', height:85, width: 102}));
+  viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/maps.png', height:85, width: 102}));
+  viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/news.png', height:85, width: 102}));
+  viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/speakers.png', height:85, width: 102}));
+  viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/sponsors.png', height:85, width: 102}));
+  win.add(viewFade);
+  win.add(viewIcons);
+  win.open();
 
   var updateCount = 0;
   Ti.addEventListener('drupal:entity:datastore:update_completed', function(e) {
