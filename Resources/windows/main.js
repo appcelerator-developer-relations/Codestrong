@@ -129,16 +129,49 @@
   	borderRadius: 8,
   	layout: 'horizontal'
   });
-  var view1  = Ti.UI.createView({ backgroundImage:'images/dashboard/about.png', height:85, width: 102});
-  view1.addEventListener('click', function(e) {
-  	DrupalCon.ui.createAboutWindow().open({animated:true});
-  });
-  viewIcons.add(view1);
-  viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/maps.png', height:85, width: 102}));
-  viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/maps.png', height:85, width: 102}));
-  viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/news.png', height:85, width: 102}));
-  viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/speakers.png', height:85, width: 102}));
-  viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/sponsors.png', height:85, width: 102}));
+  
+  var createIconView = function(iconImage, iconWin) {
+  	var view = Ti.UI.createView({ 
+  		backgroundImage: iconImage, 
+  		height:85, 
+  		width: 102
+  	});
+  	view.addEventListener('click', function(e) {
+  		if (!iconWin.leftNavButton) {
+	  		var leftButton = Ti.UI.createButton({
+		    	backgroundImage: 'images/9dots.png',
+		    	width: 41,
+		    	height: 30
+		    });
+		    leftButton.addEventListener('click', function(e) {
+		    	iconWin.close({animated:true});
+		    });
+		    iconWin.leftNavButton = leftButton;
+	    }
+  		iconWin.modal = true;
+  		iconWin.navBarHidden = false;
+  		iconWin.open({animated:true});
+  	});
+  	return view;
+  };
+  
+  viewIcons.add(createIconView('images/dashboard/about.png', DrupalCon.ui.createAboutWindow()));
+  viewIcons.add(createIconView('images/dashboard/maps.png', DrupalCon.ui.createMapWindow()));
+  viewIcons.add(createIconView('images/dashboard/maps.png', DrupalCon.ui.createMapWindow()));
+  viewIcons.add(createIconView('images/dashboard/news.png', DrupalCon.ui.createTwitterWindow()));
+  viewIcons.add(createIconView('images/dashboard/speakers.png', DrupalCon.ui.createPresentersWindow()));
+  viewIcons.add(createIconView('images/dashboard/sponsors.png', DrupalCon.ui.createHtmlWindow({url:'pages/sponsors.html', title:'Sponsors'})));
+  
+  // var view1  = Ti.UI.createView({ backgroundImage:'images/dashboard/about.png', height:85, width: 102});
+  // view1.addEventListener('click', function(e) {
+  	// DrupalCon.ui.createAboutWindow().open({animated:true});
+  // });
+  // viewIcons.add(view1);
+  // viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/maps.png', height:85, width: 102}));
+  // viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/maps.png', height:85, width: 102}));
+  // viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/news.png', height:85, width: 102}));
+  // viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/speakers.png', height:85, width: 102}));
+  // viewIcons.add(Ti.UI.createView({ backgroundImage:'images/dashboard/sponsors.png', height:85, width: 102}));
   win.add(viewFade);
   win.add(viewIcons);
   win.open();

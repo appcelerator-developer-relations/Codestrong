@@ -25,19 +25,10 @@
       title: 'About',
       backgroundColor: '#FFF',
       barColor: '#414444',
-      modal: true,
+      //modal: true,
       navBarHidden: false
       //tabGroup: tabGroup
     });
-    var leftButton = Ti.UI.createButton({
-    	backgroundImage: 'images/9dots.png',
-    	width: 41,
-    	height: 30
-    });
-    leftButton.addEventListener('click', function(e) {
-    	aboutWindow.close({animated:true});
-    });
-    aboutWindow.leftNavButton = leftButton;
 
     // create table view data object
     var data = [
@@ -50,16 +41,17 @@
       	title: 'About The App', 
       	shortTitle:'The App', 
       	page: 'pages/app.html'
-      },
-      {
-      	title: 'Sponsors', 
-      	shortTitle:'Sponsors', 
-      	page:'pages/sponsors.html'
       }
+      // ,
+      // {
+      	// title: 'Sponsors', 
+      	// shortTitle:'Sponsors', 
+      	// page:'pages/sponsors.html'
+      // }
     ];
     
     var tabbedBarView = Ti.UI.createView({
-    	backgroundColor:'#880000',
+    	backgroundColor:'#CE3016',
     	borderColor: '#000',
     	borderWidth: 1,
     	top:0,
@@ -67,7 +59,7 @@
     });
     var tabbedBar = Ti.UI.createView({
     	height:36,
-    	width:306,
+    	width:204,
     	layout:'horizontal'
     });
     
@@ -121,8 +113,9 @@
 		top:30,
 		views:[
 			data[0].webview,
-			data[1].webview,
-			data[2].webview
+			data[1].webview
+			// ,
+			// data[2].webview
 		]
 	});
 	scrollable.addEventListener('scroll', function(e) {
