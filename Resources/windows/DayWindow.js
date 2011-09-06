@@ -17,8 +17,6 @@
 
 (function() {
 
-  var uiEnabled = true;
-
   DrupalCon.ui.createDayWindow = function(tabGroup) {
 
     // Create table view data object.
@@ -33,8 +31,6 @@
       title: 'Schedule',
       backgroundColor: '#fff',
       barColor: '#414444'
-      //,
-      //tabGroup: tabGroup
     });
 
     // create table view
@@ -45,25 +41,9 @@
     // add table view to the window
     dayWindow.add(tableview);
 
-    dayWindow.addEventListener('focus', function() {
-      uiEnabled = true;
-    });
-
     // create table view event listener
     tableview.addEventListener('click', function(e) {
-      if (uiEnabled) {
-        uiEnabled = false;
-        //var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : dayWindow.tabGroup.activeTab;
         if (e.rowData.scheduleListing) {
-          // currentTab.open(DrupalCon.ui.createSessionsWindow({
-          	// titleShort: e.rowData.titleShort,
-            // title: e.rowData.title,
-            // start_date: e.rowData.start_date,
-            // end_date: e.rowData.end_date
-            // //,
-            // //tabGroup: currentTab
-          // }), {animated:true});
-          
           Drupal.navGroup.open(DrupalCon.ui.createSessionsWindow({
           	titleShort: e.rowData.titleShort,
             title: e.rowData.title,
@@ -72,21 +52,12 @@
           }), {animated:true});
         }
         else {
-          // currentTab.open(DrupalCon.ui.createHtmlWindow({
-            // title: e.rowData.titleShort,
-            // url: e.rowData.url
-            // //,
-            // //tabGroup: currentTab
-          // }), {animated:true});
-          
-          DrupalCon.ui.createHtmlWindow({
+          Drupal.navGroup.open(DrupalCon.ui.createHtmlWindow({
             title: e.rowData.titleShort,
             url: e.rowData.url
-            //,
-            //tabGroup: currentTab
-          }).open({animated:true});
+          }), {animated:true});
         }
-      }
+      
     });
 
 	if (isAndroid()) {

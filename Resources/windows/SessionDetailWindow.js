@@ -20,16 +20,14 @@
   DrupalCon.ui.createSessionDetailWindow = function(settings) {
     Drupal.setDefaults(settings, {
       title: 'title here',
-      nid: '',
-      tabGroup: undefined
+      nid: ''
     });
     var commonPadding = 15;
     var sessionDetailWindow = Titanium.UI.createWindow({
       id: 'sessionDetailWindow',
       title: settings.title,
       backgroundColor: '#FFF',
-      barColor: '#414444',
-      tabGroup: settings.tabGroup
+      barColor: '#414444'
     });
 
     // Build session data
@@ -260,13 +258,11 @@
       feedbackRow.add(feedbackTitle);
 
       feedbackRow.addEventListener('click', function(e) {
-        var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : sessionDetailWindow.tabGroup.activeTab;
-        currentTab.open(DrupalCon.ui.createFeedbackWindow({
-          title: settings.title,
-          address: 'http://chicago2011.drupal.org/node/add/eval/' + settings.nid,
-          //address: 'http://google.com',
-          tabGroup: currentTab
-        }), {animated:true});
+        // var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : sessionDetailWindow.tabGroup.activeTab;
+        // currentTab.open(DrupalCon.ui.createFeedbackWindow({
+          // title: settings.title,
+          // address: 'http://chicago2011.drupal.org/node/add/eval/' + settings.nid
+        // }), {animated:true});
       });
 
       tvData.push(feedbackRow);
@@ -324,19 +320,9 @@
     tv.addEventListener('click', function(e) {
       if (e.source.presenter != undefined){
         var fullName = e.source.presenter.full_name || '';
-        //var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : sessionDetailWindow.tabGroup.activeTab;
-        // currentTab.open(DrupalCon.ui.createPresenterDetailWindow({
-          // title: fullName,
-          // uid: e.source.presenter.uid
-          // //,
-          // //tabGroup: currentTab
-        // }), {animated:true});
-        
         Drupal.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
           title: fullName,
           uid: e.source.presenter.uid
-          //,
-          //tabGroup: currentTab
         }), {animated:true});
       }
     });    

@@ -20,15 +20,11 @@
  */
 (function() {
 
-  var uiEnabled = true;
-
   DrupalCon.ui.createSessionsWindow = function(settings) {
     Drupal.setDefaults(settings, {
       title: 'title here',
       start_date: '',
       end_date: ''
-      //,
-      //tabGroup: undefined
     });
 
     var sessionsWindow = Titanium.UI.createWindow({
@@ -36,8 +32,6 @@
       title: settings.titleShort,
       backgroundColor: '#FFF',
       barColor: '#414444'
-      //,
-      //tabGroup: settings.tabGroup
     });
 
     var data = [];
@@ -55,12 +49,6 @@
     var sessions = Drupal.entity.db('main', 'node').loadMultiple(nids, ['start_date', 'nid']);
 
     for (var sessionNum = 0, numSessions = sessions.length; sessionNum < numSessions; sessionNum++) {
-      // if (DrupalCon.renderers[sessions[sessionNum].type]) {
-        // data.push(DrupalCon.renderers[sessions[sessionNum].type](sessions[sessionNum]));
-      // }
-      // else {
-        // Ti.API.info('Not rendering for node type: ' + sessions[sessionNum].type);
-      // }
       data.push(DrupalCon.renderers['session'](sessions[sessionNum]));
     }
 
@@ -71,30 +59,12 @@
       layout:'vertical'
     });
 
-
-    sessionsWindow.addEventListener('focus', function() {
-      uiEnabled = true;
-    });
-
     // Create table view event listener.
     tableview.addEventListener('click', function(e) {
-      if (uiEnabled) {
-        uiEnabled = false;
-        //var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : sessionsWindow.tabGroup.activeTab;
-        // currentTab.open(DrupalCon.ui.createSessionDetailWindow({
-          // title: e.rowData.sessionTitle,
-          // nid: e.rowData.nid
-          // //,
-          // //tabGroup: currentTab
-        // }), {animated:true});
-        
         Drupal.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
           title: e.rowData.sessionTitle,
           nid: e.rowData.nid
-          //,
-          //tabGroup: currentTab
         }), {animated:true});
-      }
     });
 
     // add table view to the window

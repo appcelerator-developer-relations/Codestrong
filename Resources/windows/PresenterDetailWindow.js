@@ -206,19 +206,9 @@
 	      
 	      // create table view event listener
 	      sessionRow.addEventListener('click', function(e) {
-	        //var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : presenterDetailWindow.tabGroup.activeTab;
-	        // currentTab.open(DrupalCon.ui.createSessionDetailWindow({
-	          // title: e.rowData.sessionTitle,
-	          // nid: e.rowData.nid
-	          // //,
-	          // //tabGroup: currentTab
-	        // }), {animated:true});
-	
 			Drupal.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
 	          title: e.rowData.sessionTitle,
 	          nid: e.rowData.nid
-	          //,
-	          //tabGroup: currentTab
 	        }), {animated:true});
 	      });
 	      

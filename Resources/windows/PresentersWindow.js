@@ -17,8 +17,6 @@
 
 (function() {
 
-  var uiEnabled = true;
-
   DrupalCon.ui.createPresentersWindow = function(tabGroup) {
     var PresentersWindow = Titanium.UI.createWindow({
       id: 'presentersWindow',
@@ -157,37 +155,15 @@
     
 	PresentersWindow.doRefresh();
 
-    PresentersWindow.addEventListener('focus', function() {
-      uiEnabled = true;
-    });
-
     // create table view event listener
     tableview.addEventListener('click', function(e) {
-      if (uiEnabled) {
-        uiEnabled = false;
-        // if (e.index == 0) {
-          // tableview.index = index2;
-        // }
-        
         // event data
         var index = e.index;
-        //var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : PresentersWindow.tabGroup.activeTab;
-        // currentTab.open(DrupalCon.ui.createPresenterDetailWindow({
-          // title: e.rowData.name,
-          // uid: e.rowData.uid,
-          // name: e.rowData.name
-          // //,
-          // //tabGroup: currentTab
-        // }), {animated:true});
-        
         Drupal.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
           title: e.rowData.name,
           uid: e.rowData.uid,
           name: e.rowData.name
-          //,
-          //tabGroup: currentTab
         }), {animated:true});
-      }
     });
 
     // add table view to the window
