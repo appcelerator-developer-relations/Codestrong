@@ -188,7 +188,7 @@
 	        sessionTitle:cleanSpecialChars(sessions[i].title),
 	        nid:sessions[i].nid,
 	        height: 'auto',
-	        backgroundColor: '#dc5531'
+	        backgroundColor: '#CE3016'
 	      });
 	
 	      var titleLabel = Ti.UI.createLabel({
