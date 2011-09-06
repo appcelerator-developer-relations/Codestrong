@@ -87,10 +87,11 @@ var Twitter = {
 		
 		var tabView = Ti.UI.createView({
 			top:3,
-			backgroundColor: (index == 0) ? '#666' : '#222',
+			//backgroundColor: (index == 0) ? '#666' : '#222',
+			backgroundImage: (index == 0) ? 'images/BUTT_drk_on.png' : 'images/BUTT_drk_off.png',
 			borderRadius:8,
 			borderColor:'#000',
-			borderWidth: isAndroid() ? 1 : 2,
+			//borderWidth: isAndroid() ? 1 : 2,
 			height:30,
 			width: 100,
 			index: index
@@ -108,12 +109,12 @@ var Twitter = {
 		});
 		tabView.addEventListener('click', function(e) {
 			for (var i = 0; i < viewsToLoad.length; i++) {
-				viewsToLoad[i].tabView.backgroundColor = '#222';
+				viewsToLoad[i].tabView.backgroundImage = 'images/BUTT_drk_off.png';
 				if (e.source.index == i) {
 					scrollable.scrollToView(viewsToLoad[i].table);
 				}
 			}
-			e.source.backgroundColor = '#666';
+			e.source.backgroundImage = 'images/BUTT_drk_on.png';
 		});
 		
 		tabView.add(tabLabel);

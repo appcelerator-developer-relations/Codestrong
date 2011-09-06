@@ -66,10 +66,11 @@
     	myEntry.webview = Ti.UI.createWebView({url: myEntry.page});
     	var tabView = Ti.UI.createView({
 			top:3,
-			backgroundColor: (i == 0) ? '#666' : '#222',
+			//backgroundColor: (i == 0) ? '#666' : '#222',
+			backgroundImage: (i == 0) ? 'images/BUTT_drk_on.png' : 'images/BUTT_drk_off.png',
 			borderRadius:8,
 			borderColor:'#000',
-			borderWidth: isAndroid() ? 1 : 2,
+			//borderWidth: isAndroid() ? 1 : 2,
 			height:30,
 			width: 100,
 			index: i
@@ -87,12 +88,12 @@
 		});
 		tabView.addEventListener('click', function(e) {
 			for (var j = 0; j < data.length; j++) {
-				data[j].tabView.backgroundColor = '#222';
+				data[j].tabView.backgroundImage = 'images/BUTT_drk_off.png';
 				if (e.source.index == j) {
 					scrollable.scrollToView(data[j].webview);
 				}
 			}
-			e.source.backgroundColor = '#666';
+			e.source.backgroundImage = 'images/BUTT_drk_on.png';
 		});
 		
 		tabView.add(tabLabel);
