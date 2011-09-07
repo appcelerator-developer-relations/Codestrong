@@ -74,7 +74,7 @@
 	        color: '#000',
 	        name: name,
 	        uid: uid,
-	        height: 40,
+	        height: 80,
 	        layout: 'auto'
 	      });
 	

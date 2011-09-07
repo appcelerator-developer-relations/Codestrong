@@ -102,17 +102,6 @@
       headerRow.add(fullName);
     }
 
-    // var name = Ti.UI.createLabel({
-      // text: (presenterData.full_name !== presenterData.name) ? cleanSpecialChars(presenterData.name) : '',
-      // font: {fontSize: 14, fontWeight: 'bold'},
-      // textAlign: 'left',
-      // color: '#04679C',
-      // height: 'auto',
-      // left: 120,
-      // top: (presenterData.full_name != undefined) ? 2 : -95
-    // });
-    // headerRow.add(name);
-
     if (presenterData.company != undefined) {
       var company = Ti.UI.createLabel({
         text:cleanSpecialChars(presenterData.company),
@@ -126,7 +115,6 @@
     }
 
     tvData.push(headerRow);
-
 
     if (presenterData.twitter != undefined){
       var twitter = Ti.UI.createLabel({
@@ -149,33 +137,6 @@
       twitterRow.add(twitter);
       tvData.push(twitterRow);
     }
-
-//    if (presenterData.data.linkedin != undefined){
-//
-//    }
-//
-//    if (presenterData.data.facebook != undefined){
-//
-//    }
-    
-
-//    var sessionsTitle = Ti.UI.createLabel({
-//      text:"Session(s)",
-//      backgroundColor:'#fff',
-//      textAlign:'left',
-//      font:{fontSize:18, fontWeight:'bold'},
-//      color:'#000',
-//      top:20,
-//      left: 10,
-//      bottom: 10,
-//      width:itemWidth,
-//      height:'auto'
-//    });
-//
-//    var sessionsTitleRow = Ti.UI.createTableViewRow({height: 'auto', className: 'sessionTitleRow', borderColor: '#fff'});
-//    sessionsTitleRow.add(sessionsTitle);
-//    tvData.push(sessionsTitleRow);
-
 
     var sessions = getRelatedSessions(presenterData.full_name);
     var sessionRow = [];
