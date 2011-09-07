@@ -55,6 +55,7 @@ var Twitter = {
   var loadedViews = [];
   
   DrupalCon.ui.createTwitterWindow = function(tabGroup) {
+  	var screenWidth = Ti.Platform.displayCaps.platformWidth;
     var twitterWindow = Titanium.UI.createWindow({
       id: 'twitterWindow',
       title: 'Twitter News',
@@ -63,16 +64,15 @@ var Twitter = {
       tabGroup: tabGroup
     });
     var tabbedBarView = Ti.UI.createView({
-    	backgroundColor:'#CE3016',
-    	borderColor: '#000',
-    	borderWidth: 1,
+    	backgroundColor:'#555',
     	top:0,
     	height:36
     });
     var tabbedBar = Ti.UI.createView({
+    	top:0,
+    	backgroundColor: '#000',
     	height:36,
-    	width:306,
-    	layout:'horizontal'
+    	width:screenWidth
     });
     
     for (var index in viewsToLoad) {
@@ -84,34 +84,28 @@ var Twitter = {
       			name: e.rowData.user,
       			date: e.rowData.date
     		}), {animated:true});
-  			
-			// var currentTab = isAndroid() ? Titanium.UI.currentTab : twitterWindow.tabGroup.activeTab;
-    		// currentTab.open(DrupalCon.ui.createTwitterDetailWindow({
-      			// title: e.rowData.user,
-      			// text: e.rowData.tweet,
-      			// name: e.rowData.user,
-      			// date: e.rowData.date,
-      			// tabGroup: currentTab
-    		// }), {animated:true});
 		});
 		
+		var bgImage = 'images/buttonbar/button2_selected.png';
+		if (index == 1) {
+			bgImage = 'images/buttonbar/button2_unselected_shadowL.png';
+		} else if (index == 2) {
+			bgImage = 'images/buttonbar/button2_unselected_shadowR.png';
+		}
+		
 		var tabView = Ti.UI.createView({
-			top:3,
-			//backgroundColor: (index == 0) ? '#666' : '#222',
-			backgroundImage: (index == 0) ? 'images/BUTT_drk_on.png' : 'images/BUTT_drk_off.png',
-			borderRadius:8,
-			borderColor:'#000',
-			//borderWidth: isAndroid() ? 1 : 2,
-			height:30,
-			width: 100,
+			backgroundImage: bgImage,
+			height:36,
+			left: index * (screenWidth/viewsToLoad.length),
+			right: screenWidth - ((parseInt(index) + 1) * (screenWidth/viewsToLoad.length)),
 			index: index
 		});
+		
 		var tabLabel = Ti.UI.createLabel({
 			text: myEntry.search,
 			textAlign:'center',
 			color: '#fff',
 			height:'auto',
-			width:'100%',
 			touchEnabled: false,
 			font: {
 				fontSize:14	
@@ -119,18 +113,29 @@ var Twitter = {
 		});
 		tabView.addEventListener('click', function(e) {
 			for (var i = 0; i < viewsToLoad.length; i++) {
-				viewsToLoad[i].tabView.backgroundImage = 'images/BUTT_drk_off.png';
+				if (e.source.index == 0) {
+					viewsToLoad[0].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
+					viewsToLoad[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+					viewsToLoad[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
+				} else if (e.source.index == 1) {
+					viewsToLoad[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
+					viewsToLoad[1].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
+					viewsToLoad[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+				} else if (e.source.index == 2) {
+					viewsToLoad[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+					viewsToLoad[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
+					viewsToLoad[2].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
+				}
+				
+				//viewsToLoad[i].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
 				if (e.source.index == i) {
 					scrollable.scrollToView(viewsToLoad[i].table);
 				}
 			}
-			e.source.backgroundImage = 'images/BUTT_drk_on.png';
+			//e.source.backgroundImage = 'images/buttonbar/button2_selected.png';
 		});
 		
 		tabView.add(tabLabel);
-		if (index != 0) {
-			tabbedBar.add(Ti.UI.createView({width:3}));
-		}
         tabbedBar.add(tabView);
         myEntry.tabView = tabView;
     }

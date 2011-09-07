@@ -88,7 +88,7 @@
   	});
   	view.addEventListener('click', function(e) {
   		var leftButton = Ti.UI.createButton({
-	    	backgroundImage: 'images/9dots.png',
+	    	backgroundImage: 'images/6dots.png',
 	    	width: 41,
 	    	height: 30
 	    });
