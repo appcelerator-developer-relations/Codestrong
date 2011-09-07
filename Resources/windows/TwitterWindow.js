@@ -320,6 +320,7 @@ var Twitter = {
 
         });
         twitterWindow.rightNavButton = button;
+        
         button.addEventListener('click', function(e) {	
           reloadAllTweets();
         });

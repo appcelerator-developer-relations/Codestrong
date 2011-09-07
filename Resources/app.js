@@ -82,8 +82,8 @@ if (!Drupal.db.getConnection('main').tableExists('user')) {
 Ti.include(
   'windows/ModalActivityIndicatorWindow.js',	
   'windows/DayWindow.js',
-  'windows/MapWindow.js',
   'windows/TwitterWindow.js',
+  'windows/MapWindow.js',
   'windows/AboutWindow.js',
   'windows/TwitterDetailWindow.js',
   'windows/StarredWindow.js',
