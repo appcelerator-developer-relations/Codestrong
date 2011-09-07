@@ -112,24 +112,29 @@ var DrupalCon = {
     }
 
     // If there is a new session time, insert a header in the table.
+    var headerRow = undefined;
     if (lastTime == '' || session.start_date != lastTime) {
       lastTime = session.start_date;
-      if (isAndroid()) {
-      	var headerView = Ti.UI.createView({
-      		height: 30
-      	});
-      	var headerLabel = Ti.UI.createLabel({
-      		text: cleanTime(lastTime) + " - " + cleanTime(session.end_date),
-      		font: {
-      			fontSize:16,
-      			fontWeight:'bold'	
-      		}
-      	});
-      	headerView.add(headerLabel);
-      	sessionRow.header = headerView;
-      } else {
-      	sessionRow.header = cleanTime(lastTime) + " - " + cleanTime(session.end_date);
-      }
+      
+      headerRow = Codestrong.createHeaderRow(cleanTime(lastTime) + " - " + cleanTime(session.end_date));
+      // headerRow = Ti.UI.createTableViewRow({
+	    	// classname: 'header_session',
+	    	// height:30,
+	    	// backgroundGradient: Codestrong.headerGradient,
+	    	// touchEnabled: false
+	  // });
+	  // var headerLabel = Ti.UI.createLabel({
+	    	// text: cleanTime(lastTime) + " - " + cleanTime(session.end_date),
+	    	// width:'100%',
+	    	// textAlign: 'left',
+	    	// color: '#fff',
+	    	// font: {
+	    		// fontSize:16,
+	    		// fontWeight:'bold'	
+	    	// },
+	    	// left: 10
+	  // });
+	  // headerRow.add(headerLabel);
     }
 
     var titleLabel = Ti.UI.createLabel({
@@ -170,7 +175,7 @@ var DrupalCon = {
     sessionRow.add(presLabel);
     sessionRow.add(roomLabel);
 
-    return sessionRow;
+    return [sessionRow, headerRow];
   };
 
   DrupalCon.renderers.coreconversation = function(session) {

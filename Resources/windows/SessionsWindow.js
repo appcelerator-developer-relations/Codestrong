@@ -49,7 +49,11 @@
     var sessions = Drupal.entity.db('main', 'node').loadMultiple(nids, ['start_date', 'nid']);
 
     for (var sessionNum = 0, numSessions = sessions.length; sessionNum < numSessions; sessionNum++) {
-      data.push(DrupalCon.renderers['session'](sessions[sessionNum]));
+      var items = DrupalCon.renderers['session'](sessions[sessionNum]);
+      if (items[1]) {
+      	data.push(items[1]);
+      }
+      data.push(items[0]);
     }
 
     // create table view
@@ -61,10 +65,12 @@
 
     // Create table view event listener.
     tableview.addEventListener('click', function(e) {
-        Drupal.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
-          title: e.rowData.sessionTitle,
-          nid: e.rowData.nid
-        }), {animated:true});
+    	if (e.rowData.nid) {
+	        Drupal.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
+	          title: e.rowData.sessionTitle,
+	          nid: e.rowData.nid
+	        }), {animated:true});
+        }
     });
 
     // add table view to the window

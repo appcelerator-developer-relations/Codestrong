@@ -127,14 +127,14 @@
   	borderWidth: 4,
   	height: isIpad() ? 340 : 170,
   	width: isIpad() ? 612 : 306,
-  	bottom: 20,
-  	opacity: 0.5,
+  	bottom: isIpad() ? 20 : 10,
+  	opacity: 0.75,
   	borderRadius: 8
   });
   var viewIcons = Ti.UI.createView({
   	height: isIpad() ? 340 : 170,
   	width: isIpad() ? 612 : 306,
-  	bottom: 20,
+  	bottom: isIpad() ? 20 : 10,
   	borderRadius: 8,
   	layout: 'horizontal'
   });

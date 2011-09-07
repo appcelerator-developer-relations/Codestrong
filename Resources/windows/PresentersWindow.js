@@ -142,30 +142,25 @@
 	      if (headerLetter == '' || name.charAt(0).toUpperCase() != headerLetter) {
 	        headerLetter = name.charAt(0).toUpperCase();
 	        
-	        var headerLetterRow = Ti.UI.createTableViewRow({
-	        	classname: 'header_letter',
-	        	height:30,
-	        	backgroundGradient: {
-	        		type:'linear',
-					colors:[
-						{color:'#ddd',position:0.0},
-						{color:'#414444',position:0.50},
-						{color:'#414444',position:1.0}
-					]	
-	        	},
-	        	touchEnabled: false
-	        });
-	        var headerLabel = Ti.UI.createLabel({
-	        	text: headerLetter,
-	        	color: '#fff',
-	        	font: {
-	        		fontSize:16,
-	        		fontWeight:'bold'	
-	        	},
-	        	left: 20
-	        });
-	        headerLetterRow.add(headerLabel);
-	    	data.push(headerLetterRow);
+	        // var headerLetterRow = Ti.UI.createTableViewRow({
+	        	// classname: 'header_letter',
+	        	// height:30,
+	        	// backgroundGradient: Codestrong.headerGradient,
+	        	// touchEnabled: false
+	        // });
+	        // var headerLabel = Ti.UI.createLabel({
+	        	// text: headerLetter,
+	        	// color: '#fff',
+	        	// font: {
+	        		// fontSize:16,
+	        		// fontWeight:'bold'	
+	        	// },
+	        	// left: 20
+	        // });
+	        // headerLetterRow.add(headerLabel);
+	    	// data.push(headerLetterRow);
+	    	
+	    	data.push(Codestrong.createHeaderRow(headerLetter));
 	    	
 	    	index.push({title:headerLetter,index:i});
 	      }

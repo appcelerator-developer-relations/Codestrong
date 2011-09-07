@@ -216,9 +216,9 @@
     //if (sessionData.instructors && sessionData.instructors.length) {
     if (sessionData.instructors) {
       var instructorList = sessionData.instructors.split(",");
-      var speakerSection = Ti.UI.createTableViewSection({
-      	headerTitle: (instructorList.length > 1) ? 'Speakers' : 'Speaker'	
-      });
+      // var speakerSection = Ti.UI.createTableViewSection({
+      	// headerTitle: (instructorList.length > 1) ? 'Speakers' : 'Speaker'	
+      // });
       
       for (var k = 0; k < instructorList.length; k++) {
       	instructorList[k] = instructorList[k].replace(/^\s+|\s+$/g, '');
@@ -227,11 +227,12 @@
       // Get the presenter information.
       var presenterData = Drupal.entity.db('main', 'user').loadByField('full_name', instructorList);//sessionData.instructors);
 
+	  tvData.push(Codestrong.createHeaderRow((instructorList.length > 1) ? 'Speakers' : 'Speaker'));
       for (var j in presenterData) {
-      	speakerSection.add(renderPresenter(presenterData[j]));
-        //tvData.push(renderPresenter(presenterData[j]));
+      	//speakerSection.add(renderPresenter(presenterData[j]));
+        tvData.push(renderPresenter(presenterData[j]));
       }
-      tvData.push(speakerSection);
+      //tvData.push(speakerSection);
     }
 
     
@@ -268,9 +269,12 @@
       tvData.push(feedbackRow);
     }
 
-	var bodySection = Ti.UI.createTableViewSection({headerTitle:'Description'});
-	bodySection.add(bodyRow);
-    tvData.push(bodySection);
+	//var bodySection = Ti.UI.createTableViewSection({headerTitle:'Description'});
+	//bodySection.add(bodyRow);
+    //tvData.push(bodySection);
+    
+    tvData.push(Codestrong.createHeaderRow('Description'));
+    tvData.push(bodyRow);
 
     if (sessionData.audience) {
       var audienceRow = Ti.UI.createTableViewRow({height: 'auto', className: 'audienceRow', borderColor: '#fff'});

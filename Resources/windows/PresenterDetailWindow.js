@@ -141,8 +141,9 @@
     var sessions = getRelatedSessions(presenterData.full_name);
     var sessionRow = [];
     if (sessions && sessions.length) {
-    	var sessionSection = Ti.UI.createTableViewSection({headerTitle:'Sessions'});
+    	//var sessionSection = Ti.UI.createTableViewSection({headerTitle:'Sessions'});
     
+    	tvData.push(Codestrong.createHeaderRow('Sessions'));
 	    for (var i in sessions) {
 	      sessionRow = Ti.UI.createTableViewRow({
 	        hasChild:true,
@@ -175,15 +176,15 @@
 	        }), {animated:true});
 	      });
 	      
-	      sessionSection.add(sessionRow);
+	      //sessionSection.add(sessionRow);
 	      
-	      //tvData.push(sessionRow);
+	      tvData.push(sessionRow);
 	
 	    }
-	    tvData.push(sessionSection);
+	    //tvData.push(sessionSection);
     }
     
-      var bioSection = Ti.UI.createTableViewSection({headerTitle:'Biography', width:'100%'});
+      //var bioSection = Ti.UI.createTableViewSection({headerTitle:'Biography', width:'100%'});
       var bioText = (!presenterData.bio) ? "No biography available" : cleanSpecialChars(presenterData.bio.replace(/^[\s\n\r\t]+|[\s\n\r\t]+$/g, '').replace(/\n/g,"\n\n"));
       var bio = Ti.UI.createLabel({
         text: bioText,
@@ -205,8 +206,10 @@
       }
       
       bioRow.add(bio);
-      bioSection.add(bioRow);
-      tvData.push(bioSection);
+      tvData.push(Codestrong.createHeaderRow('Biography'));
+      tvData.push(bioRow);
+      //bioSection.add(bioRow);
+      //tvData.push(bioSection);
 
 
     tv.setData(tvData);
