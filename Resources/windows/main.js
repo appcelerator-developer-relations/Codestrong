@@ -53,6 +53,9 @@
 */
 
   Drupal.navWindow = Ti.UI.createWindow();
+  Drupal.navWindow.orientationModes = [Ti.UI.PORTRAIT];
+  Ti.UI.orientation = Ti.UI.PORTRAIT;
+  
   mainWindow = Ti.UI.createWindow({
 	backgroundImage: (isIpad()) ? 'images/home_ipad.png' : 'images/home.png',
 	title: 'Dashboard',
