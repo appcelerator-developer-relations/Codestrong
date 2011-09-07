@@ -186,7 +186,7 @@
 
   mainWindow.add(viewFade);
   mainWindow.add(viewIcons);
-  Drupal.navWindow.open({animated:true, modal:true, navBarHidden:true});
+  Drupal.navWindow.open({transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
 
   var updateCount = 0;
   Ti.addEventListener('drupal:entity:datastore:update_completed', function(e) {

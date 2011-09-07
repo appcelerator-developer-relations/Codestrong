@@ -16,7 +16,7 @@ DrupalCon.ui.activityIndicator = (function() {
 			backgroundColor: '#000',
 			height: '100%',
 			width: '100%',
-			opacity: 0.33
+			opacity: 0.65
 		});
 		var ai = Ti.UI.createActivityIndicator({
 		  	style: Titanium.UI.iPhone.ActivityIndicatorStyle.BIG,
