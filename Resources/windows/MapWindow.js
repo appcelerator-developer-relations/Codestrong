@@ -99,8 +99,7 @@
         tabbedBar.add(tabView);
         myEntry.tabView = tabView;	
     }
-    
-    Ti.API.debug(Ti.Platform.displayCaps.platformHeight);
+
     var scrollable = Ti.UI.createScrollableView({
 		showPagingControl: false,
 		backgroundColor: '#0000ff',
