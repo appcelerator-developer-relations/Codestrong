@@ -125,15 +125,15 @@
   	backgroundColor: '#fff',
   	borderColor:'#888',
   	borderWidth: 4,
-  	height: 170,
-  	width: 306,
+  	height: isIpad() ? 340 : 170,
+  	width: isIpad() ? 612 : 306,
   	bottom: 20,
   	opacity: 0.5,
   	borderRadius: 8
   });
   var viewIcons = Ti.UI.createView({
-  	height: 170,
-  	width: 306,
+  	height: isIpad() ? 340 : 170,
+  	width: isIpad() ? 612 : 306,
   	bottom: 20,
   	borderRadius: 8,
   	layout: 'horizontal'
@@ -142,8 +142,8 @@
   var createIconView = function(iconImage, iconWin, usesNav) {
   	var view = Ti.UI.createView({ 
   		backgroundImage: iconImage, 
-  		height:85, 
-  		width: 102
+  		height: isIpad() ? 170 : 85, 
+  		width: isIpad() ? 204 : 102
   	});
   	view.addEventListener('click', function(e) {
   		var leftButton = Ti.UI.createButton({
@@ -177,12 +177,12 @@
   };
   
   var presentersWindow = DrupalCon.ui.createPresentersWindow();
-  viewIcons.add(createIconView('images/dashboard2/icon_schedule.png', DrupalCon.ui.createDayWindow(), true));
-  viewIcons.add(createIconView('images/dashboard2/icon_maps.png', DrupalCon.ui.createMapWindow()));
-  viewIcons.add(createIconView('images/dashboard2/icon_news.png', DrupalCon.ui.createTwitterWindow()));
-  viewIcons.add(createIconView('images/dashboard2/icon_speakers.png', presentersWindow, true));
-  viewIcons.add(createIconView('images/dashboard2/icon_sponsors.png', DrupalCon.ui.createHtmlWindow({url:'pages/sponsors.html', title:'Sponsors'})));
-  viewIcons.add(createIconView('images/dashboard2/icon_about.png', DrupalCon.ui.createAboutWindow()));
+  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_schedule@2x.png' : 'images/dashboard2/icon_schedule.png', DrupalCon.ui.createDayWindow(), true));
+  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_maps@2x.png' : 'images/dashboard2/icon_maps.png', DrupalCon.ui.createMapWindow()));
+  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_news@2x.png' : 'images/dashboard2/icon_news.png', DrupalCon.ui.createTwitterWindow()));
+  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_speakers@2x.png' : 'images/dashboard2/icon_speakers.png', presentersWindow, true));
+  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_sponsors@2x.png' : 'images/dashboard2/icon_sponsors.png', DrupalCon.ui.createHtmlWindow({url:'pages/sponsors.html', title:'Sponsors'})));
+  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_about@2x.png' : 'images/dashboard2/icon_about.png', DrupalCon.ui.createAboutWindow()));
 
   mainWindow.add(viewFade);
   mainWindow.add(viewIcons);
