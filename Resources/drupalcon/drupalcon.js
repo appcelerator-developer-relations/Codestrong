@@ -56,7 +56,9 @@ var DrupalCon = {
 
     var sessionRow = Ti.UI.createTableViewRow({
       hasChild:true,
-      selectedColor: '#669999',
+      backgroundSelectedColor: '#999',
+	  selectedBackgroundColor: '#999',
+	  selectedColor: '#fff',
       backgroundColor: '#fff',
       color: '#000',
       start_date: session.start_date,

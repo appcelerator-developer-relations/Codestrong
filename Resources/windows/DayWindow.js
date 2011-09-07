@@ -21,10 +21,56 @@
 
     // Create table view data object.
     var data = [];
-    data.push({title:'Sunday, September 18th', titleShort:'September 18th', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/2011-09-18.html'});
-    data.push({title:'Monday, September 19th', titleShort:'September 19th', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', start_date:'2011-09-19 00:00:00', end_date:'2011-09-20 00:00:00', scheduleListing: true});
-    data.push({title:'Tuesday, September 20th', titleShort:'September 20th', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', start_date:'2011-09-20 00:00:00', end_date:'2011-09-21 00:00:00', scheduleListing: true});
-    data.push({title:'Hackathon', titleShort:'Hackathon', hasChild:true, color:'#000', backgroundColor:'#fff', barColor: '#414444', backgroundSelectedColor:'#0779BE', scheduleListing: false, url: 'pages/hackathon.html'});
+    data.push({
+    	title:'Sunday, September 18th', 
+    	titleShort:'September 18th', 
+    	hasChild:true, 
+    	color:'#000', 
+    	backgroundColor:'#fff', 
+    	barColor: '#414444', 
+    	backgroundSelectedColor: '#999',
+	    selectedBackgroundColor: '#999', 
+    	scheduleListing: false, 
+    	url: 'pages/2011-09-18.html'
+    });
+    data.push({
+    	title:'Monday, September 19th', 
+    	titleShort:'September 19th', 
+    	hasChild:true, 
+    	color:'#000', 
+    	backgroundColor:'#fff', 
+    	barColor: '#414444', 
+    	backgroundSelectedColor: '#999',
+	    selectedBackgroundColor: '#999',
+    	start_date:'2011-09-19 00:00:00', 
+    	end_date:'2011-09-20 00:00:00', 
+    	scheduleListing: true
+    });
+    data.push({
+    	title:'Tuesday, September 20th', 
+    	titleShort:'September 20th', 
+    	hasChild:true, 
+    	color:'#000', 
+    	backgroundColor:'#fff', 
+    	barColor: '#414444', 
+    	backgroundSelectedColor: '#999',
+	    selectedBackgroundColor: '#999', 
+    	start_date:'2011-09-20 00:00:00', 
+    	end_date:'2011-09-21 00:00:00', 
+    	scheduleListing: true
+    });
+    data.push({
+    	title:'Hackathon', 
+    	titleShort:'Hackathon', 
+    	hasChild:true, 
+    	color:'#000', 
+    	backgroundColor:'#fff', 
+    	barColor: '#414444', 
+    	backgroundSelectedColor: '#999',
+	    selectedBackgroundColor: '#999', 
+    	scheduleListing: false, 
+    	url: 'pages/hackathon.html'
+    });
 
     var dayWindow = Titanium.UI.createWindow({
       id: 'win1',

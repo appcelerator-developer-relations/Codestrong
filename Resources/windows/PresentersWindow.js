@@ -67,9 +67,11 @@
 	
 	      presenterRow = Ti.UI.createTableViewRow({
 	        hasChild: isAndroid(),
-	        selectedColor: '#fff',
+	        selectedColor: '#999',
 	        backgroundColor: '#fff',
-	        backgroundSelectedColor: '#0779BE',
+	        backgroundSelectedColor: '#999',
+	        selectedBackgroundColor: '#999',
+	        //selectedColor: '#999',
 	        color: '#000',
 	        name: name,
 	        uid: uid,
