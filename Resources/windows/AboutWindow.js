@@ -16,18 +16,14 @@
  */
 
 (function() {
-
-  var uiEnabled = true;
-
+	
   DrupalCon.ui.createAboutWindow = function() {
     var aboutWindow = Titanium.UI.createWindow({
       id: 'aboutWindow',
       title: 'About',
       backgroundColor: '#FFF',
       barColor: '#414444',
-      //modal: true,
       navBarHidden: false
-      //tabGroup: tabGroup
     });
 
     // create table view data object
@@ -42,12 +38,6 @@
       	shortTitle:'The App', 
       	page: 'pages/app.html'
       }
-      // ,
-      // {
-      	// title: 'Sponsors', 
-      	// shortTitle:'Sponsors', 
-      	// page:'pages/sponsors.html'
-      // }
     ];
     
     var tabbedBarView = Ti.UI.createView({
@@ -69,11 +59,9 @@
     	myEntry.webview = Ti.UI.createWebView({url: myEntry.page});
     	var tabView = Ti.UI.createView({
 			top:3,
-			//backgroundColor: (i == 0) ? '#666' : '#222',
 			backgroundImage: (i == 0) ? 'images/BUTT_drk_on.png' : 'images/BUTT_drk_off.png',
 			borderRadius:8,
 			borderColor:'#000',
-			//borderWidth: isAndroid() ? 1 : 2,
 			height:30,
 			width: 100,
 			index: i
@@ -89,6 +77,7 @@
 				fontSize:14	
 			}
 		});
+		
 		tabView.addEventListener('click', function(e) {
 			for (var j = 0; j < data.length; j++) {
 				data[j].tabView.backgroundImage = 'images/BUTT_drk_off.png';
@@ -114,8 +103,6 @@
 		views:[
 			data[0].webview,
 			data[1].webview
-			// ,
-			// data[2].webview
 		]
 	});
 	scrollable.addEventListener('scroll', function(e) {
@@ -134,55 +121,11 @@
 	tabbedBarView.add(tabbedBar);	
 	aboutWindow.add(tabbedBarView);
 	
-	aboutWindow.addEventListener('open', function(e1) {
-		Ti.App.addEventListener('app:open_link', function(e) {
-			Ti.Platform.openURL(e.link);
-		});
+	Ti.App.addEventListener('app:open_link', function(e) {
+		Ti.Platform.openURL(e.link);
 	});
-    
-    return aboutWindow;
-    
-    
-    
 
-    // // create table view
-    // var tableview = Titanium.UI.createTableView({
-      // data: data
-    // });
-// 
-    // // add table view to the window
-    // mapWindow.add(tableview);
-// 
-    // mapWindow.addEventListener('focus', function() {
-      // uiEnabled = true;
-    // });
-// 
-    // // create table view event listener
-    // tableview.addEventListener('click', function(e) {
-      // var mapImage = Ti.UI.createImageView({
-        // image: e.rowData.image
-      // });
-// 
-      // var map = Ti.UI.createWindow({
-        // title: e.rowData.title
-      // });
-// 
-      // map.add(mapImage);
-      // if (uiEnabled) {
-        // uiEnabled = false;
-        // var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : mapWindow.tabGroup.activeTab;
-        // currentTab.open(DrupalCon.ui.createMapDetailWindow({
-          // title: e.rowData.title,
-          // mapName: e.rowData.title,
-          // image: e.rowData.image,
-          // info: e.rowData.info,
-          // tabGroup: currentTab
-        // }), {animated:true});
-      // }
-    // });
-// 
-// 
-    // return mapWindow;
+    return aboutWindow;
   };
 
 })();
