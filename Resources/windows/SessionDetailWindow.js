@@ -371,7 +371,6 @@
       text: cleanSpecialChars(presenter.company),
       font:{fontSize:14, fontWeight:'normal'},
       left: 75,
-      //top: (presenter.full_name != null) ? 5 : 0,
       bottom: 10,
       height: 'auto',
       color: "#fff"

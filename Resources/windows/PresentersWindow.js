@@ -71,7 +71,6 @@
 	        backgroundColor: '#fff',
 	        backgroundSelectedColor: '#999',
 	        selectedBackgroundColor: '#999',
-	        //selectedColor: '#999',
 	        color: '#000',
 	        name: name,
 	        uid: uid,

@@ -19,7 +19,7 @@
 
 Drupal.entity.sites.main.types.node.schema = {
 
-  bypassCache: true,
+  bypassCache: false,
 
   fields: function() {
     return {
