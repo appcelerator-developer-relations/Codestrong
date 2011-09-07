@@ -85,14 +85,15 @@ Codestrong.createHeaderRow = function(title) {
 	var headerRow = Ti.UI.createTableViewRow({
     	classname: 'header_row',
     	height:26,
-    	backgroundGradient: {
-			type:'linear',
-			colors:[
-				{color:'#888',position:0.0},
-				{color:'#414444',position:0.50},
-				{color:'#414444',position:1.0}
-			]	
-		},
+    	backgroundImage: 'pages/timebreak_gray@2x.png',
+    	// backgroundGradient: {
+			// type:'linear',
+			// colors:[
+				// {color:'#888',position:0.0},
+				// {color:'#414444',position:0.50},
+				// {color:'#414444',position:1.0}
+			// ]	
+		// },
     	touchEnabled: true
     });
     var headerLabel = Ti.UI.createLabel({
