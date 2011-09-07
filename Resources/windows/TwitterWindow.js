@@ -78,14 +78,21 @@ var Twitter = {
     for (var index in viewsToLoad) {
     	myEntry = viewsToLoad[index];
   		myEntry.table.addEventListener('click', function(e) {
-			var currentTab = isAndroid() ? Titanium.UI.currentTab : twitterWindow.tabGroup.activeTab;
-    		currentTab.open(DrupalCon.ui.createTwitterDetailWindow({
+  			Drupal.navGroup.open(DrupalCon.ui.createTwitterDetailWindow({
       			title: e.rowData.user,
       			text: e.rowData.tweet,
       			name: e.rowData.user,
-      			date: e.rowData.date,
-      			tabGroup: currentTab
+      			date: e.rowData.date
     		}), {animated:true});
+  			
+			// var currentTab = isAndroid() ? Titanium.UI.currentTab : twitterWindow.tabGroup.activeTab;
+    		// currentTab.open(DrupalCon.ui.createTwitterDetailWindow({
+      			// title: e.rowData.user,
+      			// text: e.rowData.tweet,
+      			// name: e.rowData.user,
+      			// date: e.rowData.date,
+      			// tabGroup: currentTab
+    		// }), {animated:true});
 		});
 		
 		var tabView = Ti.UI.createView({

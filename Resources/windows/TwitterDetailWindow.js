@@ -21,16 +21,14 @@
     Drupal.setDefaults(settings, {
       title: 'title here',
       uid: '',
-      name: '',
-      tabGroup: undefined
+      name: ''
     });
 
     var twitterDetailWindow = Titanium.UI.createWindow({
       id: 'twitterDetailWindow',
       title: settings.title,
       backgroundColor: '#FFF',
-      barColor: '#414444',
-      tabGroup: settings.tabGroup
+      barColor: '#414444'
     });
     var baseHTMLStart = '<html><head><link rel="stylesheet" type="text/css" href="windows/tweetWebView.css" />' +
       '<meta name="viewport" content="user-scalable=yes, width=device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 10.0" /> <meta name="apple-mobile-web-app-capable" content="yes" />' +
