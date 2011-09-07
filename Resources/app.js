@@ -84,6 +84,7 @@ Ti.include(
   'windows/DayWindow.js',
   'windows/MapWindow.js',
   'windows/TwitterWindow.js',
+  'windows/AboutWindow.js',
   'windows/TwitterDetailWindow.js',
   'windows/StarredWindow.js',
   'windows/FeedbackWindow.js',
@@ -93,8 +94,6 @@ Ti.include(
   'windows/PresenterDetailWindow.js',
   'windows/HtmlWindow.js'
 );
-
-Ti.include('windows/AboutWindow.js');
 
 Ti.include('windows/main.js');
 
