@@ -17,15 +17,13 @@
 
 (function() {
 
-  var uiEnabled = true;
-
-  DrupalCon.ui.createMapWindow = function(tabGroup) {
+  DrupalCon.ui.createMapWindow = function() {
     var mapWindow = Titanium.UI.createWindow({
       id: 'mapWindow',
       title: 'Meeting Room Maps',
       backgroundColor: '#FFF',
       barColor: '#414444',
-      tabGroup: tabGroup
+      height:'100%'
     });
 
     // create table view data object
@@ -33,19 +31,13 @@
       {
       	title: 'Floor 3 - Grand Ballroom', 
       	shortTitle:'Floor 3 - Grand Ballroom', 
-      	image: isIpad() ? 'images/maps/3rd_floor_ipad.png' : 'images/maps/3rd_floor_iphone.png'
+      	url: 'pages/maps/map3.html'
       },
       {
       	title: 'Floor 4 - Pacific Terrace', 
       	shortTitle:'Floor 4 - Pacific Terrace', 
-      	image: isIpad() ? 'images/maps/4th_floor_ipad.png' : 'images/maps/4th_floor_iphone.png'
+      	url: 'pages/maps/map4.html'
       }
-      // ,
-      // {
-      	// title: 'Floor 5 - Intercontinental Ballroom', 
-      	// shortTitle:'Intercontinental', 
-      	// image:'images/maps/5th.png'
-      // }
     ];
     
     var tabbedBarView = Ti.UI.createView({
@@ -66,20 +58,15 @@
     	
     	myEntry.webview = Ti.UI.createWebView({
     		scalesPageToFit: true,
-    		html: '<html><head></head><body style="background-color: #fff;" class="maps">' +
-      			'  <meta name="viewport" content="target-densityDpi=device-dpi, user-scalable=yes, width=device-width, initial-scale = .25, minimum-scale = .25, maximum-scale = 4.0" />' +
-      			'  <meta name="apple-mobile-web-app-capable" content="yes" />' +
-      			'<img src="' + myEntry.image + '" style="height:100%;"/>' +
-      			'</body></html>'
+    		url: myEntry.url,
+    		height:'100%'
     	});
     	
     	var tabView = Ti.UI.createView({
 			top:3,
-			//backgroundColor: (i == 0) ? '#666' : '#222',
 			backgroundImage: (i == 0) ? 'images/BUTT_drk_on.png' : 'images/BUTT_drk_off.png',
 			borderRadius:8,
 			borderColor:'#000',
-			//borderWidth: isAndroid() ? 1 : 2,
 			height:30,
 			width: 150,
 			index: i
@@ -113,17 +100,20 @@
         myEntry.tabView = tabView;	
     }
     
+    Ti.API.debug(Ti.Platform.displayCaps.platformHeight);
     var scrollable = Ti.UI.createScrollableView({
-		showPagingControl: true,
-		backgroundColor: '#000000',
-		top:30,
+		showPagingControl: false,
+		backgroundColor: '#0000ff',
+		top:36,
+		bottom:0,
+		left:0,
+		right:0,
 		views:[
 			data[0].webview,
 			data[1].webview
-			//data[2].webview
-		],
-		touchEnabled: true
+		]
 	});
+	
 	scrollable.addEventListener('scroll', function(e) {
 		if (e.view) {
 			data[e.currentPage].tabView.fireEvent('click');
