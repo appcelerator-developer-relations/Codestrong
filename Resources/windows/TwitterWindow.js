@@ -30,6 +30,12 @@ var Twitter = {
   	  });
   }
   var viewsToLoad = [
+  {
+  		search:'#codestrong',
+  		url: 'http://search.twitter.com/search.json?q=%23codestrong&result_type=recent&rpp=' + tweetCount,
+  		table: createTwitterTable('#codestrong'),
+  		isSearch: true
+  },
     {
   		search:'@appcelerator',
   		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=appcelerator&count=' + tweetCount,
@@ -41,13 +47,8 @@ var Twitter = {
   		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=codestrong&count=' + tweetCount,
   		table: createTwitterTable('@codestrong'),
   		isSearch: false
-  	},
-  	{
-  		search:'#codestrong',
-  		url: 'http://search.twitter.com/search.json?q=%23codestrong&result_type=recent&rpp=' + tweetCount,
-  		table: createTwitterTable('#codestrong'),
-  		isSearch: true
   	}
+  	
   ];
   var loadedViews = [];
   
