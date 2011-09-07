@@ -49,7 +49,7 @@
     ];
     
     var tabbedBarView = Ti.UI.createView({
-    	backgroundColor:'#880000',
+    	backgroundColor:'#CE3016',
     	borderColor: '#000',
     	borderWidth: 1,
     	top:0,
