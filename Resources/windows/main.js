@@ -186,7 +186,7 @@
 
   mainWindow.add(viewFade);
   mainWindow.add(viewIcons);
-  Drupal.navWindow.open();
+  Drupal.navWindow.open({animated:true, modal:true, navBarHidden:true});
 
   var updateCount = 0;
   Ti.addEventListener('drupal:entity:datastore:update_completed', function(e) {

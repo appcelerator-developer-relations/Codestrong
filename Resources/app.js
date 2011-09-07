@@ -19,7 +19,7 @@
 var Ti, Titanium, Drupal, desc, menu, refresh, logout;
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
-Titanium.UI.setBackgroundColor('#000');
+Titanium.UI.setBackgroundColor('#414444');
 
 // Include the Drupal connection libraries.
 Ti.include(

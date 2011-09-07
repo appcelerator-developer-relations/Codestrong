@@ -22,6 +22,8 @@ var Twitter = {
 
 (function() {
   var tweetCount = 50;
+  var firstRun = true;
+  
   var createTwitterTable = function(search) {
   	  return Ti.UI.createTableView({
   	  	  height:'100%',
@@ -290,7 +292,11 @@ var Twitter = {
     }
 
 	var reloadAllTweets = function() {
-		DrupalCon.ui.activityIndicator.showModal('Loading latest tweets...');
+		if (!firstRun) {
+			DrupalCon.ui.activityIndicator.showModal('Loading latest tweets...');
+		} else {
+			firstRun = false;	
+		}
 	  	for (var i = 0; i < viewsToLoad.length; i++) {
 	  		getTweets(viewsToLoad[i]);	
 	  	}
