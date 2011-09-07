@@ -55,7 +55,6 @@ var Twitter = {
   var loadedViews = [];
   
   DrupalCon.ui.createTwitterWindow = function(tabGroup) {
-  	var screenWidth = Ti.Platform.displayCaps.platformWidth;
     var twitterWindow = Titanium.UI.createWindow({
       id: 'twitterWindow',
       title: 'Twitter News',
@@ -72,7 +71,7 @@ var Twitter = {
     	top:0,
     	backgroundColor: '#000',
     	height:36,
-    	width:screenWidth
+    	width:Ti.Platform.displayCaps.platformWidth
     });
     
     for (var index in viewsToLoad) {
@@ -96,8 +95,8 @@ var Twitter = {
 		var tabView = Ti.UI.createView({
 			backgroundImage: bgImage,
 			height:36,
-			left: index * (screenWidth/viewsToLoad.length),
-			right: screenWidth - ((parseInt(index) + 1) * (screenWidth/viewsToLoad.length)),
+			left: index * (Ti.Platform.displayCaps.platformWidth/viewsToLoad.length),
+			right: Ti.Platform.displayCaps.platformWidth - ((parseInt(index) + 1) * (Ti.Platform.displayCaps.platformWidth/viewsToLoad.length)),
 			index: index
 		});
 		

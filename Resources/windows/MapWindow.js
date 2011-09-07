@@ -30,27 +30,26 @@
     var data = [
       {
       	title: 'Floor 3 - Grand Ballroom', 
-      	shortTitle:'Floor 3 - Grand Ballroom', 
+      	shortTitle:'3rd Floor', 
       	url: 'pages/maps/map3.html'
       },
       {
       	title: 'Floor 4 - Pacific Terrace', 
-      	shortTitle:'Floor 4 - Pacific Terrace', 
+      	shortTitle:'4th Floor', 
       	url: 'pages/maps/map4.html'
       }
     ];
     
     var tabbedBarView = Ti.UI.createView({
-    	backgroundColor:'#CE3016',
-    	borderColor: '#000',
-    	borderWidth: 1,
+    	backgroundColor:'#555',
     	top:0,
     	height:36
     });
     var tabbedBar = Ti.UI.createView({
+    	top:0,
+    	backgroundColor: '#000',
     	height:36,
-    	width:304,
-    	layout:'horizontal'
+    	width:Ti.Platform.displayCaps.platformWidth
     });
     
     for (var i = 0; i < data.length; i++) {
@@ -63,39 +62,46 @@
     	});
     	
     	var tabView = Ti.UI.createView({
-			top:3,
-			backgroundImage: (i == 0) ? 'images/BUTT_drk_on.png' : 'images/BUTT_drk_off.png',
-			borderRadius:8,
-			borderColor:'#000',
-			height:30,
-			width: 150,
+			backgroundImage: (i == 0) ? 'images/buttonbar/button2_selected.png' : 'images/buttonbar/button2_unselected_shadowL.png',
+			height:36,
+			left: i * (Ti.Platform.displayCaps.platformWidth/data.length),
+			right: Ti.Platform.displayCaps.platformWidth - ((parseInt(i) + 1) * (Ti.Platform.displayCaps.platformWidth/data.length)),
 			index: i
 		});
+		
 		var tabLabel = Ti.UI.createLabel({
 			text: myEntry.shortTitle,
 			textAlign:'center',
 			color: '#fff',
 			height:'auto',
-			width:'100%',
 			touchEnabled: false,
 			font: {
-				fontSize:12	
+				fontSize:14,
+				fontWeight: 'bold'
 			}
 		});
 		tabView.addEventListener('click', function(e) {
+			if (e.source.index == 0) {
+				data[0].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
+				data[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+			} else if (e.source.index == 1) {
+				data[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
+				data[1].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
+			} 
+			
 			for (var j = 0; j < data.length; j++) {
-				data[j].tabView.backgroundImage = 'images/BUTT_drk_off.png';
+				//data[j].tabView.backgroundImage = 'images/BUTT_drk_off.png';
 				if (e.source.index == j) {
 					scrollable.scrollToView(data[j].webview);
 				}
 			}
-			e.source.backgroundImage = 'images/BUTT_drk_on.png';
+			//e.source.backgroundImage = 'images/BUTT_drk_on.png';
 		});
 		
 		tabView.add(tabLabel);
-		if (i != 0) {
-			tabbedBar.add(Ti.UI.createView({width:3}));
-		}
+		// if (i != 0) {
+			// tabbedBar.add(Ti.UI.createView({width:3}));
+		// }
         tabbedBar.add(tabView);
         myEntry.tabView = tabView;	
     }
