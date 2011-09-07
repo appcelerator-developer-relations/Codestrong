@@ -32,9 +32,6 @@
       height: '100%'
     });
     
-    // TODO: After first run of this app, it throws an error on htmlWindow.add() if this isn't here. WTF?!
-    //Ti.API.debug(htmlWindow);
-
 	var webview = Ti.UI.createWebView({
       url: settings.url,
       width:'100%',
@@ -46,9 +43,6 @@
     	webview.height = '100%';
     	webview.width = '100%';
     });
-    // htmlWindow.addEventListener('open', function(e) {
-//     	
-    // });
 
     return htmlWindow;
   };
