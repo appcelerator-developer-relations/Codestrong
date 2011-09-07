@@ -125,7 +125,7 @@
   viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_maps@2x.png' : 'images/dashboard2/icon_maps.png', DrupalCon.ui.createMapWindow()));
   viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_news@2x.png' : 'images/dashboard2/icon_news.png', DrupalCon.ui.createTwitterWindow()));
   viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_speakers@2x.png' : 'images/dashboard2/icon_speakers.png', presentersWindow, true));
-  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_sponsors@2x.png' : 'images/dashboard2/icon_sponsors.png', DrupalCon.ui.createHtmlWindow({url:'pages/sponsors.html', title:'Sponsors'})));
+  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_sponsors@2x.png' : 'images/dashboard2/icon_sponsors.png', DrupalCon.ui.createHtmlWindow({url: isIpad() ? 'pages/sponsors_ipad.html' : 'pages/sponsors.html', title:'Sponsors'})));
   viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_about@2x.png' : 'images/dashboard2/icon_about.png', DrupalCon.ui.createAboutWindow()));
 
   mainWindow.add(viewFade);
