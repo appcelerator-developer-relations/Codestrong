@@ -327,7 +327,6 @@ var Twitter = {
         });
         twitterWindow.rightNavButton = button;
         
-        //Ti.API.debug('sadfsdf');
         button.addEventListener('click', function(e) {	
           reloadAllTweets();
         });

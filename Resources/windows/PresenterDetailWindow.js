@@ -46,16 +46,12 @@
       textAlign: 'left',
       width:'100%',
       separatorColor:'#fff'
-      //layout:'vertical'
     });
     tv.footerView = Ti.UI.createView({
     	height:1,
     	opacity:0
     });
 
-    //var userPict = avatarPath(presenterData.uid);
-    //dpm(userPict);
-    
     var av = Ti.UI.createImageView({
       image:presenterData.picture.replace(/^\s+|\s+$/g, '') || 'images/userpict-large.png',
       left:0,
@@ -175,16 +171,11 @@
 	          nid: e.rowData.nid
 	        }), {animated:true});
 	      });
-	      
-	      //sessionSection.add(sessionRow);
-	      
+
 	      tvData.push(sessionRow);
-	
 	    }
-	    //tvData.push(sessionSection);
     }
     
-      //var bioSection = Ti.UI.createTableViewSection({headerTitle:'Biography', width:'100%'});
       var bioText = (!presenterData.bio) ? "No biography available" : cleanSpecialChars(presenterData.bio.replace(/^[\s\n\r\t]+|[\s\n\r\t]+$/g, '').replace(/\n/g,"\n\n"));
       var bio = Ti.UI.createLabel({
         text: bioText,
@@ -208,8 +199,6 @@
       bioRow.add(bio);
       tvData.push(Codestrong.createHeaderRow('Biography'));
       tvData.push(bioRow);
-      //bioSection.add(bioRow);
-      //tvData.push(bioSection);
 
 
     tv.setData(tvData);

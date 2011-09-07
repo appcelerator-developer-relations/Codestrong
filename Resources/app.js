@@ -94,7 +94,8 @@ Codestrong.createHeaderRow = function(title) {
 				// {color:'#414444',position:1.0}
 			// ]	
 		// },
-    	touchEnabled: true
+    	touchEnabled: false,
+    	selectedBackgroundImage:'pages/timebreak_gray@2x.png'
     });
     var headerLabel = Ti.UI.createLabel({
     	text: title,
@@ -103,7 +104,8 @@ Codestrong.createHeaderRow = function(title) {
     		fontSize:16,
     		fontWeight:'bold'	
     	},
-    	left: 10
+    	left: 10,
+    	touchEnabled: false
     });
     headerRow.add(headerLabel);
     

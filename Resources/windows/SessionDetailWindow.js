@@ -229,13 +229,9 @@
 
 	  tvData.push(Codestrong.createHeaderRow((instructorList.length > 1) ? 'Speakers' : 'Speaker'));
       for (var j in presenterData) {
-      	//speakerSection.add(renderPresenter(presenterData[j]));
         tvData.push(renderPresenter(presenterData[j]));
       }
-      //tvData.push(speakerSection);
     }
-
-    
 
     if (sessionData.type === 'session') {
       var feedbackTitle = Ti.UI.createLabel({
@@ -268,10 +264,6 @@
 
       tvData.push(feedbackRow);
     }
-
-	//var bodySection = Ti.UI.createTableViewSection({headerTitle:'Description'});
-	//bodySection.add(bodyRow);
-    //tvData.push(bodySection);
     
     tvData.push(Codestrong.createHeaderRow('Description'));
     tvData.push(bodyRow);
@@ -355,7 +347,6 @@
       className: 'presenterRow',
       borderColor: '#C4E2EF',
       hasChild: true,
-      //backgroundColor: '#fff',
       backgroundColor: '#CE3016',
       backgroundSelectedColor: '#999',
 	        selectedBackgroundColor: '#999',
@@ -371,7 +362,7 @@
       height: 'auto',
       color: '#fff'
     });
-    dpm(presenter.full_name);
+    
     var presenterName2 = Ti.UI.createLabel({
       presenter: presenter,
       text: cleanSpecialChars(presenter.company),

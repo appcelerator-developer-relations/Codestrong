@@ -141,27 +141,7 @@
 	      // We also push a new index so we can create a right side index for iphone.
 	      if (headerLetter == '' || name.charAt(0).toUpperCase() != headerLetter) {
 	        headerLetter = name.charAt(0).toUpperCase();
-	        
-	        // var headerLetterRow = Ti.UI.createTableViewRow({
-	        	// classname: 'header_letter',
-	        	// height:30,
-	        	// backgroundGradient: Codestrong.headerGradient,
-	        	// touchEnabled: false
-	        // });
-	        // var headerLabel = Ti.UI.createLabel({
-	        	// text: headerLetter,
-	        	// color: '#fff',
-	        	// font: {
-	        		// fontSize:16,
-	        		// fontWeight:'bold'	
-	        	// },
-	        	// left: 20
-	        // });
-	        // headerLetterRow.add(headerLabel);
-	    	// data.push(headerLetterRow);
-	    	
 	    	data.push(Codestrong.createHeaderRow(headerLetter));
-	    	
 	    	index.push({title:headerLetter,index:i});
 	      }
 	
