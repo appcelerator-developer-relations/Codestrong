@@ -353,6 +353,8 @@
       hasChild: true,
       //backgroundColor: '#fff',
       backgroundColor: '#CE3016',
+      backgroundSelectedColor: '#999',
+	        selectedBackgroundColor: '#999',
       layout:'vertical'
     });
     presRow.add(av);
