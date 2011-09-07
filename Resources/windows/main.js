@@ -154,6 +154,7 @@
 	    leftButton.addEventListener('click', function(e) {
 	    	Drupal.navGroup.close(iconWin, {animated:true});
 	    });
+	    iconWin.leftNavButton = leftButton;
 	    
 	    if (usesNav) {
 	    	if (isAndroid()) {
@@ -169,7 +170,6 @@
 	        }
 	    }
 	    
-	    iconWin.leftNavButton = leftButton;
 		iconWin.navBarHidden = false;
   		Drupal.navGroup.open(iconWin, {animated:true});
   	});
@@ -177,12 +177,12 @@
   };
   
   var presentersWindow = DrupalCon.ui.createPresentersWindow();
-  viewIcons.add(createIconView('images/dashboard2/schedule.png', DrupalCon.ui.createDayWindow(), true));
-  viewIcons.add(createIconView('images/dashboard2/maps.png', DrupalCon.ui.createMapWindow()));
-  viewIcons.add(createIconView('images/dashboard2/news.png', DrupalCon.ui.createTwitterWindow()));
-  viewIcons.add(createIconView('images/dashboard2/speakers.png', presentersWindow, true));
-  viewIcons.add(createIconView('images/dashboard2/sponsors.png', DrupalCon.ui.createHtmlWindow({url:'pages/sponsors.html', title:'Sponsors'})));
-  viewIcons.add(createIconView('images/dashboard2/about.png', DrupalCon.ui.createAboutWindow()));
+  viewIcons.add(createIconView('images/dashboard2/icon_schedule.png', DrupalCon.ui.createDayWindow(), true));
+  viewIcons.add(createIconView('images/dashboard2/icon_maps.png', DrupalCon.ui.createMapWindow()));
+  viewIcons.add(createIconView('images/dashboard2/icon_news.png', DrupalCon.ui.createTwitterWindow()));
+  viewIcons.add(createIconView('images/dashboard2/icon_speakers.png', presentersWindow, true));
+  viewIcons.add(createIconView('images/dashboard2/icon_sponsors.png', DrupalCon.ui.createHtmlWindow({url:'pages/sponsors.html', title:'Sponsors'})));
+  viewIcons.add(createIconView('images/dashboard2/icon_about.png', DrupalCon.ui.createAboutWindow()));
 
   mainWindow.add(viewFade);
   mainWindow.add(viewIcons);

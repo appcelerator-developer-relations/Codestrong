@@ -17,10 +17,9 @@
 
 (function() {
 
-  DrupalCon.ui.createHtmlWindow = function(settings, tabGroup) {
+  DrupalCon.ui.createHtmlWindow = function(settings) {
     Drupal.setDefaults(settings, {
       title: 'title here',
-      tabGroup: undefined,
       url: ''
     });
 
@@ -30,16 +29,18 @@
       backgroundColor: '#FFF',
       barColor: '#414444',
       width: '100%',
-      height: '100%',
-      tabGroup: tabGroup
+      height: '100%'
     });
     
     // TODO: After first run of this app, it throws an error on htmlWindow.add() if this isn't here. WTF?!
-    Ti.API.debug(htmlWindow);
-    
+    //Ti.API.debug(htmlWindow);
+    Ti.API.debug(settings.url);
     htmlWindow.add(Ti.UI.createWebView({
       url: settings.url
     }));
+    // htmlWindow.addEventListener('open', function(e) {
+//     	
+    // });
 
     return htmlWindow;
   };
