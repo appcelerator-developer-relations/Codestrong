@@ -34,10 +34,18 @@
     
     // TODO: After first run of this app, it throws an error on htmlWindow.add() if this isn't here. WTF?!
     //Ti.API.debug(htmlWindow);
-    Ti.API.debug(settings.url);
-    htmlWindow.add(Ti.UI.createWebView({
-      url: settings.url
-    }));
+
+	var webview = Ti.UI.createWebView({
+      url: settings.url,
+      width:'100%',
+      height:'100%'
+   });
+    htmlWindow.add(webview);
+    htmlWindow.addEventListener('focus', function(e) {
+    	webview.url = settings.url;
+    	webview.height = '100%';
+    	webview.width = '100%';
+    });
     // htmlWindow.addEventListener('open', function(e) {
 //     	
     // });
