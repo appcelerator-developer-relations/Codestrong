@@ -122,7 +122,9 @@
   });
   Drupal.navWindow.add(Drupal.navGroup);
   var viewFade = Ti.UI.createView({
-  	backgroundColor: '#000',
+  	backgroundColor: '#fff',
+  	borderColor:'#888',
+  	borderWidth: 4,
   	height: 170,
   	width: 306,
   	bottom: 20,
@@ -175,12 +177,12 @@
   };
   
   var presentersWindow = DrupalCon.ui.createPresentersWindow();
-  viewIcons.add(createIconView('images/dashboard/about.png', DrupalCon.ui.createAboutWindow()));
-  viewIcons.add(createIconView('images/dashboard/program.png', DrupalCon.ui.createDayWindow(), true));
-  viewIcons.add(createIconView('images/dashboard/maps.png', DrupalCon.ui.createMapWindow()));
-  viewIcons.add(createIconView('images/dashboard/news.png', DrupalCon.ui.createTwitterWindow()));
-  viewIcons.add(createIconView('images/dashboard/speakers.png', presentersWindow, true));
-  viewIcons.add(createIconView('images/dashboard/sponsors.png', DrupalCon.ui.createHtmlWindow({url:'pages/sponsors.html', title:'Sponsors'})));
+  viewIcons.add(createIconView('images/dashboard2/about.png', DrupalCon.ui.createAboutWindow()));
+  viewIcons.add(createIconView('images/dashboard2/schedule.png', DrupalCon.ui.createDayWindow(), true));
+  viewIcons.add(createIconView('images/dashboard2/maps.png', DrupalCon.ui.createMapWindow()));
+  viewIcons.add(createIconView('images/dashboard2/news.png', DrupalCon.ui.createTwitterWindow()));
+  viewIcons.add(createIconView('images/dashboard2/speakers.png', presentersWindow, true));
+  viewIcons.add(createIconView('images/dashboard2/sponsors.png', DrupalCon.ui.createHtmlWindow({url:'pages/sponsors.html', title:'Sponsors'})));
 
   mainWindow.add(viewFade);
   mainWindow.add(viewIcons);
