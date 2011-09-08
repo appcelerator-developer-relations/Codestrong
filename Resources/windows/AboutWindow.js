@@ -23,7 +23,8 @@
       title: 'About',
       backgroundColor: '#FFF',
       barColor: '#414444',
-      navBarHidden: false
+      navBarHidden: false,
+      fullscreen: false
     });
 
     // create table view data object
@@ -121,14 +122,6 @@
 	aboutWindow.add(scrollable);
 	tabbedBarView.add(tabbedBar);	
 	aboutWindow.add(tabbedBarView);
-	
-	Ti.App.addEventListener('app:open_link', function(e) {
-		Ti.Platform.openURL(e.link);
-	});
-	
-	aboutWindow.addEventListener('open', function(e) {
-		Ti.API.debug("ZZZZZZZZZZZZZZZZ: opened window");
-	});
 
     return aboutWindow;
   };
