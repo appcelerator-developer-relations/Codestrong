@@ -17,19 +17,18 @@
 
 (function() {
 
-  DrupalCon.ui.createPresentersWindow = function(tabGroup) {
+  DrupalCon.ui.createPresentersWindow = function() {
     var PresentersWindow = Titanium.UI.createWindow({
       id: 'presentersWindow',
       title: 'Speakers',
       backgroundColor: '#FFF',
       barColor: '#414444',
-      tabGroup: tabGroup
+      fullscreen: false
     });
     
     // Create the table view
     var tableview = Titanium.UI.createTableView({
-      backgroundColor: '#fff'//,
-      //data: data
+      backgroundColor: '#fff'
     });
 
 	PresentersWindow.doRefresh = function() {

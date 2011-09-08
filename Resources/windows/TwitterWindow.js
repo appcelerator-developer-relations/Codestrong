@@ -54,13 +54,13 @@ var Twitter = {
   ];
   var loadedViews = [];
   
-  DrupalCon.ui.createTwitterWindow = function(tabGroup) {
+  DrupalCon.ui.createTwitterWindow = function() {
     var twitterWindow = Titanium.UI.createWindow({
       id: 'twitterWindow',
       title: 'Twitter News',
       backgroundColor: '#FFF',
       barColor: '#414444',
-      tabGroup: tabGroup
+      fullscreen: false
     });
     var tabbedBarView = Ti.UI.createView({
     	backgroundColor:'#555',

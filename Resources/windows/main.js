@@ -77,16 +77,19 @@
   		width: Codestrong.settings.iconWidth
   	});
   	view.addEventListener('click', function(e) {
-  		var leftButton = Ti.UI.createButton({
-	    	backgroundImage: 'images/6dots.png',
-	    	width: 41,
-	    	height: 30
-	    });
-	    leftButton.addEventListener('click', function(e) {
-	    	Codestrong.navGroup.close(iconWin, {animated:true});
-	    });
-	    iconWin.leftNavButton = leftButton;
-	    
+  		Ti.API.debug('TTTTTTTTTTTTTT: in click');
+  		if (!isAndroid()) {
+	  		var leftButton = Ti.UI.createButton({
+		    	backgroundImage: 'images/6dots.png',
+		    	width: 41,
+		    	height: 30
+		    });
+		    leftButton.addEventListener('click', function(e) {
+		    	Codestrong.navGroup.close(iconWin, {animated:true});
+		    });
+		    iconWin.leftNavButton = leftButton;
+	    }
+	    Ti.API.debug('TTTTTTTTTTTTTT: past 1st android test');
 	    if (hasRefresh) {
 	    	if (isAndroid()) {
 	    		var buttons = [];
@@ -110,9 +113,11 @@
 		        });
 	        }
 	    }
-	    
+	    Ti.API.debug('TTTTTTTTTTTTTT: past has refresh');
 		iconWin.navBarHidden = false;
+		Ti.API.debug('TTTTTTTTTTTTTT: about to open');
   		Codestrong.navGroup.open(iconWin, {animated:true});
+  		Ti.API.debug('TTTTTTTTTTTTTT: opened');
   	});
   	return view;
   };
@@ -126,7 +131,7 @@
   viewIcons.add(createIconView(Codestrong.settings.icons.about, DrupalCon.ui.createAboutWindow()));
 
   
-  Codestrong.navWindow.open({transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
+  Codestrong.navWindow.open(isAndroid() ? {} : {transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
 
   var updateCount = 0;
   Ti.addEventListener('drupal:entity:datastore:update_completed', function(e) {

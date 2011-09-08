@@ -23,7 +23,8 @@
       title: 'Meeting Room Maps',
       backgroundColor: '#FFF',
       barColor: '#414444',
-      height:'100%'
+      height:'100%',
+      fullscreen: false
     });
 
     // create table view data object

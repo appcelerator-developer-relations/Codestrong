@@ -27,11 +27,11 @@
       id: 'sessionDetailWindow',
       title: settings.title,
       backgroundColor: '#FFF',
-      barColor: '#414444'
+      barColor: '#414444',
+      fullscreen: false
     });
 
     // Build session data
-    //Ti.API.debug(settings.nid);
     var sessionData = Drupal.entity.db('main', 'node').load(settings.nid);
     
     // Build the page:
@@ -90,7 +90,6 @@
     }
 
     if (sessionData.start_date) {
-      //var startDate = parseISO8601(sessionData.start_date + ':00');
       var matches = /^(\d{4})\-(\d{2})\-(\d{2})/.exec(sessionData.start_date);
       var startDate = new Date(matches[1], matches[2]-1, matches[3]);
       var datetime = Ti.UI.createLabel({
@@ -118,7 +117,7 @@
 
     if (sessionData.room && !skipRoom) {
       var room = Ti.UI.createLabel({
-        text: sessionData.room, //sessionData.room.map(cleanSpecialChars).join(', '),
+        text: sessionData.room,
         font: {fontSize: 18, fontWeight: 'normal'},
         textAlign: 'left',
         color: '#000',
@@ -216,10 +215,6 @@
     //if (sessionData.instructors && sessionData.instructors.length) {
     if (sessionData.instructors) {
       var instructorList = sessionData.instructors.split(",");
-      // var speakerSection = Ti.UI.createTableViewSection({
-      	// headerTitle: (instructorList.length > 1) ? 'Speakers' : 'Speaker'	
-      // });
-      
       for (var k = 0; k < instructorList.length; k++) {
       	instructorList[k] = instructorList[k].replace(/^\s+|\s+$/g, '');
       }
@@ -233,38 +228,6 @@
       }
     }
 
-    if (sessionData.type === 'session') {
-      var feedbackTitle = Ti.UI.createLabel({
-        text:"Rate this session",
-        backgroundColor:'#3782a8',
-        textAlign:'left',
-        font:{fontSize:18, fontWeight:'bold'},
-        color:'#fff',
-        left: commonPadding,
-        right: commonPadding,
-        height: 50
-      });
-
-      var feedbackRow = Ti.UI.createTableViewRow({
-        hasChild: true,
-        layout:'vertical',
-        height: 50,
-        className: 'feedbackRow',
-        backgroundColor:'#3782A9'
-      });
-      feedbackRow.add(feedbackTitle);
-
-      feedbackRow.addEventListener('click', function(e) {
-        // var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : sessionDetailWindow.tabGroup.activeTab;
-        // currentTab.open(DrupalCon.ui.createFeedbackWindow({
-          // title: settings.title,
-          // address: 'http://chicago2011.drupal.org/node/add/eval/' + settings.nid
-        // }), {animated:true});
-      });
-
-      tvData.push(feedbackRow);
-    }
-    
     tvData.push(Codestrong.createHeaderRow('Description'));
     tvData.push(bodyRow);
 

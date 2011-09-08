@@ -76,7 +76,8 @@
       id: 'win1',
       title: 'Schedule',
       backgroundColor: '#fff',
-      barColor: '#414444'
+      barColor: '#414444',
+      fullscreen: false
     });
 
     // create table view

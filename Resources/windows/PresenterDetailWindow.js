@@ -21,8 +21,7 @@
     Drupal.setDefaults(settings, {
       title: 'title here',
       uid: '',
-      name: '',
-      tabGroup: undefined
+      name: ''
     });
 
     // var presenterData = settings.data;
@@ -33,7 +32,7 @@
       title: presenterData.full_name,
       backgroundColor: '#FFF',
       barColor: '#414444',
-      tabGroup: settings.tabGroup
+      fullscreen: false
     });
 
     var tvData = [];
@@ -125,10 +124,9 @@
 
       twitter.addEventListener('click', function(e) {
         var webview = Titanium.UI.createWebView({url:e.source.twitter});
-        var webWindow = Titanium.UI.createWindow();
-        var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : presenterDetailWindow.tabGroup.activeTab;
+        var webWindow = Titanium.UI.createWindow({fullscreen:false});
         webWindow.add(webview);
-        currentTab.open(webWindow);
+        Codestrong.navGroup.open(webWindow, {animated:true});
       });
       twitterRow.add(twitter);
       tvData.push(twitterRow);

@@ -31,7 +31,8 @@
       id: 'sessionsWindow',
       title: settings.titleShort,
       backgroundColor: '#FFF',
-      barColor: '#414444'
+      barColor: '#414444',
+      fullscreen: false
     });
 
     var data = [];
