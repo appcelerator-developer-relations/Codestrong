@@ -311,10 +311,15 @@
       borderColor: '#C4E2EF',
       hasChild: true,
       backgroundColor: '#CE3016',
-      backgroundSelectedColor: '#999',
-	        selectedBackgroundColor: '#999',
       layout:'vertical'
     });
+    
+    if (isAndroid()) {
+  	    presRow.backgroundSelectedColor = '#999';
+    } else {
+  	    presRow.selectedBackgroundColor = '#999';
+    }
+    
     presRow.add(av);
     var presenterFullName2 = Ti.UI.createLabel({
       presenter: presenter,

@@ -55,9 +55,7 @@ var DrupalCon = {
     var sessionTitle = cleanSpecialChars(session.title);
     var sessionRow = Ti.UI.createTableViewRow({
       hasChild:true,
-      backgroundSelectedColor: '#999',
-	  selectedBackgroundColor: '#999',
-	  selectedColor: '#fff',
+	  selectedColor: '#000',
       backgroundColor: '#fff',
       color: '#000',
       start_date: session.start_date,
@@ -66,8 +64,16 @@ var DrupalCon = {
       sessionTitle: sessionTitle,
       itemType: session.type,
       height: 'auto',
-      layout: 'vertical'
+      layout: 'vertical',
+      focusable: true
     });
+    
+    if (isAndroid()) {
+		sessionRow.backgroundSelectedColor = '#999';
+	} else {
+		sessionRow.selectedBackgroundColor = '#999';
+	}
+    
     var leftSpace = 10;
     var titleColor = '#d32101';
 
@@ -85,7 +91,8 @@ var DrupalCon = {
       left: leftSpace,
       top: 10,
       right: 10,
-      height: 'auto'
+      height: 'auto',
+      touchEnabled: false
     });
 
     // Some sessions have multiple presenters
@@ -97,7 +104,8 @@ var DrupalCon = {
       top: 4,
       bottom: 0,
       right: 10,
-      height: 'auto'
+      height: 'auto',
+      touchEnabled: false
     });
 
     // Some things, like keynote, have multiple rooms
@@ -109,7 +117,8 @@ var DrupalCon = {
       top: 2,
       bottom: 10,
       right: 10,
-      height: 'auto'
+      height: 'auto',
+      touchEnabled: false
     });
 
     sessionRow.add(titleLabel);

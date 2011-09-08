@@ -5,7 +5,7 @@
 
 var menu = {
 
-  isAndroid: Ti.Platform.name == 'android',
+  isAndroid: isAndroid(),
   data: [],
   tiVersion: 1.5,
 

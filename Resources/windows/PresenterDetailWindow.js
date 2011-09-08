@@ -62,7 +62,6 @@
     });
     var headerRow = Ti.UI.createTableViewRow({
       height:110,
-      //backgroundColor:blueBg,
       backgroundImage:'images/sessionbckgd@2x.png',
       left:0,
       top:-5,
@@ -70,9 +69,6 @@
       layout:'vertical',
       selectionStyle:'none'
     });
-    var twitterRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
-    var linkedinRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
-    var facebookRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
     var bioRow = Ti.UI.createTableViewRow({
     	hasChild:false,
     	height:'auto',
@@ -108,29 +104,7 @@
       });
       headerRow.add(company);
     }
-
     tvData.push(headerRow);
-
-    if (presenterData.twitter != undefined){
-      var twitter = Ti.UI.createLabel({
-        text: "twitter: " + presenterData.name,
-        twitter: presenterData.twitter,
-        color: '#000',
-        font: {fontSize: 14, fontWeight: 'bold'},
-        left: 10,
-        right: 10,
-        height: 'auto'
-      });
-
-      twitter.addEventListener('click', function(e) {
-        var webview = Titanium.UI.createWebView({url:e.source.twitter});
-        var webWindow = Titanium.UI.createWindow({fullscreen:false});
-        webWindow.add(webview);
-        Codestrong.navGroup.open(webWindow, {animated:true});
-      });
-      twitterRow.add(twitter);
-      tvData.push(twitterRow);
-    }
 
     var sessions = getRelatedSessions(presenterData.full_name);
     var sessionRow = [];
@@ -144,10 +118,14 @@
 	        sessionTitle:cleanSpecialChars(sessions[i].title),
 	        nid:sessions[i].nid,
 	        height: 'auto',
-	        backgroundColor: '#CE3016',
-	        backgroundSelectedColor: '#999',
-	        selectedBackgroundColor: '#999',
+	        backgroundColor: '#CE3016'
 	      });
+	      
+	      if (isAndroid()) {
+	      	  sessionRow.backgroundSelectedColor = '#999';
+	      } else {
+	      	  sessionRow.selectedBackgroundColor = '#999';
+	      }
 	
 	      var titleLabel = Ti.UI.createLabel({
 	        text: cleanSpecialChars(sessions[i].title),

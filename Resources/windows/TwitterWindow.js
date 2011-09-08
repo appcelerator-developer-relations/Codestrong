@@ -76,6 +76,7 @@ var Twitter = {
     
     for (var index in viewsToLoad) {
     	myEntry = viewsToLoad[index];
+    	Ti.API.debug('test');
   		myEntry.table.addEventListener('click', function(e) {
   			Codestrong.navGroup.open(DrupalCon.ui.createTwitterDetailWindow({
       			title: e.rowData.user,

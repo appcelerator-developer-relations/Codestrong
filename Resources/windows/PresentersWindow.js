@@ -68,14 +68,18 @@
 	        hasChild: isAndroid(),
 	        selectedColor: '#999',
 	        backgroundColor: '#fff',
-	        backgroundSelectedColor: '#999',
-	        selectedBackgroundColor: '#999',
 	        color: '#000',
 	        name: name,
 	        uid: uid,
 	        height: 40,
 	        layout: 'auto'
 	      });
+	      
+	      if (isAndroid()) {
+	      	  presenterRow.backgroundSelectedColor = '#999';
+	      } else {
+	      	  presenterRow.selectedBackgroundColor = '#999';
+	      }
 	
 	      if (fullName == shortName) {
 	        fullName = '';

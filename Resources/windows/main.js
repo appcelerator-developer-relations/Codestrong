@@ -77,32 +77,33 @@
   		width: Codestrong.settings.iconWidth
   	});
   	view.addEventListener('click', function(e) {
-  		Ti.API.debug('TTTTTTTTTTTTTT: in click');
   		if (!isAndroid()) {
 	  		var leftButton = Ti.UI.createButton({
 		    	backgroundImage: 'images/6dots.png',
 		    	width: 41,
 		    	height: 30
 		    });
-		    leftButton.addEventListener('click', function(e) {
+		    leftButton.addEventListener('click', function(e2) {
 		    	Codestrong.navGroup.close(iconWin, {animated:true});
 		    });
 		    iconWin.leftNavButton = leftButton;
 	    }
-	    Ti.API.debug('TTTTTTTTTTTTTT: past 1st android test');
+
 	    if (hasRefresh) {
 	    	if (isAndroid()) {
-	    		var buttons = [];
-		        buttons.push({
-		          	title: "Update",
-		          	clickevent: function () {
-		            	Ti.fireEvent('drupalcon:update_data');
-		          	}
-		        });
-		        menu.init({
-		          	win: iconWin,
-		          	buttons: buttons
-		        });
+	    		iconWin.addEventListener('open', function(e2) {
+		    		var buttons = [];
+			        buttons.push({
+			          	title: "Update",
+			          	clickevent: function () {
+			            	Ti.fireEvent('drupalcon:update_data');
+			          	}
+			        });
+			        menu.init({
+			          	win: iconWin,
+			          	buttons: buttons
+			        });
+		    	});
 	    	} else {
 		    	var rightButton = Ti.UI.createButton({
 		          systemButton: Ti.UI.iPhone.SystemButton.REFRESH
@@ -113,11 +114,9 @@
 		        });
 	        }
 	    }
-	    Ti.API.debug('TTTTTTTTTTTTTT: past has refresh');
+
 		iconWin.navBarHidden = false;
-		Ti.API.debug('TTTTTTTTTTTTTT: about to open');
   		Codestrong.navGroup.open(iconWin, {animated:true});
-  		Ti.API.debug('TTTTTTTTTTTTTT: opened');
   	});
   	return view;
   };
