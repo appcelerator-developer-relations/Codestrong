@@ -90,7 +90,6 @@ Ti.include(
   'windows/MapWindow.js',
   'windows/AboutWindow.js',
   'windows/TwitterDetailWindow.js',
-  'windows/FeedbackWindow.js',
   'windows/PresentersWindow.js',
   'windows/SessionsWindow.js',
   'windows/SessionDetailWindow.js',
