@@ -16,51 +16,21 @@
  */
 
 (function() {
-
-/*
-  // Add a menu to all pages except news (which would be confusing).
-  tabGroup.addEventListener('focus', function(e) {
-    //dpm(e.index);
-    if (e.index != 1 && e.index !=2 && e.index != 4){
-      if (isAndroid()){
-        // Android has a menu
-        var buttons = [];
-        buttons.push({
-          title: "Update",
-          clickevent: function () {
-            Ti.fireEvent('drupalcon:update_data');
-          }
-        });
-        menu.init({
-          win: tabGroup.tabs[e.index].window,
-          buttons: buttons
-        });
-      }
-      else {
-        
-        // iOS should only have the button.
-        var button = Ti.UI.createButton({
-          systemButton: Ti.UI.iPhone.SystemButton.REFRESH
-        });
-        var win = tabGroup.tabs[e.index].window;
-        win.rightNavButton = button;
-        button.addEventListener('click', function() {
-          Ti.fireEvent('drupalcon:update_data');
-        });
-      }
-    }
-  });
-*/
-
   	// lock orientation to portrait
   	Codestrong.navWindow.orientationModes = [Ti.UI.PORTRAIT];
-  	//Ti.UI.orientation = Ti.UI.PORTRAIT;
-  
+  	
+  	if (isAndroid()) {
+  		
+  	} else {
+  		Ti.UI.orientation = Ti.UI.PORTRAIT;
+  	}
+  	
   	// create main dashboard window
   	var mainWindow = Ti.UI.createWindow({
 		backgroundImage: Codestrong.settings.mainBG,
 		title: 'Dashboard',
-		navBarHidden: true
+		navBarHidden: true,
+		orientationModes: [Ti.UI.PORTRAIT]
   	});
   	var viewFade = Ti.UI.createView({
   		backgroundColor: '#fff',
@@ -76,7 +46,7 @@
   		height: Codestrong.settings.dashboardHeight,
   		width: Codestrong.settings.dashboardWidth,
   		bottom: 20,
-  		borderRadius: 8,
+  		borderRadius: 0,
   		layout: 'horizontal'
   	});
   	mainWindow.add(viewFade);
@@ -102,6 +72,7 @@
   var createIconView = function(iconImage, iconWin, hasRefresh) {
   	var view = Ti.UI.createView({ 
   		backgroundImage: iconImage, 
+  		top:0,
   		height: Codestrong.settings.iconHeight, 
   		width: Codestrong.settings.iconWidth
   	});
@@ -118,7 +89,17 @@
 	    
 	    if (hasRefresh) {
 	    	if (isAndroid()) {
-	    		// add menu
+	    		var buttons = [];
+		        buttons.push({
+		          	title: "Update",
+		          	clickevent: function () {
+		            	Ti.fireEvent('drupalcon:update_data');
+		          	}
+		        });
+		        menu.init({
+		          	win: iconWin,
+		          	buttons: buttons
+		        });
 	    	} else {
 		    	var rightButton = Ti.UI.createButton({
 		          systemButton: Ti.UI.iPhone.SystemButton.REFRESH

@@ -90,25 +90,19 @@
 			} 
 			
 			for (var j = 0; j < data.length; j++) {
-				//data[j].tabView.backgroundImage = 'images/BUTT_drk_off.png';
 				if (e.source.index == j) {
 					scrollable.scrollToView(data[j].webview);
 				}
 			}
-			//e.source.backgroundImage = 'images/BUTT_drk_on.png';
 		});
 		
 		tabView.add(tabLabel);
-		// if (i != 0) {
-			// tabbedBar.add(Ti.UI.createView({width:3}));
-		// }
         tabbedBar.add(tabView);
         myEntry.tabView = tabView;	
     }
 
     var scrollable = Ti.UI.createScrollableView({
 		showPagingControl: false,
-		backgroundColor: '#0000ff',
 		top:36,
 		bottom:0,
 		left:0,
