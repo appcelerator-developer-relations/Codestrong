@@ -38,8 +38,6 @@ DrupalCon.ui.activityIndicator = (function() {
 		} else {
 			activityIndicator.ai.message = message;
 			activityIndicator.ai.show();
-			
-			//Drupal.navGroup.open(activityIndicator, {animated:false});
 			activityIndicator.open({animated:false});
 		}	
 	};
@@ -49,8 +47,6 @@ DrupalCon.ui.activityIndicator = (function() {
 			activityIndicator.hide();	
 		} else {
 			activityIndicator.ai.hide();
-			
-			//Drupal.navGroup.close(activityIndicator, {animated:false});
 			activityIndicator.close({animated:false});	
 		}	
 		isShowing = false;

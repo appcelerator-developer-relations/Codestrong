@@ -79,40 +79,9 @@ if (!Drupal.db.getConnection('main').tableExists('user')) {
 // Download tests, for now.  These must get moved eventually.
 //Drupal.db.errorMode = Drupal.db.ERROR_LEVEL_DEBUG;
 
-Codestrong = {};
-
-Codestrong.createHeaderRow = function(title) {
-	var headerRow = Ti.UI.createTableViewRow({
-    	classname: 'header_row',
-    	height:26,
-    	backgroundImage: 'pages/timebreak_gray@2x.png',
-    	// backgroundGradient: {
-			// type:'linear',
-			// colors:[
-				// {color:'#888',position:0.0},
-				// {color:'#414444',position:0.50},
-				// {color:'#414444',position:1.0}
-			// ]	
-		// },
-    	touchEnabled: false,
-    	selectedBackgroundImage:'pages/timebreak_gray@2x.png'
-    });
-    var headerLabel = Ti.UI.createLabel({
-    	text: title,
-    	color: '#fff',
-    	font: {
-    		fontSize:16,
-    		fontWeight:'bold'	
-    	},
-    	left: 10,
-    	touchEnabled: false
-    });
-    headerRow.add(headerLabel);
-    
-    return headerRow;
-};
 
 
+Ti.include('lib/Codestrong.js');
 
 Ti.include(
   'windows/ModalActivityIndicatorWindow.js',	

@@ -124,6 +124,7 @@ function isAndroid (){
 	return isAndroidValue;
 }
 
+
 /*
  * Cleans up the timestamp and makes it in the format of 1:30PM
  */

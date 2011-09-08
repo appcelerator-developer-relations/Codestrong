@@ -161,7 +161,7 @@
     	}
         // event data
         var index = e.index;
-        Drupal.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
+        Codestrong.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
           title: e.rowData.name,
           uid: e.rowData.uid,
           name: e.rowData.name

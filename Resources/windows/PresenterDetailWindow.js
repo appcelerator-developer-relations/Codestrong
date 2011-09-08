@@ -166,7 +166,7 @@
 	      
 	      // create table view event listener
 	      sessionRow.addEventListener('click', function(e) {
-			Drupal.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
+			Codestrong.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
 	          title: e.rowData.sessionTitle,
 	          nid: e.rowData.nid
 	        }), {animated:true});

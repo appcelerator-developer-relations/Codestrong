@@ -316,7 +316,7 @@
     tv.addEventListener('click', function(e) {
       if (e.source.presenter != undefined){
         var fullName = e.source.presenter.full_name || '';
-        Drupal.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
+        Codestrong.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
           title: fullName,
           uid: e.source.presenter.uid
         }), {animated:true});

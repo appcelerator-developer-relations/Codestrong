@@ -66,7 +66,7 @@
     // Create table view event listener.
     tableview.addEventListener('click', function(e) {
     	if (e.rowData.nid) {
-	        Drupal.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
+	        Codestrong.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
 	          title: e.rowData.sessionTitle,
 	          nid: e.rowData.nid
 	        }), {animated:true});

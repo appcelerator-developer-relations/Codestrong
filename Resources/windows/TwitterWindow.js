@@ -77,7 +77,7 @@ var Twitter = {
     for (var index in viewsToLoad) {
     	myEntry = viewsToLoad[index];
   		myEntry.table.addEventListener('click', function(e) {
-  			Drupal.navGroup.open(DrupalCon.ui.createTwitterDetailWindow({
+  			Codestrong.navGroup.open(DrupalCon.ui.createTwitterDetailWindow({
       			title: e.rowData.user,
       			text: e.rowData.tweet,
       			name: e.rowData.user,
@@ -161,6 +161,7 @@ var Twitter = {
 	    	scrollable.scrollToView(scrollable.currentPage);   
 		});
 	}
+	
 	twitterWindow.add(scrollable);
 	tabbedBarView.add(tabbedBar);	
 	twitterWindow.add(tabbedBarView);
