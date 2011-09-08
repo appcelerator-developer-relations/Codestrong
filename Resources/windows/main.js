@@ -54,7 +54,7 @@
 
   	// lock orientation to portrait
   	Codestrong.navWindow.orientationModes = [Ti.UI.PORTRAIT];
-  	Ti.UI.orientation = Ti.UI.PORTRAIT;
+  	//Ti.UI.orientation = Ti.UI.PORTRAIT;
   
   	// create main dashboard window
   	var mainWindow = Ti.UI.createWindow({
