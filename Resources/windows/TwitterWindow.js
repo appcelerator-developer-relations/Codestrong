@@ -162,6 +162,7 @@ var Twitter = {
 		});
 	}
 	
+	//Ti.API.debug('test');
 	twitterWindow.add(scrollable);
 	tabbedBarView.add(tabbedBar);	
 	twitterWindow.add(tabbedBarView);
