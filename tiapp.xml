@@ -30,13 +30,13 @@
         <orientations device="ipad">
             <orientation>Ti.UI.PORTRAIT</orientation>         
         </orientations>
-        <icon>default_app_logo.png</icon>
+        <icon>appicon.png</icon>
     </iphone>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
         <manifest>
             <supports-screens android:anyDensity="false"/>
         </manifest>
-        <icon>default_app_logo.png</icon>
+        <icon>appicon.png</icon>
     </android>
     <modules/>
     <property name="ti.android.threadstacksize" type="int">32768</property>
