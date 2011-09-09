@@ -1,16 +1,25 @@
 Codestrong = {
-	__isLargeScreenValue: undefined,
+	__isLargeScreen: undefined,
+	__isAndroid: undefined,
 	settings: {},
-	navWindow: Ti.UI.createWindow()
+	navWindow: undefined,
+	navGroup: undefined
 };
 
 (function() {
 	Codestrong.isLargeScreen = function() {
-		if (Codestrong.__isLargeScreenValue === undefined) {
-			Codestrong.__isLargeScreenValue	= (Ti.Platform.displayCaps.platformWidth >= 600);
+		if (Codestrong.__isLargeScreen === undefined) {
+			Codestrong.__isLargeScreen = (Ti.Platform.displayCaps.platformWidth >= 600);
 		}
-		return Codestrong.__isLargeScreenValue;
+		return Codestrong.__isLargeScreen;
 	};
+	
+	Codestrong.isAndroid = function() {
+		if (Codestrong.__isAndroid === undefined) {
+			Codestrong.__isAndroid = (Ti.Platform.osname == 'android');
+		}
+		return Codestrong.__isAndroid;
+	}
 	
 	if (Codestrong.isLargeScreen()) {
 		Codestrong.settings = {
@@ -46,6 +55,12 @@ Codestrong = {
 			},
 			sponsorsPage:'pages/sponsors.html'
 		};
+	}
+	
+	if (Codestrong.isAndroid()) {
+		
+	} else {
+		
 	}
 	
 	Codestrong.createHeaderRow = function(title) {
