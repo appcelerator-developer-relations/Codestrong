@@ -22,8 +22,7 @@ var Twitter = {
 
 (function() {
   var tweetCount = 50;
-  var firstRun = true;
-  
+
   var createTwitterTable = function(search) {
   	  return Ti.UI.createTableView({
   	  	  height:'100%',
@@ -31,7 +30,7 @@ var Twitter = {
           viewTitle:search
   	  });
   }
-  var viewsToLoad = [
+  var data = [
   {
   		search:'#codestrong',
   		url: 'http://search.twitter.com/search.json?q=%23codestrong&result_type=recent&rpp=' + tweetCount,
@@ -74,8 +73,8 @@ var Twitter = {
     	width:Ti.Platform.displayCaps.platformWidth
     });
     
-    for (var index in viewsToLoad) {
-    	myEntry = viewsToLoad[index];
+    for (var index in data) {
+    	myEntry = data[index];
     	Ti.API.debug('test');
   		myEntry.table.addEventListener('click', function(e) {
   			Codestrong.navGroup.open(DrupalCon.ui.createTwitterDetailWindow({
@@ -96,8 +95,8 @@ var Twitter = {
 		var tabView = Ti.UI.createView({
 			backgroundImage: bgImage,
 			height:36,
-			left: index * (Ti.Platform.displayCaps.platformWidth/viewsToLoad.length),
-			right: Ti.Platform.displayCaps.platformWidth - ((parseInt(index) + 1) * (Ti.Platform.displayCaps.platformWidth/viewsToLoad.length)),
+			left: index * (Ti.Platform.displayCaps.platformWidth/data.length),
+			right: Ti.Platform.displayCaps.platformWidth - ((parseInt(index) + 1) * (Ti.Platform.displayCaps.platformWidth/data.length)),
 			index: index
 		});
 		
@@ -112,27 +111,25 @@ var Twitter = {
 			}
 		});
 		tabView.addEventListener('click', function(e) {
-			for (var i = 0; i < viewsToLoad.length; i++) {
+			for (var i = 0; i < data.length; i++) {
 				if (e.source.index == 0) {
-					viewsToLoad[0].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
-					viewsToLoad[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-					viewsToLoad[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
+					data[0].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
+					data[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+					data[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
 				} else if (e.source.index == 1) {
-					viewsToLoad[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-					viewsToLoad[1].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
-					viewsToLoad[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+					data[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
+					data[1].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
+					data[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
 				} else if (e.source.index == 2) {
-					viewsToLoad[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-					viewsToLoad[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-					viewsToLoad[2].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
+					data[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
+					data[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
+					data[2].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
 				}
 				
-				//viewsToLoad[i].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
 				if (e.source.index == i) {
-					scrollable.scrollToView(viewsToLoad[i].table);
+					scrollable.scrollToView(data[i].table);
 				}
 			}
-			//e.source.backgroundImage = 'images/buttonbar/button2_selected.png';
 		});
 		
 		tabView.add(tabLabel);
@@ -145,25 +142,17 @@ var Twitter = {
 		backgroundColor: '#000000',
 		top:30,
 		views:[
-			viewsToLoad[0].table,
-			viewsToLoad[1].table,
-			viewsToLoad[2].table
+			data[0].table,
+			data[1].table,
+			data[2].table
 		]
 	});
 	scrollable.addEventListener('scroll', function(e) {
 		if (e.view) {
-			//twitterWindow.title = e.view.viewTitle;
-			viewsToLoad[e.currentPage].tabView.fireEvent('click');
+			data[e.currentPage].tabView.fireEvent('click');
 		}
 	});
-	
-	if (!isAndroid()) {
-		Titanium.Gesture.addEventListener('orientationchange', function(e){   
-	    	scrollable.scrollToView(scrollable.currentPage);   
-		});
-	}
-	
-	//Ti.API.debug('test');
+
 	twitterWindow.add(scrollable);
 	tabbedBarView.add(tabbedBar);	
 	twitterWindow.add(tabbedBarView);
@@ -175,13 +164,9 @@ var Twitter = {
 
     // set this to true if you are only tracking one user
     var single = true;
-
-    var net = Titanium.Network;
-    var up = net.online;
-
     var getTweets = function(entry) {
       // create table view data object
-      var data = [];
+      var tvData = [];
 
       var xhr = Ti.Network.createHTTPClient();
       xhr.timeout = 100000;
@@ -230,7 +215,6 @@ var Twitter = {
               height:48,
               width:avatarWidth
             });
-            // Add the avatar image to the view
             row.add(av);
 
             var user_label = Ti.UI.createLabel({
@@ -247,7 +231,6 @@ var Twitter = {
                 fontWeight:'bold'
               }
             });
-            // Add the username to the view
             post_view.add(user_label);
 
             var date_label = Ti.UI.createLabel({
@@ -263,9 +246,7 @@ var Twitter = {
                 fontSize:12
               }
             });
-            // Add the date to the view
             post_view.add(date_label);
-            // Add the vertical layout view to the row
             row.add(post_view);
 
             var tweet_text = Ti.UI.createLabel({
@@ -274,7 +255,6 @@ var Twitter = {
               top:30,
               right:20,
               color:'#333',
-              //width:'auto',
               height:'auto',
               textAlign:'left',
               bottom: 10,
@@ -285,14 +265,12 @@ var Twitter = {
 
             // Add the tweet to the view
             row.add(tweet_text);
-            data[c] = row;
+            tvData[c] = row;
           }
 
-          //Titanium.App.Properties.setString("lastTweet",tweet);
-          
-          entry.table.setData(data);
+          entry.table.setData(tvData);
           loadedViews.push(entry.table);
-          if (loadedViews.length == viewsToLoad.length) {
+          if (loadedViews.length == data.length) {
 			loadedViews = [];
 			DrupalCon.ui.activityIndicator.hideModal();
           }
@@ -306,48 +284,37 @@ var Twitter = {
     }
 
 	var reloadAllTweets = function() {
-		if (!firstRun) {
-			DrupalCon.ui.activityIndicator.showModal('Loading latest tweets...');
-		} else {
-			firstRun = false;	
-		}
-	  	for (var i = 0; i < viewsToLoad.length; i++) {
-	  		getTweets(viewsToLoad[i]);	
+		DrupalCon.ui.activityIndicator.showModal('Loading latest tweets...');
+	  	for (var i = 0; i < data.length; i++) {
+	  		getTweets(data[i]);	
 	  	}
-	  };
+	};
 
     // Get the tweets for 'twitter_name'
-    if (up) {
-      reloadAllTweets();
+    if (Ti.Network.online) {
+    	twitterWindow.addEventListener('open', function(e) {
+      		reloadAllTweets();
+     	});
 
-      if (Ti.Platform.name == 'android') {
-        twitterWindow.activity.onCreateOptionsMenu = function(e) {
-          var menu = e.menu;
-
-          var m1 = menu.add({
-            title : 'Refresh Tweets'
-          });
-          m1.addEventListener('click', function(e) {
-            reloadAllTweets();
-          });
-        };
-      }
-      else {
-        //create iphone menu.
-        var index = 0;
-        var button = Ti.UI.createButton({
-          systemButton: Ti.UI.iPhone.SystemButton.REFRESH
-
-        });
-        twitterWindow.rightNavButton = button;
-        
-        button.addEventListener('click', function(e) {	
-          reloadAllTweets();
-        });
-      }
-    }
-    else {
-      Ti.API.info("No active network connection.  Please try again when you are connected.");
+      	if (Codestrong.isAndroid()) {
+        	twitterWindow.activity.onCreateOptionsMenu = function(e) {
+          		var menuitem = e.menu.add({
+            		title : 'Refresh Tweets'
+          		});
+          		menuitem.addEventListener('click', function(e) {
+            		reloadAllTweets();
+          		});
+        	};
+      	} else {
+        	twitterWindow.rightNavButton = Ti.UI.createButton({
+          		systemButton: Ti.UI.iPhone.SystemButton.REFRESH
+        	});
+        	button.addEventListener('click', function(e) {	
+          		reloadAllTweets();
+        	});
+      	}
+    } else {
+    	alert('No network connection detected.');
     }
 
     return twitterWindow;
