@@ -16,8 +16,7 @@
  */
 
 (function() {
-  	
-  	// create main dashboard window
+	var i = 0;
   	var mainWindow = Ti.UI.createWindow({
 		backgroundImage: Codestrong.settings.mainBG,
 		title: 'Dashboard',
@@ -43,8 +42,8 @@
   	mainWindow.add(viewFade);
   	mainWindow.add(viewIcons);
   
-    // handle platform specific navigation
-  	if (isAndroid()) {
+    // handle cross-platform navigation
+  	if (Codestrong.isAndroid()) {
   		Codestrong.navGroup = {
   			open: function(win, obj) {
   				win.open(obj);	
@@ -65,15 +64,20 @@
   	// lock orientation to portrait
   	Codestrong.navWindow.orientationModes = [Ti.UI.PORTRAIT];
   	Ti.UI.orientation = Ti.UI.PORTRAIT;
-
-  var createIconView = function(iconImage, iconWin, hasRefresh) {
+  
+  var createIcon = function(icon) {
+  	var iconWin = undefined;
   	var view = Ti.UI.createView({ 
-  		backgroundImage: iconImage, 
+  		backgroundImage: icon.image, 
   		top:0,
-  		height: Codestrong.settings.iconHeight, 
-  		width: Codestrong.settings.iconWidth
+  		height: Codestrong.settings.icons.height, 
+  		width: Codestrong.settings.icons.width
   	});
   	view.addEventListener('click', function(e) {
+  		iconWin = icon.func(icon.args);
+  		Ti.API.debug(iconWin);
+  		
+  		// add a left navigation button for ios
   		if (!isAndroid()) {
 	  		var leftButton = Ti.UI.createButton({
 		    	backgroundImage: 'images/6dots.png',
@@ -86,19 +90,20 @@
 		    iconWin.leftNavButton = leftButton;
 	    }
 
-	    if (hasRefresh) {
+		// add sessions and speaker refresh 
+	    if (icon.refresh) {
 	    	if (isAndroid()) {
 	    		iconWin.addEventListener('open', function(e2) {
-		    		var buttons = [];
-			        buttons.push({
-			          	title: "Update",
-			          	clickevent: function () {
-			            	Ti.fireEvent('drupalcon:update_data');
-			          	}
-			        });
 			        menu.init({
 			          	win: iconWin,
-			          	buttons: buttons
+			          	buttons: [
+			          		{
+			          			title: "Update",
+			          			clickevent: function () {
+			            			Ti.fireEvent('drupalcon:update_data');
+			          			}
+			          		}
+			          	]
 			        });
 		    	});
 	    	} else {
@@ -118,15 +123,11 @@
   	return view;
   };
   
-  var presentersWindow = DrupalCon.ui.createPresentersWindow();
-  viewIcons.add(createIconView(Codestrong.settings.icons.schedule, DrupalCon.ui.createDayWindow(), true));
-  viewIcons.add(createIconView(Codestrong.settings.icons.maps, DrupalCon.ui.createMapWindow()));
-  viewIcons.add(createIconView(Codestrong.settings.icons.news, DrupalCon.ui.createTwitterWindow()));
-  viewIcons.add(createIconView(Codestrong.settings.icons.speakers, presentersWindow, true));
-  viewIcons.add(createIconView(Codestrong.settings.icons.sponsors, DrupalCon.ui.createHtmlWindow({url: Codestrong.settings.sponsorsPage, title:'Sponsors'})));
-  viewIcons.add(createIconView(Codestrong.settings.icons.about, DrupalCon.ui.createAboutWindow()));
+  //var presentersWindow = DrupalCon.ui.createPresentersWindow();
+  for (i = 0; i < Codestrong.settings.icons.list.length; i++) {
+  	viewIcons.add(createIcon(Codestrong.settings.icons.list[i]));
+  }
 
-  
   Codestrong.navWindow.open(isAndroid() ? {} : {transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
 
   var updateCount = 0;
@@ -134,9 +135,9 @@
   	updateCount++;
   	if (updateCount >= 2) {
   		updateCount = 0;
-  		if (presentersWindow) {
-  			presentersWindow.doRefresh();
-  		}
+  		//if (presentersWindow) {
+  			//presentersWindow.doRefresh();
+  		//}
   		DrupalCon.ui.activityIndicator.hideModal();
   	}
   });
@@ -146,5 +147,7 @@
     Drupal.entity.db('main', 'node').fetchUpdates('session');
     Drupal.entity.db('main', 'user').fetchUpdates('user');
   });
+  
+  
 
 })();
