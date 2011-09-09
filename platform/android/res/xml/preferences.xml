@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:title="Preferences">
-  <PreferenceCategory android:title="Account Preferences" android:summary="chicago2011.drupal.org account settings">
-    <EditTextPreference android:title="Username" android:summary="Enter your chicago2011.drupal.org username" android:defaultValue="" android:key="siteUsername" />
-    <EditTextPreference android:title="Password" android:summary="Enter your chicago2011.drupal.org password" android:password="true" android:defaultValue="" android:key="sitePassword" />
-  </PreferenceCategory>
-</PreferenceScreen>
