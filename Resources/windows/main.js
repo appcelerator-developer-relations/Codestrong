@@ -16,21 +16,12 @@
  */
 
 (function() {
-  	// lock orientation to portrait
-  	Codestrong.navWindow.orientationModes = [Ti.UI.PORTRAIT];
-  	
-  	if (isAndroid()) {
-  		
-  	} else {
-  		Ti.UI.orientation = Ti.UI.PORTRAIT;
-  	}
   	
   	// create main dashboard window
   	var mainWindow = Ti.UI.createWindow({
 		backgroundImage: Codestrong.settings.mainBG,
 		title: 'Dashboard',
-		navBarHidden: true,
-		orientationModes: [Ti.UI.PORTRAIT]
+		navBarHidden: true
   	});
   	var viewFade = Ti.UI.createView({
   		backgroundColor: '#fff',
@@ -52,6 +43,7 @@
   	mainWindow.add(viewFade);
   	mainWindow.add(viewIcons);
   
+    // handle platform specific navigation
   	if (isAndroid()) {
   		Codestrong.navGroup = {
   			open: function(win, obj) {
@@ -63,12 +55,17 @@
   		};
   		Codestrong.navWindow = mainWindow;
   	} else {
+  		Codestrong.navWindow = Ti.UI.createWindow();
 	    Codestrong.navGroup = Ti.UI.iPhone.createNavigationGroup({
 	  		window: mainWindow
 	    });
 	  	Codestrong.navWindow.add(Codestrong.navGroup);
   	}
-  
+  	
+  	// lock orientation to portrait
+  	Codestrong.navWindow.orientationModes = [Ti.UI.PORTRAIT];
+  	Ti.UI.orientation = Ti.UI.PORTRAIT;
+
   var createIconView = function(iconImage, iconWin, hasRefresh) {
   	var view = Ti.UI.createView({ 
   		backgroundImage: iconImage, 
