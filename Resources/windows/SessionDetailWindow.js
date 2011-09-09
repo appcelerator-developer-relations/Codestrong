@@ -151,64 +151,6 @@
       	body.left = commonPadding;
     }
 
-    // if (sessionData.core_problem) {
-      // var problemTitle = Ti.UI.createLabel({
-        // text:"Problem:",
-        // backgroundColor:'#fff',
-        // textAlign:'left',
-        // font:{fontSize:18, fontWeight:'bold'},
-        // color:'#000',
-        // left: commonPadding,
-        // top: 10,
-        // bottom: 'auto',
-        // right: commonPadding,
-        // height: 'auto'
-      // });
-      // bodyRow.add(problemTitle);
-// 
-      // var coreProblem = Ti.UI.createLabel({
-        // text: cleanSpecialChars(sessionData.core_problem.replace('\n','\n\n')),
-        // backgroundColor:'#fff',
-        // textAlign:'left',
-        // color:'#000',
-        // left: commonPadding,
-        // top: 5,
-        // bottom: 10,
-        // right: commonPadding,
-        // height: 'auto'
-      // });
-      // bodyRow.add(coreProblem);
-    // }
-// 
-    // if (sessionData.core_solution) {
-      // var solutionTitle = Ti.UI.createLabel({
-        // text:"Solution:",
-        // backgroundColor:'#fff',
-        // textAlign:'left',
-        // font:{fontSize:18, fontWeight:'bold'},
-        // color:'#000',
-        // left: commonPadding,
-        // top: 10,
-        // bottom: 'auto',
-        // right: commonPadding,
-        // height: 'auto'
-      // });
-      // bodyRow.add(solutionTitle);
-// 
-      // var coreSolution = Ti.UI.createLabel({
-        // text: cleanSpecialChars(sessionData.core_solution.replace('\n','\n\n')),
-        // backgroundColor:'#fff',
-        // textAlign:'left',
-        // color:'#000',
-        // left: commonPadding,
-        // top: 5,
-        // bottom: 10,
-        // right: commonPadding,
-        // height: 'auto'
-      // });
-      // bodyRow.add(coreSolution);
-    // }
-
     tvData.push(headerRow);
     
     //if (sessionData.instructors && sessionData.instructors.length) {
@@ -229,51 +171,6 @@
 
     tvData.push(Codestrong.createHeaderRow('Description'));
     tvData.push(bodyRow);
-
-    if (sessionData.audience) {
-      var audienceRow = Ti.UI.createTableViewRow({height: 'auto', className: 'audienceRow', borderColor: '#fff'});
-
-      var textViewBottom = Ti.UI.createView({
-        height: 'auto',
-        layout: 'vertical',
-        backgroundColor: '#fff',
-        textAlign: 'left',
-        color: '#000',
-        left: commonPadding,
-        right: commonPadding
-      });
-
-      var audienceTitle = Ti.UI.createLabel({
-        text:"Intended Audience",
-        backgroundColor:'#fff',
-        textAlign:'left',
-        font:{fontSize:18, fontWeight:'bold'},
-        color:'#000',
-        left: 0,
-        top: 20,
-        bottom: 0,
-        right: commonPadding,
-        height: 'auto'
-      });
-      textViewBottom.add(audienceTitle);
-
-      var audience = Ti.UI.createLabel({
-        text:sessionData.audience.replace('\n','\n\n'),
-        backgroundColor:'#fff',
-        textAlign:'left',
-        color:'#000',
-        height:'auto',
-        width:'auto',
-        left:0,
-        right:0,
-        top:10,
-        bottom:15
-      });
-
-      textViewBottom.add(audience);
-      audienceRow.add(textViewBottom);
-      tvData.push(audienceRow);
-    }
 
     tv.addEventListener('click', function(e) {
       if (e.source.presenter != undefined){
