@@ -51,12 +51,11 @@
     
     var headerRow = Ti.UI.createTableViewRow({
       height: 'auto',
-      backgroundColor: blueBg,
       left: 0,
       top: -5,
       bottom: 10,
       layout: 'vertical',
-      className: 'headerRow',
+      className: 'mainHeaderRow',
       backgroundImage:'images/sessionbckgd@2x.png',
       backgroundPosition:'bottom left',
       selectionStyle:'none'
@@ -152,63 +151,63 @@
       	body.left = commonPadding;
     }
 
-    if (sessionData.core_problem) {
-      var problemTitle = Ti.UI.createLabel({
-        text:"Problem:",
-        backgroundColor:'#fff',
-        textAlign:'left',
-        font:{fontSize:18, fontWeight:'bold'},
-        color:'#000',
-        left: commonPadding,
-        top: 10,
-        bottom: 'auto',
-        right: commonPadding,
-        height: 'auto'
-      });
-      bodyRow.add(problemTitle);
-
-      var coreProblem = Ti.UI.createLabel({
-        text: cleanSpecialChars(sessionData.core_problem.replace('\n','\n\n')),
-        backgroundColor:'#fff',
-        textAlign:'left',
-        color:'#000',
-        left: commonPadding,
-        top: 5,
-        bottom: 10,
-        right: commonPadding,
-        height: 'auto'
-      });
-      bodyRow.add(coreProblem);
-    }
-
-    if (sessionData.core_solution) {
-      var solutionTitle = Ti.UI.createLabel({
-        text:"Solution:",
-        backgroundColor:'#fff',
-        textAlign:'left',
-        font:{fontSize:18, fontWeight:'bold'},
-        color:'#000',
-        left: commonPadding,
-        top: 10,
-        bottom: 'auto',
-        right: commonPadding,
-        height: 'auto'
-      });
-      bodyRow.add(solutionTitle);
-
-      var coreSolution = Ti.UI.createLabel({
-        text: cleanSpecialChars(sessionData.core_solution.replace('\n','\n\n')),
-        backgroundColor:'#fff',
-        textAlign:'left',
-        color:'#000',
-        left: commonPadding,
-        top: 5,
-        bottom: 10,
-        right: commonPadding,
-        height: 'auto'
-      });
-      bodyRow.add(coreSolution);
-    }
+    // if (sessionData.core_problem) {
+      // var problemTitle = Ti.UI.createLabel({
+        // text:"Problem:",
+        // backgroundColor:'#fff',
+        // textAlign:'left',
+        // font:{fontSize:18, fontWeight:'bold'},
+        // color:'#000',
+        // left: commonPadding,
+        // top: 10,
+        // bottom: 'auto',
+        // right: commonPadding,
+        // height: 'auto'
+      // });
+      // bodyRow.add(problemTitle);
+// 
+      // var coreProblem = Ti.UI.createLabel({
+        // text: cleanSpecialChars(sessionData.core_problem.replace('\n','\n\n')),
+        // backgroundColor:'#fff',
+        // textAlign:'left',
+        // color:'#000',
+        // left: commonPadding,
+        // top: 5,
+        // bottom: 10,
+        // right: commonPadding,
+        // height: 'auto'
+      // });
+      // bodyRow.add(coreProblem);
+    // }
+// 
+    // if (sessionData.core_solution) {
+      // var solutionTitle = Ti.UI.createLabel({
+        // text:"Solution:",
+        // backgroundColor:'#fff',
+        // textAlign:'left',
+        // font:{fontSize:18, fontWeight:'bold'},
+        // color:'#000',
+        // left: commonPadding,
+        // top: 10,
+        // bottom: 'auto',
+        // right: commonPadding,
+        // height: 'auto'
+      // });
+      // bodyRow.add(solutionTitle);
+// 
+      // var coreSolution = Ti.UI.createLabel({
+        // text: cleanSpecialChars(sessionData.core_solution.replace('\n','\n\n')),
+        // backgroundColor:'#fff',
+        // textAlign:'left',
+        // color:'#000',
+        // left: commonPadding,
+        // top: 5,
+        // bottom: 10,
+        // right: commonPadding,
+        // height: 'auto'
+      // });
+      // bodyRow.add(coreSolution);
+    // }
 
     tvData.push(headerRow);
     

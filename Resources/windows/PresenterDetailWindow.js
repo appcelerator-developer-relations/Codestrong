@@ -37,8 +37,6 @@
 
     var tvData = [];
     var blueBg = '#C4E2EF';
-    var	platformWidth = Ti.Platform.displayCaps.platformWidth;
-    var platformHeight = Ti.Platform.displayCaps.platformHeight;
 
     // Structure
     var tv = Ti.UI.createTableView({
@@ -58,17 +56,28 @@
       height:110,
       width:110,
       defaultImage:'images/userpict-large.png',
-      backgroundColor: '#000'
+      backgroundColor: '#000',
+      touchEnabled: false
     });
     var headerRow = Ti.UI.createTableViewRow({
       height:110,
       backgroundImage:'images/sessionbckgd@2x.png',
+      className: 'presHeaderRow',
       left:0,
       top:-5,
       bottom:0,
       layout:'vertical',
       selectionStyle:'none'
     });
+    
+    // TODO: Figure out why I need to assign this when I already have 
+    //       selectionStyle = 'none'
+    if (isAndroid()) {
+    	headerRow.backgroundSelectedImage = 'images/sessionbckgd@2x.png';	
+    } else {
+    	headerRow.selectedBackgroundImage = 'images/sessionbckgd@2x.png';
+    }
+    
     var bioRow = Ti.UI.createTableViewRow({
     	hasChild:false,
     	height:'auto',
@@ -88,7 +97,8 @@
         height: 'auto',
         left: 120,
         top: -95,
-        ellipsize:true
+        ellipsize:true,
+        touchEnabled: false
       });
       headerRow.add(fullName);
     }
@@ -100,7 +110,8 @@
         textAlign: 'left',
         color: '#666',
         height: 'auto',
-        left: 120
+        left: 120,
+        touchEnabled: false
       });
       headerRow.add(company);
     }
@@ -109,8 +120,6 @@
     var sessions = getRelatedSessions(presenterData.full_name);
     var sessionRow = [];
     if (sessions && sessions.length) {
-    	//var sessionSection = Ti.UI.createTableViewSection({headerTitle:'Sessions'});
-    
     	tvData.push(Codestrong.createHeaderRow('Sessions'));
 	    for (var i in sessions) {
 	      sessionRow = Ti.UI.createTableViewRow({
