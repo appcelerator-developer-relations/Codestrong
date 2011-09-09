@@ -25,10 +25,10 @@
     <guid>755a100d-f77d-48fc-ad53-80c6e1bad9dd</guid>
     <iphone>
         <orientations device="iphone">
-            <orientation>Ti.UI.PORTRAIT</orientation>         
+            <orientation>Ti.UI.PORTRAIT</orientation>
         </orientations>
         <orientations device="ipad">
-            <orientation>Ti.UI.PORTRAIT</orientation>         
+            <orientation>Ti.UI.PORTRAIT</orientation>
         </orientations>
         <icon>appicon.png</icon>
     </iphone>
