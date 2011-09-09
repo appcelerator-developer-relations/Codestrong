@@ -75,8 +75,7 @@
   	});
   	view.addEventListener('click', function(e) {
   		iconWin = icon.func(icon.args);
-  		Ti.API.debug(iconWin);
-  		
+
   		// add a left navigation button for ios
   		if (!isAndroid()) {
 	  		var leftButton = Ti.UI.createButton({
@@ -84,7 +83,7 @@
 		    	width: 41,
 		    	height: 30
 		    });
-		    leftButton.addEventListener('click', function(e2) {
+		    leftButton.addEventListener('click', function() {
 		    	Codestrong.navGroup.close(iconWin, {animated:true});
 		    });
 		    iconWin.leftNavButton = leftButton;
@@ -92,8 +91,8 @@
 
 		// add sessions and speaker refresh 
 	    if (icon.refresh) {
-	    	if (isAndroid()) {
-	    		iconWin.addEventListener('open', function(e2) {
+	    	if (Codestrong.isAndroid()) {
+	    		iconWin.addEventListener('open', function() {
 			        menu.init({
 			          	win: iconWin,
 			          	buttons: [

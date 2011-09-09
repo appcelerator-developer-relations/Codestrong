@@ -39,9 +39,9 @@ Codestrong = {
 	
 	// TODO: backgroundSelectedColor vs selectedBackgroundColor
 	if (Codestrong.isAndroid()) {
-		
+		Codestrong.backgroundSelectedProperty = 'backgroundSelected';
 	} else {
-		
+		Codestrong.backgroundSelectedProperty = 'selectedBackground';
 	}
 	
 	Codestrong.createHeaderRow = function(title) {
