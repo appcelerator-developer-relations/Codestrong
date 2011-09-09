@@ -29,12 +29,12 @@ Codestrong = {
 			iconHeight: 170,
 			iconWidth: 204,
 			icons: {
-				schedule:'images/dashboard2/icon_schedule@2x.png',
-				maps:'images/dashboard2/icon_maps@2x.png',
-				news:'images/dashboard2/icon_news@2x.png',
-				speakers:'images/dashboard2/icon_speakers@2x.png',
-				sponsors:'images/dashboard2/icon_sponsors@2x.png',
-				about:'images/dashboard2/icon_about@2x.png'	
+				schedule:'images/dashboard/schedule@2x.png',
+				maps:'images/dashboard/maps@2x.png',
+				news:'images/dashboard/news@2x.png',
+				speakers:'images/dashboard/speakers@2x.png',
+				sponsors:'images/dashboard/sponsors@2x.png',
+				about:'images/dashboard/about@2x.png'	
 			},
 			sponsorsPage:'pages/sponsors_ipad.html'
 		};
@@ -46,17 +46,18 @@ Codestrong = {
 			iconHeight: 85,
 			iconWidth: 102,
 			icons: {
-				schedule:'images/dashboard2/icon_schedule.png',
-				maps:'images/dashboard2/icon_maps.png',
-				news:'images/dashboard2/icon_news.png',
-				speakers:'images/dashboard2/icon_speakers.png',
-				sponsors:'images/dashboard2/icon_sponsors.png',
-				about:'images/dashboard2/icon_about.png'		
+				schedule:'images/dashboard/schedule.png',
+				maps:'images/dashboard/maps.png',
+				news:'images/dashboard/news.png',
+				speakers:'images/dashboard/speakers.png',
+				sponsors:'images/dashboard/sponsors.png',
+				about:'images/dashboard/about.png'		
 			},
 			sponsorsPage:'pages/sponsors.html'
 		};
 	}
 	
+	// TODO: backgroundSelectedColor vs selectedBackgroundColor
 	if (Codestrong.isAndroid()) {
 		
 	} else {
