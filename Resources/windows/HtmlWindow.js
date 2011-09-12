@@ -29,7 +29,8 @@
       backgroundColor: '#FFF',
       barColor: '#414444',
       width: '100%',
-      height: '100%'
+      height: '100%',
+      fullscreen: false
     });
     
 	var webview = Ti.UI.createWebView({

@@ -27,11 +27,11 @@
       id: 'sessionDetailWindow',
       title: settings.title,
       backgroundColor: '#FFF',
-      barColor: '#414444'
+      barColor: '#414444',
+      fullscreen: false
     });
 
     // Build session data
-    //Ti.API.debug(settings.nid);
     var sessionData = Drupal.entity.db('main', 'node').load(settings.nid);
     
     // Build the page:
@@ -51,16 +51,23 @@
     
     var headerRow = Ti.UI.createTableViewRow({
       height: 'auto',
-      backgroundColor: blueBg,
       left: 0,
       top: -5,
       bottom: 10,
       layout: 'vertical',
-      className: 'headerRow',
+      className: 'mainHeaderRow',
       backgroundImage:'images/sessionbckgd@2x.png',
       backgroundPosition:'bottom left',
       selectionStyle:'none'
     });
+    
+    // TODO: Figure out why I need to assign this when I already have 
+    //       selectionStyle = 'none'
+    if (isAndroid()) {
+    	headerRow.backgroundSelectedImage = 'images/sessionbckgd@2x.png';	
+    } else {
+    	headerRow.selectedBackgroundImage = 'images/sessionbckgd@2x.png';
+    }
 
     var bodyRow = Ti.UI.createTableViewRow({
       hasChild: false,
@@ -90,7 +97,6 @@
     }
 
     if (sessionData.start_date) {
-      //var startDate = parseISO8601(sessionData.start_date + ':00');
       var matches = /^(\d{4})\-(\d{2})\-(\d{2})/.exec(sessionData.start_date);
       var startDate = new Date(matches[1], matches[2]-1, matches[3]);
       var datetime = Ti.UI.createLabel({
@@ -118,7 +124,7 @@
 
     if (sessionData.room && !skipRoom) {
       var room = Ti.UI.createLabel({
-        text: sessionData.room, //sessionData.room.map(cleanSpecialChars).join(', '),
+        text: sessionData.room,
         font: {fontSize: 18, fontWeight: 'normal'},
         textAlign: 'left',
         color: '#000',
@@ -153,73 +159,11 @@
       	body.left = commonPadding;
     }
 
-    if (sessionData.core_problem) {
-      var problemTitle = Ti.UI.createLabel({
-        text:"Problem:",
-        backgroundColor:'#fff',
-        textAlign:'left',
-        font:{fontSize:18, fontWeight:'bold'},
-        color:'#000',
-        left: commonPadding,
-        top: 10,
-        bottom: 'auto',
-        right: commonPadding,
-        height: 'auto'
-      });
-      bodyRow.add(problemTitle);
-
-      var coreProblem = Ti.UI.createLabel({
-        text: cleanSpecialChars(sessionData.core_problem.replace('\n','\n\n')),
-        backgroundColor:'#fff',
-        textAlign:'left',
-        color:'#000',
-        left: commonPadding,
-        top: 5,
-        bottom: 10,
-        right: commonPadding,
-        height: 'auto'
-      });
-      bodyRow.add(coreProblem);
-    }
-
-    if (sessionData.core_solution) {
-      var solutionTitle = Ti.UI.createLabel({
-        text:"Solution:",
-        backgroundColor:'#fff',
-        textAlign:'left',
-        font:{fontSize:18, fontWeight:'bold'},
-        color:'#000',
-        left: commonPadding,
-        top: 10,
-        bottom: 'auto',
-        right: commonPadding,
-        height: 'auto'
-      });
-      bodyRow.add(solutionTitle);
-
-      var coreSolution = Ti.UI.createLabel({
-        text: cleanSpecialChars(sessionData.core_solution.replace('\n','\n\n')),
-        backgroundColor:'#fff',
-        textAlign:'left',
-        color:'#000',
-        left: commonPadding,
-        top: 5,
-        bottom: 10,
-        right: commonPadding,
-        height: 'auto'
-      });
-      bodyRow.add(coreSolution);
-    }
-
     tvData.push(headerRow);
     
     //if (sessionData.instructors && sessionData.instructors.length) {
     if (sessionData.instructors) {
       var instructorList = sessionData.instructors.split(",");
-      // var speakerSection = Ti.UI.createTableViewSection({
-      	// headerTitle: (instructorList.length > 1) ? 'Speakers' : 'Speaker'	
-      // });
-      
       for (var k = 0; k < instructorList.length; k++) {
       	instructorList[k] = instructorList[k].replace(/^\s+|\s+$/g, '');
       }
@@ -233,90 +177,13 @@
       }
     }
 
-    if (sessionData.type === 'session') {
-      var feedbackTitle = Ti.UI.createLabel({
-        text:"Rate this session",
-        backgroundColor:'#3782a8',
-        textAlign:'left',
-        font:{fontSize:18, fontWeight:'bold'},
-        color:'#fff',
-        left: commonPadding,
-        right: commonPadding,
-        height: 50
-      });
-
-      var feedbackRow = Ti.UI.createTableViewRow({
-        hasChild: true,
-        layout:'vertical',
-        height: 50,
-        className: 'feedbackRow',
-        backgroundColor:'#3782A9'
-      });
-      feedbackRow.add(feedbackTitle);
-
-      feedbackRow.addEventListener('click', function(e) {
-        // var currentTab = (Ti.Platform.name == 'android') ? currentTab = Titanium.UI.currentTab : sessionDetailWindow.tabGroup.activeTab;
-        // currentTab.open(DrupalCon.ui.createFeedbackWindow({
-          // title: settings.title,
-          // address: 'http://chicago2011.drupal.org/node/add/eval/' + settings.nid
-        // }), {animated:true});
-      });
-
-      tvData.push(feedbackRow);
-    }
-    
     tvData.push(Codestrong.createHeaderRow('Description'));
     tvData.push(bodyRow);
-
-    if (sessionData.audience) {
-      var audienceRow = Ti.UI.createTableViewRow({height: 'auto', className: 'audienceRow', borderColor: '#fff'});
-
-      var textViewBottom = Ti.UI.createView({
-        height: 'auto',
-        layout: 'vertical',
-        backgroundColor: '#fff',
-        textAlign: 'left',
-        color: '#000',
-        left: commonPadding,
-        right: commonPadding
-      });
-
-      var audienceTitle = Ti.UI.createLabel({
-        text:"Intended Audience",
-        backgroundColor:'#fff',
-        textAlign:'left',
-        font:{fontSize:18, fontWeight:'bold'},
-        color:'#000',
-        left: 0,
-        top: 20,
-        bottom: 0,
-        right: commonPadding,
-        height: 'auto'
-      });
-      textViewBottom.add(audienceTitle);
-
-      var audience = Ti.UI.createLabel({
-        text:sessionData.audience.replace('\n','\n\n'),
-        backgroundColor:'#fff',
-        textAlign:'left',
-        color:'#000',
-        height:'auto',
-        width:'auto',
-        left:0,
-        right:0,
-        top:10,
-        bottom:15
-      });
-
-      textViewBottom.add(audience);
-      audienceRow.add(textViewBottom);
-      tvData.push(audienceRow);
-    }
 
     tv.addEventListener('click', function(e) {
       if (e.source.presenter != undefined){
         var fullName = e.source.presenter.full_name || '';
-        Drupal.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
+        Codestrong.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
           title: fullName,
           uid: e.source.presenter.uid
         }), {animated:true});
@@ -348,10 +215,15 @@
       borderColor: '#C4E2EF',
       hasChild: true,
       backgroundColor: '#CE3016',
-      backgroundSelectedColor: '#999',
-	        selectedBackgroundColor: '#999',
       layout:'vertical'
     });
+    
+    if (isAndroid()) {
+  	    presRow.backgroundSelectedColor = '#999';
+    } else {
+  	    presRow.selectedBackgroundColor = '#999';
+    }
+    
     presRow.add(av);
     var presenterFullName2 = Ti.UI.createLabel({
       presenter: presenter,

@@ -133,15 +133,6 @@ Drupal.entity.Datastore.prototype.insert = function(entity) {
   	delete entity['time'];
   	fields = entity;
   }
-  
-  // Now let the defined schema add whatever additional 
-  // fields it wants.  We pass it the field object for two 
-  // reasons.  One, it lets it manipulate existing fields if
-  // necessary.  Two, it means we don't need to figure
-  // out how to merge two objects cleanly.'
-  // if (this.entityInfo.schema.getFieldValues) {
-    // this.entityInfo.schema.getFieldValues(entity, fields);
-  // }
 
   // And finally, store the serialized entity object.
   fields.data = JSON.stringify(entity);

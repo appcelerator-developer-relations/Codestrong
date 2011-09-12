@@ -21,8 +21,7 @@
     Drupal.setDefaults(settings, {
       title: 'title here',
       uid: '',
-      name: '',
-      tabGroup: undefined
+      name: ''
     });
 
     // var presenterData = settings.data;
@@ -33,13 +32,11 @@
       title: presenterData.full_name,
       backgroundColor: '#FFF',
       barColor: '#414444',
-      tabGroup: settings.tabGroup
+      fullscreen: false
     });
 
     var tvData = [];
     var blueBg = '#C4E2EF';
-    var	platformWidth = Ti.Platform.displayCaps.platformWidth;
-    var platformHeight = Ti.Platform.displayCaps.platformHeight;
 
     // Structure
     var tv = Ti.UI.createTableView({
@@ -59,21 +56,28 @@
       height:110,
       width:110,
       defaultImage:'images/userpict-large.png',
-      backgroundColor: '#000'
+      backgroundColor: '#000',
+      touchEnabled: false
     });
     var headerRow = Ti.UI.createTableViewRow({
       height:110,
-      //backgroundColor:blueBg,
       backgroundImage:'images/sessionbckgd@2x.png',
+      className: 'presHeaderRow',
       left:0,
       top:-5,
       bottom:0,
       layout:'vertical',
       selectionStyle:'none'
     });
-    var twitterRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
-    var linkedinRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
-    var facebookRow = Ti.UI.createTableViewRow({hasChild:true,height:41});
+    
+    // TODO: Figure out why I need to assign this when I already have 
+    //       selectionStyle = 'none'
+    if (isAndroid()) {
+    	headerRow.backgroundSelectedImage = 'images/sessionbckgd@2x.png';	
+    } else {
+    	headerRow.selectedBackgroundImage = 'images/sessionbckgd@2x.png';
+    }
+    
     var bioRow = Ti.UI.createTableViewRow({
     	hasChild:false,
     	height:'auto',
@@ -93,7 +97,8 @@
         height: 'auto',
         left: 120,
         top: -95,
-        ellipsize:true
+        ellipsize:true,
+        touchEnabled: false
       });
       headerRow.add(fullName);
     }
@@ -105,40 +110,16 @@
         textAlign: 'left',
         color: '#666',
         height: 'auto',
-        left: 120
+        left: 120,
+        touchEnabled: false
       });
       headerRow.add(company);
     }
-
     tvData.push(headerRow);
-
-    if (presenterData.twitter != undefined){
-      var twitter = Ti.UI.createLabel({
-        text: "twitter: " + presenterData.name,
-        twitter: presenterData.twitter,
-        color: '#000',
-        font: {fontSize: 14, fontWeight: 'bold'},
-        left: 10,
-        right: 10,
-        height: 'auto'
-      });
-
-      twitter.addEventListener('click', function(e) {
-        var webview = Titanium.UI.createWebView({url:e.source.twitter});
-        var webWindow = Titanium.UI.createWindow();
-        var currentTab = (Ti.Platform.name == 'android') ? Titanium.UI.currentTab : presenterDetailWindow.tabGroup.activeTab;
-        webWindow.add(webview);
-        currentTab.open(webWindow);
-      });
-      twitterRow.add(twitter);
-      tvData.push(twitterRow);
-    }
 
     var sessions = getRelatedSessions(presenterData.full_name);
     var sessionRow = [];
     if (sessions && sessions.length) {
-    	//var sessionSection = Ti.UI.createTableViewSection({headerTitle:'Sessions'});
-    
     	tvData.push(Codestrong.createHeaderRow('Sessions'));
 	    for (var i in sessions) {
 	      sessionRow = Ti.UI.createTableViewRow({
@@ -146,10 +127,14 @@
 	        sessionTitle:cleanSpecialChars(sessions[i].title),
 	        nid:sessions[i].nid,
 	        height: 'auto',
-	        backgroundColor: '#CE3016',
-	        backgroundSelectedColor: '#999',
-	        selectedBackgroundColor: '#999',
+	        backgroundColor: '#CE3016'
 	      });
+	      
+	      if (isAndroid()) {
+	      	  sessionRow.backgroundSelectedColor = '#999';
+	      } else {
+	      	  sessionRow.selectedBackgroundColor = '#999';
+	      }
 	
 	      var titleLabel = Ti.UI.createLabel({
 	        text: cleanSpecialChars(sessions[i].title),
@@ -166,7 +151,7 @@
 	      
 	      // create table view event listener
 	      sessionRow.addEventListener('click', function(e) {
-			Drupal.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
+			Codestrong.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
 	          title: e.rowData.sessionTitle,
 	          nid: e.rowData.nid
 	        }), {animated:true});

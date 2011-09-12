@@ -15,54 +15,6 @@
  * along with DrupalCon Mobile.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Check for avatars and save new ones if they don't exist.
- */
-function getAvatars(picture,uid) {
-  var dir = Ti.Filesystem.applicationDataDirectory;
-  // Local app data directory
-  var f = Ti.Filesystem.getFile(dir,'picture-'+uid+'.jpg');
-  // images/avatars directory
-  var adir = Ti.Filesystem.resourcesDirectory;
-  var af = Ti.Filesystem.getFile(adir,'images/avatars/picture-'+uid+'.jpg');
-  // If it exists in either place or if it is the default avatar, don't bother
-  //if(f.exists() || af.exists() || picture == 'http://chicago2011.drupal.org/sites/default/files/imagecache/mobile_presenter/sites/all/default-profile-pic.png') {
-  if(f.exists() || af.exists() || picture == 'images/avatars/default-profile-pic.png') {
-  }
-  else {
-    var xhr = Titanium.Network.createHTTPClient();
-    xhr.onload = function() {
-      f.write(this.responseData);
-    };
-    xhr.open('GET', picture);
-    xhr.send();
-  }
-}
-
-function avatarPath(uid) {
-  var dir = Ti.Filesystem.applicationDataDirectory;
-  // Local app data directory
-  var f = Ti.Filesystem.getFile(dir,'picture-'+uid+'.jpg');
-  // images/avatars directory
-  var adir = Ti.Filesystem.resourcesDirectory;
-  var af = Ti.Filesystem.getFile(adir,'images/avatars/picture-'+uid+'.jpg');
-  var result = '';
-  if(f.exists()) {
-    result = dir+'/picture-'+uid+'.jpg';
-  }
-  else if (af.exists()) {
-    if (isAndroid()) {
-      result = 'images/avatars/picture-'+uid+'.jpg';
-    }
-    else {
-      result = adir + '/images/avatars/picture-'+uid+'.jpg';
-    }
-  }
-  else {
-    result = 'images/userpict-large.png';
-  }
-  return result;
-}
 /* 
  * Build presenter data blob
  */
@@ -106,7 +58,7 @@ function getPresenterData(names) {
   return nameList;
 }
 
-// Should be in a namespace, but then again, so should pretty much all of this
+//Should be in a namespace, but then again, so should pretty much all of this
 var isIpadValue = undefined;
 function isIpad (){
 	if (isIpadValue === undefined) {
@@ -123,6 +75,7 @@ function isAndroid (){
 	} 
 	return isAndroidValue;
 }
+
 
 /*
  * Cleans up the timestamp and makes it in the format of 1:30PM

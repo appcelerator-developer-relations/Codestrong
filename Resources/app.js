@@ -29,12 +29,12 @@ Ti.include(
   'drupal/drupal.js',
   'drupal/services.js',
   'drupal/db.js',
+  'drupal/db.insert.js',
   'drupal/entity.js',
+  'drupal/entity.datastore.js',
   'drupalcon/drupalcon.js',
   'drupalcon/entity.js'
 );
-
-//Ti.include('drupalcon/entity.js');
 
 // Define our connection information.  This is very similar to the DB layer's
 // $databases array in settings.php.
@@ -46,12 +46,6 @@ Drupal.services.addConnectionInfo('main', {
 
 // Register our database information.
 Drupal.db.addConnectionInfo('main');
-
-
-// Pre-create the database.  This is a snapshot of the dataset taken shortly
-// prior to shipping.
-var dbVersion = 1.0;
-//Ti.Database.install('main.sql', 'codestrong' + dbVersion);
 Ti.Database.install('main.sql', 'main');
 
 // If we haven't created the tables yet, make empty ones to ensure that the
@@ -63,56 +57,7 @@ if (!Drupal.db.getConnection('main').tableExists('user')) {
   Drupal.entity.db('main', 'user').initializeSchema();
 }
 
-// If there's no record of having synchronized data with the site before, default
-// to 15 Feb as the oldest to pull from.  That avoids ever downloading the entire
-// site, since we have a pre-loaded database.
-// if ('' == Titanium.App.Properties.getString('drupalcon:fetcher:lastNodeUpdate:session', '')) {
-  // Titanium.App.Properties.setString('drupalcon:fetcher:lastNodeUpdate:session', '2011-02-28T12:00:00');
-// }
-
-// This is just for testing purposes. In practice we wouldn't
-// actually want to wipe the DB on every app start. :-)
-//Drupal.entity.db('main', 'node').initializeSchema();
-//Drupal.entity.db('main', 'user').initializeSchema();
-
-
-// Download tests, for now.  These must get moved eventually.
-//Drupal.db.errorMode = Drupal.db.ERROR_LEVEL_DEBUG;
-
-Codestrong = {};
-
-Codestrong.createHeaderRow = function(title) {
-	var headerRow = Ti.UI.createTableViewRow({
-    	classname: 'header_row',
-    	height:26,
-    	backgroundImage: 'pages/timebreak_gray@2x.png',
-    	// backgroundGradient: {
-			// type:'linear',
-			// colors:[
-				// {color:'#888',position:0.0},
-				// {color:'#414444',position:0.50},
-				// {color:'#414444',position:1.0}
-			// ]	
-		// },
-    	touchEnabled: false,
-    	selectedBackgroundImage:'pages/timebreak_gray@2x.png'
-    });
-    var headerLabel = Ti.UI.createLabel({
-    	text: title,
-    	color: '#fff',
-    	font: {
-    		fontSize:16,
-    		fontWeight:'bold'	
-    	},
-    	left: 10,
-    	touchEnabled: false
-    });
-    headerRow.add(headerLabel);
-    
-    return headerRow;
-};
-
-
+Ti.include('cs/pre.ui.js');
 
 Ti.include(
   'windows/ModalActivityIndicatorWindow.js',	
@@ -121,8 +66,6 @@ Ti.include(
   'windows/MapWindow.js',
   'windows/AboutWindow.js',
   'windows/TwitterDetailWindow.js',
-  'windows/StarredWindow.js',
-  'windows/FeedbackWindow.js',
   'windows/PresentersWindow.js',
   'windows/SessionsWindow.js',
   'windows/SessionDetailWindow.js',
@@ -130,25 +73,11 @@ Ti.include(
   'windows/HtmlWindow.js'
 );
 
+Ti.include('cs/post.ui.js');
+
 Ti.include('windows/main.js');
 
+// open URLs in the native browser, not a webview
 Ti.App.addEventListener('openURL', function(e){
   Ti.Platform.openURL(e.url);
 });
-
-/*
-// Download tests, for now.  These must get moved eventually.
-Drupal.db.errorMode = Drupal.db.ERROR_LEVEL_DEBUG;
-
-// This is just for testing purposes. In practice we wouldn't
-// actually want to wipe the DB on every app start. :-)
-var store = Drupal.entity.db('main', 'node').initializeSchema();
-
-//Drupal.entity.db('main', 'node').fetchUpdates('session');
-
-//Drupal.entity.mirror('main', 'node', 464);
-
-// This will actually not have the updated number of records,
-// since the mirror request is asynchronous.
-//Ti.API.info('Number of nodes on file: ' + Drupal.entity.db('main', 'node').connection.query("SELECT COUNT(*) FROM node").field(0));
-*/

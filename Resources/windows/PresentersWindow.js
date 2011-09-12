@@ -17,19 +17,18 @@
 
 (function() {
 
-  DrupalCon.ui.createPresentersWindow = function(tabGroup) {
+  DrupalCon.ui.createPresentersWindow = function() {
     var PresentersWindow = Titanium.UI.createWindow({
       id: 'presentersWindow',
       title: 'Speakers',
       backgroundColor: '#FFF',
       barColor: '#414444',
-      tabGroup: tabGroup
+      fullscreen: false
     });
     
     // Create the table view
     var tableview = Titanium.UI.createTableView({
-      backgroundColor: '#fff'//,
-      //data: data
+      backgroundColor: '#fff'
     });
 
 	PresentersWindow.doRefresh = function() {
@@ -69,14 +68,18 @@
 	        hasChild: isAndroid(),
 	        selectedColor: '#999',
 	        backgroundColor: '#fff',
-	        backgroundSelectedColor: '#999',
-	        selectedBackgroundColor: '#999',
 	        color: '#000',
 	        name: name,
 	        uid: uid,
 	        height: 40,
 	        layout: 'auto'
 	      });
+	      
+	      if (isAndroid()) {
+	      	  presenterRow.backgroundSelectedColor = '#999';
+	      } else {
+	      	  presenterRow.selectedBackgroundColor = '#999';
+	      }
 	
 	      if (fullName == shortName) {
 	        fullName = '';
@@ -96,6 +99,9 @@
 	        presenterRow.add(Ti.UI.createLabel({
 	        text: fullName, // + '  ' + shortName,
 	        fontFamily:'sans-serif',
+	        font: {
+	        	fontWeight:'bold'
+	        },
 	        left: (fullName != '') ? 9 : 0,
 	        height: 40,
 	        color: '#000',
@@ -153,6 +159,9 @@
 	};
     
 	PresentersWindow.doRefresh();
+	Ti.App.addEventListener('app:update_presenters', function() {
+		PresentersWindow.doRefresh();
+	});
 
     // create table view event listener
     tableview.addEventListener('click', function(e) {
@@ -161,7 +170,7 @@
     	}
         // event data
         var index = e.index;
-        Drupal.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
+        Codestrong.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
           title: e.rowData.name,
           uid: e.rowData.uid,
           name: e.rowData.name

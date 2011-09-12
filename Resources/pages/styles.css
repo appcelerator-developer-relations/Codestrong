@@ -75,7 +75,6 @@ span.sponsor {
 /* About page 
 -------------------------------- */
 body.about {
-/*   background: url('tower.png') no-repeat top right; */
   padding-top: 10px; */
   margin: 0 20px 10px;  
 }
@@ -146,13 +145,6 @@ body.registration {
   margin-left:15px;
   margin-right: 15px;
 }
-.registration h2 {
-  color: #C0EAFB;
-  text-align: center;
-  padding: 0.3em 0 0.2em;
-  background: url('gear.png') top center;
-  font-size: 180%;
-}
 
 /* BoFs page 
 -------------------------------- */
@@ -164,13 +156,6 @@ body.bofs {
 .bofs ul {
   margin-left:15px;
   margin-right: 15px;
-}
-.bofs h2 {
-  color: #C0EAFB;
-  text-align: center;
-  padding: 0.3em 0 0.2em;
-  background: url('gear.png') top center;
-  font-size: 180%;
 }
 
 /* Legend page 

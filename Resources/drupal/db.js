@@ -17,12 +17,6 @@
 
 // Declaring variables to prevent implied global error in jslint
 var Ti, Drupal;
-var rootPath = (Ti.Platform.osname == 'android') ? '/' : '../../../../../../../../../../';
-
-// Include the main Drupal library.
-if (!Drupal) {
-  Ti.include(rootPath+'drupal/drupal.js');
-}
 
 /**
  * Define a new library for Drupal Entity storage.
@@ -487,15 +481,6 @@ Drupal.db.Connection.prototype.createColumnSql = function(tablename, schema) {
   for (var name in schema.fields) {
     if (schema.fields.hasOwnProperty(name)) {
       field = schema.fields[name];
-      // If a field is serial it must be a primary key, so we can safely
-      // remove it from the other list of primary keys. I think.
-      // @todo Finish converting this later when we figure out how.
-      //if (field.type && field.type == 'serial') {
-      //  if (isset($schema['primary key']) && ($key = array_search($name, $schema['primary key'])) !== FALSE) {
-      //    unset($schema['primary key'][$key]);
-      //  }
-      //}
-
       sqlArray.push(this.createFieldSql(name, field));
     }
   }
@@ -649,55 +634,3 @@ Drupal.db.Query.prototype.getComments = function() {
   return this.comments;
 };
 
-Ti.include(rootPath+'drupal/db.insert.js');
-
-
-/* Kinda sorta unit tests, ish. */
-
-/*
-function resetDBTest() {
-  var conn = Ti.Database.open('test');
-
-  //Reset for testing.
-  conn.remove();
-
-  var conn2 = Ti.Database.open('test');
-
-  conn2.execute("CREATE TABLE IF NOT EXISTS node (" +
-   "nid INTEGER PRIMARY KEY," +
-   "vid INTEGER," +
-   "type VARCHAR," +
-   "title VARCHAR," +
-   "created INT," +
-   "changed INT)");
-
-  conn2.execute("INSERT INTO node (nid, vid, type, title, created, changed) VALUES (1, 1, 'page', 'Hello world', 12345, 12345)");
-}
-
-resetDBTest();
-
-Drupal.db.addConnectionInfo('test');
-
-var conn = Drupal.db.getConnection('test');
-
-var count = conn.query('SELECT COUNT(*) FROM node').field(0);
-Ti.API.info('There should be 1 record.  There are actually: ' + count);
-
-Ti.API.info('Testing insert queries.');
-
-Ti.API.info('Creating insert object');
-var ins = conn.insert('node');
-
-Ti.API.info('Setting fields');
-ins.fields({nid: 2, title: 'Goodbye world'});
-
-Ti.API.info('Setting values');
-ins.values({nid: 3, title: 'Hi again!'});
-
-Ti.API.info('Executing insert');
-ins.execute();
-
-var count = conn.query('SELECT COUNT(*) FROM node').field(0);
-Ti.API.info('There should be 3 records.  There are actually: ' + count);
-
-*/

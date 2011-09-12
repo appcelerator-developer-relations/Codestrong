@@ -16,93 +16,97 @@
  */
 
 (function() {
-
-/*
-  // Add a menu to all pages except news (which would be confusing).
-  tabGroup.addEventListener('focus', function(e) {
-    //dpm(e.index);
-    if (e.index != 1 && e.index !=2 && e.index != 4){
-      if (isAndroid()){
-        // Android has a menu
-        var buttons = [];
-        buttons.push({
-          title: "Update",
-          clickevent: function () {
-            Ti.fireEvent('drupalcon:update_data');
-          }
-        });
-        menu.init({
-          win: tabGroup.tabs[e.index].window,
-          buttons: buttons
-        });
-      }
-      else {
-        
-        // iOS should only have the button.
-        var button = Ti.UI.createButton({
-          systemButton: Ti.UI.iPhone.SystemButton.REFRESH
-        });
-        var win = tabGroup.tabs[e.index].window;
-        win.rightNavButton = button;
-        button.addEventListener('click', function() {
-          Ti.fireEvent('drupalcon:update_data');
-        });
-      }
-    }
-  });
-*/
-
-  Drupal.navWindow = Ti.UI.createWindow();
-  Drupal.navWindow.orientationModes = [Ti.UI.PORTRAIT];
-  Ti.UI.orientation = Ti.UI.PORTRAIT;
+	var updateTimeout = 15000;
+	var i = 0;
+  	var mainWindow = Ti.UI.createWindow({
+		backgroundImage: Codestrong.settings.mainBG,
+		title: 'Dashboard',
+		navBarHidden: true,
+		exitOnClose: true
+  	});
+  	var viewFade = Ti.UI.createView({
+  		backgroundColor: '#fff',
+  		borderColor:'#888',
+  		borderWidth: 4,
+  		height: Codestrong.settings.dashboardHeight,
+  		width: Codestrong.settings.dashboardWidth,
+  		bottom: 20,
+  		opacity: 0.75,
+  		borderRadius: 8
+  	});
+  	var viewIcons = Ti.UI.createView({
+  		height: Codestrong.settings.dashboardHeight,
+  		width: Codestrong.settings.dashboardWidth,
+  		bottom: 20,
+  		borderRadius: 0,
+  		layout: 'horizontal'
+  	});
+  	mainWindow.add(viewFade);
+  	mainWindow.add(viewIcons);
   
-  mainWindow = Ti.UI.createWindow({
-	backgroundImage: (isIpad()) ? 'images/home_ipad.png' : 'images/home.png',
-	title: 'Dashboard',
-	navBarHidden: true
-  });
-  Drupal.navGroup = Ti.UI.iPhone.createNavigationGroup({
-  	window: mainWindow
-  });
-  Drupal.navWindow.add(Drupal.navGroup);
-  var viewFade = Ti.UI.createView({
-  	backgroundColor: '#fff',
-  	borderColor:'#888',
-  	borderWidth: 4,
-  	height: isIpad() ? 340 : 170,
-  	width: isIpad() ? 612 : 306,
-  	bottom: 20,
-  	opacity: 0.75,
-  	borderRadius: 8
-  });
-  var viewIcons = Ti.UI.createView({
-  	height: isIpad() ? 340 : 170,
-  	width: isIpad() ? 612 : 306,
-  	bottom: 20,
-  	borderRadius: 8,
-  	layout: 'horizontal'
-  });
+    // handle cross-platform navigation
+  	if (Codestrong.isAndroid()) {
+  		Codestrong.navGroup = {
+  			open: function(win, obj) {
+  				win.open(obj);	
+  			},
+  			close: function(win, obj) {
+  				win.close(obj);	
+  			}
+  		};
+  		Codestrong.navWindow = mainWindow;
+  	} else {
+  		Codestrong.navWindow = Ti.UI.createWindow();
+	    Codestrong.navGroup = Ti.UI.iPhone.createNavigationGroup({
+	  		window: mainWindow
+	    });
+	  	Codestrong.navWindow.add(Codestrong.navGroup);
+  	}
+  	
+  	// lock orientation to portrait
+  	Codestrong.navWindow.orientationModes = [Ti.UI.PORTRAIT];
+  	Ti.UI.orientation = Ti.UI.PORTRAIT;
   
-  var createIconView = function(iconImage, iconWin, usesNav) {
+  var createIcon = function(icon) {
+  	var iconWin = undefined;
   	var view = Ti.UI.createView({ 
-  		backgroundImage: iconImage, 
-  		height: isIpad() ? 170 : 85, 
-  		width: isIpad() ? 204 : 102
+  		backgroundImage: icon.image, 
+  		top:0,
+  		height: Codestrong.settings.icons.height, 
+  		width: Codestrong.settings.icons.width
   	});
   	view.addEventListener('click', function(e) {
-  		var leftButton = Ti.UI.createButton({
-	    	backgroundImage: 'images/6dots.png',
-	    	width: 41,
-	    	height: 30
-	    });
-	    leftButton.addEventListener('click', function(e) {
-	    	Drupal.navGroup.close(iconWin, {animated:true});
-	    });
-	    iconWin.leftNavButton = leftButton;
-	    
-	    if (usesNav) {
-	    	if (isAndroid()) {
-	    		// add menu
+  		iconWin = icon.func(icon.args);
+
+  		// add a left navigation button for ios
+  		if (!isAndroid()) {
+	  		var leftButton = Ti.UI.createButton({
+		    	backgroundImage: 'images/6dots.png',
+		    	width: 41,
+		    	height: 30
+		    });
+		    leftButton.addEventListener('click', function() {
+		    	Codestrong.navGroup.close(iconWin, {animated:true});
+		    });
+		    iconWin.leftNavButton = leftButton;
+	    }
+
+		// add sessions and speaker refresh 
+	    if (icon.refresh) {
+	    	if (Codestrong.isAndroid()) {
+	    		iconWin.addEventListener('open', function() {
+			        menu.init({
+			          	win: iconWin,
+			          	buttons: [
+			          		{
+			          			title: "Update",
+			          			clickevent: function () {
+			            			Ti.fireEvent('drupalcon:update_data');
+			          			}
+			          		}
+			          	]
+			        });
+		    	});
 	    	} else {
 		    	var rightButton = Ti.UI.createButton({
 		          systemButton: Ti.UI.iPhone.SystemButton.REFRESH
@@ -113,41 +117,41 @@
 		        });
 	        }
 	    }
-	    
+
 		iconWin.navBarHidden = false;
-  		Drupal.navGroup.open(iconWin, {animated:true});
+  		Codestrong.navGroup.open(iconWin, {animated:true});
   	});
   	return view;
   };
   
-  var presentersWindow = DrupalCon.ui.createPresentersWindow();
-  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_schedule@2x.png' : 'images/dashboard2/icon_schedule.png', DrupalCon.ui.createDayWindow(), true));
-  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_maps@2x.png' : 'images/dashboard2/icon_maps.png', DrupalCon.ui.createMapWindow()));
-  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_news@2x.png' : 'images/dashboard2/icon_news.png', DrupalCon.ui.createTwitterWindow()));
-  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_speakers@2x.png' : 'images/dashboard2/icon_speakers.png', presentersWindow, true));
-  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_sponsors@2x.png' : 'images/dashboard2/icon_sponsors.png', DrupalCon.ui.createHtmlWindow({url: isIpad() ? 'pages/sponsors_ipad.html' : 'pages/sponsors.html', title:'Sponsors'})));
-  viewIcons.add(createIconView(isIpad() ? 'images/dashboard2/icon_about@2x.png' : 'images/dashboard2/icon_about.png', DrupalCon.ui.createAboutWindow()));
+  for (i = 0; i < Codestrong.settings.icons.list.length; i++) {
+  	viewIcons.add(createIcon(Codestrong.settings.icons.list[i]));
+  }
 
-  mainWindow.add(viewFade);
-  mainWindow.add(viewIcons);
-  Drupal.navWindow.open({transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
+	if (isAndroid()) {
+		mainWindow.open({animated:true});	
+	} else {
+		Codestrong.navWindow.open({transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
+	}
+  //Codestrong.navWindow.open(isAndroid() ? {} : {transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
 
   var updateCount = 0;
   Ti.addEventListener('drupal:entity:datastore:update_completed', function(e) {
   	updateCount++;
   	if (updateCount >= 2) {
   		updateCount = 0;
-  		if (presentersWindow) {
-  			presentersWindow.doRefresh();
-  		}
+  		Ti.App.fireEvent('app:update_presenters');
   		DrupalCon.ui.activityIndicator.hideModal();
   	}
   });
 
   Ti.addEventListener('drupalcon:update_data', function(e) {
-  	DrupalCon.ui.activityIndicator.showModal('Loading sessions and speakers...');
+  	DrupalCon.ui.activityIndicator.showModal('Loading sessions and speakers...', updateTimeout, 'Connection timed out. All data may not have updated.');
+  	updateCount = 0;
     Drupal.entity.db('main', 'node').fetchUpdates('session');
     Drupal.entity.db('main', 'user').fetchUpdates('user');
   });
+  
+  
 
 })();

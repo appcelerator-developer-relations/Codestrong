@@ -17,17 +17,6 @@
 
 // Declaring variables to prevent implied global error in jslint
 var Ti, Drupal;
-var rootPath = (Ti.Platform.osname == 'android') ? '/' : '../../../../../../../../../../';
-//var rootPath = 
-
-// Include the main Drupal library.
-if (!Drupal) {
-  Ti.include(rootPath+'drupal/drupal.js');
-}
-
-if (!Drupal.db) {
-  Ti.include(rootPath+'drupal/db.js');
-}
 
 /**
  * Define a new library for Drupal Entity storage.
@@ -204,97 +193,5 @@ Drupal.entity.DefaultSchema.prototype.defaultFetcher = function(bundle, store, f
     Ti.API.error('No fetching URL found. Unable to retrieve data.');
   }
 };
-
-Ti.include(rootPath+'drupal/entity.datastore.js');
-
-
-//These kinda sorta serve as a unit test, ish, maybe, for now.
-
-/*
-function resetTest() {
-  Drupal.db.addConnectionInfo('main');
-  
-  var conn = Drupal.db.openConnection('main');
-
-  //Reset for testing.
-  conn.remove();
-
-  conn.close();
-}
-
-resetTest();
-
-var node1 = {
-    nid: 1,
-    type: 'page',
-    title: 'Hello world'
-  };
-
-var node2 = {
-    nid: 2,
-    type: 'page',
-    title: 'Goodbye world'
-  };
-
-var store = Drupal.entity.db('main', 'node');
-
-// Reset everything.
-store.initializeSchema();
-
-var ret;
-
-Ti.API.info('Inserting node.');
-ret = store.insert(node1);
-Ti.API.info('Insert new entity returned: ' + ret);
-
-ret = store.save(node2);
-Ti.API.info('Save on new entity returned: ' + ret);
-
-var count = store.connection.query('SELECT COUNT(*) FROM node').field(0);
-Ti.API.info('There should be 2 records.  There are actually: ' + count);
-
-Ti.API.info('Checking for record.');
-if (store.exists(1)) {
-  Ti.API.info('Record exists.');
-}
-else {
-  Ti.API.info('Record does not exist.');
-}
-
-var loaded_node = store.load(1);
-
-Ti.API.info(loaded_node);
-
-Ti.API.info('Trying to load multiple nodes.');
-var nodes = store.loadMultiple([2, 1]);
-
-Ti.API.info('Checking returned nodes.');
-for (var i = 0; i < nodes.length; i++) {
-  Ti.API.info(nodes[i]);
-}
-
-var node = store.load(1);
-node.title = "Hello, Drupal world.";
-ret = store.save(node);
-Ti.API.info('Save on existing entity returned: ' + ret);
-
-var nodeB = store.load(1);
-Ti.API.info(nodeB);
-
-Ti.API.info('Try to delete a node now.');
-ret = store.remove(1);
-Ti.API.info('Removing existing entity returned: ' + ret);
-
-var count = store.connection.query('SELECT COUNT(*) FROM node').field(0);
-Ti.API.info('There should be 1 record.  There are actually: ' + count);
-*/
-
-/*
-var store = Drupal.entity.db('site');
-var node = store.load('node', id);
-var nodes = store.loadMultiple('node', ids);
-store.save('node', node);
-*/
-
 
 

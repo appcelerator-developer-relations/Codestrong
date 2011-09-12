@@ -21,76 +21,74 @@
 
     // Create table view data object.
     var data = [];
-    data.push({
+    data.push(Ti.UI.createTableViewRow({
     	title:'Sunday, September 18th', 
     	titleShort:'September 18th', 
-    	hasChild:true, 
-    	color:'#000', 
-    	backgroundColor:'#fff', 
-    	barColor: '#414444', 
-    	backgroundSelectedColor: '#999',
-	    selectedBackgroundColor: '#999', 
     	scheduleListing: false, 
-    	url: 'pages/2011-09-18.html'
-    });
-    data.push({
+    	url: 'pages/2011-09-18.html',
+    	font: {
+    		fontWeight:'bold'
+    	}
+    }));
+    data.push(Ti.UI.createTableViewRow({
     	title:'Monday, September 19th', 
     	titleShort:'September 19th', 
-    	hasChild:true, 
-    	color:'#000', 
-    	backgroundColor:'#fff', 
-    	barColor: '#414444', 
-    	backgroundSelectedColor: '#999',
-	    selectedBackgroundColor: '#999',
     	start_date:'2011-09-19 00:00:00', 
     	end_date:'2011-09-20 00:00:00', 
-    	scheduleListing: true
-    });
-    data.push({
+    	scheduleListing: true,
+    	font: {
+    		fontWeight:'bold'
+    	}
+    }));
+    data.push(Ti.UI.createTableViewRow({
     	title:'Tuesday, September 20th', 
     	titleShort:'September 20th', 
-    	hasChild:true, 
-    	color:'#000', 
-    	backgroundColor:'#fff', 
-    	barColor: '#414444', 
-    	backgroundSelectedColor: '#999',
-	    selectedBackgroundColor: '#999', 
     	start_date:'2011-09-20 00:00:00', 
     	end_date:'2011-09-21 00:00:00', 
-    	scheduleListing: true
-    });
-    data.push({
+    	scheduleListing: true,
+    	font: {
+    		fontWeight:'bold'
+    	}
+    }));
+    data.push(Ti.UI.createTableViewRow({
     	title:'Hackathon', 
     	titleShort:'Hackathon', 
-    	hasChild:true, 
-    	color:'#000', 
-    	backgroundColor:'#fff', 
-    	barColor: '#414444', 
-    	backgroundSelectedColor: '#999',
-	    selectedBackgroundColor: '#999', 
     	scheduleListing: false, 
-    	url: 'pages/hackathon.html'
-    });
+    	url: 'pages/hackathon.html',
+    	font: {
+    		fontWeight:'bold'
+    	}
+    }));
+    
+    // add common attributes
+    for (var i = 0; i < data.length; i++) {
+    	data[i].hasChild = true;
+    	data[i].color = '#000';
+    	data[i].backgroundColor = '#fff';
+    	
+    	if (isAndroid()) {
+    		data[i].backgroundSelectedColor = '#999';
+    	} else {
+    		data[i].selectedBackgroundColor = '#999';
+    	}
+    }
 
+    // create main day window
     var dayWindow = Titanium.UI.createWindow({
       id: 'win1',
       title: 'Schedule',
       backgroundColor: '#fff',
-      barColor: '#414444'
+      barColor: '#414444',
+      fullscreen: false
     });
-
-    // create table view
     var tableview = Titanium.UI.createTableView({
       data: data
     });
-
-    // add table view to the window
     dayWindow.add(tableview);
 
-    // create table view event listener
     tableview.addEventListener('click', function(e) {
         if (e.rowData.scheduleListing) {
-          Drupal.navGroup.open(DrupalCon.ui.createSessionsWindow({
+          Codestrong.navGroup.open(DrupalCon.ui.createSessionsWindow({
           	titleShort: e.rowData.titleShort,
             title: e.rowData.title,
             start_date: e.rowData.start_date,
@@ -98,29 +96,13 @@
           }), {animated:true});
         }
         else {
-          Drupal.navGroup.open(DrupalCon.ui.createHtmlWindow({
+          Codestrong.navGroup.open(DrupalCon.ui.createHtmlWindow({
             title: e.rowData.titleShort,
             url: e.rowData.url
           }), {animated:true});
         }
       
     });
-
-	if (isAndroid()) {
-	   dayWindow.addEventListener('open', function() {
-	     var buttons = [];
-	     buttons.push({
-	       title: "Update",
-	       clickevent: function () {
-	         Ti.fireEvent('drupalcon:update_data');
-	       }
-	     });
-	     menu.init({
-	       win: dayWindow,
-	       buttons: buttons
-	     });
-	   });
-	}
 
     return dayWindow;
   };

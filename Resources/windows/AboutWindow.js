@@ -18,12 +18,21 @@
 (function() {
 	
   DrupalCon.ui.createAboutWindow = function() {
+  	var handleScroll = function(e) {
+		if (e.view) {
+			data[e.currentPage].tabView.fireEvent('click');
+		}
+	};
+  	
+  	//var firstLoad = true;
+  	
     var aboutWindow = Titanium.UI.createWindow({
       id: 'aboutWindow',
       title: 'About',
       backgroundColor: '#FFF',
       barColor: '#414444',
-      navBarHidden: false
+      navBarHidden: false,
+      fullscreen: false
     });
 
     // create table view data object
@@ -31,12 +40,14 @@
       {
       	title: 'About Codestrong', 
       	shortTitle:'Codestrong',
-      	page: 'pages/about.html'
+      	//webview: Ti.UI.createView({height:300, width:300, backgroundColor:'#00f'}) 
+      	webview: Ti.UI.createWebView({url:'pages/about.html'})
       },
       {
       	title: 'About The App', 
       	shortTitle:'The App', 
-      	page: 'pages/app.html'
+      	//webview: Ti.UI.createView({height:300, width:300, backgroundColor:'#f0f'})
+      	webview: Ti.UI.createWebView({url:'pages/app.html'})
       }
     ];
     
@@ -54,8 +65,7 @@
     
     for (var i = 0; i < data.length; i++) {
     	var myEntry = data[i];
-    	
-    	myEntry.webview = Ti.UI.createWebView({url: myEntry.page});
+
     	var tabView = Ti.UI.createView({
 			backgroundImage: (i == 0) ? 'images/buttonbar/button2_selected.png' : 'images/buttonbar/button2_unselected_shadowL.png',
 			height:36,
@@ -86,24 +96,19 @@
 			} 
 			
 			for (var j = 0; j < data.length; j++) {
-				//data[j].tabView.backgroundImage = 'images/BUTT_drk_off.png';
 				if (e.source.index == j) {
 					scrollable.scrollToView(data[j].webview);
 				}
 			}
-			//e.source.backgroundImage = 'images/BUTT_drk_on.png';
 		});
 		
 		tabView.add(tabLabel);
-		// if (i != 0) {
-			// tabbedBar.add(Ti.UI.createView({width:3}));
-		// }
         tabbedBar.add(tabView);
         myEntry.tabView = tabView;	
     }
     
     var scrollable = Ti.UI.createScrollableView({
-		showPagingControl: true,
+		showPagingControl: false,
 		backgroundColor: '#000000',
 		top:30,
 		views:[
@@ -117,19 +122,28 @@
 		}
 	});
 	
-	if (!isAndroid()) {
-		Titanium.Gesture.addEventListener('orientationchange', function(e){   
-	    	scrollable.scrollToView(scrollable.currentPage);   
-		});
-	}
+	// TODO: Android has a problem with reloading ScrollableView after its containing
+	//       window has been closed then re-opened. Removing and adding the ScrollableView 
+	//       is the current workaround.
+	
+	// if (Codestrong.isAndroid()) {
+		// aboutWindow.addEventListener('open', function(e) {
+			// if (firstLoad) {
+				// firstLoad = false;
+			// } else {
+				// scrollable.addEventListener('scroll', handleScroll);
+				// aboutWindow.add(scrollable);
+			// }
+		// });
+		// aboutWindow.addEventListener('close', function(e) {
+			// scrollable.removeEventListener('scroll', handleScroll);
+			// aboutWindow.remove(scrollable);
+		// });
+	// } 
 	
 	aboutWindow.add(scrollable);
 	tabbedBarView.add(tabbedBar);	
 	aboutWindow.add(tabbedBarView);
-	
-	Ti.App.addEventListener('app:open_link', function(e) {
-		Ti.Platform.openURL(e.link);
-	});
 
     return aboutWindow;
   };
