@@ -1,6 +1,7 @@
 DrupalCon.ui.activityIndicator = (function() {
 	var activityIndicator;
 	var isShowing = false;
+	var myTimeout = undefined;
 	
 	if (isAndroid()) {
 		activityIndicator = Ti.UI.createActivityIndicator({
@@ -27,7 +28,7 @@ DrupalCon.ui.activityIndicator = (function() {
 		activityIndicator.add(ai);
 	}
 	
-	activityIndicator.showModal = function(message) {
+	activityIndicator.showModal = function(message, timeout, timeoutMessage) {
 		if (isShowing) {
 			return;	
 		}
@@ -40,16 +41,31 @@ DrupalCon.ui.activityIndicator = (function() {
 			activityIndicator.ai.show();
 			activityIndicator.open({animated:false});
 		}	
+		
+		if (timeout) {
+			myTimeout = setTimeout(function() {
+				activityIndicator.hideModal();	
+				if (timeoutMessage) {
+					alert(timeoutMessage);	
+				}
+			}, timeout);	
+		}
 	};
 	
 	activityIndicator.hideModal = function() {
-		if (isAndroid()) {
-			activityIndicator.hide();	
-		} else {
-			activityIndicator.ai.hide();
-			activityIndicator.close({animated:false});	
-		}	
-		isShowing = false;
+		if (myTimeout !== undefined) {
+			clearTimeout(myTimeout);
+			myTimeout = undefined;
+		}
+		if (isShowing) {
+			isShowing = false;
+			if (isAndroid()) {
+				activityIndicator.hide();	
+			} else {
+				activityIndicator.ai.hide();
+				activityIndicator.close({animated:false});	
+			}	
+		}
 	}
 	
 	return activityIndicator;

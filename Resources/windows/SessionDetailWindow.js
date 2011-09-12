@@ -60,6 +60,14 @@
       backgroundPosition:'bottom left',
       selectionStyle:'none'
     });
+    
+    // TODO: Figure out why I need to assign this when I already have 
+    //       selectionStyle = 'none'
+    if (isAndroid()) {
+    	headerRow.backgroundSelectedImage = 'images/sessionbckgd@2x.png';	
+    } else {
+    	headerRow.selectedBackgroundImage = 'images/sessionbckgd@2x.png';
+    }
 
     var bodyRow = Ti.UI.createTableViewRow({
       hasChild: false,

@@ -21,7 +21,9 @@ var Twitter = {
 };
 
 (function() {
+	var twitterTimeout = 10000;
   var tweetCount = 50;
+	var firstRun = true;
 
   var createTwitterTable = function(search) {
   	  return Ti.UI.createTableView({
@@ -75,7 +77,6 @@ var Twitter = {
     
     for (var index in data) {
     	myEntry = data[index];
-    	Ti.API.debug('test');
   		myEntry.table.addEventListener('click', function(e) {
   			Codestrong.navGroup.open(DrupalCon.ui.createTwitterDetailWindow({
       			title: e.rowData.user,
@@ -169,8 +170,16 @@ var Twitter = {
       var tvData = [];
 
       var xhr = Ti.Network.createHTTPClient();
-      xhr.timeout = 100000;
+      xhr.timeout = twitterTimeout;
       xhr.open("GET", entry.url);
+      
+      xhr.onerror = function() {
+      	  loadedViews.push(entry.table);
+          if (loadedViews.length >= data.length) {
+			loadedViews = [];
+			DrupalCon.ui.activityIndicator.hideModal();
+          }
+      };
       
       xhr.onload = function() {
         try {
@@ -270,7 +279,7 @@ var Twitter = {
 
           entry.table.setData(tvData);
           loadedViews.push(entry.table);
-          if (loadedViews.length == data.length) {
+          if (loadedViews.length >= data.length) {
 			loadedViews = [];
 			DrupalCon.ui.activityIndicator.hideModal();
           }
@@ -284,7 +293,7 @@ var Twitter = {
     }
 
 	var reloadAllTweets = function() {
-		DrupalCon.ui.activityIndicator.showModal('Loading latest tweets...');
+		DrupalCon.ui.activityIndicator.showModal('Loading latest tweets...', twitterTimeout, 'Twitter timed out. All streams may not have updated.');
 	  	for (var i = 0; i < data.length; i++) {
 	  		getTweets(data[i]);	
 	  	}
@@ -293,7 +302,10 @@ var Twitter = {
     // Get the tweets for 'twitter_name'
     if (Ti.Network.online) {
     	twitterWindow.addEventListener('open', function(e) {
-      		reloadAllTweets();
+			if (firstRun) {
+				firstRun = false;
+      			reloadAllTweets();
+      		}
      	});
 
       	if (Codestrong.isAndroid()) {
@@ -306,12 +318,13 @@ var Twitter = {
           		});
         	};
       	} else {
-        	twitterWindow.rightNavButton = Ti.UI.createButton({
+      		var button = Ti.UI.createButton({
           		systemButton: Ti.UI.iPhone.SystemButton.REFRESH
-        	});
+        	}); 	
         	button.addEventListener('click', function(e) {	
           		reloadAllTweets();
         	});
+        	twitterWindow.rightNavButton = button;
       	}
     } else {
     	alert('No network connection detected.');
