@@ -25,7 +25,10 @@
     	title:'Sunday, September 18th', 
     	titleShort:'September 18th', 
     	scheduleListing: false, 
-    	url: 'pages/2011-09-18.html'
+    	url: 'pages/2011-09-18.html',
+    	font: {
+    		fontWeight:'bold'
+    	}
     }));
     data.push(Ti.UI.createTableViewRow({
     	title:'Monday, September 19th', 

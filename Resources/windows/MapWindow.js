@@ -111,7 +111,8 @@
 		views:[
 			data[0].webview,
 			data[1].webview
-		]
+		],
+		enabled: false
 	});
 	
 	scrollable.addEventListener('scroll', function(e) {

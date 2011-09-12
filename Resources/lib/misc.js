@@ -58,7 +58,7 @@ function getPresenterData(names) {
   return nameList;
 }
 
-// Should be in a namespace, but then again, so should pretty much all of this
+//Should be in a namespace, but then again, so should pretty much all of this
 var isIpadValue = undefined;
 function isIpad (){
 	if (isIpadValue === undefined) {
