@@ -3,7 +3,8 @@ Codestrong = {
 	__isAndroid: undefined,
 	settings: {},
 	navWindow: undefined,
-	navGroup: undefined
+	navGroup: undefined,
+	tabBarHeight: 36
 };
 
 (function() {

@@ -28,28 +28,35 @@
     });
 
     // create table view data object
+    var duration = 250;
     var data = [
       {
       	title: 'Floor 3 - Grand Ballroom', 
       	shortTitle:'3rd Floor', 
-      	url: 'pages/maps/map3.html'
+      	url: 'pages/maps/map3.html',
+      	animateOut: {left:-1 * Ti.Platform.displayCaps.platformWidth, top: Codestrong.tabBarHeight, duration:duration},
+      	animateIn: {left:0, top: Codestrong.tabBarHeight, duration:duration},
+      	left: 0
       },
       {
       	title: 'Floor 4 - Pacific Terrace', 
       	shortTitle:'4th Floor', 
-      	url: 'pages/maps/map4.html'
+      	url: 'pages/maps/map4.html',
+      	animateOut: {left:Ti.Platform.displayCaps.platformWidth, top: Codestrong.tabBarHeight, duration:duration},
+      	animateIn: {left:0, top:Codestrong.tabBarHeight, duration:duration},
+      	left: Ti.Platform.displayCaps.platformWidth
       }
     ];
     
     var tabbedBarView = Ti.UI.createView({
     	backgroundColor:'#555',
     	top:0,
-    	height:36
+    	height:Codestrong.tabBarHeight
     });
     var tabbedBar = Ti.UI.createView({
     	top:0,
     	backgroundColor: '#000',
-    	height:36,
+    	height:Codestrong.tabBarHeight,
     	width:Ti.Platform.displayCaps.platformWidth
     });
     
@@ -59,12 +66,15 @@
     	myEntry.webview = Ti.UI.createWebView({
     		scalesPageToFit: true,
     		url: myEntry.url,
-    		height:'100%'
+    		top:Codestrong.tabBarHeight,
+    		bottom:0,
+    		left:myEntry.left,
+    		width:Ti.Platform.displayCaps.platformWidth
     	});
     	
     	var tabView = Ti.UI.createView({
 			backgroundImage: (i == 0) ? 'images/buttonbar/button2_selected.png' : 'images/buttonbar/button2_unselected_shadowL.png',
-			height:36,
+			height:Codestrong.tabBarHeight,
 			left: i * (Ti.Platform.displayCaps.platformWidth/data.length),
 			right: Ti.Platform.displayCaps.platformWidth - ((parseInt(i) + 1) * (Ti.Platform.displayCaps.platformWidth/data.length)),
 			index: i
@@ -91,8 +101,12 @@
 			} 
 			
 			for (var j = 0; j < data.length; j++) {
-				if (e.source.index == j) {
-					scrollable.scrollToView(data[j].webview);
+				if (e.source.index == 0) {
+					data[0].webview.animate(data[0].animateIn);	
+					data[1].webview.animate(data[1].animateOut);	
+				} else {
+					data[0].webview.animate(data[0].animateOut);	
+					data[1].webview.animate(data[1].animateIn);
 				}
 			}
 		});
@@ -102,34 +116,10 @@
         myEntry.tabView = tabView;	
     }
 
-    var scrollable = Ti.UI.createScrollableView({
-		showPagingControl: false,
-		top:36,
-		bottom:0,
-		left:0,
-		right:0,
-		views:[
-			data[0].webview,
-			data[1].webview
-		],
-		enabled: false
-	});
-	
-	scrollable.addEventListener('scroll', function(e) {
-		if (e.view) {
-			data[e.currentPage].tabView.fireEvent('click');
-		}
-	});
-	
-	if (!isAndroid()) {
-		Titanium.Gesture.addEventListener('orientationchange', function(e){   
-	    	scrollable.scrollToView(scrollable.currentPage);   
-		});
-	}
-	
-	mapWindow.add(scrollable);
 	tabbedBarView.add(tabbedBar);	
 	mapWindow.add(tabbedBarView);
+	mapWindow.add(data[0].webview);
+	mapWindow.add(data[1].webview);
     
     return mapWindow;
   };
