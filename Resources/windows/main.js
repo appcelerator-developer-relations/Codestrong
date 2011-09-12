@@ -16,6 +16,7 @@
  */
 
 (function() {
+	var updateTimeout = 15000;
 	var i = 0;
   	var mainWindow = Ti.UI.createWindow({
 		backgroundImage: Codestrong.settings.mainBG,
@@ -122,7 +123,6 @@
   	return view;
   };
   
-  //var presentersWindow = DrupalCon.ui.createPresentersWindow();
   for (i = 0; i < Codestrong.settings.icons.list.length; i++) {
   	viewIcons.add(createIcon(Codestrong.settings.icons.list[i]));
   }
@@ -134,15 +134,14 @@
   	updateCount++;
   	if (updateCount >= 2) {
   		updateCount = 0;
-  		//if (presentersWindow) {
-  			//presentersWindow.doRefresh();
-  		//}
+  		Ti.App.fireEvent('app:update_presenters');
   		DrupalCon.ui.activityIndicator.hideModal();
   	}
   });
 
   Ti.addEventListener('drupalcon:update_data', function(e) {
-  	DrupalCon.ui.activityIndicator.showModal('Loading sessions and speakers...');
+  	DrupalCon.ui.activityIndicator.showModal('Loading sessions and speakers...', updateTimeout, 'Connection timed out. All data may not have updated.');
+  	updateCount = 0;
     Drupal.entity.db('main', 'node').fetchUpdates('session');
     Drupal.entity.db('main', 'user').fetchUpdates('user');
   });

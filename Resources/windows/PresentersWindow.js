@@ -156,6 +156,9 @@
 	};
     
 	PresentersWindow.doRefresh();
+	Ti.App.addEventListener('app:update_presenters', function() {
+		PresentersWindow.doRefresh();
+	});
 
     // create table view event listener
     tableview.addEventListener('click', function(e) {
