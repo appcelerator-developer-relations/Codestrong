@@ -202,6 +202,7 @@ var Twitter = {
 
             var row = Ti.UI.createTableViewRow({
               hasChild:true,
+              className: 'twitterRow',
               backgroundColor:bgcolor,
               height:'auto',
               date:created_at,
