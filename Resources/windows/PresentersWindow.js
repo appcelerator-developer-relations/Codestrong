@@ -97,7 +97,7 @@
 	      // Android can't handle some of this label manipulation
 	      if (isAndroid()) {
 	        presenterRow.add(Ti.UI.createLabel({
-	        text: fullName, // + '  ' + shortName,
+	        text: fullName,
 	        fontFamily:'sans-serif',
 	        font: {
 	        	fontWeight:'bold'
