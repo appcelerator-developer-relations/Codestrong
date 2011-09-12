@@ -35,20 +35,29 @@
     	titleShort:'September 19th', 
     	start_date:'2011-09-19 00:00:00', 
     	end_date:'2011-09-20 00:00:00', 
-    	scheduleListing: true
+    	scheduleListing: true,
+    	font: {
+    		fontWeight:'bold'
+    	}
     }));
     data.push(Ti.UI.createTableViewRow({
     	title:'Tuesday, September 20th', 
     	titleShort:'September 20th', 
     	start_date:'2011-09-20 00:00:00', 
     	end_date:'2011-09-21 00:00:00', 
-    	scheduleListing: true
+    	scheduleListing: true,
+    	font: {
+    		fontWeight:'bold'
+    	}
     }));
     data.push(Ti.UI.createTableViewRow({
     	title:'Hackathon', 
     	titleShort:'Hackathon', 
     	scheduleListing: false, 
-    	url: 'pages/hackathon.html'
+    	url: 'pages/hackathon.html',
+    	font: {
+    		fontWeight:'bold'
+    	}
     }));
     
     // add common attributes

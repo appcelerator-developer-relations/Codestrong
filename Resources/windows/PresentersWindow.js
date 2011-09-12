@@ -99,6 +99,9 @@
 	        presenterRow.add(Ti.UI.createLabel({
 	        text: fullName, // + '  ' + shortName,
 	        fontFamily:'sans-serif',
+	        font: {
+	        	fontWeight:'bold'
+	        },
 	        left: (fullName != '') ? 9 : 0,
 	        height: 40,
 	        color: '#000',
