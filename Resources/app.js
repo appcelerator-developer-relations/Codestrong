@@ -57,7 +57,7 @@ if (!Drupal.db.getConnection('main').tableExists('user')) {
   Drupal.entity.db('main', 'user').initializeSchema();
 }
 
-Ti.include('codestrong/pre.ui.js');
+Ti.include('cs/pre.ui.js');
 
 Ti.include(
   'windows/ModalActivityIndicatorWindow.js',	
@@ -73,7 +73,7 @@ Ti.include(
   'windows/HtmlWindow.js'
 );
 
-Ti.include('codestrong/post.ui.js');
+Ti.include('cs/post.ui.js');
 
 Ti.include('windows/main.js');
 
