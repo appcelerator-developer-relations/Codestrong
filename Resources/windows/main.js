@@ -21,7 +21,8 @@
   	var mainWindow = Ti.UI.createWindow({
 		backgroundImage: Codestrong.settings.mainBG,
 		title: 'Dashboard',
-		navBarHidden: true
+		navBarHidden: true,
+		exitOnClose: true
   	});
   	var viewFade = Ti.UI.createView({
   		backgroundColor: '#fff',
@@ -127,7 +128,12 @@
   	viewIcons.add(createIcon(Codestrong.settings.icons.list[i]));
   }
 
-  Codestrong.navWindow.open(isAndroid() ? {} : {transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
+	if (isAndroid()) {
+		mainWindow.open({animated:true});	
+	} else {
+		Codestrong.navWindow.open({transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
+	}
+  //Codestrong.navWindow.open(isAndroid() ? {} : {transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
 
   var updateCount = 0;
   Ti.addEventListener('drupal:entity:datastore:update_completed', function(e) {
