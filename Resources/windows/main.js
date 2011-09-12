@@ -65,7 +65,9 @@
   	
   	// lock orientation to portrait
   	Codestrong.navWindow.orientationModes = [Ti.UI.PORTRAIT];
-  	Ti.UI.orientation = Ti.UI.PORTRAIT;
+  	if (!Codestrong.isAndroid()) {
+  		Ti.UI.orientation = Ti.UI.PORTRAIT;
+  	}
   
   var createIcon = function(icon) {
   	var iconWin = undefined;
