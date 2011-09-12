@@ -146,7 +146,7 @@
   });
 
   Ti.addEventListener('drupalcon:update_data', function(e) {
-  	DrupalCon.ui.activityIndicator.showModal('Loading sessions and speakers...', updateTimeout, 'Connection timed out. All data may not have updated.');
+  	DrupalCon.ui.activityIndicator.showModal('Loading sessions and speakers...', updateTimeout, 'Connection timed out. All session and speaker data may not have updated.');
   	updateCount = 0;
     Drupal.entity.db('main', 'node').fetchUpdates('session');
     Drupal.entity.db('main', 'user').fetchUpdates('user');

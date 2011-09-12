@@ -46,7 +46,12 @@ DrupalCon.ui.activityIndicator = (function() {
 			myTimeout = setTimeout(function() {
 				activityIndicator.hideModal();	
 				if (timeoutMessage) {
-					alert(timeoutMessage);	
+					var alertDialog = Ti.UI.createAlertDialog({
+						title: 'Update Timeout',
+						message: timeoutMessage,
+						buttonNames: ['OK']
+					});
+					alertDialog.show();
 				}
 			}, timeout);	
 		}
