@@ -21,6 +21,8 @@
 		Codestrong.ui.backgroundSelectedProperty = 'selectedBackground';
 	}
 	
+	Codestrong.ui.backgroundSelectedColor = '#999';
+	
 	Codestrong.ui.createHeaderRow = function(title) {
 		var headerRow = Ti.UI.createTableViewRow({
 	    	classname: 'header_row',

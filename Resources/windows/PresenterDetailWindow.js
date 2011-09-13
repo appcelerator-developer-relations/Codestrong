@@ -69,15 +69,8 @@
       bottom:0,
       layout:'vertical',
       selectionStyle:'none'
-    });
-    
-    // TODO: Figure out why I need to assign this when I already have 
-    //       selectionStyle = 'none'
-    if (Codestrong.isAndroid()) {
-    	headerRow.backgroundSelectedImage = 'images/sessionbckgd@2x.png';	
-    } else {
-    	headerRow.selectedBackgroundImage = 'images/sessionbckgd@2x.png';
-    }
+    }); 
+    headerRow[Codestrong.ui.backgroundSelectedProperty + 'Image'] = 'images/sessionbckgd@2x.png';
     
     var bioRow = Ti.UI.createTableViewRow({
     	hasChild:false,
@@ -130,12 +123,7 @@
 	        height: 'auto',
 	        backgroundColor: '#CE3016'
 	      });
-	      
-	      if (Codestrong.isAndroid()) {
-	      	  sessionRow.backgroundSelectedColor = '#999';
-	      } else {
-	      	  sessionRow.selectedBackgroundColor = '#999';
-	      }
+	      sessionRow[Codestrong.ui.backgroundSelectedProperty + 'Color'] = Codestrong.ui.backgroundSelectedColor;
 	
 	      var titleLabel = Ti.UI.createLabel({
 	        text: Codestrong.cleanSpecialChars(sessions[i].title),
@@ -146,7 +134,8 @@
 	        bottom: 10,
 	        height: 'auto',
 	        color: '#fff',
-	        font:{fontWeight:'bold'}
+	        font:{fontWeight:'bold'},
+	        touchEnabled: false
 	      });
 	      sessionRow.add(titleLabel);
 	      

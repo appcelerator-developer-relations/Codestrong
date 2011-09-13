@@ -67,12 +67,7 @@
                 layout: 'vertical',
                 focusable: true
             });
-
-            if (Codestrong.isAndroid()) {
-                sessionRow.backgroundSelectedColor = '#999';
-            } else {
-                sessionRow.selectedBackgroundColor = '#999';
-            }
+			sessionRow[Codestrong.ui.backgroundSelectedProperty + 'Color'] = Codestrong.ui.backgroundSelectedColor;
 
             var leftSpace = 10;
             var titleColor = '#d32101';

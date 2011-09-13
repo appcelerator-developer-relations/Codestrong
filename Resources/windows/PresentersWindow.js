@@ -75,12 +75,7 @@
 	        height: 40,
 	        layout: 'auto'
 	      });
-	      
-	      if (Codestrong.isAndroid()) {
-	      	  presenterRow.backgroundSelectedColor = '#999';
-	      } else {
-	      	  presenterRow.selectedBackgroundColor = '#999';
-	      }
+	      presenterRow[Codestrong.ui.backgroundSelectedProperty + 'Color'] = Codestrong.ui.backgroundSelectedColor;
 	
 	      if (fullName == shortName) {
 	        fullName = '';

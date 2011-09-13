@@ -61,14 +61,7 @@
       backgroundPosition:'bottom left',
       selectionStyle:'none'
     });
-    
-    // TODO: Figure out why I need to assign this when I already have 
-    //       selectionStyle = 'none'
-    if (Codestrong.isAndroid()) {
-    	headerRow.backgroundSelectedImage = 'images/sessionbckgd@2x.png';	
-    } else {
-    	headerRow.selectedBackgroundImage = 'images/sessionbckgd@2x.png';
-    }
+    headerRow[Codestrong.ui.backgroundSelectedProperty + 'Image'] = 'images/sessionbckgd@2x.png';
 
     var bodyRow = Ti.UI.createTableViewRow({
       hasChild: false,
@@ -219,12 +212,7 @@
       backgroundColor: '#CE3016',
       layout:'vertical'
     });
-    
-    if (Codestrong.isAndroid()) {
-  	    presRow.backgroundSelectedColor = '#999';
-    } else {
-  	    presRow.selectedBackgroundColor = '#999';
-    }
+    presRow[Codestrong.ui.backgroundSelectedProperty + 'Color'] = Codestrong.ui.backgroundSelectedColor;
     
     presRow.add(av);
     var presenterFullName2 = Ti.UI.createLabel({

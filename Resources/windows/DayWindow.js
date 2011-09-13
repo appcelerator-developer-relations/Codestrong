@@ -65,12 +65,7 @@
     	data[i].hasChild = true;
     	data[i].color = '#000';
     	data[i].backgroundColor = '#fff';
-    	
-    	if (Codestrong.isAndroid()) {
-    		data[i].backgroundSelectedColor = '#999';
-    	} else {
-    		data[i].selectedBackgroundColor = '#999';
-    	}
+    	data[i][Codestrong.ui.backgroundSelectedProperty + 'Color'] = Codestrong.ui.backgroundSelectedColor;
     }
 
     // create main day window
