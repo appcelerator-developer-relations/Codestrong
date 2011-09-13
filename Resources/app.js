@@ -52,7 +52,7 @@ if (!Drupal.db.getConnection('main').tableExists('user')) {
 }
 
 Ti.include(
-	// All Codestrong custom windows
+	// All Codestrong windows
   	'windows/ModalActivityIndicatorWindow.js',	
   	'windows/DayWindow.js',
   	'windows/TwitterWindow.js',
