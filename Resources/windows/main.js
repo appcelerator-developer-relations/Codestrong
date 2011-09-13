@@ -82,7 +82,7 @@
 		iconWin.orientationModes = [Ti.UI.PORTRAIT];
 
   		// add a left navigation button for ios
-  		if (!isAndroid()) {
+  		if (!Codestrong.isAndroid()) {
 	  		var leftButton = Ti.UI.createButton({
 		    	backgroundImage: 'images/6dots.png',
 		    	width: 41,
@@ -131,12 +131,11 @@
   	viewIcons.add(createIcon(Codestrong.settings.icons.list[i]));
   }
 
-	if (isAndroid()) {
+	if (Codestrong.isAndroid()) {
 		mainWindow.open({animated:true});	
 	} else {
 		Codestrong.navWindow.open({transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
 	}
-  //Codestrong.navWindow.open(isAndroid() ? {} : {transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
 
   var updateCount = 0;
   Ti.addEventListener('drupal:entity:datastore:update_completed', function(e) {

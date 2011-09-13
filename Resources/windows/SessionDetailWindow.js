@@ -64,7 +64,7 @@
     
     // TODO: Figure out why I need to assign this when I already have 
     //       selectionStyle = 'none'
-    if (isAndroid()) {
+    if (Codestrong.isAndroid()) {
     	headerRow.backgroundSelectedImage = 'images/sessionbckgd@2x.png';	
     } else {
     	headerRow.selectedBackgroundImage = 'images/sessionbckgd@2x.png';
@@ -145,7 +145,7 @@
         textAlign:'left',
         color:'#000',
         height: 'auto',
-        width: isAndroid() ? '92%' : 'auto',
+        width: Codestrong.isAndroid() ? '92%' : 'auto',
         top: 15,
         bottom: 15,
         font: {
@@ -155,7 +155,7 @@
       bodyRow.add(body);
     }
     
-    if (!isAndroid()) {
+    if (!Codestrong.isAndroid()) {
       	body.right = commonPadding;
       	body.left = commonPadding;
     }
@@ -219,7 +219,7 @@
       layout:'vertical'
     });
     
-    if (isAndroid()) {
+    if (Codestrong.isAndroid()) {
   	    presRow.backgroundSelectedColor = '#999';
     } else {
   	    presRow.selectedBackgroundColor = '#999';

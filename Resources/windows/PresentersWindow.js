@@ -65,7 +65,7 @@
 	      }
 	
 	      presenterRow = Ti.UI.createTableViewRow({
-	        hasChild: isAndroid(),
+	        hasChild: Codestrong.isAndroid(),
 	        className: 'presenters_row',
 	        selectedColor: '#999',
 	        backgroundColor: '#fff',
@@ -76,7 +76,7 @@
 	        layout: 'auto'
 	      });
 	      
-	      if (isAndroid()) {
+	      if (Codestrong.isAndroid()) {
 	      	  presenterRow.backgroundSelectedColor = '#999';
 	      } else {
 	      	  presenterRow.selectedBackgroundColor = '#999';
@@ -96,7 +96,7 @@
 	      
 	
 	      // Android can't handle some of this label manipulation
-	      if (isAndroid()) {
+	      if (Codestrong.isAndroid()) {
 	        presenterRow.add(Ti.UI.createLabel({
 	        text: fullName,
 	        fontFamily:'sans-serif',

@@ -234,7 +234,7 @@ Drupal.db.Connection.prototype.query = function(stmt, args) {
   // http://developer.appcelerator.com/question/14591/having-trouble-wrapping-a-db-object#105841
   var result;
 
-  if (isAndroid()) {
+  if (Codestrong.isAndroid()) {
     result = this.connection.execute(stmt, args);
   }
   else {

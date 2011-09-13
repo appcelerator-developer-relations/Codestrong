@@ -3,7 +3,7 @@ DrupalCon.ui.activityIndicator = (function() {
 	var isShowing = false;
 	var myTimeout = undefined;
 	
-	if (isAndroid()) {
+	if (Codestrong.isAndroid()) {
 		activityIndicator = Ti.UI.createActivityIndicator({
   			color:'#fff'
   		});	
@@ -34,7 +34,7 @@ DrupalCon.ui.activityIndicator = (function() {
 			return;	
 		}
 		isShowing = true;
-		if (isAndroid()) {
+		if (Codestrong.isAndroid()) {
 			activityIndicator.message = message;
 			activityIndicator.show();			
 		} else {
@@ -65,7 +65,7 @@ DrupalCon.ui.activityIndicator = (function() {
 		}
 		if (isShowing) {
 			isShowing = false;
-			if (isAndroid()) {
+			if (Codestrong.isAndroid()) {
 				activityIndicator.hide();	
 			} else {
 				activityIndicator.ai.hide();

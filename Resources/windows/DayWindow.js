@@ -66,7 +66,7 @@
     	data[i].color = '#000';
     	data[i].backgroundColor = '#fff';
     	
-    	if (isAndroid()) {
+    	if (Codestrong.isAndroid()) {
     		data[i].backgroundSelectedColor = '#999';
     	} else {
     		data[i].selectedBackgroundColor = '#999';

@@ -69,7 +69,7 @@ var DrupalCon = {
       focusable: true
     });
     
-    if (isAndroid()) {
+    if (Codestrong.isAndroid()) {
 		sessionRow.backgroundSelectedColor = '#999';
 	} else {
 		sessionRow.selectedBackgroundColor = '#999';

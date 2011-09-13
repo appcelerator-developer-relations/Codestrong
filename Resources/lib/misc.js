@@ -15,67 +15,6 @@
  * along with DrupalCon Mobile.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* 
- * Build presenter data blob
- */
-function getPresenterData(names) {
-
-  // Instructors may be single (string) or multiple (object), this part works.
-  var instructors = [];
-  if (typeof names === 'string') {
-    instructors.push(names);
-  }
-  else {
-    // Force what is likely an object to an array.
-    for (var i in names) {
-      // We don't use hasOwnProperty() here because that doesn't exist for objects
-      // created by JSON.parse() in Titanium. This is a Titanium bug, I believe.
-      instructors.push(names[i]);
-    }
-  }
-
-  var placeholders = [];
-  for (var j = 0, numPlaceholders = instructors.length; j < numPlaceholders; j++) {
-    placeholders.push('?');
-  }
-
-  var rows = Drupal.db.getConnection('main').query("SELECT name, full_name FROM user WHERE name IN (" + placeholders.join(', ') + ')', instructors);
-
-  var nameList = [];
-  if (rows) {
-    while (rows.isValidRow()) {
-      if (rows.fieldByName('full_name')) {
-        nameList.push(rows.fieldByName('full_name'));
-      }
-      else {
-        nameList.push(rows.fieldByName('name'));
-      }
-      rows.next();
-    }
-    rows.close();
-  }
-
-  return nameList;
-}
-
-//Should be in a namespace, but then again, so should pretty much all of this
-var isIpadValue = undefined;
-function isIpad (){
-	if (isIpadValue === undefined) {
-		isIpadValue = (Ti.Platform.osname == 'ipad');
-	} 
-	return isIpadValue;
-}
-
-// Should be in a namespace, but then again, so should pretty much all of this
-var isAndroidValue = undefined;
-function isAndroid (){
-	if (isAndroidValue === undefined) {
-		isAndroidValue = (Ti.Platform.osname == 'android');
-	} 
-	return isAndroidValue;
-}
-
 // Using the parsing method shown https://gist.github.com/819929
 /**
  * Define our parser class. It takes in some text, and then you can call "linkifyURLs", or one of the other methods,

@@ -123,7 +123,7 @@ Drupal.entity.Datastore.prototype.insert = function(entity) {
   
   // For whatever reason, `delete` does not actually delete the property on Android
   var fields = {};
-  if (isAndroid()) {
+  if (Codestrong.isAndroid()) {
   	for (var mykey in entity) {
   		if (mykey !== 'time') {
   			fields[mykey] = entity[mykey];	
