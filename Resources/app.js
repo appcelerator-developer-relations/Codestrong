@@ -27,7 +27,6 @@ Ti.include(
   'lib/misc.js',
   'lib/menu.js',
   'drupal/drupal.js',
-  //'drupal/services.js',
   'drupal/db.js',
   'drupal/db.insert.js',
   'drupal/entity.js',
@@ -35,14 +34,6 @@ Ti.include(
   'drupalcon/drupalcon.js',
   'drupalcon/entity.js'
 );
-
-// Define our connection information.  This is very similar to the DB layer's
-// $databases array in settings.php.
-// Drupal.services.addConnectionInfo('main', {
-  // endpointUrl: 'http://chicago2011.drupal.org/services/mobile',
-  // user: '',
-  // pass: ''
-// });
 
 // Register our database information.
 Drupal.db.addConnectionInfo('main');
