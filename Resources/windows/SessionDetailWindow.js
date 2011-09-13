@@ -84,7 +84,7 @@
 
     if (sessionData.title) {
       var titleLabel = Ti.UI.createLabel({
-        text: cleanSpecialChars(sessionData.title),
+        text: Codestrong.cleanSpecialChars(sessionData.title),
         font: {fontSize: 28, fontWeight: 'bold'},
         textAlign: 'left',
         color: '#000',
@@ -140,7 +140,7 @@
     
     if (sessionData.body) {
       var body = Ti.UI.createLabel({
-        text: cleanSpecialChars(sessionData.body.replace('\n','\n\n')),
+        text: Codestrong.cleanSpecialChars(sessionData.body.replace('\n','\n\n')),
         backgroundColor:'#fff',
         textAlign:'left',
         color:'#000',
@@ -228,7 +228,7 @@
     presRow.add(av);
     var presenterFullName2 = Ti.UI.createLabel({
       presenter: presenter,
-      text: cleanSpecialChars(presenter.full_name),
+      text: Codestrong.cleanSpecialChars(presenter.full_name),
       font: {fontSize:18, fontWeight:'bold'},
       left: 75,
       top: -45,
@@ -238,7 +238,7 @@
     
     var presenterName2 = Ti.UI.createLabel({
       presenter: presenter,
-      text: cleanSpecialChars(presenter.company),
+      text: Codestrong.cleanSpecialChars(presenter.company),
       font:{fontSize:14, fontWeight:'normal'},
       left: 75,
       bottom: 10,

@@ -52,7 +52,7 @@ var DrupalCon = {
   var lastTime = '';
 
   DrupalCon.renderers.session = function(session) {
-    var sessionTitle = cleanSpecialChars(session.title);
+    var sessionTitle = Codestrong.cleanSpecialChars(session.title);
     var sessionRow = Ti.UI.createTableViewRow({
       hasChild:true,
       className: 'cs_session',

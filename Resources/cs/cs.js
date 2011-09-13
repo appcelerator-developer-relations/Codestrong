@@ -28,4 +28,19 @@ Object.create = function (o) {
 		}
 		return Codestrong.__isAndroid;
 	}
+	
+	Codestrong.cleanSpecialChars = function(str) {
+  		if (str == null) {
+    		return '';
+  		}
+  		if (typeof str === 'string') {
+    		return  str
+      			.replace(/&quot;/g,'"')
+      			.replace(/\&amp\;/g,"&")
+      			.replace(/&lt;/g,"<")
+      			.replace(/&gt;/g,">")
+      			.replace(/&#039;/g, "'");
+  		}
+  		return '';
+	};
 })();

@@ -91,7 +91,7 @@
 
     if (presenterData.full_name != undefined) {
       var fullName = Ti.UI.createLabel({
-        text: cleanSpecialChars(presenterData.full_name),
+        text: Codestrong.cleanSpecialChars(presenterData.full_name),
         font: {fontSize: 20, fontWeight: 'bold'},
         textAlign: 'left',
         color: '#000',
@@ -106,7 +106,7 @@
 
     if (presenterData.company != undefined) {
       var company = Ti.UI.createLabel({
-        text:cleanSpecialChars(presenterData.company),
+        text:Codestrong.cleanSpecialChars(presenterData.company),
         font:{fontSize: 14, fontWeight: 'bold'},
         textAlign: 'left',
         color: '#666',
@@ -125,7 +125,7 @@
 	    for (var i in sessions) {
 	      sessionRow = Ti.UI.createTableViewRow({
 	        hasChild:true,
-	        sessionTitle:cleanSpecialChars(sessions[i].title),
+	        sessionTitle: Codestrong.cleanSpecialChars(sessions[i].title),
 	        nid:sessions[i].nid,
 	        height: 'auto',
 	        backgroundColor: '#CE3016'
@@ -138,7 +138,7 @@
 	      }
 	
 	      var titleLabel = Ti.UI.createLabel({
-	        text: cleanSpecialChars(sessions[i].title),
+	        text: Codestrong.cleanSpecialChars(sessions[i].title),
 	        font: {fontSize:14, fontWeight:'normal'},
 	        left: 10,
 	        top: 10,
@@ -162,7 +162,7 @@
 	    }
     }
     
-      var bioText = (!presenterData.bio) ? "No biography available" : cleanSpecialChars(presenterData.bio.replace(/^[\s\n\r\t]+|[\s\n\r\t]+$/g, '').replace(/\n/g,"\n\n"));
+      var bioText = (!presenterData.bio) ? "No biography available" : Codestrong.cleanSpecialChars(presenterData.bio.replace(/^[\s\n\r\t]+|[\s\n\r\t]+$/g, '').replace(/\n/g,"\n\n"));
       var bio = Ti.UI.createLabel({
         text: bioText,
         backgroundColor:'#fff',
