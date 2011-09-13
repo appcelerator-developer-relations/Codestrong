@@ -15,47 +15,49 @@
  * along with DrupalCon Mobile.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var Twitter = {
-  ui: {},
-  util: {}
-};
+// var Twitter = {
+  // ui: {},
+  // util: {}
+// };
 
 (function() {
-	var twitterTimeout = 10000;
-  var tweetCount = 50;
-	var firstRun = true;
-
-  var createTwitterTable = function(search) {
-  	  return Ti.UI.createTableView({
-  	  	  height:'100%',
-          width:'100%',
-          viewTitle:search
-  	  });
-  }
-  var data = [
-  {
-  		search:'#codestrong',
-  		url: 'http://search.twitter.com/search.json?q=%23codestrong&result_type=recent&rpp=' + tweetCount,
-  		table: createTwitterTable('#codestrong'),
-  		isSearch: true
-  },
-    {
-  		search:'@appcelerator',
-  		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=appcelerator&count=' + tweetCount,
-  		table: createTwitterTable('@appcelerator'),
-  		isSearch: false
-  	},
-  	{
-  		search:'@codestrong',
-  		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=codestrong&count=' + tweetCount,
-  		table: createTwitterTable('@codestrong'),
-  		isSearch: false
-  	}
-  	
-  ];
-  var loadedViews = [];
+	
   
   DrupalCon.ui.createTwitterWindow = function() {
+  	var twitterTimeout = 10000;
+  	var tweetCount = 50;
+	var firstRun = true;
+
+	  var createTwitterTable = function(search) {
+	  	  return Ti.UI.createTableView({
+	  	  	  height:'100%',
+	          width:'100%',
+	          viewTitle:search
+	  	  });
+	  }
+	  var data = [
+	  {
+	  		search:'#codestrong',
+	  		url: 'http://search.twitter.com/search.json?q=%23codestrong&result_type=recent&rpp=' + tweetCount,
+	  		table: createTwitterTable('#codestrong'),
+	  		isSearch: true
+	  },
+	    {
+	  		search:'@appcelerator',
+	  		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=appcelerator&count=' + tweetCount,
+	  		table: createTwitterTable('@appcelerator'),
+	  		isSearch: false
+	  	},
+	  	{
+	  		search:'@codestrong',
+	  		url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=codestrong&count=' + tweetCount,
+	  		table: createTwitterTable('@codestrong'),
+	  		isSearch: false
+	  	}
+	  	
+	  ];
+	  var loadedViews = [];
+  	
     var twitterWindow = Titanium.UI.createWindow({
       id: 'twitterWindow',
       title: 'Twitter News',
