@@ -26,29 +26,32 @@
         });
 
         // create table view data object
-        var data = [{
-            title: 'About Codestrong',
-            shortTitle: 'Codestrong',
-            webview: Ti.UI.createWebView({
-                url: 'pages/about.html'
-            })
-        }, {
-            title: 'About The App',
-            shortTitle: 'The App',
-            webview: Ti.UI.createWebView({
-                url: 'pages/app.html'
-            })
-        }];
+        var data = [
+        	{
+	            title: 'About Codestrong',
+	            shortTitle: 'Codestrong',
+	            webview: Ti.UI.createWebView({
+	                url: 'pages/about.html'
+	            })
+        	}, 
+        	{
+	            title: 'About The App',
+	            shortTitle: 'The App',
+	            webview: Ti.UI.createWebView({
+	                url: 'pages/app.html'
+	            })
+        	}
+        ];
 
         var tabbedBarView = Ti.UI.createView({
             backgroundColor: '#555',
             top: 0,
-            height: 36
+            height: Codestrong.ui.tabBarHeight
         });
         var tabbedBar = Ti.UI.createView({
             top: 0,
             backgroundColor: '#000',
-            height: 36,
+            height: Codestrong.ui.tabBarHeight,
             width: Ti.Platform.displayCaps.platformWidth
         });
 
@@ -57,7 +60,7 @@
 
             var tabView = Ti.UI.createView({
                 backgroundImage: (i == 0) ? 'images/buttonbar/button2_selected.png' : 'images/buttonbar/button2_unselected_shadowL.png',
-                height: 36,
+                height: Codestrong.ui.tabBarHeight,
                 left: i * (Ti.Platform.displayCaps.platformWidth / data.length),
                 right: Ti.Platform.displayCaps.platformWidth - ((parseInt(i) + 1) * (Ti.Platform.displayCaps.platformWidth / data.length)),
                 index: i
@@ -99,9 +102,11 @@
         var scrollable = Ti.UI.createScrollableView({
             showPagingControl: false,
             backgroundColor: '#000000',
-            top: 36,
+            top: Codestrong.ui.tabBarHeight,
             views: [
-            data[0].webview, data[1].webview]
+            	data[0].webview, 
+            	data[1].webview
+            ]
         });
         scrollable.addEventListener('scroll', function (e) {
             if (e.view) {
