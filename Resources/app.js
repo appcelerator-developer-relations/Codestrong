@@ -21,20 +21,20 @@ var Ti, Drupal;
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Ti.UI.setBackgroundColor('#414444');
 
-// include the Codestrong libraries
 Ti.include(
+	// Codestrong libraries
 	'cs/cs.js',
-	'cs/datetime.js'
-);
-
-// Include the Drupal connection libraries.
-Ti.include(
+	'cs/datetime.js',
+	
+	// Drupal connection libraries
   	'drupal/drupal.js',
   	'drupal/db.js',
   	'drupal/db.insert.js',
   	'drupal/entity.js',
   	'drupal/entity.datastore.js',
-  	'drupalcon/entity.js'
+  	
+  	// Codestrong specific Drupal entities
+  	'cs/entity.js'
 );
 
 // Register our database information.
