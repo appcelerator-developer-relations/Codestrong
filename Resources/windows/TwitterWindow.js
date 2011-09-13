@@ -172,7 +172,7 @@
       	  loadedViews.push(entry.table);
           if (loadedViews.length >= data.length) {
 			loadedViews = [];
-			DrupalCon.ui.activityIndicator.hideModal();
+			Codestrong.ui.activityIndicator.hideModal();
           }
       };
       
@@ -278,7 +278,7 @@
           loadedViews.push(entry.table);
           if (loadedViews.length >= data.length) {
 			loadedViews = [];
-			DrupalCon.ui.activityIndicator.hideModal();
+			Codestrong.ui.activityIndicator.hideModal();
           }
         }
         catch(e) {
@@ -290,7 +290,7 @@
     }
 
 	var reloadAllTweets = function() {
-		DrupalCon.ui.activityIndicator.showModal('Loading latest tweets...', twitterTimeout, 'Twitter timed out. All streams may not have updated.');
+		Codestrong.ui.activityIndicator.showModal('Loading latest tweets...', twitterTimeout, 'Twitter timed out. All streams may not have updated.');
 	  	for (var i = 0; i < data.length; i++) {
 	  		getTweets(data[i]);	
 	  	}

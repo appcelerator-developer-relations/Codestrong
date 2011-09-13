@@ -143,12 +143,12 @@
   	if (updateCount >= 2) {
   		updateCount = 0;
   		Ti.App.fireEvent('app:update_presenters');
-  		DrupalCon.ui.activityIndicator.hideModal();
+  		Codestrong.ui.activityIndicator.hideModal();
   	}
   });
 
   Ti.addEventListener('drupalcon:update_data', function(e) {
-  	DrupalCon.ui.activityIndicator.showModal('Loading sessions and speakers...', updateTimeout, 'Connection timed out. All session and speaker data may not have updated.');
+  	Codestrong.ui.activityIndicator.showModal('Loading sessions and speakers...', updateTimeout, 'Connection timed out. All session and speaker data may not have updated.');
   	updateCount = 0;
     Drupal.entity.db('main', 'node').fetchUpdates('session');
     Drupal.entity.db('main', 'user').fetchUpdates('user');

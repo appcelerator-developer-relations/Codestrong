@@ -1,4 +1,4 @@
-DrupalCon.ui.activityIndicator = (function() {
+Codestrong.ui.activityIndicator = (function() {
 	var activityIndicator;
 	var isShowing = false;
 	var myTimeout = undefined;

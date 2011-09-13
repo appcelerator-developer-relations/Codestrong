@@ -1,9 +1,10 @@
 var Codestrong = {
-	datetime: {},
 	android: {
 		menu: {}	
 	},
+	datetime: {},
     settings: {},
+    ui: {},
     __isLargeScreen: undefined,
     __isAndroid: undefined,
     navWindow: undefined,
@@ -11,10 +12,14 @@ var Codestrong = {
     tabBarHeight: 36
 };
 
+var DrupalCon = {
+  ui: {}
+};
+
 Object.create = function (o) {
-    var F = function () {};
-    F.prototype = 0;
-    return new F();
+    var f = function () {};
+    f.prototype = 0;
+    return new f();
 };
 
 (function() {
