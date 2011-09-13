@@ -6,9 +6,7 @@ var Codestrong = {
     ui: {},
     __isLargeScreen: undefined,
     __isAndroid: undefined,
-    navWindow: undefined,
-    navGroup: undefined,
-    tabBarHeight: 36
+    navGroup: undefined
 };
 
 (function() {

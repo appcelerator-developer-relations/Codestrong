@@ -17,6 +17,7 @@
 (function () {
     var updateTimeout = 15000;
     var i = 0;
+    var navWindow;
     var mainWindow = Ti.UI.createWindow({
         backgroundImage: Codestrong.ui.mainBackgroundImage,
         title: 'Dashboard',
@@ -53,17 +54,17 @@
                 win.close(obj);
             }
         };
-        Codestrong.navWindow = mainWindow;
+        navWindow = mainWindow;
     } else {
-        Codestrong.navWindow = Ti.UI.createWindow();
+        navWindow = Ti.UI.createWindow();
         Codestrong.navGroup = Ti.UI.iPhone.createNavigationGroup({
             window: mainWindow
         });
-        Codestrong.navWindow.add(Codestrong.navGroup);
+        navWindow.add(Codestrong.navGroup);
     }
 
     // lock orientation to portrait
-    Codestrong.navWindow.orientationModes = [Ti.UI.PORTRAIT];
+    navWindow.orientationModes = [Ti.UI.PORTRAIT];
     if (!Codestrong.isAndroid()) {
         Ti.UI.orientation = Ti.UI.PORTRAIT;
     }
@@ -130,6 +131,7 @@
         return view;
     };
 
+	// Layout the dashboard icons
     for (i = 0; i < Codestrong.ui.icons.list.length; i++) {
         viewIcons.add(createIcon(Codestrong.ui.icons.list[i]));
     }
@@ -139,11 +141,12 @@
             animated: true
         });
     } else {
-        Codestrong.navWindow.open({
+        navWindow.open({
             transition: Ti.UI.iPhone.AnimationStyle.CURL_DOWN
         });
     }
 
+    // Handle sessions and speaker updates
     var updateCount = 0;
     Ti.addEventListener('drupal:entity:datastore:update_completed', function (e) {
         updateCount++;

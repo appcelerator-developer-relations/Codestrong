@@ -21,7 +21,10 @@
 		Codestrong.ui.backgroundSelectedProperty = 'selectedBackground';
 	}
 	
-	Codestrong.ui.backgroundSelectedColor = '#999';
+	Codestrong.extend(Codestrong.ui, {
+		backgroundSelectedColor: '#999',
+		tabBarHeight: 36
+	});
 	
 	Codestrong.ui.createHeaderRow = function(title) {
 		var headerRow = Ti.UI.createTableViewRow({

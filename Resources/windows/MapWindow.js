@@ -34,16 +34,16 @@
       	title: 'Floor 3 - Grand Ballroom', 
       	shortTitle:'3rd Floor', 
       	url: 'pages/maps/map3.html',
-      	animateOut: {left:-1 * Ti.Platform.displayCaps.platformWidth, top: Codestrong.tabBarHeight, duration:duration},
-      	animateIn: {left:0, top: Codestrong.tabBarHeight, duration:duration},
+      	animateOut: {left:-1 * Ti.Platform.displayCaps.platformWidth, top: Codestrong.ui.tabBarHeight, duration:duration},
+      	animateIn: {left:0, top: Codestrong.ui.tabBarHeight, duration:duration},
       	left: 0
       },
       {
       	title: 'Floor 4 - Pacific Terrace', 
       	shortTitle:'4th Floor', 
       	url: 'pages/maps/map4.html',
-      	animateOut: {left:Ti.Platform.displayCaps.platformWidth, top: Codestrong.tabBarHeight, duration:duration},
-      	animateIn: {left:0, top:Codestrong.tabBarHeight, duration:duration},
+      	animateOut: {left:Ti.Platform.displayCaps.platformWidth, top: Codestrong.ui.tabBarHeight, duration:duration},
+      	animateIn: {left:0, top:Codestrong.ui.tabBarHeight, duration:duration},
       	left: Ti.Platform.displayCaps.platformWidth
       }
     ];
@@ -51,12 +51,12 @@
     var tabbedBarView = Ti.UI.createView({
     	backgroundColor:'#555',
     	top:0,
-    	height:Codestrong.tabBarHeight
+    	height:Codestrong.ui.tabBarHeight
     });
     var tabbedBar = Ti.UI.createView({
     	top:0,
     	backgroundColor: '#000',
-    	height:Codestrong.tabBarHeight,
+    	height:Codestrong.ui.tabBarHeight,
     	width:Ti.Platform.displayCaps.platformWidth
     });
     
@@ -66,7 +66,7 @@
     	myEntry.webview = Ti.UI.createWebView({
     		scalesPageToFit: true,
     		url: myEntry.url,
-    		top:Codestrong.tabBarHeight,
+    		top:Codestrong.ui.tabBarHeight,
     		bottom:0,
     		left:myEntry.left,
     		width:Ti.Platform.displayCaps.platformWidth
@@ -74,7 +74,7 @@
     	
     	var tabView = Ti.UI.createView({
 			backgroundImage: (i == 0) ? 'images/buttonbar/button2_selected.png' : 'images/buttonbar/button2_unselected_shadowL.png',
-			height:Codestrong.tabBarHeight,
+			height:Codestrong.ui.tabBarHeight,
 			left: i * (Ti.Platform.displayCaps.platformWidth/data.length),
 			right: Ti.Platform.displayCaps.platformWidth - ((parseInt(i) + 1) * (Ti.Platform.displayCaps.platformWidth/data.length)),
 			index: i
