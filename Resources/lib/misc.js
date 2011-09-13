@@ -15,38 +15,6 @@
  * along with DrupalCon Mobile.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Using the parsing method shown https://gist.github.com/819929
-/**
- * Define our parser class. It takes in some text, and then you can call "linkifyURLs", or one of the other methods,
- * and then call "getHTML" to get the fully parsed text back as HTML!
- * @param text that you want parsed
- */
-function twitterParser(text) {
-
-  var html = text;
-
-  var urlRegex = /((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi;
-  var hashTagRegex = /#([^ ]+)/gi;
-  var atTagRegex = /\@([a-z]+)/ig;
-
-  this.linkifyURLs = function() {
-    html = html.replace(urlRegex, '<a href="$1">$1</a>');
-    // html = html.replace(urlRegex, '<a onclick="Ti.App.fireEvent(\'openURL\', { url: \'$1\' });">$1</a>');
-  };
-  this.linkifyHashTags = function() {
-    html = html.replace(hashTagRegex, '<a href="http://twitter.com/#!/search?q=%23$1">#$1</a>');
-  };
-  this.linkifyAtTags = function() {
-    html = html.replace(atTagRegex, '<a href="http://mobile.twitter.com/$1">@$1</a>');
-  };
-
-  this.getHTML = function() {
-    return html;
-  };
-
-}
-
-
 /*
  * Clean up some of the special characters we are running into.
  */
