@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with CODESTRONG Mobile.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 // Declaring variables to prevent implied global error in jslint
 var Drupal, Ti;
 
@@ -33,16 +32,16 @@ var Drupal, Ti;
  *   The type of entity this datastore should access.
  * @return Drupal.entity.Datastore
  */
-Drupal.entity.Datastore = function(site, connection, entityType, entityInfo) {
-  this.site = site;
-  this.connection = connection;
-  this.entityType = entityType;
-  this.entityInfo = entityInfo;
-  this.idField = this.getIdField();
+Drupal.entity.Datastore = function (site, connection, entityType, entityInfo) {
+    this.site = site;
+    this.connection = connection;
+    this.entityType = entityType;
+    this.entityInfo = entityInfo;
+    this.idField = this.getIdField();
 
-  this.schemaDefinition = null;
+    this.schemaDefinition = null;
 
-  return this;
+    return this;
 };
 
 /**
@@ -51,10 +50,10 @@ Drupal.entity.Datastore = function(site, connection, entityType, entityInfo) {
  * @return string
  *   The name of the field that holds this entity type's primary key.
  */
-Drupal.entity.Datastore.prototype.getIdField = function() {
-  var idField = this.entityInfo.entity_keys.id;
+Drupal.entity.Datastore.prototype.getIdField = function () {
+    var idField = this.entityInfo.entity_keys.id;
 
-  return idField;
+    return idField;
 };
 
 /**
@@ -70,13 +69,13 @@ Drupal.entity.Datastore.prototype.getIdField = function() {
  *   object.  It is (or should be) safe to simply use an 
  *   entity object retrieved from a Drupal site.
  */
-Drupal.entity.Datastore.prototype.save = function(entity) {
-  // For simplicity, we'll just do a delete/insert cycle.
-  // We're only using a very simple (if dynamic) schema,
-  // so this lets us avoid having to write a dynamic
-  // update builder for now.
-  this.remove(entity[this.idField]);
-  return this.insert(entity);
+Drupal.entity.Datastore.prototype.save = function (entity) {
+    // For simplicity, we'll just do a delete/insert cycle.
+    // We're only using a very simple (if dynamic) schema,
+    // so this lets us avoid having to write a dynamic
+    // update builder for now.
+    this.remove(entity[this.idField]);
+    return this.insert(entity);
 };
 
 /**
@@ -90,61 +89,59 @@ Drupal.entity.Datastore.prototype.save = function(entity) {
  *   The number of rows affected. This should only ever be 1 for 
  *   a successful insert or 0 if something went wrong.
  */
-Drupal.entity.Datastore.prototype.insert = function(entity) {
-  //Ti.API.debug('In Datastore.insert()');
-
-  // var fields = {};
-
-  // // Get the basic fields first.
-  // var properties = ['id', 'revision', 'bundle', 'label'];
-  // var property;
-  // for (var i = 0; i < properties.length; i++) {
+Drupal.entity.Datastore.prototype.insert = function (entity) {
+    //Ti.API.debug('In Datastore.insert()');
+    // var fields = {};
+    // // Get the basic fields first.
+    // var properties = ['id', 'revision', 'bundle', 'label'];
+    // var property;
+    // for (var i = 0; i < properties.length; i++) {
     // property = properties[i];
     // if (this.entityInfo.entity_keys[property]) {
-      // fields[this.entityInfo.entity_keys[property]] = entity[this.entityInfo.entity_keys[property]];
+    // fields[this.entityInfo.entity_keys[property]] = entity[this.entityInfo.entity_keys[property]];
     // }
-  // }
-  // fields = entity;
-  if (this.entityInfo.label === 'Node') {
-  	var timeslot = entity['time'];
-  	var m  = /^(\d+)\s+([^\s]+)\s+(\d\d\:\d\d)\s*\-\s*(\d\d\:\d\d)/.exec(timeslot);
-  	if (m && m.length) {
-  		entity['start_date'] = '2011-09-' + m[1] + ' ' + m[3] + ':00.000';
-  		entity['end_date'] =   '2011-09-' + m[1] + ' ' + m[4] + ':00.000';
-  	} else {
-  		entity['start_date'] = '';
-  		entity['end_date'] =   '';	
-  	}
-  	
-  	if (!entity.room) {
-  		entity.room = '';
-  	}
-  }
-  
-  // For whatever reason, `delete` does not actually delete the property on Android
-  var fields = {};
-  if (Codestrong.isAndroid()) {
-  	for (var mykey in entity) {
-  		if (mykey !== 'time') {
-  			fields[mykey] = entity[mykey];	
-  		}
-  	}
-  } else {
-  	delete entity['time'];
-  	fields = entity;
-  }
+    // }
+    // fields = entity;
+    if (this.entityInfo.label === 'Node') {
+        var timeslot = entity['time'];
+        var m = /^(\d+)\s+([^\s]+)\s+(\d\d\:\d\d)\s*\-\s*(\d\d\:\d\d)/.exec(timeslot);
+        if (m && m.length) {
+            entity['start_date'] = '2011-09-' + m[1] + ' ' + m[3] + ':00.000';
+            entity['end_date'] = '2011-09-' + m[1] + ' ' + m[4] + ':00.000';
+        } else {
+            entity['start_date'] = '';
+            entity['end_date'] = '';
+        }
 
-  // And finally, store the serialized entity object.
-  fields.data = JSON.stringify(entity);
+        if (!entity.room) {
+            entity.room = '';
+        }
+    }
 
-   // Ensure that the schema table exists.
-  if (!this.connection.tableExists(this.entityType)) {
-    this.connection.createTable(this.entityType, this.getSchema());
-  }
+    // For whatever reason, `delete` does not actually delete the property on Android
+    var fields = {};
+    if (Codestrong.isAndroid()) {
+        for (var mykey in entity) {
+            if (mykey !== 'time') {
+                fields[mykey] = entity[mykey];
+            }
+        }
+    } else {
+        delete entity['time'];
+        fields = entity;
+    }
 
-  this.connection.insert(this.entityType).fields(fields).execute();
+    // And finally, store the serialized entity object.
+    fields.data = JSON.stringify(entity);
 
-  return this.connection.rowsAffected;
+    // Ensure that the schema table exists.
+    if (!this.connection.tableExists(this.entityType)) {
+        this.connection.createTable(this.entityType, this.getSchema());
+    }
+
+    this.connection.insert(this.entityType).fields(fields).execute();
+
+    return this.connection.rowsAffected;
 };
 
 /**
@@ -163,10 +160,10 @@ Drupal.entity.Datastore.prototype.insert = function(entity) {
  *   a successful update or 0 if the entity didn't exist in the
  *   first place.
  */
-Drupal.entity.Datastore.prototype.update = function(entity) {
-  var data = JSON.stringify(entity);
-  this.connection.query("UPDATE " + this.entityType + " SET type=?, title=?, data=? WHERE nid=?", [entity.type, entity.title, data, entity[this.idField]]);
-  return this.connection.rowsAffected;
+Drupal.entity.Datastore.prototype.update = function (entity) {
+    var data = JSON.stringify(entity);
+    this.connection.query("UPDATE " + this.entityType + " SET type=?, title=?, data=? WHERE nid=?", [entity.type, entity.title, data, entity[this.idField]]);
+    return this.connection.rowsAffected;
 };
 
 /**
@@ -181,18 +178,18 @@ Drupal.entity.Datastore.prototype.update = function(entity) {
  *   true if an entity with the specified ID exists, false
  *   if not or if there was an error.
  */
-Drupal.entity.Datastore.prototype.exists = function(id) {
-  var rows = this.connection.query("SELECT 1 FROM " + this.entityType + " WHERE " + this.idField + " = ?", [id]);
+Drupal.entity.Datastore.prototype.exists = function (id) {
+    var rows = this.connection.query("SELECT 1 FROM " + this.entityType + " WHERE " + this.idField + " = ?", [id]);
 
-  // In case of pretty much any error whatsoever, Ti will just
-  // return null rather than show a useful error.  So we have
-  // to check the return, always. Fail.  We'll assume that a
-  // null return (error) indicates that the record is not there.
-  var ret = rows && rows.rowCount;
-  if (rows) {
-    rows.close();
-  }
-  return ret;
+    // In case of pretty much any error whatsoever, Ti will just
+    // return null rather than show a useful error.  So we have
+    // to check the return, always. Fail.  We'll assume that a
+    // null return (error) indicates that the record is not there.
+    var ret = rows && rows.rowCount;
+    if (rows) {
+        rows.close();
+    }
+    return ret;
 };
 
 /**
@@ -204,16 +201,15 @@ Drupal.entity.Datastore.prototype.exists = function(id) {
  *   The entity with the specified ID if any, or null
  *   if one was not found.
  */
-Drupal.entity.Datastore.prototype.load = function(id) {
-  var entities = this.loadMultiple([id]);
+Drupal.entity.Datastore.prototype.load = function (id) {
+    var entities = this.loadMultiple([id]);
 
-  if (entities && entities[0]) {
-    return entities[0];
-  }
-  else {
-    Ti.API.error('No such entity found: ' + id);
-    return null;
-  }
+    if (entities && entities[0]) {
+        return entities[0];
+    } else {
+        Ti.API.error('No such entity found: ' + id);
+        return null;
+    }
 };
 
 /**
@@ -231,8 +227,8 @@ Drupal.entity.Datastore.prototype.load = function(id) {
  *   the array will be empty. Note that the order of entities
  *   in the array is undefined.
  */
-Drupal.entity.Datastore.prototype.loadMultiple = function(ids, order) {
-  return this.loadByField(this.idField, ids, order);
+Drupal.entity.Datastore.prototype.loadMultiple = function (ids, order) {
+    return this.loadByField(this.idField, ids, order);
 };
 
 /**
@@ -255,34 +251,34 @@ Drupal.entity.Datastore.prototype.loadMultiple = function(ids, order) {
  *   An array of loaded entity objects.  If none were found the array will be
  *   empty.
  */
-Drupal.entity.Datastore.prototype.loadByField = function(field, values, order) {
+Drupal.entity.Datastore.prototype.loadByField = function (field, values, order) {
 
-  var entities = [];
+    var entities = [];
 
-  var placeholders = [];
-  for (var i=0, numPlaceholders = values.length; i < numPlaceholders; i++) {
-    placeholders.push('?');
-  }
-
-  var query = 'SELECT data FROM ' + this.entityType + ' WHERE ' + field + ' IN (' + placeholders.join(', ') + ')';
-
-  if (order !== undefined) {
-    query += ' ORDER BY ' + order.join(', ');
-  }
-
-  var rows = this.connection.query(query, values);
-
-  if (rows) {
-    while (rows.isValidRow()) {
-      var data = rows.fieldByName('data');
-      var entity = JSON.parse(data);
-      entities.push(entity);
-      rows.next();
+    var placeholders = [];
+    for (var i = 0, numPlaceholders = values.length; i < numPlaceholders; i++) {
+        placeholders.push('?');
     }
-    rows.close();
-  }
 
-  return entities;
+    var query = 'SELECT data FROM ' + this.entityType + ' WHERE ' + field + ' IN (' + placeholders.join(', ') + ')';
+
+    if (order !== undefined) {
+        query += ' ORDER BY ' + order.join(', ');
+    }
+
+    var rows = this.connection.query(query, values);
+
+    if (rows) {
+        while (rows.isValidRow()) {
+            var data = rows.fieldByName('data');
+            var entity = JSON.parse(data);
+            entities.push(entity);
+            rows.next();
+        }
+        rows.close();
+    }
+
+    return entities;
 };
 
 /**
@@ -302,30 +298,31 @@ Drupal.entity.Datastore.prototype.loadByField = function(field, values, order) {
  *   a successful deletion or 0 if the entity didn't exist in the
  *   first place.
  */
-Drupal.entity.Datastore.prototype.remove = function(id) {
-  this.connection.query("DELETE FROM " + this.entityType + " WHERE " + this.idField + " = ?", [id]);
-  return this.connection.rowsAffected;
+Drupal.entity.Datastore.prototype.remove = function (id) {
+    this.connection.query("DELETE FROM " + this.entityType + " WHERE " + this.idField + " = ?", [id]);
+    return this.connection.rowsAffected;
 };
 
-Drupal.entity.Datastore.prototype.fetchUpdates = function(bundle) {
-  var callback = function() {
-    // Let other systems respond to the update completion.
-    Ti.fireEvent('drupal:entity:datastore:update_completed', {entity: this.entityType, bundle: bundle});
-  };
+Drupal.entity.Datastore.prototype.fetchUpdates = function (bundle) {
+    var callback = function () {
+            // Let other systems respond to the update completion.
+            Ti.fireEvent('drupal:entity:datastore:update_completed', {
+                entity: this.entityType,
+                bundle: bundle
+            });
+        };
 
-  if (this.entityInfo.schema.fetchers && this.entityInfo.schema.fetchers[bundle]) {
-    this.entityInfo.schema.fetchers[bundle](this, callback);
-  }
-  else if (this.entityInfo.schema.defaultFetcher) {
-    this.entityInfo.schema.defaultFetcher(bundle, this, callback);
-  }
-  else {
-    Ti.API.error('No fetcher found for entity: ' + this.entityType + ', bundle: ' + bundle);
-    throw new Error('No fetcher found for entity: ' + this.entityType + ', bundle: ' + bundle);
-  }
+    if (this.entityInfo.schema.fetchers && this.entityInfo.schema.fetchers[bundle]) {
+        this.entityInfo.schema.fetchers[bundle](this, callback);
+    } else if (this.entityInfo.schema.defaultFetcher) {
+        this.entityInfo.schema.defaultFetcher(bundle, this, callback);
+    } else {
+        Ti.API.error('No fetcher found for entity: ' + this.entityType + ', bundle: ' + bundle);
+        throw new Error('No fetcher found for entity: ' + this.entityType + ', bundle: ' + bundle);
+    }
 };
 
-Drupal.entity.Datastore.prototype.defaultUpdater = function(bundle) {
+Drupal.entity.Datastore.prototype.defaultUpdater = function (bundle) {
 
 };
 
@@ -336,70 +333,70 @@ Drupal.entity.Datastore.prototype.defaultUpdater = function(bundle) {
  * type.  That is, all existing data will be destroyed.  Did we mention
  * *all existing data for this entity type will be lost*?
  */
-Drupal.entity.Datastore.prototype.initializeSchema = function() {
-  this.connection.dropTable(this.entityType);
-  this.connection.createTable(this.entityType, this.getSchema());
+Drupal.entity.Datastore.prototype.initializeSchema = function () {
+    this.connection.dropTable(this.entityType);
+    this.connection.createTable(this.entityType, this.getSchema());
 };
 
 /**
  * Returns the schema definition for this enity's storage.
  */
-Drupal.entity.Datastore.prototype.getSchema = function() {
-  if (! this.schemaDefinition) {
-    var schema = {
-      description: 'Storage table for ' + this.entityType + ' entities.',
-      fields: {},
-      indexes: {},
-      uniqueKeys: {}
-    };
+Drupal.entity.Datastore.prototype.getSchema = function () {
+    if (!this.schemaDefinition) {
+        var schema = {
+            description: 'Storage table for ' + this.entityType + ' entities.',
+            fields: {},
+            indexes: {},
+            uniqueKeys: {}
+        };
 
-    // We always want to denormalize the entity keys, if available.
-    if (this.entityInfo.entity_keys.id) {
-      schema.fields[this.entityInfo.entity_keys.id] = {
-        type: 'INTEGER'
-      };
-      schema.primaryKey = [this.entityInfo.entity_keys.id];
-    }
-    if (this.entityInfo.entity_keys.revision) {
-      schema.fields[this.entityInfo.entity_keys.revision] = {
-        type: 'INTEGER'
-      };
-    }
-    if (this.entityInfo.entity_keys.bundle) {
-      schema.fields[this.entityInfo.entity_keys.bundle] = {
-        type: 'VARCHAR'
-      };
-    }
-    if (this.entityInfo.entity_keys.label) {
-      schema.fields[this.entityInfo.entity_keys.label] = {
-        type: 'VARCHAR'
-      };
-    }
-
-    // Now extract any additional fields and indexes to denormalize.
-    if (this.entityInfo.schema.fields) {
-      var extraSchema = this.entityInfo.schema.fields();
-      var properties = ['fields', 'indexes', 'uniqueKeys'];
-      var set;
-      var property;
-      for (var i = 0; i < properties.length; i++) {
-        property = properties[i];
-        set = extraSchema[property];
-        for (var key in set) {
-          if (set.hasOwnProperty(key)) {
-            schema[property][key] = set[key];
-          }
+        // We always want to denormalize the entity keys, if available.
+        if (this.entityInfo.entity_keys.id) {
+            schema.fields[this.entityInfo.entity_keys.id] = {
+                type: 'INTEGER'
+            };
+            schema.primaryKey = [this.entityInfo.entity_keys.id];
         }
-      }
+        if (this.entityInfo.entity_keys.revision) {
+            schema.fields[this.entityInfo.entity_keys.revision] = {
+                type: 'INTEGER'
+            };
+        }
+        if (this.entityInfo.entity_keys.bundle) {
+            schema.fields[this.entityInfo.entity_keys.bundle] = {
+                type: 'VARCHAR'
+            };
+        }
+        if (this.entityInfo.entity_keys.label) {
+            schema.fields[this.entityInfo.entity_keys.label] = {
+                type: 'VARCHAR'
+            };
+        }
+
+        // Now extract any additional fields and indexes to denormalize.
+        if (this.entityInfo.schema.fields) {
+            var extraSchema = this.entityInfo.schema.fields();
+            var properties = ['fields', 'indexes', 'uniqueKeys'];
+            var set;
+            var property;
+            for (var i = 0; i < properties.length; i++) {
+                property = properties[i];
+                set = extraSchema[property];
+                for (var key in set) {
+                    if (set.hasOwnProperty(key)) {
+                        schema[property][key] = set[key];
+                    }
+                }
+            }
+        }
+
+        // We always want a "data" column to store the serialized object itself.
+        schema.fields.data = {
+            type: 'BLOB'
+        };
+
+        this.schemaDefinition = schema;
     }
 
-    // We always want a "data" column to store the serialized object itself.
-    schema.fields.data = {
-        type: 'BLOB'
-    };
-
-    this.schemaDefinition = schema;
-  }
-
-  return this.schemaDefinition;
+    return this.schemaDefinition;
 };
