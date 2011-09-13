@@ -77,7 +77,7 @@ Ti.include('cs/post.ui.js');
 
 Ti.include('windows/main.js');
 
-// open URLs in the native browser, not a webview
+// open (sponsor) URLs in the native browser, not a webview
 Ti.App.addEventListener('openURL', function(e){
   Ti.Platform.openURL(e.url);
 });
