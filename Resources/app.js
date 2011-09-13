@@ -25,8 +25,6 @@ Titanium.UI.setBackgroundColor('#414444');
 Ti.include(
 	'cs/cs.js',
 	'cs/datetime.js',
-  'lib/misc.js',
-  'lib/menu.js',
   'drupal/drupal.js',
   'drupal/db.js',
   'drupal/db.insert.js',

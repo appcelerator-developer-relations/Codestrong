@@ -98,7 +98,7 @@
 	    if (icon.refresh) {
 	    	if (Codestrong.isAndroid()) {
 	    		iconWin.addEventListener('open', function() {
-			        menu.init({
+			        Codestrong.android.menu.init({
 			          	win: iconWin,
 			          	buttons: [
 			          		{

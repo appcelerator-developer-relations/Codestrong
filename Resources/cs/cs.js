@@ -1,5 +1,8 @@
 var Codestrong = {
 	datetime: {},
+	android: {
+		menu: {}	
+	},
     settings: {},
     __isLargeScreen: undefined,
     __isAndroid: undefined,
@@ -42,5 +45,21 @@ Object.create = function (o) {
       			.replace(/&#039;/g, "'");
   		}
   		return '';
+	};
+	
+	Codestrong.android.menu = {
+		data: [],
+		init: function(params) {
+			var activity = params.win.activity; 
+	        activity.onCreateOptionsMenu = function (e) {
+	          	var optionsmenu = e.menu;
+	          	for (k = 0; k < params.buttons.length; k++) {
+	            	Codestrong.android.menu.data[k] = optionsmenu.add({
+	              		title: params.buttons[k].title
+	            	});
+	            	Codestrong.android.menu.data[k].addEventListener("click", params.buttons[k].clickevent);
+	          	}
+	        };
+		}
 	};
 })();
