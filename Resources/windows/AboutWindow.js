@@ -99,7 +99,7 @@
         var scrollable = Ti.UI.createScrollableView({
             showPagingControl: false,
             backgroundColor: '#000000',
-            top: 30,
+            top: 36,
             views: [
             data[0].webview, data[1].webview]
         });
