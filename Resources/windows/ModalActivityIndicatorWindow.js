@@ -13,6 +13,7 @@ DrupalCon.ui.activityIndicator = (function() {
 			navBarHidden:true,
 			touchEnabled:true
 		});
+		activityIndicator.orientationModes = [Ti.UI.PORTRAIT];
 		var view = Ti.UI.createView({
 			backgroundColor: '#000',
 			height: '100%',

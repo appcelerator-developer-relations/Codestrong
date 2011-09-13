@@ -34,6 +34,7 @@
       barColor: '#414444',
       fullscreen: false
     });
+    sessionsWindow.orientationModes = [Ti.UI.PORTRAIT];
 
     var data = [];
 

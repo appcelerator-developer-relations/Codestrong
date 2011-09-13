@@ -32,6 +32,7 @@
       height: '100%',
       fullscreen: false
     });
+    htmlWindow.orientationModes = [Ti.UI.PORTRAIT];
     
 	var webview = Ti.UI.createWebView({
       url: settings.url,

@@ -31,6 +31,7 @@
       barColor: '#414444',
       fullscreen: false
     });
+    twitterDetailWindow.orientationModes = [Ti.UI.PORTRAIT];
     var baseHTMLStart = '<html><head><link rel="stylesheet" type="text/css" href="windows/tweetWebView.css" />' +
       '<meta name="viewport" content="user-scalable=yes, width=device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 10.0" /> <meta name="apple-mobile-web-app-capable" content="yes" />' +
       '</head><body class="tweets"><div class="created-at">' + settings.date + '</div>',

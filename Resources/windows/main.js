@@ -79,6 +79,7 @@
   	});
   	view.addEventListener('click', function(e) {
   		iconWin = icon.func(icon.args);
+		iconWin.orientationModes = [Ti.UI.PORTRAIT];
 
   		// add a left navigation button for ios
   		if (!isAndroid()) {

@@ -34,6 +34,7 @@
       barColor: '#414444',
       fullscreen: false
     });
+    presenterDetailWindow.orientationModes = [Ti.UI.PORTRAIT];
 
     var tvData = [];
     var blueBg = '#C4E2EF';

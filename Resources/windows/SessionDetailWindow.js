@@ -30,6 +30,7 @@
       barColor: '#414444',
       fullscreen: false
     });
+    sessionDetailWindow.orientationModes = [Ti.UI.PORTRAIT];
 
     // Build session data
     var sessionData = Drupal.entity.db('main', 'node').load(settings.nid);
