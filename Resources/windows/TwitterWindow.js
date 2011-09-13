@@ -24,7 +24,7 @@
 	
   
   DrupalCon.ui.createTwitterWindow = function() {
-  	var twitterTimeout = 10000;
+  	var twitterTimeout = 11000;
   	var tweetCount = 50;
 	var firstRun = true;
 
