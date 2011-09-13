@@ -2,10 +2,10 @@ var Codestrong = {
     settings: {},
     datetime: {},
     __isLargeScreen: undefined,
-	__isAndroid: undefined,
-	navWindow: undefined,
-	navGroup: undefined,
-	tabBarHeight: 36
+    __isAndroid: undefined,
+    navWindow: undefined,
+    navGroup: undefined,
+    tabBarHeight: 36
 };
 
 Object.create = function (o) {
@@ -176,37 +176,110 @@ Codestrong.datetime.strtotime = function (str, now) {
 };
 
 Codestrong.datetime.prettyDate = function (time) {
-  var monthname = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  var date = new Date(time*1000),
-  diff = (((new Date()).getTime() - date.getTime()) / 1000),
-  day_diff = Math.floor(diff / 86400);
-  if ( isNaN(day_diff) || day_diff < 0 ){
-    return '';
-  }
-  if(day_diff >= 31){
-    var date_year = date.getFullYear();
-    var month_name = monthname[date.getMonth()];
-    var date_month = date.getMonth() + 1;
-    if(date_month < 10){
-      date_month = "0"+date_month;
+    var monthname = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var date = new Date(time * 1000),
+        diff = (((new Date()).getTime() - date.getTime()) / 1000),
+        day_diff = Math.floor(diff / 86400);
+    if (isNaN(day_diff) || day_diff < 0) {
+        return '';
     }
-    var date_monthday = date.getDate();
-    if(date_monthday < 10){
-      date_monthday = "0"+date_monthday;
+    if (day_diff >= 31) {
+        var date_year = date.getFullYear();
+        var month_name = monthname[date.getMonth()];
+        var date_month = date.getMonth() + 1;
+        if (date_month < 10) {
+            date_month = "0" + date_month;
+        }
+        var date_monthday = date.getDate();
+        if (date_monthday < 10) {
+            date_monthday = "0" + date_monthday;
+        }
+        return date_monthday + " " + month_name + " " + date_year;
     }
-    return date_monthday + " " + month_name + " " + date_year;
-  }
-  return day_diff === 0 && (
-    diff < 60 && "just now" ||
-    diff < 120 && "1 minute ago" ||
-    diff < 3600 && Math.floor( diff / 60 ) + " minutes ago" ||
-    diff < 7200 && "1 hour ago" ||
-    diff < 86400 && "about " + Math.floor( diff / 3600 ) + " hours ago") ||
-  day_diff == 1 && "Yesterday" ||
-  day_diff < 7 && day_diff + " days ago" ||
-  day_diff < 31 && Math.ceil( day_diff / 7 ) + " week" + ((Math.ceil( day_diff / 7 )) == 1 ? "" : "s") + " ago";
+    return day_diff === 0 && (
+    diff < 60 && "just now" || diff < 120 && "1 minute ago" || diff < 3600 && Math.floor(diff / 60) + " minutes ago" || diff < 7200 && "1 hour ago" || diff < 86400 && "about " + Math.floor(diff / 3600) + " hours ago") || day_diff == 1 && "Yesterday" || day_diff < 7 && day_diff + " days ago" || day_diff < 31 && Math.ceil(day_diff / 7) + " week" + ((Math.ceil(day_diff / 7)) == 1 ? "" : "s") + " ago";
 }
 
 Codestrong.datetime.getTwitterInterval = function (strDateTime) {
-	return Codestrong.datetime.prettyDate(Codestrong.datetime.strtotime(strDateTime));
+    return Codestrong.datetime.prettyDate(Codestrong.datetime.strtotime(strDateTime));
 };
+
+Codestrong.datetime.dayToName = function (day) {
+    switch (day) {
+    case 0:
+        return 'Sunday';
+    case 1:
+        return 'Monday';
+    case 2:
+        return 'Tuesday';
+    case 3:
+        return 'Wednesday';
+    case 4:
+        return 'Thursday';
+    case 5:
+        return 'Friday';
+    case 6:
+        return 'Saturday';
+    }
+};
+
+Codestrong.datetime.monthToName = function (month) {
+    switch (month) {
+    case 1:
+        return 'January';
+    case 2:
+        return 'February';
+    case 3:
+        return 'March';
+    case 4:
+        return 'April';
+    case 5:
+        return 'May';
+    case 6:
+        return 'June';
+    case 7:
+        return 'July';
+    case 8:
+        return 'August';
+    case 9:
+        return 'September';
+    case 10:
+        return 'October';
+    case 11:
+        return 'November';
+    case 12:
+        return 'December';
+    }
+};
+
+Codestrong.datetime.cleanDate = function (date) {
+    var label;
+    switch (date.getDate()) {
+    case 1:
+        label = 'st';
+        break;
+    case 2:
+        label = 'nd';
+        break;
+    default:
+        label = 'th';
+    }
+
+    return Codestrong.datetime.dayToName(date.getDay()) + ', ' + Codestrong.datetime.monthToName(date.getMonth() + 1) + ' ' + date.getDate() + label;
+};
+
+Codestrong.datetime.cleanTime = function (time) {
+    var shortTime = time.substr(11, 5);
+    var mins = shortTime.substr(2, 5);
+    var hour = parseFloat(shortTime.slice(0, 2));
+    var ampm = 'AM';
+
+    // Assume that 12 means noon, not midnight.
+    if (hour == 12) {
+        ampm = 'PM';
+    } else if (hour >= 12) {
+        hour -= 12;
+        ampm = 'PM';
+    }
+    return hour + "" + mins + "" + ampm;
+}

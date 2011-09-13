@@ -101,7 +101,7 @@
       var matches = /^(\d{4})\-(\d{2})\-(\d{2})/.exec(sessionData.start_date);
       var startDate = new Date(matches[1], matches[2]-1, matches[3]);
       var datetime = Ti.UI.createLabel({
-        text: cleanDate(startDate) + ', ' + cleanTime(sessionData.start_date),
+        text: Codestrong.datetime.cleanDate(startDate) + ', ' + Codestrong.datetime.cleanTime(sessionData.start_date),
         font: {fontSize: 18, fontWeight: 'normal'},
         textAlign: 'left',
         color: '#000',

@@ -197,7 +197,6 @@
     if (rows) {
       while (rows.isValidRow()) {
         var uid = rows.fieldByName('uid');
-        //dpm(rows.fieldByName('full_name'));
         var full = rows.fieldByName('full_name');
         if (full) {
           var names = rows.fieldByName('full_name').split(' ');

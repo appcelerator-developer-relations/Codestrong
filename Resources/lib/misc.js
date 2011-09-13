@@ -76,31 +76,6 @@ function isAndroid (){
 	return isAndroidValue;
 }
 
-
-/*
- * Cleans up the timestamp and makes it in the format of 1:30PM
- */
-function cleanTime(time) {
-  var shortTime = time.substr(11,5);
-  var mins = shortTime.substr(2,5);
-  var hour = parseFloat(shortTime.slice(0,2));
-  var ampm = 'AM';
-  // Assume that 12 means noon, not midnight.
-  if (hour == 12) {
-    ampm = 'PM';
-  }
-  else if (hour >= 12) {
-    hour -= 12;
-    ampm = 'PM';
-  }
-  return hour + "" + mins + "" + ampm;
-}
-
-function dpm(vars) {
-  Ti.API.info(vars);
-}
-
-
 // Using the parsing method shown https://gist.github.com/819929
 /**
  * Define our parser class. It takes in some text, and then you can call "linkifyURLs", or one of the other methods,
@@ -123,7 +98,6 @@ function twitterParser(text) {
     html = html.replace(hashTagRegex, '<a href="http://twitter.com/#!/search?q=%23$1">#$1</a>');
   };
   this.linkifyAtTags = function() {
-    //dpm(atTagRegex);
     html = html.replace(atTagRegex, '<a href="http://mobile.twitter.com/$1">@$1</a>');
   };
 
@@ -153,74 +127,4 @@ function cleanSpecialChars(str) {
   }
 
   return '';
-}
-
-function dayToName(day) {
-  switch (day) {
-    case 0:
-      return 'Sunday';
-    case 1:
-      return 'Monday';
-    case 2:
-      return 'Tuesday';
-    case 3:
-      return 'Wednesday';
-    case 4:
-      return 'Thursday';
-    case 5:
-      return 'Friday';
-    case 6:
-      return 'Saturday';
-  }
-}
-
-function monthToName(month) {
-  switch (month) {
-    case 1:
-      return 'January';
-    case 2:
-      return 'February';
-    case 3:
-      return 'March';
-    case 4:
-      return 'April';
-    case 5:
-      return 'May';
-    case 6:
-      return 'June';
-    case 7:
-      return 'July';
-    case 8:
-      return 'August';
-    case 9:
-      return 'September';
-    case 10:
-      return 'October';
-    case 11:
-      return 'November';
-    case 12:
-      return 'December';
-  }
-}
-
-/**
- * Format a date string.
- *
- * @param {Date} date
- *   A Date() object to format.
- */
-function cleanDate(date) {
-  var label;
-  switch (date.getDate()) {
-    case 1:
-      label = 'st';
-      break;
-    case 2:
-      label = 'nd';
-      break;
-    default:
-      label = 'th';
-  }
-
-  return dayToName(date.getDay()) + ', ' + monthToName(date.getMonth()+1) + ' ' +  date.getDate() + label;
 }

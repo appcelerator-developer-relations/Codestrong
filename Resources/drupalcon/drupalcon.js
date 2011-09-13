@@ -82,7 +82,7 @@ var DrupalCon = {
     var headerRow = undefined;
     if (lastTime == '' || session.start_date != lastTime) {
       lastTime = session.start_date;
-      headerRow = Codestrong.createHeaderRow(cleanTime(lastTime) + " - " + cleanTime(session.end_date));
+      headerRow = Codestrong.createHeaderRow(Codestrong.datetime.cleanTime(lastTime) + " - " + Codestrong.datetime.cleanTime(session.end_date));
     }
 
     var titleLabel = Ti.UI.createLabel({
