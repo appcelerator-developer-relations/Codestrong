@@ -16,7 +16,7 @@
  */
 
 (function() {
-  DrupalCon.ui.createTwitterWindow = function() {
+  Codestrong.ui.createTwitterWindow = function() {
   	var twitterTimeout = 11000;
   	var tweetCount = 50;
 	var firstRun = true;
@@ -73,7 +73,7 @@
     for (var index in data) {
     	myEntry = data[index];
   		myEntry.table.addEventListener('click', function(e) {
-  			Codestrong.navGroup.open(DrupalCon.ui.createTwitterDetailWindow({
+  			Codestrong.navGroup.open(Codestrong.ui.createTwitterDetailWindow({
       			title: e.rowData.user,
       			text: e.rowData.tweet,
       			name: e.rowData.user,

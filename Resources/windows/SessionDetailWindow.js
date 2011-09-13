@@ -17,7 +17,7 @@
 
 (function() {
 
-  DrupalCon.ui.createSessionDetailWindow = function(settings) {
+  Codestrong.ui.createSessionDetailWindow = function(settings) {
     Drupal.setDefaults(settings, {
       title: 'title here',
       nid: ''
@@ -184,7 +184,7 @@
     tv.addEventListener('click', function(e) {
       if (e.source.presenter != undefined){
         var fullName = e.source.presenter.full_name || '';
-        Codestrong.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
+        Codestrong.navGroup.open(Codestrong.ui.createPresenterDetailWindow({
           title: fullName,
           uid: e.source.presenter.uid
         }), {animated:true});

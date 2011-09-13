@@ -17,7 +17,7 @@
 
 (function() {
 
-  DrupalCon.ui.createMapWindow = function() {
+  Codestrong.ui.createMapWindow = function() {
     var mapWindow = Titanium.UI.createWindow({
       id: 'mapWindow',
       title: 'Meeting Room Maps',

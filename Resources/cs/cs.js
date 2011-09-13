@@ -12,10 +12,6 @@ var Codestrong = {
     tabBarHeight: 36
 };
 
-var DrupalCon = {
-  ui: {}
-};
-
 Object.create = function (o) {
     var f = function () {};
     f.prototype = 0;

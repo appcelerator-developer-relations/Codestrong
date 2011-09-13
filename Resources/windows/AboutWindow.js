@@ -17,7 +17,7 @@
 
 (function() {
 	
-  DrupalCon.ui.createAboutWindow = function() {
+  Codestrong.ui.createAboutWindow = function() {
   	var handleScroll = function(e) {
 		if (e.view) {
 			data[e.currentPage].tabView.fireEvent('click');

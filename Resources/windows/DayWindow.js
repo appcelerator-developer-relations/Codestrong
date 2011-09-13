@@ -17,7 +17,7 @@
 
 (function() {
 
-  DrupalCon.ui.createDayWindow = function(tabGroup) {
+  Codestrong.ui.createDayWindow = function(tabGroup) {
 
     // Create table view data object.
     var data = [];
@@ -88,7 +88,7 @@
 
     tableview.addEventListener('click', function(e) {
         if (e.rowData.scheduleListing) {
-          Codestrong.navGroup.open(DrupalCon.ui.createSessionsWindow({
+          Codestrong.navGroup.open(Codestrong.ui.createSessionsWindow({
           	titleShort: e.rowData.titleShort,
             title: e.rowData.title,
             start_date: e.rowData.start_date,
@@ -96,7 +96,7 @@
           }), {animated:true});
         }
         else {
-          Codestrong.navGroup.open(DrupalCon.ui.createHtmlWindow({
+          Codestrong.navGroup.open(Codestrong.ui.createHtmlWindow({
             title: e.rowData.titleShort,
             url: e.rowData.url
           }), {animated:true});

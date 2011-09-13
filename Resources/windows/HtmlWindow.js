@@ -17,7 +17,7 @@
 
 (function() {
 
-  DrupalCon.ui.createHtmlWindow = function(settings) {
+  Codestrong.ui.createHtmlWindow = function(settings) {
     Drupal.setDefaults(settings, {
       title: 'title here',
       url: ''

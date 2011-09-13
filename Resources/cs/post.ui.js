@@ -16,30 +16,30 @@
 		list: [
 			{
 				image: 'images/dashboard/schedule' + imageSuffix + '.png',
-				func: DrupalCon.ui.createDayWindow,
+				func: Codestrong.ui.createDayWindow,
 				refresh: true
 			},
 			{
 				image: 'images/dashboard/maps' + imageSuffix + '.png',
-				func: DrupalCon.ui.createMapWindow
+				func: Codestrong.ui.createMapWindow
 			},
 			{
 				image: 'images/dashboard/news' + imageSuffix + '.png',
-				func: DrupalCon.ui.createTwitterWindow
+				func: Codestrong.ui.createTwitterWindow
 			},
 			{
 				image: 'images/dashboard/speakers' + imageSuffix + '.png',
-				func: DrupalCon.ui.createPresentersWindow,
+				func: Codestrong.ui.createPresentersWindow,
 				refresh: true
 			},
 			{
 				image: 'images/dashboard/sponsors' + imageSuffix + '.png',
-				func: DrupalCon.ui.createHtmlWindow,
+				func: Codestrong.ui.createHtmlWindow,
 				args: {url: Codestrong.settings.sponsorsPage, title:'Sponsors'}
 			},
 		    {
 				image: 'images/dashboard/about' + imageSuffix + '.png',
-				func: DrupalCon.ui.createAboutWindow
+				func: Codestrong.ui.createAboutWindow
 			}	
 		]
 	};	

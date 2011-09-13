@@ -37,7 +37,7 @@
         };
     };
 
-    DrupalCon.ui.createTwitterDetailWindow = function (settings) {
+    Codestrong.ui.createTwitterDetailWindow = function (settings) {
         Drupal.setDefaults(settings, {
             title: 'title here',
             uid: '',

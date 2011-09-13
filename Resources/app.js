@@ -34,7 +34,6 @@ Ti.include(
   	'drupal/db.insert.js',
   	'drupal/entity.js',
   	'drupal/entity.datastore.js',
-  	'drupalcon/drupalcon.js',
   	'drupalcon/entity.js'
 );
 

@@ -17,7 +17,7 @@
 
 (function() {
 
-  DrupalCon.ui.createPresenterDetailWindow = function(settings) {
+  Codestrong.ui.createPresenterDetailWindow = function(settings) {
     Drupal.setDefaults(settings, {
       title: 'title here',
       uid: '',
@@ -152,7 +152,7 @@
 	      
 	      // create table view event listener
 	      sessionRow.addEventListener('click', function(e) {
-			Codestrong.navGroup.open(DrupalCon.ui.createSessionDetailWindow({
+			Codestrong.navGroup.open(Codestrong.ui.createSessionDetailWindow({
 	          title: e.rowData.sessionTitle,
 	          nid: e.rowData.nid
 	        }), {animated:true});

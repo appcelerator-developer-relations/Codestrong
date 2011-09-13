@@ -17,7 +17,7 @@
 
 (function() {
 
-  DrupalCon.ui.createPresentersWindow = function() {
+  Codestrong.ui.createPresentersWindow = function() {
     var PresentersWindow = Titanium.UI.createWindow({
       id: 'presentersWindow',
       title: 'Speakers',
@@ -171,7 +171,7 @@
     	}
         // event data
         var index = e.index;
-        Codestrong.navGroup.open(DrupalCon.ui.createPresenterDetailWindow({
+        Codestrong.navGroup.open(Codestrong.ui.createPresenterDetailWindow({
           title: e.rowData.name,
           uid: e.rowData.uid,
           name: e.rowData.name
