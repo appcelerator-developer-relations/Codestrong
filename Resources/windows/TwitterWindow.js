@@ -15,14 +15,7 @@
  * along with DrupalCon Mobile.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// var Twitter = {
-  // ui: {},
-  // util: {}
-// };
-
 (function() {
-	
-  
   DrupalCon.ui.createTwitterWindow = function() {
   	var twitterTimeout = 11000;
   	var tweetCount = 50;
