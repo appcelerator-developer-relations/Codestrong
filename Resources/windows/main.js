@@ -68,65 +68,67 @@
         Ti.UI.orientation = Ti.UI.PORTRAIT;
     }
 
+	// Create each dashboard icon and include necessary properties
+	// for any windows it opens.
     var createIcon = function (icon) {
-            var iconWin = undefined;
-            var view = Ti.UI.createView({
-                backgroundImage: icon.image,
-                top: 0,
-                height: Codestrong.ui.icons.height,
-                width: Codestrong.ui.icons.width
-            });
-            view.addEventListener('click', function (e) {
-                iconWin = icon.func(icon.args);
-                iconWin.orientationModes = [Ti.UI.PORTRAIT];
+        var iconWin = undefined;
+        var view = Ti.UI.createView({
+            backgroundImage: icon.image,
+            top: 0,
+            height: Codestrong.ui.icons.height,
+            width: Codestrong.ui.icons.width
+        });
+        view.addEventListener('click', function (e) {
+            iconWin = icon.func(icon.args);
+            iconWin.orientationModes = [Ti.UI.PORTRAIT];
 
-                // add a left navigation button for ios
-                if (!Codestrong.isAndroid()) {
-                    var leftButton = Ti.UI.createButton({
-                        backgroundImage: 'images/6dots.png',
-                        width: 41,
-                        height: 30
-                    });
-                    leftButton.addEventListener('click', function () {
-                        Codestrong.navGroup.close(iconWin, {
-                            animated: true
-                        });
-                    });
-                    iconWin.leftNavButton = leftButton;
-                }
-
-                // add sessions and speaker refresh 
-                if (icon.refresh) {
-                    if (Codestrong.isAndroid()) {
-                        iconWin.addEventListener('open', function () {
-                            Codestrong.android.menu.init({
-                                win: iconWin,
-                                buttons: [{
-                                    title: "Update",
-                                    clickevent: function () {
-                                        Ti.fireEvent('codestrong:update_data');
-                                    }
-                                }]
-                            });
-                        });
-                    } else {
-                        var rightButton = Ti.UI.createButton({
-                            systemButton: Ti.UI.iPhone.SystemButton.REFRESH
-                        });
-                        iconWin.rightNavButton = rightButton;
-                        rightButton.addEventListener('click', function () {
-                            Ti.fireEvent('codestrong:update_data');
-                        });
-                    }
-                }
-
-                iconWin.navBarHidden = false;
-                Codestrong.navGroup.open(iconWin, {
-                    animated: true
+            // add a left navigation button for ios
+            if (!Codestrong.isAndroid()) {
+                var leftButton = Ti.UI.createButton({
+                    backgroundImage: 'images/6dots.png',
+                    width: 41,
+                    height: 30
                 });
+                leftButton.addEventListener('click', function () {
+                    Codestrong.navGroup.close(iconWin, {
+                        animated: true
+                    });
+                });
+                iconWin.leftNavButton = leftButton;
+            }
+
+            // add sessions and speaker refresh 
+            if (icon.refresh) {
+                if (Codestrong.isAndroid()) {
+                    iconWin.addEventListener('open', function () {
+                        Codestrong.android.menu.init({
+                            win: iconWin,
+                            buttons: [{
+                                title: "Update",
+                                clickevent: function () {
+                                    Ti.fireEvent('codestrong:update_data');
+                                }
+                            }]
+                        });
+                    });
+                } else {
+                    var rightButton = Ti.UI.createButton({
+                        systemButton: Ti.UI.iPhone.SystemButton.REFRESH
+                    });
+                    iconWin.rightNavButton = rightButton;
+                    rightButton.addEventListener('click', function () {
+                        Ti.fireEvent('codestrong:update_data');
+                    });
+                }
+            }
+
+            iconWin.navBarHidden = false;
+            Codestrong.navGroup.open(iconWin, {
+                animated: true
             });
-            return view;
-        };
+        });
+        return view;
+    };
 
     for (i = 0; i < Codestrong.ui.icons.list.length; i++) {
         viewIcons.add(createIcon(Codestrong.ui.icons.list[i]));

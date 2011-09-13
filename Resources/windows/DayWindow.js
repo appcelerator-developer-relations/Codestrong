@@ -18,55 +18,54 @@
 (function() {
 
   Codestrong.ui.createDayWindow = function(tabGroup) {
-
-    // Create table view data object.
-    var data = [];
-    data.push(Ti.UI.createTableViewRow({
-    	title:'Sunday, September 18th', 
-    	titleShort:'September 18th', 
-    	scheduleListing: false, 
-    	url: 'pages/2011-09-18.html',
+    // Base row properties
+    var baseRow = {
+    	hasChild: true,
+    	color: '#000',
+    	backgroundColor: '#fff',
     	font: {
-    		fontWeight:'bold'
-    	}
-    }));
-    data.push(Ti.UI.createTableViewRow({
-    	title:'Monday, September 19th', 
-    	titleShort:'September 19th', 
-    	start_date:'2011-09-19 00:00:00', 
-    	end_date:'2011-09-20 00:00:00', 
-    	scheduleListing: true,
-    	font: {
-    		fontWeight:'bold'
-    	}
-    }));
-    data.push(Ti.UI.createTableViewRow({
-    	title:'Tuesday, September 20th', 
-    	titleShort:'September 20th', 
-    	start_date:'2011-09-20 00:00:00', 
-    	end_date:'2011-09-21 00:00:00', 
-    	scheduleListing: true,
-    	font: {
-    		fontWeight:'bold'
-    	}
-    }));
-    data.push(Ti.UI.createTableViewRow({
-    	title:'Hackathon', 
-    	titleShort:'Hackathon', 
-    	scheduleListing: false, 
-    	url: 'pages/hackathon.html',
-    	font: {
-    		fontWeight:'bold'
-    	}
-    }));
+    		fontWeight: 'bold'	
+    	} 
+    };
+    baseRow[Codestrong.ui.backgroundSelectedProperty + 'Color'] = Codestrong.ui.backgroundSelectedColor;
     
-    // add common attributes
-    for (var i = 0; i < data.length; i++) {
-    	data[i].hasChild = true;
-    	data[i].color = '#000';
-    	data[i].backgroundColor = '#fff';
-    	data[i][Codestrong.ui.backgroundSelectedProperty + 'Color'] = Codestrong.ui.backgroundSelectedColor;
-    }
+    // Creates a TableViewRow using the base row properties
+	var createDayRow = function(params) {
+		return Codestrong.extend(Ti.UI.createTableViewRow(params), baseRow);
+	}
+	
+	// Create data for TableView
+	var data = [
+		createDayRow({
+			title:'Sunday, September 18th', 
+	    	titleShort:'September 18th', 
+	    	scheduleListing: false, 
+	    	url: 'pages/2011-09-18.html'
+		})
+		,
+		createDayRow({
+			title:'Monday, September 19th', 
+	    	titleShort:'September 19th', 
+	    	start_date:'2011-09-19 00:00:00', 
+	    	end_date:'2011-09-20 00:00:00', 
+	    	scheduleListing: true
+		})
+		,
+		createDayRow({
+			title:'Tuesday, September 20th', 
+	    	titleShort:'September 20th', 
+	    	start_date:'2011-09-20 00:00:00', 
+	    	end_date:'2011-09-21 00:00:00', 
+	    	scheduleListing: true
+		})
+		,
+		createDayRow({
+			title:'Hackathon', 
+	    	titleShort:'Hackathon', 
+	    	scheduleListing: false, 
+	    	url: 'pages/hackathon.html'
+		})
+	];
 
     // create main day window
     var dayWindow = Titanium.UI.createWindow({
