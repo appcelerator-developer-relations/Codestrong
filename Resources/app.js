@@ -52,6 +52,7 @@ if (!Drupal.db.getConnection('main').tableExists('user')) {
 }
 
 Ti.include(
+	// All Codestrong custom windows
   	'windows/ModalActivityIndicatorWindow.js',	
   	'windows/DayWindow.js',
   	'windows/TwitterWindow.js',
@@ -64,7 +65,9 @@ Ti.include(
   	'windows/PresenterDetailWindow.js',
   	'windows/HtmlWindow.js',
   
-  	'cs/post.ui.js',
+  	// Create icons based on previous custom windows and
+  	// load them into the main dashboard window
+  	'cs/icons.js',
   	'windows/main.js'
 );
 
