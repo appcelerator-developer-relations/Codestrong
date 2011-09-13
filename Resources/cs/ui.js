@@ -1,30 +1,27 @@
 (function() {
-	
-	
 	if (Codestrong.isLargeScreen()) {
-		Codestrong.settings = {
-			mainBG: 'images/home_ipad.png',
+		Codestrong.ui = {
+			mainBackgroundImage: 'images/home_ipad.png',
 			dashboardHeight: 340,
 			dashboardWidth: 612,
 			sponsorsPage:'pages/sponsors_ipad.html'
 		};
 	} else {
-		Codestrong.settings = {
-			mainBG: 'images/home.png',
+		Codestrong.ui = {
+			mainBackgroundImage: 'images/home.png',
 			dashboardHeight: 170,
 			dashboardWidth: 306,
 			sponsorsPage:'pages/sponsors.html'
 		};
 	}
 	
-	// TODO: backgroundSelectedColor vs selectedBackgroundColor
 	if (Codestrong.isAndroid()) {
-		Codestrong.backgroundSelectedProperty = 'backgroundSelected';
+		Codestrong.ui.backgroundSelectedProperty = 'backgroundSelected';
 	} else {
-		Codestrong.backgroundSelectedProperty = 'selectedBackground';
+		Codestrong.ui.backgroundSelectedProperty = 'selectedBackground';
 	}
 	
-	Codestrong.createHeaderRow = function(title) {
+	Codestrong.ui.createHeaderRow = function(title) {
 		var headerRow = Ti.UI.createTableViewRow({
 	    	classname: 'header_row',
 	    	height:26,

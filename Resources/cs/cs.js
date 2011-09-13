@@ -3,7 +3,6 @@ var Codestrong = {
 		menu: {}	
 	},
 	datetime: {},
-    settings: {},
     ui: {},
     __isLargeScreen: undefined,
     __isAndroid: undefined,

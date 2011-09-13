@@ -121,7 +121,7 @@
     var sessions = getRelatedSessions(presenterData.full_name);
     var sessionRow = [];
     if (sessions && sessions.length) {
-    	tvData.push(Codestrong.createHeaderRow('Sessions'));
+    	tvData.push(Codestrong.ui.createHeaderRow('Sessions'));
 	    for (var i in sessions) {
 	      sessionRow = Ti.UI.createTableViewRow({
 	        hasChild:true,
@@ -183,7 +183,7 @@
       }
       
       bioRow.add(bio);
-      tvData.push(Codestrong.createHeaderRow('Biography'));
+      tvData.push(Codestrong.ui.createHeaderRow('Biography'));
       tvData.push(bioRow);
 
 

@@ -19,7 +19,7 @@
 	var updateTimeout = 15000;
 	var i = 0;
   	var mainWindow = Ti.UI.createWindow({
-		backgroundImage: Codestrong.settings.mainBG,
+		backgroundImage: Codestrong.ui.mainBackgroundImage,
 		title: 'Dashboard',
 		navBarHidden: true,
 		exitOnClose: true
@@ -28,15 +28,15 @@
   		backgroundColor: '#fff',
   		borderColor:'#888',
   		borderWidth: 4,
-  		height: Codestrong.settings.dashboardHeight,
-  		width: Codestrong.settings.dashboardWidth,
+  		height: Codestrong.ui.dashboardHeight,
+  		width: Codestrong.ui.dashboardWidth,
   		bottom: 20,
   		opacity: 0.75,
   		borderRadius: 8
   	});
   	var viewIcons = Ti.UI.createView({
-  		height: Codestrong.settings.dashboardHeight,
-  		width: Codestrong.settings.dashboardWidth,
+  		height: Codestrong.ui.dashboardHeight,
+  		width: Codestrong.ui.dashboardWidth,
   		bottom: 20,
   		borderRadius: 0,
   		layout: 'horizontal'
@@ -74,8 +74,8 @@
   	var view = Ti.UI.createView({ 
   		backgroundImage: icon.image, 
   		top:0,
-  		height: Codestrong.settings.icons.height, 
-  		width: Codestrong.settings.icons.width
+  		height: Codestrong.ui.icons.height, 
+  		width: Codestrong.ui.icons.width
   	});
   	view.addEventListener('click', function(e) {
   		iconWin = icon.func(icon.args);
@@ -127,8 +127,8 @@
   	return view;
   };
   
-  for (i = 0; i < Codestrong.settings.icons.list.length; i++) {
-  	viewIcons.add(createIcon(Codestrong.settings.icons.list[i]));
+  for (i = 0; i < Codestrong.ui.icons.list.length; i++) {
+  	viewIcons.add(createIcon(Codestrong.ui.icons.list[i]));
   }
 
 	if (Codestrong.isAndroid()) {

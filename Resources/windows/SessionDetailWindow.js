@@ -172,13 +172,13 @@
       // Get the presenter information.
       var presenterData = Drupal.entity.db('main', 'user').loadByField('full_name', instructorList);//sessionData.instructors);
 
-	  tvData.push(Codestrong.createHeaderRow((instructorList.length > 1) ? 'Speakers' : 'Speaker'));
+	  tvData.push(Codestrong.ui.createHeaderRow((instructorList.length > 1) ? 'Speakers' : 'Speaker'));
       for (var j in presenterData) {
         tvData.push(renderPresenter(presenterData[j]));
       }
     }
 
-    tvData.push(Codestrong.createHeaderRow('Description'));
+    tvData.push(Codestrong.ui.createHeaderRow('Description'));
     tvData.push(bodyRow);
 
     tv.addEventListener('click', function(e) {
@@ -206,7 +206,8 @@
       height:50,
       width:50,
       defaultImage:'images/userpict-large.png',
-      backgroundColor: '#000'
+      backgroundColor: '#000',
+      touchEnabled: false
     });
 
     var presRow = Ti.UI.createTableViewRow({
@@ -233,7 +234,8 @@
       left: 75,
       top: -45,
       height: 'auto',
-      color: '#fff'
+      color: '#fff',
+      touchEnabled: false
     });
     
     var presenterName2 = Ti.UI.createLabel({
@@ -243,7 +245,8 @@
       left: 75,
       bottom: 10,
       height: 'auto',
-      color: "#fff"
+      color: "#fff",
+      touchEnabled: false
     });
 
     presRow.add(presenterFullName2);

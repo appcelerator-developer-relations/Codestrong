@@ -24,6 +24,7 @@ Ti.UI.setBackgroundColor('#414444');
 Ti.include(
 	// Codestrong libraries
 	'cs/cs.js',
+	'cs/ui.js',
 	'cs/datetime.js',
 	
 	// Drupal connection libraries
@@ -51,8 +52,6 @@ if (!Drupal.db.getConnection('main').tableExists('user')) {
 }
 
 Ti.include(
-	'cs/pre.ui.js',	
-	
   	'windows/ModalActivityIndicatorWindow.js',	
   	'windows/DayWindow.js',
   	'windows/TwitterWindow.js',

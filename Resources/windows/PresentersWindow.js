@@ -148,7 +148,7 @@
 	      // We also push a new index so we can create a right side index for iphone.
 	      if (headerLetter == '' || name.charAt(0).toUpperCase() != headerLetter) {
 	        headerLetter = name.charAt(0).toUpperCase();
-	    	data.push(Codestrong.createHeaderRow(headerLetter));
+	    	data.push(Codestrong.ui.createHeaderRow(headerLetter));
 	    	index.push({title:headerLetter,index:i});
 	      }
 	

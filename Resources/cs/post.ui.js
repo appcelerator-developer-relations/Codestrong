@@ -10,7 +10,7 @@
 	} 
 	
 	// configure dashboard icons
-	Codestrong.settings.icons = {
+	Codestrong.ui.icons = {
 		height: iconHeight,
 		width: iconWidth,
 		list: [
@@ -35,7 +35,7 @@
 			{
 				image: 'images/dashboard/sponsors' + imageSuffix + '.png',
 				func: Codestrong.ui.createHtmlWindow,
-				args: {url: Codestrong.settings.sponsorsPage, title:'Sponsors'}
+				args: {url: Codestrong.ui.sponsorsPage, title:'Sponsors'}
 			},
 		    {
 				image: 'images/dashboard/about' + imageSuffix + '.png',
