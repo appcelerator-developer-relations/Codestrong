@@ -11,13 +11,24 @@ var Codestrong = {
     tabBarHeight: 36
 };
 
-Object.create = function (o) {
-    var f = function () {};
-    f.prototype = 0;
-    return new f();
-};
-
 (function() {
+	Codestrong.create = function (o) {
+	    var f = function () {};
+	    f.prototype = o;
+	    return new f();
+	};
+	
+	Codestrong.extend = function(obj) {
+	    var args = Array.prototype.slice.call(arguments, 1);
+	    for (var i = 0; i < args.length; i++) {
+	    	var source = args[i];
+	      	for (var prop in source) {
+	        	if (source[prop] !== void 0) obj[prop] = source[prop];
+	      	}
+	    }
+	    return obj;
+	};
+	
 	Codestrong.isLargeScreen = function() {
 		if (Codestrong.__isLargeScreen === undefined) {
 			Codestrong.__isLargeScreen = (Ti.Platform.displayCaps.platformWidth >= 600);
