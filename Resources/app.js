@@ -23,6 +23,7 @@ Titanium.UI.setBackgroundColor('#414444');
 
 // Include the Drupal connection libraries.
 Ti.include(
+	'cs/cs.js',
   'lib/phpjs.js',
   'lib/misc.js',
   'lib/menu.js',
@@ -48,25 +49,24 @@ if (!Drupal.db.getConnection('main').tableExists('user')) {
   Drupal.entity.db('main', 'user').initializeSchema();
 }
 
-Ti.include('cs/pre.ui.js');
-
 Ti.include(
-  'windows/ModalActivityIndicatorWindow.js',	
-  'windows/DayWindow.js',
-  'windows/TwitterWindow.js',
-  'windows/MapWindow.js',
-  'windows/AboutWindow.js',
-  'windows/TwitterDetailWindow.js',
-  'windows/PresentersWindow.js',
-  'windows/SessionsWindow.js',
-  'windows/SessionDetailWindow.js',
-  'windows/PresenterDetailWindow.js',
-  'windows/HtmlWindow.js'
+	'cs/pre.ui.js',	
+	
+  	'windows/ModalActivityIndicatorWindow.js',	
+  	'windows/DayWindow.js',
+  	'windows/TwitterWindow.js',
+  	'windows/MapWindow.js',
+  	'windows/AboutWindow.js',
+  	'windows/TwitterDetailWindow.js',
+  	'windows/PresentersWindow.js',
+  	'windows/SessionsWindow.js',
+  	'windows/SessionDetailWindow.js',
+  	'windows/PresenterDetailWindow.js',
+  	'windows/HtmlWindow.js',
+  
+  	'cs/post.ui.js',
+  	'windows/main.js'
 );
-
-Ti.include('cs/post.ui.js');
-
-Ti.include('windows/main.js');
 
 // open (sponsor) URLs in the native browser, not a webview
 Ti.App.addEventListener('openURL', function(e){

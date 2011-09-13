@@ -1,11 +1,13 @@
-Codestrong = {
-	__isLargeScreen: undefined,
-	__isAndroid: undefined,
-	settings: {},
-	navWindow: undefined,
-	navGroup: undefined,
-	tabBarHeight: 36
-};
+// Codestrong = Codestrong.create();
+// 
+// Codestrong = {
+	// __isLargeScreen: undefined,
+	// __isAndroid: undefined,
+	// settings: {},
+	// navWindow: undefined,
+	// navGroup: undefined,
+	// tabBarHeight: 36
+// };
 
 (function() {
 	Codestrong.isLargeScreen = function() {

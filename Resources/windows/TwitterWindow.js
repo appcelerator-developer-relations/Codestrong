@@ -192,7 +192,8 @@
               avatar = entry.isSearch ? tweets[c].profile_image_url : tweets[c].user.profile_image_url;
 
             }
-            var created_at = prettyDate(strtotime(tweets[c].created_at));
+            
+            var created_at = Codestrong.datetime.getTwitterInterval(tweets[c].created_at);
             var bgcolor = (c % 2) === 0 ? '#fff' : '#eee';
 
             var row = Ti.UI.createTableViewRow({
