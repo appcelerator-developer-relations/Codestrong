@@ -109,7 +109,6 @@
                 touchEnabled: false
             });
 
-            // Some things, like keynote, have multiple rooms
             var roomLabel = Ti.UI.createLabel({
                 text: session.room,
                 font: {

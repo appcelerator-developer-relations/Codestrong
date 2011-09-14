@@ -90,18 +90,6 @@ Drupal.entity.Datastore.prototype.save = function (entity) {
  *   a successful insert or 0 if something went wrong.
  */
 Drupal.entity.Datastore.prototype.insert = function (entity) {
-    //Ti.API.debug('In Datastore.insert()');
-    // var fields = {};
-    // // Get the basic fields first.
-    // var properties = ['id', 'revision', 'bundle', 'label'];
-    // var property;
-    // for (var i = 0; i < properties.length; i++) {
-    // property = properties[i];
-    // if (this.entityInfo.entity_keys[property]) {
-    // fields[this.entityInfo.entity_keys[property]] = entity[this.entityInfo.entity_keys[property]];
-    // }
-    // }
-    // fields = entity;
     if (this.entityInfo.label === 'Node') {
         var timeslot = entity['time'];
         var m = /^(\d+)\s+([^\s]+)\s+(\d\d\:\d\d)\s*\-\s*(\d\d\:\d\d)/.exec(timeslot);
@@ -118,7 +106,7 @@ Drupal.entity.Datastore.prototype.insert = function (entity) {
         }
     }
 
-    // For whatever reason, `delete` does not actually delete the property on Android
+    // handle Android `delete` issue
     var fields = {};
     if (Codestrong.isAndroid()) {
         for (var mykey in entity) {
@@ -180,11 +168,6 @@ Drupal.entity.Datastore.prototype.update = function (entity) {
  */
 Drupal.entity.Datastore.prototype.exists = function (id) {
     var rows = this.connection.query("SELECT 1 FROM " + this.entityType + " WHERE " + this.idField + " = ?", [id]);
-
-    // In case of pretty much any error whatsoever, Ti will just
-    // return null rather than show a useful error.  So we have
-    // to check the return, always. Fail.  We'll assume that a
-    // null return (error) indicates that the record is not there.
     var ret = rows && rows.rowCount;
     if (rows) {
         rows.close();
@@ -252,22 +235,19 @@ Drupal.entity.Datastore.prototype.loadMultiple = function (ids, order) {
  *   empty.
  */
 Drupal.entity.Datastore.prototype.loadByField = function (field, values, order) {
-
     var entities = [];
-
     var placeholders = [];
+    
     for (var i = 0, numPlaceholders = values.length; i < numPlaceholders; i++) {
         placeholders.push('?');
     }
 
     var query = 'SELECT data FROM ' + this.entityType + ' WHERE ' + field + ' IN (' + placeholders.join(', ') + ')';
-
     if (order !== undefined) {
         query += ' ORDER BY ' + order.join(', ');
     }
-
+    
     var rows = this.connection.query(query, values);
-
     if (rows) {
         while (rows.isValidRow()) {
             var data = rows.fieldByName('data');
@@ -305,12 +285,12 @@ Drupal.entity.Datastore.prototype.remove = function (id) {
 
 Drupal.entity.Datastore.prototype.fetchUpdates = function (bundle) {
     var callback = function () {
-            // Let other systems respond to the update completion.
-            Ti.fireEvent('drupal:entity:datastore:update_completed', {
-                entity: this.entityType,
-                bundle: bundle
-            });
-        };
+        // Let other systems respond to the update completion.
+        Ti.fireEvent('drupal:entity:datastore:update_completed', {
+            entity: this.entityType,
+            bundle: bundle
+        });
+    };
 
     if (this.entityInfo.schema.fetchers && this.entityInfo.schema.fetchers[bundle]) {
         this.entityInfo.schema.fetchers[bundle](this, callback);

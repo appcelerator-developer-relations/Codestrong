@@ -33,10 +33,8 @@
 
         // Build session data
         var sessionData = Drupal.entity.db('main', 'node').load(settings.nid);
+        
         var tvData = [];
-        var blueBg = '#FFF';
-
-        // Structure
         var tv = Ti.UI.createTableView({
             textAlign: 'left',
             layout: 'vertical',
@@ -63,7 +61,7 @@
         var bodyRow = Ti.UI.createTableViewRow({
             hasChild: false,
             height: 'auto',
-            backgroundColor: blueBg,
+            backgroundColor: '#fff',
             left: 0,
             top: -5,
             bottom: 10,
@@ -157,7 +155,6 @@
 
         tvData.push(headerRow);
 
-        //if (sessionData.instructors && sessionData.instructors.length) {
         if (sessionData.instructors) {
             var instructorList = sessionData.instructors.split(",");
             for (var k = 0; k < instructorList.length; k++) {

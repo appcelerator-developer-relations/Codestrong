@@ -34,9 +34,6 @@ Drupal.entity = {
              * We're using lower_case variables here instead of camelCase so that they
              * exactly match the PHP variables.  That will make dynamic definition easier
              * later.
-             *
-             * @todo Make it possible to override this data with a direct pull of
-             *       hook_entity_info() from a connected server.
              */
             types: {
                 node: {
@@ -150,7 +147,6 @@ Drupal.entity.DefaultSchema.prototype.getFieldValues = function (entity, values)
 
 Drupal.entity.DefaultSchema.prototype.defaultFetcher = function (bundle, store, func, fetchUrl) {
     var xhr = Titanium.Network.createHTTPClient();
-    //xhr.onerror = options.errorHandler;
     xhr.onload = function () {
         var entities = JSON.parse(this.responseText).entities;
         var length = entities.length;

@@ -28,7 +28,8 @@
         };
         baseRow[Codestrong.ui.backgroundSelectedProperty + 'Color'] = Codestrong.ui.backgroundSelectedColor;
 
-        // Creates a TableViewRow using the base row properties
+        // Creates a TableViewRow using the base row properties and a given
+        // params object
         var createDayRow = function (params) {
             return Codestrong.extend(Ti.UI.createTableViewRow(params), baseRow);
         }

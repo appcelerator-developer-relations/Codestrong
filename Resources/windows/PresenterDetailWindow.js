@@ -33,9 +33,6 @@
         presenterDetailWindow.orientationModes = [Ti.UI.PORTRAIT];
 
         var tvData = [];
-        var blueBg = '#C4E2EF';
-
-        // Structure
         var tv = Ti.UI.createTableView({
             textAlign: 'left',
             width: '100%',

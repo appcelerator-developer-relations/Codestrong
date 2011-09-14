@@ -44,19 +44,12 @@ Drupal.entity.sites.main.types.node.schema = {
 
     getFieldValues: function (entity, values) {
         values.changed = entity.changed;
-
-        // The room may be multi-value because some sessions, like keynotes, are in
-        // multiple rooms.  So we fold the denormalized value down to a string, and
-        // convert the data blob version to an array so that we don't have to deal
-        // with type checking it later.
         if (typeof entity.room !== undefined) {
             var rooms = [];
             if (typeof entity.room === 'string') {
                 rooms.push(entity.room);
             } else if (typeof entity.room === 'object') {
                 for (var key in entity.room) {
-                    // We don't actually use hasOwnProperty() here because this is a
-                    // JSON-derived object, so it doesn't exist. I don't get it either.
                     rooms.push(entity.room[key]);
                 }
             }
@@ -74,19 +67,12 @@ Drupal.entity.sites.main.types.node.schema = {
             values.end_date = Drupal.getISODate(end_date);
         }
 
-        // This is not really the right place for this sort of normalization, but
-        // it's here so we'll use it.
-        // On sessions, force the instructor and room fields to be collections.
-        // That they may not be if single-value is a bug in the views_datasource
-        // module.
         if (typeof entity.instructors !== undefined) {
             var instructors = [];
             if (typeof entity.instructors === 'string') {
                 instructors.push(entity.instructors);
             } else if (typeof entity.instructors == 'object') {
                 for (var insKey in entity.instructors) {
-                    // We don't actually use hasOwnProperty() here because this is a
-                    // JSON-derived object, so it doesn't exist. I don't get it either.
                     instructors.push(entity.instructors[insKey]);
                 }
             }

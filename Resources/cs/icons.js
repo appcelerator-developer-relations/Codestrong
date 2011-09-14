@@ -9,7 +9,6 @@
 		imageSuffix = '@2x';
 	} 
 	
-	// configure dashboard icons
 	Codestrong.ui.icons = {
 		height: iconHeight,
 		width: iconWidth,

@@ -10,12 +10,6 @@ var Codestrong = {
 };
 
 (function() {
-	Codestrong.create = function (o) {
-	    var f = function () {};
-	    f.prototype = o;
-	    return new f();
-	};
-	
 	Codestrong.extend = function(obj) {
 	    var args = Array.prototype.slice.call(arguments, 1);
 	    for (var i = 0; i < args.length; i++) {

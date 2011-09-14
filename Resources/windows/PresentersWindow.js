@@ -32,9 +32,6 @@
 
         PresentersWindow.doRefresh = function () {
             var nameList = getNameList();
-
-            // I want our list of names to have the usernames mixed in, and they usually
-            // start with lowercase, so we need to create a custom sortorder that ignores case.
             var sortedNames = nameList.sort(function (a, b) {
                 a = a.toLowerCase();
                 b = b.toLowerCase();
@@ -47,12 +44,10 @@
                 return 0;
             });
 
-            // Now we can do something, like, oh I don't know, build the table :)
             var headerLetter = '';
             var index = [];
             var presenterRow = [];
             var data = [];
-
             for (var i in sortedNames) {
                 var user = sortedNames[i].split(':');
                 var uid = parseInt(user[1]) + 0;
@@ -90,8 +85,6 @@
                     var firstName = firstLastName[1];
                 }
 
-
-                // Android can't handle some of this label manipulation
                 if (Codestrong.isAndroid()) {
                     presenterRow.add(Ti.UI.createLabel({
                         text: fullName,
@@ -104,10 +97,7 @@
                         color: '#000',
                         touchEnabled: false
                     }));
-
-
                 } else {
-                    // iPhone - make it fancy
                     if (fullName != '') {
                         var nameView = Ti.UI.createView({
                             height: 40,
@@ -188,12 +178,8 @@
     function getNameList() {
         var conn = Drupal.db.getConnection('main');
         var rows = conn.query("SELECT uid, name, full_name FROM user");
-
-        // As far as I can tell, objects aren't allowed to be sorted, so even though
-        // I can write a sort on say a.lastName - it won't stay sorted (yes I tried)
-        // so I have to build an array, sort it, then decompile it to use it.
-        // Have I mentioned lately that javascript is not my favorite language right now?
         var nameList = [];
+        
         if (rows) {
             while (rows.isValidRow()) {
                 var uid = rows.fieldByName('uid');
