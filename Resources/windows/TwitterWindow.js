@@ -19,34 +19,7 @@
         var twitterTimeout = 11000;
         var tweetCount = 50;
         var firstRun = true;
-
-        var createTwitterTable = function (search) {
-            return Ti.UI.createTableView({
-                height: '100%',
-                width: '100%',
-                viewTitle: search
-            });
-       };
-        var data = [{
-            search: '#codestrong',
-            url: 'http://search.twitter.com/search.json?q=%23codestrong&result_type=recent&rpp=' + tweetCount,
-            table: createTwitterTable('#codestrong'),
-            isSearch: true
-        }, {
-            search: '@appcelerator',
-            url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=appcelerator&count=' + tweetCount,
-            table: createTwitterTable('@appcelerator'),
-            isSearch: false
-        }, {
-            search: '@codestrong',
-            url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=codestrong&count=' + tweetCount,
-            table: createTwitterTable('@codestrong'),
-            isSearch: false
-        }
-
-        ];
-        var loadedViews = [];
-
+        
         var twitterWindow = Titanium.UI.createWindow({
             id: 'twitterWindow',
             title: 'Twitter News',
@@ -54,102 +27,48 @@
             barColor: '#414444',
             fullscreen: false
         });
-        var tabbedBarView = Ti.UI.createView({
-            backgroundColor: '#555',
-            top: 0,
-            height: 36
-        });
-        var tabbedBar = Ti.UI.createView({
-            top: 0,
-            backgroundColor: '#000',
-            height: 36,
-            width: Ti.Platform.displayCaps.platformWidth
-        });
 
+        var createTwitterTable = function (search) {
+            return Ti.UI.createTableView({
+                height: '100%',
+                width: '100%',
+                viewTitle: search
+            });
+        };
+        var data = [{
+        	title: '#codestrong',
+        	view: createTwitterTable('#codestrong'),
+            url: 'http://search.twitter.com/search.json?q=%23codestrong&result_type=recent&rpp=' + tweetCount,
+            isSearch: true
+        }, {
+            title: '@appcelerator',
+            view: createTwitterTable('@appcelerator'),
+            url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=appcelerator&count=' + tweetCount,
+            isSearch: false
+        }, {
+            title: '@codestrong',
+            view: createTwitterTable('@codestrong'),
+            url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=codestrong&count=' + tweetCount,
+            isSearch: false
+        }
+
+        ];
+        var loadedViews = [];
+        
+        twitterWindow.add(Codestrong.ui.createTabbedScrollableView({data:data}));
+
+		// add a click handler to all twitter tables
         for (var index in data) {
-            myEntry = data[index];
-            myEntry.table.addEventListener('click', function (e) {
+            item = data[index];
+            item.view.addEventListener('click', function (e) {
                 Codestrong.navGroup.open(Codestrong.ui.createTwitterDetailWindow({
                     title: e.rowData.user,
                     text: e.rowData.tweet,
                     name: e.rowData.user,
                     date: e.rowData.date
-                }), {
-                    animated: true
-                });
+                }), { animated: true });
             });
-
-            var bgImage = 'images/buttonbar/button2_selected.png';
-            if (index == 1) {
-                bgImage = 'images/buttonbar/button2_unselected_shadowL.png';
-            } else if (index == 2) {
-                bgImage = 'images/buttonbar/button2_unselected_shadowR.png';
-            }
-
-            var tabView = Ti.UI.createView({
-                backgroundImage: bgImage,
-                height: 36,
-                left: index * (Ti.Platform.displayCaps.platformWidth / data.length),
-                right: Ti.Platform.displayCaps.platformWidth - ((parseInt(index) + 1) * (Ti.Platform.displayCaps.platformWidth / data.length)),
-                index: index
-            });
-
-            var tabLabel = Ti.UI.createLabel({
-                text: myEntry.search,
-                textAlign: 'center',
-                color: '#fff',
-                height: 'auto',
-                touchEnabled: false,
-                font: {
-                    fontSize: 14
-                }
-            });
-            tabView.addEventListener('click', function (e) {
-                for (var i = 0; i < data.length; i++) {
-                    if (e.source.index == 0) {
-                        data[0].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
-                        data[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                        data[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                    } else if (e.source.index == 1) {
-                        data[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                        data[1].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
-                        data[2].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                    } else if (e.source.index == 2) {
-                        data[0].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowL.png';
-                        data[1].tabView.backgroundImage = 'images/buttonbar/button2_unselected_shadowR.png';
-                        data[2].tabView.backgroundImage = 'images/buttonbar/button2_selected.png';
-                    }
-
-                    if (e.source.index == i) {
-                        scrollable.scrollToView(data[i].table);
-                    }
-                }
-            });
-
-            tabView.add(tabLabel);
-            tabbedBar.add(tabView);
-            myEntry.tabView = tabView;
         }
-
-        var scrollable = Ti.UI.createScrollableView({
-            showPagingControl: true,
-            backgroundColor: '#000000',
-            top: 30,
-            views: [
-            	data[0].table, 
-            	data[1].table, 
-            	data[2].table
-            ]
-        });
-        scrollable.addEventListener('scroll', function (e) {
-            if (e.view) {
-                data[e.currentPage].tabView.fireEvent('click');
-            }
-        });
-
-        twitterWindow.add(scrollable);
-        tabbedBarView.add(tabbedBar);
-        twitterWindow.add(tabbedBarView);
 
         // Using the parsing method shown https://gist.github.com/819929
         var tweetWebJs = "document.body.addEventListener('touchmove', function(e) { e.preventDefault();}, false);";
@@ -167,7 +86,7 @@
                 xhr.open("GET", entry.url);
 
                 xhr.onerror = function () {
-                    loadedViews.push(entry.table);
+                    loadedViews.push(entry.view);
                     if (loadedViews.length >= data.length) {
                         loadedViews = [];
                         Codestrong.ui.activityIndicator.hideModal();
@@ -271,8 +190,8 @@
                             tvData[c] = row;
                         }
 
-                        entry.table.setData(tvData);
-                        loadedViews.push(entry.table);
+                        entry.view.setData(tvData);
+                        loadedViews.push(entry.view);
                         if (loadedViews.length >= data.length) {
                             loadedViews = [];
                             Codestrong.ui.activityIndicator.hideModal();
