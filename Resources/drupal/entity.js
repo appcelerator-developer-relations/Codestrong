@@ -13,6 +13,25 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with CODESTRONG Mobile.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The CODESTRONG mobile companion app was based off the original work done by the team
+ * at palatir.net which included:
+ *
+ * Larry Garfield
+ * Pat Teglia
+ * Jen Simmons
+ *
+ * This code can be located at: https://github.com/palantirnet/drupalcon_mobile
+ *
+ * The following Appcelerator Employees also spent time answering questions via phone calls, IRC
+ * and email and contributed code to the original Drupalcon Mobile application.
+ * 
+ * Tony Guntharp
+ * Chad Auld
+ * Don Thorp
+ * Marshall Culpepper
+ * Stephen Tramer
+ * Rick Blalock
  */
 // Declaring variables to prevent implied global error in jslint
 var Ti, Drupal;
