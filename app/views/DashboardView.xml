@@ -1,0 +1,5 @@
+<Alloy>
+	<View id="container">
+		<Button id="logout" titleid="logout"/>
+	</View>
+</Alloy>

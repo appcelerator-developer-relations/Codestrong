@@ -1,0 +1,6 @@
+<!-- Initial window, content is mostly dynamic -->
+<Alloy>
+	<Window exitOnClose="true">
+		<ImageView id="logo" image="/img/codestrong-logo.png"/>
+	</Window>
+</Alloy>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="codestrong">Codestrong</string>
+	<string name="email">E-Mail</string>
+	<string name="password">Password</string>
+	<string name="working">Working...</string>
+	<string name="login">Log In</string>
+	<string name="logout">Log Out</string>
+	<string name="uhwhat">I don't have any of those...</string>
+	<string name="alreadyDid">I already signed up with a new account.</string>
+	<string name="thatscool">No account? That's cool, sign up here instead...</string>
+	<string name="ohnice">Already have an account? Sweet, log in here.</string>
+	<string name="signup">Sign Up</string>
+	<string name="cancel">Cancel</string>
+</resources>

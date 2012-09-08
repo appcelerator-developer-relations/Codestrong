@@ -1,0 +1,12 @@
+Window: {
+	backgroundImage:"/img/bg.png",
+	navBarHidden:true
+},
+TextField: {
+	borderStyle:Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+},
+Label: {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+}

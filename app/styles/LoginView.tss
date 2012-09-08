@@ -1,0 +1,11 @@
+"#container": {
+	layout:"vertical",
+	width:310,
+	height:Ti.UI.SIZE
+},
+"#logo": {
+	top:10,
+	left:10,
+	right:10,
+	image:"/img/codestrong-logo.png"
+}

@@ -1,0 +1,25 @@
+<Alloy>
+	<View id="wrapper">
+		<ScrollableView id="scroller" scrollingEnabled="false">
+			<View id="social">
+				<Button id="fb" class="socialButton"/>
+				<Button id="twitter" class="socialButton"/>
+				<!-- <Button id="linkedin" class="socialButton"/> -->
+				<Label id="uhwhat" textid="uhwhat"/>
+				<Label id="alreadyDid" textid="alreadyDid"/>
+			</View>
+			<View id="form">
+				<Label id="header" textid="thatscool"/>
+				<TextField id="email"/>
+				<TextField id="password" passwordMask="true"/>
+				<View>
+					<Button id="action" titleid="signup" width="130" height="44" left="10"/>
+					<Button id="cancel" titleid="cancel" width="130" height="44" right="10"/>
+				</View>
+			</View>
+		</ScrollableView>
+		<View id="loading">
+			<Label textid="working"/>
+		</View>
+	</View>
+</Alloy>

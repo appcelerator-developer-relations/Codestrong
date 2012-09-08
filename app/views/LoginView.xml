@@ -1,0 +1,6 @@
+<Alloy>
+	<View id="container">
+		<ImageView id="logo"/>
+		<Require id="social" src="SocialLoginView"/>
+	</View>
+</Alloy>

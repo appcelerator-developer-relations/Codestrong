@@ -1,8 +1,8 @@
 tmp
-build/android/*
-build/iphone/*
+build
 .settings
 .project
 .DS_Store
 build.log
 .fastdev.lock
+tiapp.xml
