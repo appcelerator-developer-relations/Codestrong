@@ -18,8 +18,5 @@
 				</View>
 			</View>
 		</ScrollableView>
-		<View id="loading">
-			<Label textid="working"/>
-		</View>
 	</View>
 </Alloy>

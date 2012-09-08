@@ -11,7 +11,6 @@ $.loginView = Alloy.createController('LoginView');
 
 //Check Login Status
 var sessionId = Ti.App.Properties.getString('sessionId');
-Ti.API.info('stored:'+sessionId);
 if (sessionId) {
 	Cloud.sessionId = sessionId;
 	$.index.remove($.logo);

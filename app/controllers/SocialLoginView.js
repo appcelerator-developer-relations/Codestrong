@@ -10,18 +10,11 @@ $.password.hintText = L('password');
 var selectedAction = 0; //0 - sign up, 1 - log in
 
 //private functions
-
 function loginHandler(e) {
 	if (e.success) {
 		$.scroller.scrollToView(0);
 		//Store the current value of the Cloud session for later use, and notify app of success
 		Ti.App.Properties.setString('sessionId', Cloud.sessionId);
-		
-		//Store external account IDs
-		var user = e.users[0];
-		if (user.external_accounts && user.external_accounts.length > 0) {
-			Ti.App.Properties.setString('externalAccounts', JSON.stringify(user.external_accounts));
-		}
 		Ti.App.fireEvent('app:login.success');
 	}
 	else {
@@ -42,6 +35,30 @@ function fbLogin() {
 Ti.Facebook.addEventListener('login', fbLogin);
 
 //event handlers
+
+//iOS needs a little extra space on field focus for logins to dodge the sw keyboard...
+//Alloy will actually optimize this out at compile time for Android and mobile web...
+if (OS_IOS) {
+	function moveScrollerUp() {
+		$.wrapper.animate({
+			bottom:120,
+			duration:250
+		});
+	}
+	
+	function moveScrollerDown() {
+		$.wrapper.animate({
+			bottom:10,
+			duration:250
+		});
+	}
+	
+	$.email.on('focus', moveScrollerUp);
+	$.password.on('focus', moveScrollerUp);
+	$.email.on('blur', moveScrollerDown);
+	$.password.on('blur', moveScrollerDown);
+}
+
 $.fb.on('click', function() {
 	Ti.Facebook.authorize();
 });
@@ -69,8 +86,6 @@ $.cancel.on('touchend', function() {
 });
 
 $.action.on('touchend', function() {
-	$.loading.visible = true;
-	
 	if (selectedAction === 0) {
 		//create new user - TODO: validate e-mail, make user confirm password		
 		Cloud.Users.create({
