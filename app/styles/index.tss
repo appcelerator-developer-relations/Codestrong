@@ -1,3 +1,56 @@
-
+'#cloud1': {
+	height:'232dp',
+	width:'632dp',
+	image:'/img/cloud-animation/cloud1.png',
+	bottom:0
+},
+'#cloud2': {
+	height:'127dp',
+	width:'429dp',
+	image:'/img/cloud-animation/cloud2.png',
+	left:'-20dp',
+	bottom:'0dp'
+},
+'#cloud3': {
+	height:'148dp',
+	width:'422dp',
+	image:'/img/cloud-animation/cloud3.png',
+	right:'-20dp',
+	bottom:0
+},
+'#cloud4': {
+	height:'137dp',
+	width:'292dp',
+	image:'/img/cloud-animation/cloud4.png',
+	left:'-20dp',
+	bottom:0
+},
+'#cloud5': {
+	height:'150dp',
+	width:'332dp',
+	image:'/img/cloud-animation/cloud5.png',
+	right:'-20dp',
+	bottom:0
+},
+'#rocketView': {
+	bottom:'-70dp',
+	left:'-30dp',
+	height:'230dp',
+	width:'160dp'
+},
+'#rocket': {
+	top:0,
+	right:0,
+	image:'/img/rocket.png',
+	height:'109dp',
+	width:'83dp'
+},
+'#exhaust': {
+	left:0,
+	bottom:0,
+	image:'/img/rocket-exhaust.png',
+	height:'157dp',
+	width:'109dp'
+}
 
 

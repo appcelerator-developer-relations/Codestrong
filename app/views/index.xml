@@ -2,6 +2,14 @@
 <Alloy>
 	<Window exitOnClose="true">
 		<!-- active cloud animation elements -->
-		
+		<ImageView id="cloud1"/>
+		<ImageView id="cloud2"/>
+		<ImageView id="cloud3"/>
+		<ImageView id="cloud4"/>
+		<View id="rocketView">
+			<ImageView id="exhaust"/>
+			<ImageView id="rocket"/>
+		</View>
+		<ImageView id="cloud5"/>
 	</Window>
 </Alloy>
