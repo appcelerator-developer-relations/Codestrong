@@ -23,40 +23,77 @@ function loginHandler(e) {
 	}
 }
 
-//Handle Facebook Login
-function fbLogin() {
+//Handle social logins
+function socialLogin() {
+	var socialIntegrationArgs = {},
+		authorized = false;
+		
 	if (Ti.Facebook.loggedIn) {
-        Cloud.SocialIntegrations.externalAccountLogin({
+		authorized = true;
+        socialIntegrationArgs = {
             type: 'facebook',
             token: Ti.Facebook.accessToken
-        }, loginHandler);
+        };
     }
+    else if (social.isAuthorized()) {
+    	authorized = true;
+        socialIntegrationArgs = {
+            type: 'facebook',
+            token: Ti.Facebook.accessToken
+        };
+    }
+    
+    //Link account if authorized
+    authorized && (Cloud.SocialIntegrations.externalAccountLogin(socialIntegrationArgs, loginHandler));
 }
-Ti.Facebook.addEventListener('login', fbLogin);
+
+Ti.Facebook.addEventListener('login', socialLogin);
 
 //event handlers
 
 //iOS needs a little extra space on field focus for logins to dodge the sw keyboard...
 //Alloy will actually optimize this out at compile time for Android and mobile web...
 if (OS_IOS) {
+	var focused = false;
+	
+	function doScroll(bot, force) {
+		//Short circuit to animation as quickly as possible
+		if (force || !Alloy.isTablet || Ti.Gesture.orientation === Ti.UI.LANDSCAPE_LEFT || Ti.Gesture.orientation === Ti.UI.LANDSCAPE_RIGHT ) {
+			$.wrapper.animate({
+				bottom:bot,
+				duration:250
+			});
+		}
+	}
+	
 	function moveScrollerUp() {
-		$.wrapper.animate({
-			bottom:120,
-			duration:250
-		});
+		focused = true;
+		doScroll(120);
 	}
 	
 	function moveScrollerDown() {
-		$.wrapper.animate({
-			bottom:10,
-			duration:250
-		});
+		focused = false;
+		doScroll(10);
 	}
 	
 	$.email.on('focus', moveScrollerUp);
 	$.password.on('focus', moveScrollerUp);
 	$.email.on('blur', moveScrollerDown);
 	$.password.on('blur', moveScrollerDown);
+	
+	//Always reset on orientation change for tablet
+	if (Alloy.isTablet) {
+		Ti.Gesture.addEventListener('orientationchange', function(e) {
+			if (focused) {
+				if (e.orientation === Ti.UI.PORTRAIT || e.orientation === Ti.UI.UPSIDE_PORTRAIT) {
+					doScroll(10,true);
+				}
+				else {
+					doScroll(120,true);
+				}
+			}
+		});
+	}
 }
 
 $.fb.on('click', function() {
@@ -64,7 +101,7 @@ $.fb.on('click', function() {
 });
 
 $.twitter.on('click', function() {
-	alert('removed twitter login for now');
+	social.authorize(socialLogin);
 });
 
 $.uhwhat.on('touchend', function() {

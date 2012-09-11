@@ -1,6 +1,7 @@
-<!-- Initial window, content is mostly dynamic -->
+<!-- Initial window, content is dynamic -->
 <Alloy>
 	<Window exitOnClose="true">
-		<ImageView id="logo" image="/img/codestrong-logo.png"/>
+		<!-- active cloud animation elements -->
+		
 	</Window>
 </Alloy>
