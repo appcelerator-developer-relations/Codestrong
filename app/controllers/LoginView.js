@@ -106,7 +106,7 @@ $.login.on('click', function() {
 });
 
 $.noAppcNetwork.on('click', function() {
-	Ti.Platform.openURL('https:/my.appcelerator.com/auth/signup');
+	Ti.Platform.openURL('https://my.appcelerator.com/auth/signup');
 });
 
 //Place initial focus on e-mail field
