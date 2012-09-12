@@ -1,6 +1,5 @@
 "#parent": {
-	backgroundImage: "img/loader/roar-splash.png",
-	height: "460dp",
+	backgroundImage: "/img/loader/roar-splash.png",
 	top: "0dp"
 },
 
@@ -8,14 +7,14 @@
     top: "67dp",
     width: "186dp",
     height: "155dp",
-    backgroundImage: "img/loader/roar-logo-large.png"
+    backgroundImage: "/img/loader/roar-logo-large.png"
 },
 
 "#header": {
     top: "245dp",
     width: "153dp",
     height: "57dp",
-    backgroundImage: "img/loader/be-heard-header.png"
+    backgroundImage: "/img/loader/be-heard-header.png"
 },
 
 "#loginInput": {
@@ -23,7 +22,7 @@
     top: "250dp",
     width: "254dp",
     height: "96dp",
-    backgroundImage: "img/login/input-bg.png"
+    backgroundImage: "/img/login/input-bg.png"
 },
 
 "TextField": {
@@ -54,12 +53,12 @@
 
 "#loginBtn": {
     right: "10dp",
-    backgroundImage: "img/login/login-btn.png"
+    backgroundImage: "/img/login/login-btn.png"
 },
 
 "#createBtn": {
     left: "10dp",
-    backgroundImage: "img/login/create-btn.png"
+    backgroundImage: "/img/login/create-btn.png"
 },
 
 ".loginBtns": {
