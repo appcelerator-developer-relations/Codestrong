@@ -1,56 +1,71 @@
-'#cloud1': {
-	height:'232dp',
-	width:'632dp',
-	image:'/img/cloud-animation/cloud1.png',
-	bottom:0
+"#parent": {
+	backgroundImage: "img/loader/roar-splash.png",
+	height: "460dp",
+	top: "0dp"
 },
-'#cloud2': {
-	height:'127dp',
-	width:'429dp',
-	image:'/img/cloud-animation/cloud2.png',
-	left:'-20dp',
-	bottom:'0dp'
+
+"#logo": {
+    top: "67dp",
+    width: "186dp",
+    height: "155dp",
+    backgroundImage: "img/loader/roar-logo-large.png"
 },
-'#cloud3': {
-	height:'148dp',
-	width:'422dp',
-	image:'/img/cloud-animation/cloud3.png',
-	right:'-20dp',
-	bottom:0
+
+"#header": {
+    top: "245dp",
+    width: "153dp",
+    height: "57dp",
+    backgroundImage: "img/loader/be-heard-header.png"
 },
-'#cloud4': {
-	height:'137dp',
-	width:'292dp',
-	image:'/img/cloud-animation/cloud4.png',
-	left:'-20dp',
-	bottom:0
+
+"#loginInput": {
+    opacity: 0.0,
+    top: "250dp",
+    width: "254dp",
+    height: "96dp",
+    backgroundImage: "img/login/input-bg.png"
 },
-'#cloud5': {
-	height:'150dp',
-	width:'332dp',
-	image:'/img/cloud-animation/cloud5.png',
-	right:'-20dp',
-	bottom:0
+
+"TextField": {
+    left: "10dp",
+    right: "6dp",
+    color: "#333",
+    clearButtonMode: Ti.UI.INPUT_BUTTONMODE_ONFOCUS,
+    autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
+    autocorrect: false
 },
-'#rocketView': {
-	bottom:'-70dp',
-	left:'-30dp',
-	height:'230dp',
-	width:'160dp'
+
+"#username": {
+    id: "username",
+    hintText: "Username",
+    top: "7dp",
+    bottom: "51dp",
+    keyboardType: Ti.UI.KEYBOARD_EMAIL
 },
-'#rocket': {
-	top:0,
-	right:0,
-	image:'/img/rocket.png',
-	height:'109dp',
-	width:'83dp'
+
+"#password": {
+    id: "password",
+    hintText: "Password",
+    top: "51dp",
+    bottom: "7dp",
+    passwordMask: true,
+    keyboardType: Ti.UI.KEYBOARD_ASCII
 },
-'#exhaust': {
-	left:0,
-	bottom:0,
-	image:'/img/rocket-exhaust.png',
-	height:'157dp',
-	width:'109dp'
+
+"#loginBtn": {
+    right: "10dp",
+    backgroundImage: "img/login/login-btn.png"
+},
+
+"#createBtn": {
+    left: "10dp",
+    backgroundImage: "img/login/create-btn.png"
+},
+
+".loginBtns": {
+    opacity: 0.0,
+    width: "121dp",
+    height: "47dp",
+    top: "313dp",
+    text: ""
 }
-
-

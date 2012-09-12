@@ -1,0 +1,10 @@
+{
+    "columns": {
+        "zoom": "function"
+    },
+    "defaults": {},
+    "adapter": {
+        "type": "sql",
+        "tablename": "animation"
+    }
+}

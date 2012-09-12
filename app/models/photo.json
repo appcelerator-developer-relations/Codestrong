@@ -1,0 +1,11 @@
+{
+    "columns": {
+        "uploadPhoto": "function",
+        "getById": "function"
+    },
+    "defaults": {},
+    "adapter": {
+        "type": "sql",
+        "tablename": "photo"
+    }
+}

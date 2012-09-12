@@ -1,0 +1,11 @@
+{
+    "columns": {
+        "getById": "function",
+        "getAll": "function"
+    },
+    "defaults": {},
+    "adapter": {
+        "type": "sql",
+        "tablename": "user"
+    }
+}

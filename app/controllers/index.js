@@ -1,120 +1,89 @@
-//Facebook Configuration
-Ti.Facebook.appid = Ti.App.Properties.getString('ti.facebook.appid');
-Ti.Facebook.permissions = ['publish_stream'];
+/**
+ * Alloy Hackathon 08/20/2012
+ * Author: Fred Spencer
+ * Email: fspencer@appceleator.com
+ * == NOTES ==
+ *     - There is repetitive code
+ *       between profile and userDetail.
+ *     - Some styles are not optimal.
+ *     - Some model and controller methods
+ *       should be in a different location.
+ *     - GC hasn't been examined.
+ *     - Had problems with widgets.
+ *     - Not using 'controller events'.
+ */
 
-//Load cloud dependency, and store on Ti proxy to trick Studio code complete
-var Cloud = require('ti.cloud');
+/**
+ * index Controller
+ * Builds and renders initial login context.
+ * TODO: Drastically improve user creation.
+ */
+ 
+var __login     = Alloy.getModel( 'login' ),
+    __animation = Alloy.getModel( 'animation' );
 
-//create view hierarchy components
-$.loginView = Alloy.createController('LoginView');
-$.dashboardView = Alloy.createController('DashboardView');
+Alloy.CFG.currentWin = $.parent;
 
-//Check Login Status
-var sessionId = Ti.App.Properties.getString('sessionId');
-if (sessionId) {
-	$.index.add($.dashboardView.getView());
-	$.dashboardView.getView().animate({
-		opacity:1,
-		duration:1000
-	});
-}
-else {
-	$.index.add($.loginView.getView());
-	$.loginView.getView().animate({
-		opacity:1,
-		duration:1000
-	});
-}
-
-//Monitor Login Status
-Ti.App.addEventListener('app:login.success', function(e) {
-	$.index.add($.dashboardView.getView());
-	$.dashboardView.getView().animate({
-		opacity:1,
-		duration:1000
-	});
-	$.loginView.getView().animate({
-		opacity:0,
-		duration:1000
-	}, function() {
-		$.index.remove($.loginView.getView());
-	});	
+$.username.addEventListener('focus', function(e) {
+    __login.onFocus( e, $.parent );
 });
 
-Ti.App.addEventListener('app:logout', function(e) {
-	$.index.add($.loginView.getView());
-	$.dashboardView.getView().animate({
-		opacity:0,
-		duration:1000
-	}, function() {
-		$.index.remove($.dashboardView.getView());
-	});
-	$.loginView.getView().animate({
-		opacity:1,
-		duration:1000
-	});	
+$.password.addEventListener('focus', function(e) {
+    __login.onFocus( e, $.parent );
 });
 
-//Lock orientation modes for handheld
-if (!Alloy.isTablet) {
-	$.index.orientationModes = [
-		Ti.UI.PORTRAIT,
-		Ti.UI.UPSIDE_PORTRAIT
-	];
-}
+$.username.addEventListener('blur', function(e) {
+    __login.onBlur( e, $.parent );
+});
+$.password.addEventListener('blur', function(e) {
+    __login.onBlur( e, $.parent );
+});
 
-//Open initial window
-$.index.open();
+$.parent.addEventListener('click', function(e) {
+    $.username.blur();
+    $.password.blur();
+});
 
-/* 
-//NOTE: Ambient simultaneous animations are currently too janky for android.  Shelving for now
+$.loginBtn.addEventListener('click', function(e) {
+    
+    __login.login($.username.value, $.password.value, function(e) {
+        
+        __animation.zoom($.parent, function() {
+            Alloy.getController( 'app' );
+        });
+        
+    });
+    
+});
 
+$.createBtn.addEventListener('click', function(e) {
+    
+    __login.create($.username.value, $.password.value, function(e) {
+        
+        __animation.zoom($.parent, function() {
+            Alloy.getController( 'app' );
+        });
+        
+    });
+    
+});
 
-//Start ambient cloud animations.  Could this be smarterer?  Definitely, but,
-//had some problems setting a function-scoped variable to a global TODO
-var animationDuration = 8000,
-	animations = {
-	cloud2: '-10dp',
-	cloud3: '-10dp',
-	cloud4: '-10dp',
-	cloud5: '-10dp'
-};
+$.parent.addEventListener('open', function(e) {
+    $.logo.animate({ top:"28dp", duration:250 });
+    
+    $.header.animate({ top:"265dp", opacity:0.0, duration:250 }, function() {
+        
+        $.loginInput.animate({ top:"206dp", opacity:1.0, duration:250 }, function() {
+            $.createBtn.animate({ left:"33dp", opacity:1.0, duration:250 });
+            $.loginBtn.animate({ right:"33dp", opacity:1.0, duration:250 });
+        });
+        
+    });
+    
+});
 
-function doMove(obj, currentAnimation, direction) {
-	//kick off animation
-	var animateArgs = {
-		duration:animationDuration
-	};
-	animateArgs[direction] = currentAnimation;
-	obj.animate(animateArgs);
-}
-
-//stagger cloud animations...
-doMove($.cloud2, animations.cloud2, 'left');
-setInterval(function() {
-	doMove($.cloud2, animations.cloud2, 'left');
-	//set for next
-	animations.cloud2 = (animations.cloud2 === '-10dp') ? '-50dp' : '-10dp';
-}, animationDuration+500);
-
-doMove($.cloud3, animations.cloud3, 'right');
-setInterval(function() {
-	doMove($.cloud3, animations.cloud3, 'right');
-	//set for next
-	animations.cloud3 = (animations.cloud3 === '-10dp') ? '-50dp' : '-10dp';
-}, animationDuration+100);
-
-doMove($.cloud4, animations.cloud4, 'left');
-setInterval(function() {
-	doMove($.cloud4, animations.cloud4, 'left');
-	//set for next
-	animations.cloud4 = (animations.cloud4 === '-10dp') ? '-50dp' : '-10dp';
-}, animationDuration+1000);
-
-doMove($.cloud5, animations.cloud5, 'right');
-setInterval(function() {
-	doMove($.cloud5, animations.cloud5, 'right');
-	//set for next
-	animations.cloud5 = (animations.cloud5 === '-10dp') ? '-50dp' : '-10dp';
-}, animationDuration+1500);
-*/
+// Open loader/login window.
+// Delay for demo.
+setTimeout(function() {
+    $.parent.open();
+}, 1000);

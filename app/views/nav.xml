@@ -1,0 +1,10 @@
+<Alloy>
+	<View id="parent">
+	    <View id="selection" />
+	    <Button id="home" class="standardBtn" />
+	    <Button id="directory" class="standardBtn" />
+	    <Button id="broadcast" />
+	    <Button id="notifications" class="standardBtn" />
+	    <Button id="profile" class="standardBtn" />
+	</View>
+</Alloy>

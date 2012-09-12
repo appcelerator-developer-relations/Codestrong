@@ -1,0 +1,49 @@
+"#parent": {
+	backgroundImage: "img/nav/nav-bg.png",
+	height: "52dp",
+	left: "0dp",
+	right: "0dp",
+	bottom: "-52dp"
+},
+
+"#home": {
+    backgroundImage: "img/nav/home-btn.png",
+    left: "0dp"
+},
+
+"#directory": {
+    backgroundImage: "img/nav/directory-btn.png",
+    left: "61dp"
+},
+
+"#broadcast": {
+    backgroundImage: "img/nav/broadcast-btn.png",
+    width: "76dp",
+    height: "48dp",
+    bottom: "3dp"
+},
+
+"#notifications": {
+    backgroundImage: "img/nav/notifications-btn.png",
+    right: "61dp"
+},
+
+"#profile": {
+    backgroundImage: "img/nav/profile-btn.png",
+    right: "0dp"
+},
+
+"#selection": {
+    touchEnabled: false,
+    backgroundColor: "#ffff00",
+    width: "60dp",
+    height: "2dp",
+    bottom: "0dp",
+    left: "0dp"
+},
+
+".standardBtn": {
+    width: "60dp",
+    height: "48dp",
+    bottom: "3dp"
+}

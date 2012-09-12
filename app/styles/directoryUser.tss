@@ -1,0 +1,49 @@
+"#parent": {
+    width: "160dp",
+    height: "211dp",
+    backgroundImage: "img/directory/user-bg.png"
+},
+
+"#photo": {
+    touchEnabled: false,
+    hires: true,
+    width: "140dp",
+    height: "140dp",
+    top: "10dp",
+    left: "10dp"
+},
+
+"#fullname": {
+    touchEnabled: false,
+    font: {
+        fontFamily: "Helvetica Neue",
+        fontWeight: "bold",
+        fontSize: "14dp"
+    },
+    color: "#c50d12",
+    left: "10dp",
+    bottom: "35dp"
+},
+
+"#role": {
+    touchEnabled: false,
+    font: {
+        fontFamily: "Helvetica Neue",
+        fontSize: "10dp"
+    },
+    color: "#333",
+    left: "10dp",
+    bottom: "22dp"
+},
+
+"#username": {
+    touchEnabled: false,
+    font: {
+        fontFamily: "Helvetica Neue",
+        fontWeight: "bold",
+        fontSize: "14dp"
+    },
+    color: "#999",
+    left: "10dp",
+    bottom: "5dp"
+}

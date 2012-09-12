@@ -1,0 +1,17 @@
+"#parent": {
+    width: Ti.UI.FILL,
+	height: Ti.UI.FILL,
+	opacity: 0.0
+},
+
+"#content": {
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL,
+	layout: "horizontal",
+	contentHeight: "auto",
+	contentWidth: "320dp"
+},
+
+"#userAlert": {
+    title: "Feature Disabled"
+}

@@ -1,53 +1,25 @@
-Window: {
-	backgroundImage:'/img/cloud-animation/bg-bluesky.png',
-	navBarHidden:true
+"#parent": {
+    width: Ti.UI.FILL,
+    height: Ti.UI.FILL,
+    backgroundColor: "#ebebeb"
 },
-'Window[formFactor=handheld]': {
-	
+
+"#header": {
+    top: "0dp",
+    height: "44dp"
 },
-TextField: {
-	height:'44dp',
-	borderStyle:Ti.UI.INPUT_BORDERSTYLE_NONE,
-	backgroundColor:'transparent'
+
+"#section": {
+    top: "44dp",
+    bottom: "52dp"
 },
-Label: {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	color: '#000'
+
+"#nav": {
+    bottom: "0dp",
+    height: "52dp"
 },
-'.quicksand': {
-	font: {
-		fontFamily:'Quicksand-Regular'
-	}
-},
-'.formTopRow': {
-	width:'300dp',
-	height:'60dp',
-	backgroundImage:'/img/transparent-form-top.png'
-},
-'.formMiddleRow': {
-	width:'300dp',
-	height:'60dp',
-	backgroundImage:'/img/transparent-form-middle.png'
-},
-'.formBottomRow': {
-	width:'300dp',
-	height:'60dp',
-	backgroundImage:'/img/transparent-form-bottom.png'
-},
-'.translucentToolbar': {
-	height:'44dp',
-	backgroundImage:'/img/pattern-blue-bar.png'
-},
-'.primaryButton': {
-	color:'#fff',
-	width:'230dp',
-	height:'54dp',
-	backgroundImage:'/img/btn-blue-default.png',
-	backgroundSelectedImage:'/img/btn-blue-pressed.png',
-	backgroundDisabledImage:'/img/btn-gray-default.png',
-	font: {
-		fontFamily:'Quicksand-Bold',
-		fontSize:'24dp'
-	}
+
+".horizStretch": {
+    left: "0dp",
+    right: "0dp"
 }

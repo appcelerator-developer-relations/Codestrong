@@ -1,0 +1,5 @@
+<Alloy>
+	<View id="parent">
+	    <View id="noNotifications" />
+	</View>
+</Alloy>

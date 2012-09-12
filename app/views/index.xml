@@ -1,15 +1,12 @@
-<!-- Initial window, content is dynamic -->
 <Alloy>
-	<Window exitOnClose="true">
-		<!-- active cloud animation elements -->
-		<ImageView id="cloud1"/>
-		<ImageView id="cloud2"/>
-		<ImageView id="cloud3"/>
-		<ImageView id="cloud4"/>
-		<View id="rocketView">
-			<ImageView id="exhaust"/>
-			<ImageView id="rocket"/>
-		</View>
-		<ImageView id="cloud5"/>
+	<Window id="parent">
+	    <View id="logo" />
+	    <View id="header" />
+	    <View id="loginInput">
+	        <TextField id="username" />
+	        <TextField id="password" />
+	    </View>
+	    <Button id="createBtn" class="loginBtns"/>
+	    <Button id="loginBtn" class="loginBtns" />
 	</Window>
 </Alloy>

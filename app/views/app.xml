@@ -1,0 +1,7 @@
+<Alloy>
+	<Window id="parent">
+	    <View id="header" class="horizStretch" />
+	    <View id="section" class="horizStretch" />
+	    <View id="nav" class="horizStretch" />
+	</Window>
+</Alloy>

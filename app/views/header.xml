@@ -1,0 +1,9 @@
+<Alloy>
+	<View id="parent">
+	    <Button id="refresh" class="headerBtns" />
+	    <View id="logo" />
+	    <Button id="about" class="headerBtns" />
+	</View>
+	<AlertDialog id="aboutAlert" />
+	<AlertDialog id="refreshAlert" />
+</Alloy>

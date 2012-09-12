@@ -1,0 +1,13 @@
+<Alloy>
+	<View id="parent">
+	    <View id="user">
+            <Button id="close" />
+            <ImageView id="photo" />
+            <Label id="firstname" />
+            <Label id="lastname" />
+            <Label id="role" />
+            <Label id="username" />
+        </View>
+        <TableView id="roars" />
+	</View>
+</Alloy>

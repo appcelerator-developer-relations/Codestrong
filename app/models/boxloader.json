@@ -1,0 +1,11 @@
+{
+    "columns": {
+        "show": "function",
+        "destroy": "function"
+    },
+    "defaults": {},
+    "adapter": {
+        "type": "sql",
+        "tablename": "boxloader"
+    }
+}

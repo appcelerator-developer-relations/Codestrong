@@ -1,9 +1,22 @@
 {
-	"global": {}, 
-	"env:development": {}, 
-	"env:test": {}, 
-	"env:production": {}, 
-	"os:ios": {}, 
-	"os:android": {}, 
-	"dependencies": {}
+    "global": {
+        "app": {
+            "authorName": "Fred Spencer",
+            "authorEmail": "fspencer@appcelerator.com",
+            "version": "0.0.1 Hackathon"
+        },
+        "currentUser": {
+            "loggedIn": false,
+            "data": null
+        },
+        "refreshRoars": null,
+        "refreshProfileRoars": null,
+        "currentWin": null,
+        "currentLoader": null
+    },
+    "env:development": {},
+    "env:test": {},
+    "env:production": {},
+    "os:ios": {},
+    "os:android": {}
 }

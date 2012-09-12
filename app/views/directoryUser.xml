@@ -1,0 +1,8 @@
+<Alloy>
+	<View id="parent">
+	    <ImageView id="photo" />
+	    <Label id="fullname" />
+	    <Label id="role" />
+	    <Label id="username" />
+	</View>
+</Alloy>
