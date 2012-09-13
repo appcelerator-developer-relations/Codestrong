@@ -8,5 +8,5 @@
     left: "0dp",
     right: "0dp",
     height: "19dp",
-    backgroundImage: "img/notifications/no-notifications.png"
+    backgroundImage: "/img/notifications/no-notifications.png"
 }

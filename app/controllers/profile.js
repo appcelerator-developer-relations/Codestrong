@@ -9,6 +9,7 @@
  
 var __roar = Alloy.getModel( 'roar' )
 
+/*
 if ( Alloy.CFG.currentUser.data.photo ) {
     $.photo.image = Alloy.CFG.currentUser.data.photo.urls.medium_500;
 } 
@@ -17,9 +18,11 @@ $.firstname.text = Alloy.CFG.currentUser.data.first_name;
 $.lastname.text  = Alloy.CFG.currentUser.data.last_name;
 $.role.text      = Alloy.CFG.currentUser.data.role;
 $.username.text  = '@' + Alloy.CFG.currentUser.data.username;
+*/
 
 // Request processing should be moved to 'roar' Model.
 function __processRequest() {
+	/*
     var _row  = null,
         _data = [];
         
@@ -38,7 +41,7 @@ function __processRequest() {
         _data.length = 0;
 
     });
-    
+    */
 }
 
 __processRequest();

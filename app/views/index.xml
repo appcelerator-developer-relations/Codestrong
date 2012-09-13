@@ -6,7 +6,9 @@
 	        <TextField id="username" />
 	        <TextField id="password" />
 	    </View>
-	    <Button id="createBtn" class="loginBtns"/>
-	    <Button id="loginBtn" class="loginBtns" />
+	    <View id="buttonContainer">
+	    	<Button id="createBtn" class="loginBtns"/>
+	    	<Button id="loginBtn" class="loginBtns"/>
+	    </View>
 	</Window>
 </Alloy>

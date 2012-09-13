@@ -2,6 +2,10 @@ TextField: {
 	borderStyle:Ti.UI.INPUT_BORDERSTYLE_NONE
 },
 
+'TextField[platform=android]': {
+	backgroundImage:'/img/blank.png'
+},
+
 "#parent": {
     width: Ti.UI.FILL,
     height: Ti.UI.FILL,

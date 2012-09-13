@@ -2,7 +2,8 @@
  * directory Controller
  * Builds directory section.
  */
- 
+
+/*
 var __user  = Alloy.getModel( 'user' );
 
 __user.getAll(function(users) {
@@ -28,3 +29,4 @@ __user.getAll(function(users) {
     
 });
 
+*/

@@ -3,12 +3,12 @@
     bottom: "0dp",
     left: "0dp",
     right: "0dp", 
-	backgroundImage: "img/roar/wash.png",
+	backgroundImage: "/img/roar/wash.png",
 	opacity: 0.0
 },
 
 "#postContainer": {
-    backgroundImage: "img/roar/post-roar-bg.png",
+    backgroundImage: "/img/roar/post-roar-bg.png",
     top: "10dp",
     left: "10dp",
     right: "10dp",
@@ -31,5 +31,5 @@
     bottom: "7dp",
     width: "73dp",
     height: "48dp",
-    backgroundImage: "img/roar/post-roar-btn.png"
+    backgroundImage: "/img/roar/post-roar-btn.png"
 }

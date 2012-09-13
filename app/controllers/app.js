@@ -19,4 +19,7 @@ $.parent.addEventListener('open', function() {
 $.parent.add( __header.parent );
 $.parent.add( __nav.parent );
 
-$.parent.open();
+
+$.openWindow = function() {
+	$.parent.open();
+};

@@ -3,24 +3,24 @@
     right: "0dp",
     top: "-44dp",
     height: "44dp",
-	backgroundImage: "img/header/header-bg.png"
+	backgroundImage: "/img/header/header-bg.png"
 },
 
 "#refresh": {
     left: "0dp",
-    backgroundImage: "img/header/refresh-btn.png"
+    backgroundImage: "/img/header/refresh-btn.png"
 },
 
 "#logo": {
     top: "0dp",
     width: "88dp",
     height: "44dp",
-    backgroundImage: "img/header/roar-logo-small.png"
+    backgroundImage: "/img/header/roar-logo-small.png"
 },
 
 "#about": {
     right: "0dp",
-    backgroundImage: "img/header/about-btn.png"
+    backgroundImage: "/img/header/about-btn.png"
 },
 
 ".headerBtns": {

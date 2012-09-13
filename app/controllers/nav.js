@@ -7,11 +7,13 @@ var __nav           = Alloy.getModel( 'nav' ),
     __roar          = Alloy.getModel( 'roar' ),
     __selectionView = $.selection;
     
+var tabWidth = Ti.Platform.displayCaps.platformWidth/5;
+
 var __selectionPosition = {
-    home: "0dp",
-    directory: "61dp",
-    notifications: "199dp",
-    profile: "260dp"
+    home: 0,
+    directory: tabWidth,
+    notifications: tabWidth*3,
+    profile: tabWidth*4
 };
 
 var __sections = {

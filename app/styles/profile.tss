@@ -9,7 +9,7 @@
     left: "0dp",
     right: "0dp",
     height: "170dp",
-    backgroundImage: "img/profile/user-bg.png"
+    backgroundImage: "/img/profile/user-bg.png"
 },
 
 "#firstname": {

@@ -1,7 +1,7 @@
 "#parent": {
     width: "160dp",
     height: "211dp",
-    backgroundImage: "img/directory/user-bg.png"
+    backgroundImage: "/img/directory/user-bg.png"
 },
 
 "#photo": {

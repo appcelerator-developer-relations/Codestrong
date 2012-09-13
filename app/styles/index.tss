@@ -25,12 +25,14 @@
     backgroundImage: "/img/login/input-bg.png"
 },
 
-"TextField": {
+TextField: {
     left: "10dp",
     right: "6dp",
     color: "#333",
+    borderWidth:0,
     clearButtonMode: Ti.UI.INPUT_BUTTONMODE_ONFOCUS,
     autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
+    borderStyle:Ti.UI.INPUT_BORDERSTYLE_NONE,
     autocorrect: false
 },
 
@@ -51,13 +53,19 @@
     keyboardType: Ti.UI.KEYBOARD_ASCII
 },
 
+'#buttonContainer': {
+    top: "313dp",
+	height:Ti.UI.SIZE,
+	width:'254dp'
+},
+
 "#loginBtn": {
-    right: "10dp",
+    right: "-23dp",
     backgroundImage: "/img/login/login-btn.png"
 },
 
 "#createBtn": {
-    left: "10dp",
+    left: "-23dp",
     backgroundImage: "/img/login/create-btn.png"
 },
 
@@ -65,6 +73,5 @@
     opacity: 0.0,
     width: "121dp",
     height: "47dp",
-    top: "313dp",
     text: ""
 }

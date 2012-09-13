@@ -1,6 +1,6 @@
 <Alloy>
 	<View id="parent">
-	    <View id="selection" />
+	    <View id="selection"/>
 	    <Button id="home" class="standardBtn" />
 	    <Button id="directory" class="standardBtn" />
 	    <Button id="broadcast" />

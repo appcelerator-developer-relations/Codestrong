@@ -28,6 +28,7 @@ $.roar.addEventListener('blur', function() {
 
 $.postBtn.addEventListener('click', function() {
     
+    /*
     __roar.post(Alloy.CFG.currentUser.data.id, __roar.types.message, false, true, $.roar.value, function(e) {
         $.roar.blur();
         
@@ -37,7 +38,7 @@ $.postBtn.addEventListener('click', function() {
         Alloy.CFG.refreshRoars();
         Alloy.CFG.refreshProfileRoars();
     });
-    
+    */
 });
 
 __appWin.add( $.parent );
