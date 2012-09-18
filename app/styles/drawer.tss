@@ -1,0 +1,32 @@
+'#container': {
+	top:'45dp',
+	bottom:0,
+	backgroundImage:'/img/general/bg-interior.png'
+},
+
+'#container[formFactor=tablet]': {
+	top:'43dp',
+	right:-364,
+	width:364
+},
+
+'#underline': {
+	backgroundColor:'#0574bf',
+	top:0,
+	height:'2dp'
+},
+
+'#close': {
+	left:0,
+	width:'44dp',
+	backgroundColor:'#373e47'
+},
+
+'#closeIcon': {
+	image:'/img/drawer/btn-close.png'
+},
+
+'#content[formFactor=tablet]': {
+	left:'44dp',
+	top:'2dp'
+}

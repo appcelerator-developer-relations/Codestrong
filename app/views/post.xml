@@ -1,8 +1,4 @@
 <Alloy>
-	<View id="parent">
-	    <View id="postContainer">
-    	    <TextArea id="roar" />
-    	    <Button id="postBtn" />
-	    </View>
+	<View class="container">
 	</View>
 </Alloy>

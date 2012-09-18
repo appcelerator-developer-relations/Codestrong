@@ -1,9 +1,33 @@
 <Alloy>
-	<View id="parent">
-	    <Button id="refresh" class="headerBtns" />
-	    <View id="logo" />
-	    <Button id="about" class="headerBtns" />
+	<View id="container">
+		<View id="back" formFactor="handheld">
+			<ImageView id="backImage"/>
+		</View>
+		
+		<!-- Tablet only nav structure -->
+		<View id="nav" formFactor="tablet">
+			<View id="home" class="navBtn">
+				<ImageView id="homeIcon"/>
+			</View>
+			<View id="agenda" class="navBtn">
+				<ImageView id="agendaIcon"/>
+			</View>
+			<View id="speakers" class="navBtn">
+				<ImageView id="speakersIcon"/>
+			</View>
+			<View id="venue" class="navBtn">
+				<ImageView id="venueIcon"/>
+			</View>
+			<View id="post" class="navBtn">
+				<ImageView id="postIcon"/>
+			</View>
+		</View>
+		<View id="navIndicator" formFactor="tablet"/>
+		
+		<ImageView id="logo"/>
+		<View id="profile">
+			<ImageView id="profileImage"/>
+		</View>
+		<View id="underline"/>
 	</View>
-	<AlertDialog id="aboutAlert" />
-	<AlertDialog id="refreshAlert" />
 </Alloy>

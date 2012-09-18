@@ -1,0 +1,19 @@
+<Alloy>
+	<View id="index" class="loginContainer">
+		<ImageView id="logo"/>
+		<View id="loginContents">
+			<Label id="loginHelp" textid="appcNetwork"/>
+			<View id="emailWrapper" class="tfWrapper">
+				<TextField id="email"/>
+			</View>
+			<View id="passwordWrapper" class="tfWrapper">
+				<TextField id="password"/>
+			</View>
+			<View id="buttonContainer">
+				<Button id="create"/>
+				<Button id="login"/>
+			</View>
+			<Label id="forgot" textid="forgot"/>
+		</View>
+	</View>
+</Alloy>

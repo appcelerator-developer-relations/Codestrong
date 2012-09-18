@@ -1,39 +1,93 @@
-"#parent": {
-    left: "0dp",
-    right: "0dp",
-    top: "-44dp",
-    height: "44dp",
-	backgroundImage: "/img/header/header-bg.png"
+'#container': {
+	backgroundColor:'#373e47',
+	height:'45dp',
+	top:'-45dp'
 },
 
-"#refresh": {
-    left: "0dp",
-    backgroundImage: "/img/header/refresh-btn.png"
+'#logo': {
+	image:'/img/general/codestrong-bar-logo.png',
+	height:'22dp',
+	width:'81dp'
 },
 
-"#logo": {
-    top: "0dp",
-    width: "88dp",
-    height: "44dp",
-    backgroundImage: "/img/header/roar-logo-small.png"
+'#underline': {
+	backgroundColor:'#0574bf',
+	bottom:0,
+	height:'2dp'
 },
 
-"#about": {
-    right: "0dp",
-    backgroundImage: "/img/header/about-btn.png"
+'#profile': {
+	width:'50dp',
+	right:'10dp',
+	enabled:true
 },
 
-".headerBtns": {
-    top: "0dp",
-    width: "44dp",
-    height: "44dp"
+'#profileImage': {
+	right:0,
+	image:'/img/header/btn-profile.png',
+	width:'27dp',
+	height:'22dp',
+	opacity:1
 },
 
-"#aboutAlert": {
-    title: "About Appcelerator ROAR"
+'#back': {
+	left:'10dp',
+	width:'50dp',
+	enabled:false
 },
 
-"#refreshAlert": {
-    title: "Feature Disabled",
-    message: "The refresh feature is not currently available."
+'#backImage': {
+	left:0,
+	width:'18dp',
+	height:'19dp',
+	image:'/img/general/btn-back.png',
+	opacity:0
+},
+
+'#nav': {
+	left:0,
+	layout:'horizontal',
+	width:'300dp'
+},
+
+'#navIndicator': {
+	backgroundImage:'/img/header/nav-ind.png',
+	bottom:'2dp',
+	left:'26dp',
+	height:'4dp',
+	width:'8dp'
+},
+
+'.navBtn': {
+	top:'2dp',
+	height:'40dp',
+	width:'60dp'
+},
+
+'#homeIcon': {
+	image:'/img/tabs/53-house.png'
+},
+
+'#agendaIcon': {
+	image:'/img/tabs/11-clock.png'
+},
+
+'#speakersIcon': {
+	image:'/img/tabs/145-persondot.png'
+},
+
+'#venueIcon': {
+	image:'/img/tabs/103-map.png'
+},
+
+'#post': {
+	height:'36dp',
+	top:'4dp',
+	backgroundColor:'#057dec',
+	borderRadius:'5dp'
+},
+
+'#postIcon': {
+	image:'/img/tabs/275-broadcast.png'
 }
+

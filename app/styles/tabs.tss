@@ -1,0 +1,47 @@
+'.container': {
+	height:'52dp',
+	bottom:'-52dp'
+},
+
+'#indicator': {
+    touchEnabled: false,
+    backgroundColor: '#ffff00',
+    width: '20%',
+    height: '2dp',
+    bottom: '0dp',
+    left: '0dp'
+},
+
+'.tab': {
+	height:'52dp',
+	width:'20%',
+	backgroundImage:'/img/tabs/bg-tab.png'
+},
+
+'#post': {
+	height:'52dp',
+	width:'20%',
+	backgroundImage:'/img/tabs/bg-tab-button.png'
+},
+
+'#postIcon': {
+	image:'/img/tabs/btn-stream-default.png'
+},
+
+'#homeIcon': {
+	image:'/img/tabs/btn-home-default.png'
+},
+
+'#speakersIcon': {
+	image:'/img/tabs/btn-speakers-default.png'
+},
+
+'#agendaIcon': {
+	image:'/img/tabs/btn-agenda-default.png'
+},
+
+'#venueIcon': {
+	image:'/img/tabs/btn-venue-default.png'
+}
+
+

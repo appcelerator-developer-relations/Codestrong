@@ -4,16 +4,21 @@
 	<string name="email">E-Mail</string>
 	<string name="password">Password</string>
 	<string name="authenticating">Authenticating...</string>
-	<string name="appcNetwork">APPCELERATOR NETWORK LOGIN</string>
+	<string name="leave">Leave the application?</string>
+	<string name="ok">OK</string>
+	<string name="cancel">Cancel</string>
+	<string name="appcNetwork">LOG IN BELOW WITH YOUR APPCELERATOR.COM CREDENTIALS</string>
 	<string name="noAppcNetwork">Need an account? Get one here ></string>
 	<string name="login">Log In</string>
 	<string name="logout">Log Out</string>
 	<string name="loginError">Login Error</string>
 	<string name="loginErrorText">Oops! There was a problem logging in to your developer account. Please check your e-mail and password and try again.</string>
+	<string name="logoutError">Sign Out Error</string>
+	<string name="logoutErrorText">We were unable to reach our servers to end your session.  Please check your network connection and try again.</string>
 	<string name="uhwhat">I don't have any of those...</string>
 	<string name="alreadyDid">I already signed up with a new account.</string>
 	<string name="thatscool">No account? That's cool, sign up here instead...</string>
 	<string name="ohnice">Already have an account? Sweet, log in here.</string>
 	<string name="signup">Sign Up</string>
-	<string name="cancel">Cancel</string>
+	<string name="forgot">Forgot your password?</string>
 </resources>

@@ -1,0 +1,5 @@
+<Alloy>
+	<View class="container">
+		<Label>venue</Label>
+	</View>
+</Alloy>

@@ -1,0 +1,9 @@
+<Alloy>
+	<View id="container">
+		<View id="underline" formFactor="tablet"/>
+		<View id="close" formFactor="tablet">
+			<ImageView id="closeIcon"/>
+		</View>
+		<View id="content"/>
+	</View>
+</Alloy>

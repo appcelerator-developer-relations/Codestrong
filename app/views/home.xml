@@ -1,3 +1,5 @@
 <Alloy>
-	<TableView id="parent" />
+	<View class="container">
+		<Label>home</Label>
+	</View>
 </Alloy>

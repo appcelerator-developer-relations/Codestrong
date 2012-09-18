@@ -1,33 +1,37 @@
+Window: {
+	navBarHidden:true,
+	backgroundImage:'/img/general/bg-cloud.png',
+},
+
 TextField: {
-	borderStyle:Ti.UI.INPUT_BORDERSTYLE_NONE
+	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
+    borderStyle:Ti.UI.INPUT_BORDERSTYLE_NONE,
+    autocorrect: false,
+    top:'4dp',
+    left:'4dp',
+    bottom:'4dp',
+    right:'4dp'
 },
 
 'TextField[platform=android]': {
 	backgroundImage:'/img/blank.png'
 },
 
-"#parent": {
-    width: Ti.UI.FILL,
-    height: Ti.UI.FILL,
-    backgroundColor: "#ebebeb"
+'.tfWrapper': {
+	width:'250dp',
+	height:'47dp',
+	backgroundImage:'/img/general/form-bg.png'
 },
 
-"#header": {
-    top: "0dp",
-    height: "44dp"
+Label: {
+	color:'#000',
+	height:Ti.UI.SIZE,
+	width:Ti.UI.SIZE
 },
 
-"#section": {
-    top: "44dp",
-    bottom: "52dp"
-},
-
-"#nav": {
-    bottom: "0dp",
-    height: "52dp"
-},
-
-".horizStretch": {
-    left: "0dp",
-    right: "0dp"
+TableView: {
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL,
+	showVerticalScrollIndicator: true,
+	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE
 }

@@ -1,12 +1,5 @@
 <Alloy>
-	<View id="parent">
-	    <View id="user">
-            <ImageView id="photo" />
-            <Label id="firstname" />
-            <Label id="lastname" />
-            <Label id="role" />
-            <Label id="username" />
-        </View>
-        <TableView id="roars" />
+	<View class="container">
+		<Label>profile</Label>
 	</View>
 </Alloy>

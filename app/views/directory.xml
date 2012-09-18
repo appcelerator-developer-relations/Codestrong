@@ -1,6 +1,0 @@
-<Alloy>
-	<View id="parent">
-	    <ScrollView id="content" />
-    </View>
-	<AlertDialog id="userAlert" />
-</Alloy>

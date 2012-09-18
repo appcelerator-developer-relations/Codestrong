@@ -1,14 +1,6 @@
+<!-- Initial window, content is largely dynamic -->
 <Alloy>
-	<Window id="parent">
-	    <View id="logo" />
-	    <View id="header" />
-	    <View id="loginInput">
-	        <TextField id="username" />
-	        <TextField id="password" />
-	    </View>
-	    <View id="buttonContainer">
-	    	<Button id="createBtn" class="loginBtns"/>
-	    	<Button id="loginBtn" class="loginBtns"/>
-	    </View>
+	<Window exitOnClose="true">
+		<View id="clouds" formFactor="tablet"/>
 	</Window>
 </Alloy>

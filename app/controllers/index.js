@@ -1,106 +1,67 @@
+//Global config
+Ti.UI.setBackgroundImage('/img/general/bg-interior.png');
+
 //Dependencies
-var User = Alloy.getModel('User');
+var User = require('User'),
+	ui = require('ui');
 
-//Generic login error - TODO: make these more specific
-function showError() {
-	var d = Ti.UI.createAlertDialog({
-		title:L('loginError'),
-		message:L('loginErrorText')
-	}).show();
+//create view hierarchy components
+$.login = Alloy.createController('login');
+$.main = Alloy.createController('main');
+
+//Check Login Status
+if (User.confirmLogin()) {
+	$.index.add($.main.getView());
+	$.main.init();
+}
+else {
+	$.index.add($.login.getView());
+	$.login.init();
 }
 
-//zoom action
-function zoom(view, callback) {
-	var matrix = Ti.UI.create2DMatrix({ scale:1.5 });
-        
-	view.animate({ 
-		transform:matrix, 
-		opacity:0.0, 
-		duration:250 
-	}, function() {
-    	callback();
-	});
-        
-}
-
-//Handle field movement (iOS only)
-if (OS_IOS) {
-	function onFocus(e) {
-	    $.parent.animate({ 
-	    	top:"-130dp", 
-	    	duration:250 
-	    });
-	}
-		
-	function onBlur(e) {
-	    $.parent.animate({ 
-	    	top:0, 
-	    	duration:250 
-	    });
-	}
-	
-	$.username.on('focus', onFocus);
-	$.password.on('focus', onFocus);
-	$.username.on('blur', onBlur);
-	$.password.on('blur', onBlur);
-}
-
-$.parent.on('click', function(e) {
-    $.username.blur();
-    $.password.blur();
-});
-
-$.loginBtn.on('click', function(e) {
-	User.login($.username.value, $.password.value, function() {
-		zoom($.parent, function() {
-            var App = Alloy.createController('app');
-			App.openWindow();
-        });
-	}, function() {
-		showError();
+//Monitor Login Status
+$.login.on('loginSuccess', function(e) {
+	$.index.add($.main.getView());
+	ui.zoom($.login.getView(), function() {
+		ui.unzoom($.main.getView(), function() {
+			$.main.init();
+		});
 	});
 });
 
-$.createBtn.on('click', function(e) {
-    Ti.Platform.openURL('https://my.appcelerator.com/auth/signup');
-});
-
-$.parent.on('open', function(e) {
-    $.logo.animate({ top:"28dp", duration:250 });
-    
-    $.header.animate({ top:"265dp", opacity:0.0, duration:250 }, function() {
-        
-        $.loginInput.animate({ top:"206dp", opacity:1.0, duration:250 }, function() {
-            $.createBtn.animate({ left:0, opacity:1.0, duration:250 });
-            $.loginBtn.animate({ right:0, opacity:1.0, duration:250 });
-        });
-        
-    });
-    
+//Look for global logout event
+Ti.App.addEventListener('app:logout', function(e) {
+	$.index.add($.login.getView());
+	$.login.init();
+	ui.zoom($.main.getView(), function() {
+		ui.unzoom($.login.getView());
+	});
 });
 
 //Lock orientation modes for handheld
 if (!Alloy.isTablet) {
-	$.parent.orientationModes = [
+	$.index.orientationModes = [
 		Ti.UI.PORTRAIT,
 		Ti.UI.UPSIDE_PORTRAIT
 	];
 }
 
-//Decide whether or not to open the login window, based on if we have a stored session.
-if (Ti.App.Properties.hasProperty('sessionId')) {
-	//set up cloud module to use saved session
-	var Cloud = require('ti.cloud');
-	Cloud.sessionId = Ti.App.Properties.getString('sessionId');
-	
-	//go straight to main app view
-	var App = Alloy.createController('app');
-	App.openWindow();
+//TODO: At some point, a better UX would be to close open drawers until there are none, and then exit
+if (Ti.Platform.osname === 'android') {
+	$.index.addEventListener('android:back', function() {
+		var od = Ti.UI.createOptionDialog({
+			title:L('leave'),
+			options:[L('ok'), L('cancel')],
+			cancel:1
+		});
+		
+		od.addEventListener('click', function(e) {
+			e.index === 0 && ($.index.close());
+		});
+		
+		od.show();
+	});
 }
-else {
-	// Open loader/login window.
-	// Delay for demo.
-	setTimeout(function() {
-	    $.parent.open();
-	}, 300);
-}
+
+//Open initial window
+$.index.open();

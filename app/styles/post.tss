@@ -1,35 +1,3 @@
-"#parent": {
-    top: "0dp",
-    bottom: "0dp",
-    left: "0dp",
-    right: "0dp", 
-	backgroundImage: "/img/roar/wash.png",
-	opacity: 0.0
-},
-
-"#postContainer": {
-    backgroundImage: "/img/roar/post-roar-bg.png",
-    top: "10dp",
-    left: "10dp",
-    right: "10dp",
-    height: "225dp",
-    opacity: 0.0
-},
-
-"#roar": {
-    backgroundColor: "#f0f0f0",
-    top: "8dp",
-    left: "8dp",
-    right: "8dp",
-    height: "152dp",
-    color: "#333"
-},
-
-"#postBtn": {
-    top: "170dp",
-    right: "5dp",
-    bottom: "7dp",
-    width: "73dp",
-    height: "48dp",
-    backgroundImage: "/img/roar/post-roar-btn.png"
+".container": {
+	backgroundColor: "white"
 }
