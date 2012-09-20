@@ -25,38 +25,99 @@ Ti.App.addEventListener('app:open.drawer', function(e) {
 	d.openDrawer(e.controller);
 });
 
-$.header.on('back', function() {
+function popDrawer() {
 	var d = drawers.pop();
 	d.closeDrawer(function() {
 		$.container.remove(d.getView());
 	});
 	$.header.setBackVisible(drawers.length > 0);
-});
+}
+
+$.header.on('back', popDrawer);
+
+//For tablet, set up a post view
+var postViewShown = false;
+if (Alloy.isTablet) {
+	$.postView = Alloy.createController('postView');
+	$.postView.on('blur', function() {
+		$.postView.hideForm(function() {
+			$.postView.getView().animate({
+				opacity:0,
+				duration:250
+			}, function() {
+				$.container.remove($.postView.getView());
+				postViewShown = false;
+			});
+		});
+	});
+}
 
 //Manage section navigation from either tabs or header
 function sectionNav(e) {
-	if (e.name === 'post') {
-		
-	}
-	else {
-		sections[e.name] || (sections[e.name] = Alloy.createController(e.name));
-		var oldSection = currentSection;
-		currentSection = sections[e.name];
-		currentSection.getView().opacity = 0;
-		$.content.add(currentSection.getView());
-		currentSection.getView().animate({
-			opacity:1,
-			duration:250
-		}, function() {
-			$.content.remove(oldSection.getView());
-		});
+	if (currentSection !== sections[e.name]) {
+		if (e.name === 'post') {
+			//for tablet, we'll do a view in the main view
+			if (Alloy.isTablet) {
+				if (!postViewShown) {
+					$.content.add($.postView.getView());
+					$.postView.getView().animate({
+						opacity:1,
+						duration:250
+					}, function() {
+						$.postView.showForm(function() {
+							postViewShown = true;
+						});
+					});
+				}
+			}
+			//for handheld, open a modal window which supports multiple orientations
+			else {
+				var w = Alloy.createController('postWindow');
+				w.openWindow();
+			}
+		}
+		else {
+			sections[e.name] || (sections[e.name] = Alloy.createController(e.name));
+			var oldSection = currentSection;
+			currentSection = sections[e.name];
+			currentSection.getView().opacity = 0;
+			$.content.add(currentSection.getView());
+			currentSection.getView().animate({
+				opacity:1,
+				duration:250
+			});
+			oldSection.getView().animate({
+				opacity:0,
+				duration:250
+			}, function() {
+				$.content.remove(oldSection.getView());
+			});
+		}
 	}
 }
 $.tabs && ($.tabs.on('change', sectionNav));
 $.header.on('change', sectionNav);
 
+//Re-initialize after logout
+Ti.App.addEventListener('app:logout', function() {
+	while (drawers.length > 0) {
+		popDrawer();
+	}
+	
+	if (currentSection !== sections.home) {
+		//Update current section
+		sectionNav({
+			name:'home'
+		});
+		
+		//reset nav controls
+		$.tabs && ($.tabs.setTab('home'));
+		Alloy.isTablet && ($.header.setNav('home'));
+	}
+});
+
 //Initialize component and UI state
-$.init = function() {
+$.init = function(ready) {
 	//fire off initial UI animations
 	$.container.animate({
 		opacity:1,

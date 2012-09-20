@@ -44,6 +44,7 @@ $.login.on('click', function() {
 	$.password.blur();
 	User.login($.email.value, $.password.value, function(e) {
 		$.trigger('loginSuccess', e);
+		$.password.value = '';
 	}, function() {
 		showError();
 	});

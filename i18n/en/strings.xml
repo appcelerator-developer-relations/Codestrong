@@ -21,4 +21,24 @@
 	<string name="ohnice">Already have an account? Sweet, log in here.</string>
 	<string name="signup">Sign Up</string>
 	<string name="forgot">Forgot your password?</string>
+	<string name="networkErrTitle">Network Access Required</string>
+	<string name="networkErrMsg">It looks like your device is not connected to the internet. Please check your network settings and try again.</string>
+	<string name="networkGenericErrorTitle">Network Error</string>
+	
+	<string name="venueCaps">VENUE</string>
+	<string name="thirdFloor">3RD FLOOR</string>
+	<string name="fourthFloor">4TH FLOOR</string>
+	
+	<string name="agendaCaps">AGENDA</string>
+	<string name="sun">SUN</string>
+	<string name="mon">MON</string>
+	<string name="tue">TUE</string>
+	<string name="sunday">SUNDAY</string>
+	<string name="monday">MONDAY</string>
+	<string name="tuesday">TUESDAY</string>
+	<string name="sessionData">Fetching session data...</string>
+	<string name="agendaNetworkError">We were unable to retrieve session data at this time.  Please check you network connection.</string>
+	
+	<string name="featuredSponsors">FEATURED SPONSORS</string>
+	<string name="sponsorHeader">SPECIAL THANKS TO OUR SPONSORS!</string>
 </resources>

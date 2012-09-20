@@ -72,7 +72,7 @@
 	image:'/img/tabs/11-clock.png'
 },
 
-'#speakersIcon': {
+'#streamIcon': {
 	image:'/img/tabs/145-persondot.png'
 },
 

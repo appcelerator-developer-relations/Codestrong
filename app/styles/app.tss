@@ -1,6 +1,6 @@
 Window: {
 	navBarHidden:true,
-	backgroundImage:'/img/general/bg-cloud.png',
+	backgroundImage:'/img/general/bg-interior.png'
 },
 
 TextField: {
@@ -13,7 +13,17 @@ TextField: {
     right:'4dp'
 },
 
+TextArea: {
+	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
+    borderStyle:Ti.UI.INPUT_BORDERSTYLE_NONE,
+    autocorrect: false
+},
+
 'TextField[platform=android]': {
+	backgroundImage:'/img/blank.png'
+},
+
+'TextArea[platform=android]': {
 	backgroundImage:'/img/blank.png'
 },
 
@@ -33,5 +43,42 @@ TableView: {
 	width: Ti.UI.FILL,
 	height: Ti.UI.FILL,
 	showVerticalScrollIndicator: true,
-	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE
+	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.SINGLE_LINE,
+	backgroundColor:'transparent'
+},
+
+'#headerViewContainer': {
+	top:'10dp',
+	left:'10dp',
+	right:'10dp',
+	height:'35dp'
+},
+
+'.blueHeader': {
+	color:'#0574bf',
+	font: {
+		fontFamily:'Quicksand-Bold',
+		fontSize:'18dp'
+	}
+},
+
+'.appContent': {
+	backgroundColor:'#ffffff'
+},
+
+'.fauxShadow': {
+	bottom:0,
+	height:'2dp',
+	backgroundColor:'#9a9a9a'
+},
+
+'.childArrow': {
+	image:'/img/general/btn-right-arrow.png',
+	right:'5dp'
 }
+
+
+
+
+
+

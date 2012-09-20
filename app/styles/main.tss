@@ -1,24 +1,19 @@
 '#container': {
-	opacity:0,
-	backgroundImage:'/img/general/bg-interior.png'
+	opacity:0
 },
 
 '#content': {
 	top:'45dp'
 },
 
-'#scroller': {
-	backgrundColor:'red',
-	top:0,
-	right:0,
-	left:0,
-	bottom:0,
-	contentWidth:'1280dp'
-},
-
 '#content[formFactor=handheld]': {
 	bottom:'52dp'
 },
+
+'#content[formFactor=tablet]': {
+	bottom:0
+},
+
 
 '#scrollContent': {
 	layout:'horizontal',

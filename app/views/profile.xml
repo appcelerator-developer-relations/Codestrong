@@ -1,5 +1,5 @@
 <Alloy>
 	<View class="container">
-		<Label>profile</Label>
+		<Button id="logout" titleid="logout"/>
 	</View>
 </Alloy>

@@ -9,8 +9,8 @@
 		<View id="post">
 			<ImageView id="postIcon"/>
 		</View>
-		<View id="speakers" class="tab">
-			<ImageView id="speakersIcon"/>
+		<View id="stream" class="tab">
+			<ImageView id="streamIcon"/>
 		</View>
 		<View id="venue" class="tab">
 			<ImageView id="venueIcon"/>

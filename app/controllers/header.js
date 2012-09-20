@@ -2,24 +2,31 @@
 if (Alloy.isTablet) {
 	var tabOffset = 26,
 		tabWidth = 60;
+		
+	var navOffsets = {
+		home:0,
+		agenda: tabWidth,
+		stream: tabWidth*2,
+		venue: tabWidth*3
+	};
 	
-	//add tab behavior - this could be factored out for reuse between handheld tabs + menu nav for tablet
-	function doTab(name,offset) {
+	function doTab(name,offset,noEvent) {
 		$.navIndicator.animate({
 			left:offset+tabOffset,
 			duration:250
 		});
-		$.trigger('change',{
+		
+		noEvent || ($.trigger('change',{
 			name:name
-		});
+		}));
 	}
 	
 	$.home.on('click', function() {
-		doTab('home', 0);
+		doTab('home', navOffsets.home);
 	});
 	
 	$.agenda.on('click', function() {
-		doTab('agenda', tabWidth);
+		doTab('agenda', navOffsets.agenda);
 	});
 	
 	//post is special, just fire event
@@ -29,34 +36,41 @@ if (Alloy.isTablet) {
 		});
 	});
 	
-	$.speakers.on('click', function() {
-		doTab('speakers', tabWidth*2);
+	$.stream.on('click', function() {
+		doTab('stream', navOffsets.stream);
 	});
 	
 	$.venue.on('click', function() {
-		doTab('venue', tabWidth*3);
+		doTab('venue', navOffsets.venue);
 	});
+	
+	//Public API to manually set the tablet nav position
+	$.setNav = function(name) {
+		doTab(name,navOffsets[name],true);
+	};
 }
 
 //Public component API
 $.setBackVisible = function(toggle) {
-	if (toggle) {
-		$.backImage.animate({
-			opacity:1,
-			duration:250
-		});
-		$.back.enabled = true;
-		$.profile.visible = false;
-		$.profile.enabled = false;
-	}
-	else {
-		$.backImage.animate({
-			opacity:0,
-			duration:250
-		});
-		$.back.enabled = false;
-		$.profile.visible = true;
-		$.profile.enabled = true;
+	if (!Alloy.isTablet) {
+		if (toggle) {
+			$.backImage.animate({
+				opacity:1,
+				duration:250
+			});
+			$.back.enabled = true;
+			$.profile.visible = false;
+			$.profile.enabled = false;
+		}
+		else {
+			$.backImage.animate({
+				opacity:0,
+				duration:250
+			});
+			$.back.enabled = false;
+			$.profile.visible = true;
+			$.profile.enabled = true;
+		}
 	}
 };
 
@@ -77,3 +91,4 @@ function doProfile() {
 	}
 }
 $.profile.on('click', doProfile);
+

@@ -32,8 +32,8 @@
 	image:'/img/tabs/btn-home-default.png'
 },
 
-'#speakersIcon': {
-	image:'/img/tabs/btn-speakers-default.png'
+'#streamIcon': {
+	image:'/img/tabs/btn-activity-stream-default.png'
 },
 
 '#agendaIcon': {

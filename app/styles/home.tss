@@ -1,8 +1,180 @@
-'.container[formFactor=tablet]': {
-	width:'320dp'
+'#now': {
+	top:'10dp',
+	left:'10dp',
+	right:'10dp',
+	height:'150dp',
+	backgroundImage:'/img/home/now/dashboard-box1-talks.png'
 },
 
-ImageView: {
-	height:Ti.UI.FILL,
-	width:Ti.UI.FILL
+'#nowImage': {
+	top:'10dp',
+	left:'10dp',
+	bottom:'10dp',
+	width:'300dp',
+	backgroundImage:'/img/home/now/dashboard-box1-talks.png'
+},
+
+'#title': {
+	left:'5dp',
+	right:'15dp',
+	color:'#ffffff',
+	font: {
+		fontWeight:'bold',
+		fontSize:'18dp'
+	}
+},
+
+'#presenter': {
+	left:'5dp',
+	right:'15dp',
+	bottom:'20dp',
+	height:Ti.UI.SIZE,
+	ellipsize:true,
+	wordWrap:false,
+	minimumFontSize:'12dp',
+	color:'#ffffff',
+	font: {
+		fontSize:'12dp'
+	}
+},
+
+'#location': {
+	left:'5dp',
+	right:'15dp',
+	height:Ti.UI.SIZE,
+	bottom:'5dp',
+	ellipsize:true,
+	wordWrap:false,
+	minimumFontSize:'12dp',
+	color:'#ffffff',
+	font: {
+		fontSize:'12dp'
+	}
+},
+
+'#stream': {
+	top:'170dp',
+	left:'10dp',
+	right:'10dp',
+	bottom:'110dp'
+},
+
+'#featured': {
+	top:'10dp',
+	textAlign:'center',
+	color:'#787878',
+	font: {
+		fontFamily:'Quicksand-Bold',
+		fontSize:'12dp'
+	}
+},
+
+'#sponsorHeader': {
+	top:0,
+	textAlign:'center',
+	color:'#787878',
+	font: {
+		fontFamily:'Quicksand-Bold',
+		fontSize:'14dp'
+	}
+},
+
+
+'#sponsors': {
+	top:'10dp',
+	left:'10dp',
+	right:'10dp',
+	height:'60dp'
+},
+
+'#sponsorImage': {
+	image:'/img/home/dashboard-sponsors1.png'
+},
+
+'#nowContainer': {
+	top:0,
+	left:0,
+	width:'50%',
+	bottom:'100dp'
+},
+
+'#firstSession': {
+	top:0,
+	height:'150dp'
+},
+
+'#firstSessionInfo': {
+	top:'10dp',
+	right:'10dp',
+	bottom:'10dp',
+	left:'230dp'
+},
+
+'#agendaPeek': {
+	top:'155dp',
+	left:'10dp',
+	bottom:'10dp',
+	right:'10dp'
+},
+
+'#streamPeek': {
+	top:'10dp',
+	left:'10dp',
+	bottom:'10dp',
+	right:'10dp'
+},
+
+'#agendaHeader': {
+	top:'10dp'
+},
+
+'#nowSessionInfo': {
+	left:'10dp',
+	right:'20dp',
+	font: {
+		fontSize:'12dp',
+		fontWeight:'bold'
+	}
+},
+
+'#dailySchedule': {
+	top:'50dp',
+	left:'10dp',
+	right:'10dp',
+	bottom:'10dp'
+},
+
+'#streamContainer': {
+	top:0,
+	right:0,
+	width:'50%',
+	bottom:'100dp'
+},
+
+'#sponsorsContainer': {
+	bottom:0,
+	left:0,
+	right:0,
+	height:'100dp'
+},
+
+'#sponsorBox': {
+	top:'25dp',
+	left:'10dp',
+	right:'10dp',
+	bottom:'10dp'
+},
+
+'#horizontalContainer': {
+	height:'60dp',
+	width:'810dp',
+	layout:'horizontal'
+},
+
+'.spacer': {
+	width:'15dp'
 }
+
+
+
+

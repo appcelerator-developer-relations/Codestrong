@@ -1,6 +1,6 @@
 <!-- Initial window, content is largely dynamic -->
 <Alloy>
 	<Window exitOnClose="true">
-		<View id="clouds" formFactor="tablet"/>
+		<ImageView id="clouds" formFactor="tablet"/>
 	</Window>
 </Alloy>

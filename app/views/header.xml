@@ -12,8 +12,8 @@
 			<View id="agenda" class="navBtn">
 				<ImageView id="agendaIcon"/>
 			</View>
-			<View id="speakers" class="navBtn">
-				<ImageView id="speakersIcon"/>
+			<View id="stream" class="navBtn">
+				<ImageView id="streamIcon"/>
 			</View>
 			<View id="venue" class="navBtn">
 				<ImageView id="venueIcon"/>

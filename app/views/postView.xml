@@ -1,0 +1,11 @@
+<Alloy>
+	<View id="container">
+		<View id="backdrop"/>
+		<View id="tinyShadow"/>
+		<View id="postContainer" class="appContent">
+			<TextArea id="post"/>
+			<View id="divider"/>
+			<View class="fauxShadow"/>
+		</View>
+	</View>
+</Alloy>

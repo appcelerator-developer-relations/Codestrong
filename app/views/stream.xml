@@ -1,5 +1,5 @@
 <Alloy>
 	<View class="container">
-		<Label>speakers</Label>
+		<Label>activity stream</Label>
 	</View>
 </Alloy>

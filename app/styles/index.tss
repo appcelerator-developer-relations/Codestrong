@@ -2,5 +2,5 @@
 	height:'1024dp',
 	width:'1024dp',
 	bottom:0,
-	backgroundImage:'/img/general/bg-clouds-tablet.png'
+	image:'/img/general/bg-clouds-tablet.png'
 }

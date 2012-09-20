@@ -1,0 +1,78 @@
+{
+	"sunday":[
+		{
+			"slot":"9:00am - 5:00pm",
+			"title":"Registration",
+			"subtitleOne":"Open all day",
+			"subtitleTwo":"",
+			"track":""
+		},
+		{
+			"slot":"12:00pm - 5:00pm",
+			"title":"Partner Summit",
+			"subtitleOne":"",
+			"subtitleTwo":"",
+			"track":""
+		}
+	],
+	"monday":[
+		{
+			"slot":"9:00am - 10:00am",
+			"title":"Keynote: Future of Mobile",
+			"subtitleOne":"Jeff Haynie, CEO/Co-Founder, Appcelerator Inc.",
+			"subtitleTwo":"Grand Ballroom",
+			"track":""
+		},
+		{
+			"slot":"10:00am - 11:00am",
+			"title":"Keynote: Appcelerator Product Roadmap",
+			"subtitleOne":"Nolan Wright, CTO/Co-Founder, Appcelerator Inc.",
+			"subtitleTwo":"Grand Ballroom",
+			"track":""
+		},
+		{
+			"slot":"11:00am - 12:00pm",
+			"title":"Keynote: Product Deep Dive",
+			"subtitleOne":"Jonathan Rende, VP Products, Appcelerator Inc.",
+			"subtitleTwo":"Grand Ballroom",
+			"track":""
+		}	
+	],
+	"tuesday":[
+		{
+			"slot":"9:00am - 10:00am",
+			"title":"Keynote: Something Awesome",
+			"subtitleOne":"Ben Galbraith and Dion Almaer, Walmart Labs",
+			"subtitleTwo":"Grand Ballroom",
+			"track":""
+		},
+		{
+			"slot":"1:30pm - 2:30pm",
+			"title":"Something Cool",
+			"subtitleOne":"Someone Cool",
+			"subtitleTwo":"Grand Ballroom",
+			"track":"Enterprise Summit"
+		},
+		{
+			"slot":"1:30pm - 2:30pm",
+			"title":"Something Cool",
+			"subtitleOne":"Someone Cool",
+			"subtitleTwo":"Breakout 1",
+			"track":"UI/UX Design"
+		},
+		{
+			"slot":"1:30pm - 2:30pm",
+			"title":"Something Cool",
+			"subtitleOne":"Someone Cool",
+			"subtitleTwo":"Breakout 2",
+			"track":"Titanium Internals"
+		},
+		{
+			"slot":"1:30pm - 2:30pm",
+			"title":"Something Cool",
+			"subtitleOne":"Someone Cool",
+			"subtitleTwo":"Breakout 3",
+			"track":"Cloud Services"
+		}
+	]
+}

@@ -1,8 +1,47 @@
-'.container[formFactor=tablet]': {
-	width:'320dp'
+'#container[formFactor=tablet]': {
+	layout:'horizontal'
 },
 
-ImageView: {
-	height:Ti.UI.FILL,
-	width:Ti.UI.FILL
+'#maps': {
+	top:'55dp',
+	left:'10dp',
+	right:'10dp',
+	bottom:'10dp'
+},
+
+'#scroller[platform=android]': {
+	scrollType:'horizontal',
+	contentWidth:1376,
+	contentHeight:553
+},
+
+'#venue': {
+	image:'/img/venue/venue-3rd-floor.png'
+},
+
+'#venueMaps': {
+	layout:'vertical'
+},
+
+'.venueHeader': {
+	top:'10dp',
+	bottom:'10dp'
+},
+
+'#venueThird': {
+	bottom:'10dp',
+	image:'/img/venue/venue-3rd-floor.png'
+},
+
+'#venueFourth': {
+	bottom:'10dp',
+	image:'/img/venue/venue-4th-floor.png'
+},
+
+'.mapContainer': {
+	layout:'vertical',
+	top:'10dp',
+	left:'10dp',
+	right:'10dp',
+	height:Ti.UI.SIZE
 }

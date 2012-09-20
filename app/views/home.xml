@@ -1,5 +1,75 @@
 <Alloy>
 	<View class="container">
-		<Label>home</Label>
+		<View id="dashboard" formFactor="handheld">
+			<View id="now">
+				<Label id="title" text="Morning Keynote"/>
+				<Label id="presenter" text="Jeff Haynie, CEO, Appcelerator"/>
+				<Label id="location" text="Grand Ballroom"/>
+			</View>
+
+			<View id="stream" class="appContent">
+				<Label left="20dp" right="30dp">Lorem Ipsum some status update goes here.</Label>
+				<ImageView class="childArrow"/>
+				<View class="fauxShadow"/>
+			</View>
+		</View>
+		
+		<View id="tabletDash" formFactor="tablet">
+			<View id="nowContainer">
+				<!-- Code duplication, should widgetize -->
+				<View id="firstSession">
+					<View id="nowImage">
+						<Label id="title" text="Morning Keynote"/>
+						<Label id="presenter" text="Jeff Haynie, CEO, Appcelerator"/>
+						<Label id="location" text="Grand Ballroom"/>
+					</View>
+					<View id="firstSessionInfo" class="appContent">
+						<Label id="nowSessionInfo" text="Join Jeff Haynie as he fights dragons, tames lions, and chats with the Queen over tea and crumpets."/>
+						<ImageView class="childArrow"/>
+						<View class="fauxShadow"/>
+					</View>
+				</View>
+				
+				<View id="agendaPeek" class="appContent">
+					<Label id="agendaHeader" class="blueHeader" textid="sunday"/>
+					<TableView id="dailySchedule"/>
+					<View class="fauxShadow"/>
+				</View>
+			</View>
+			
+			<View id="streamContainer">
+				<View id="streamPeek" class="appContent">
+					<Label>embed stream content here - maybe the last photo uploaded, big, plus a few text updates?</Label>
+					<View class="fauxShadow"/>
+				</View>
+			</View>
+			
+		</View>
+		
+		<View id="sponsorsContainer">
+				<Label id="sponsorHeader" textid="sponsorHeader"/>
+				<View id="sponsorBox" class="appContent">
+					<ScrollView scrollType="horizontal">
+						<View id="horizontalContainer">
+							<View class="spacer"/>
+							<ImageView image="/img/home/sponsors/redhat.png"/>
+							<View class="spacer"/>
+							<ImageView image="/img/home/sponsors/denso.png"/>
+							<View class="spacer"/>
+							<ImageView image="/img/home/sponsors/box.png"/>
+							<View class="spacer"/>
+							<ImageView image="/img/home/sponsors/utest.png"/>
+							<View class="spacer"/>
+							<ImageView image="/img/home/sponsors/venturebeat.png"/>
+							<View class="spacer"/>
+							<ImageView image="/img/home/sponsors/challengepost.png"/>
+							<View class="spacer"/>
+							<ImageView image="/img/home/sponsors/centrify.png"/>
+							<View class="spacer"/>
+						</View>
+					</ScrollView>
+					<View class="fauxShadow"/>
+				</View>
+			</View>
 	</View>
 </Alloy>

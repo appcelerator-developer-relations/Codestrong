@@ -1,0 +1,66 @@
+Window: {
+	modal:true,
+	navBarHidden:true,
+	backgroundImage:'/img/general/bg-interior.png'
+},
+
+'Window[platform=android]': {
+	windowSoftInputMode:Ti.UI.Android.SOFT_INPUT_ADJUST_RESIZE
+},
+
+'#header': {
+	backgroundColor:'#373e47',
+	height:'45dp',
+	top:0
+},
+
+'#logo': {
+	image:'/img/general/codestrong-bar-logo.png',
+	height:'22dp',
+	width:'81dp'
+},
+
+'#underline': {
+	backgroundColor:'#0574bf',
+	bottom:0,
+	height:'2dp'
+},
+
+'#back': {
+	left:'10dp',
+	width:'50dp'
+},
+
+'#backImage': {
+	left:0,
+	width:'18dp',
+	height:'19dp',
+	image:'/img/general/btn-back.png'
+},
+
+'#postContainer': {
+	top:'50dp',
+	left:'5dp',
+	right:'5dp',
+	bottom:'5dp'
+},
+
+'#divider': {
+	bottom:'50dp',
+	height:'1dp',
+	backgroundColor:'#cdcdcd',
+	left:'5dp',
+	right:'5dp'
+},
+
+'#post': {
+	top:'5dp',
+	left:'5dp',
+	right:'5dp',
+	bottom:'55dp',
+	font: {
+		fontSize:'14dp'
+	}
+}
+
+

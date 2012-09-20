@@ -1,9 +1,11 @@
-//Global config
-Ti.UI.setBackgroundImage('/img/general/bg-interior.png');
-
 //Dependencies
 var User = require('User'),
 	ui = require('ui');
+	
+//TODO: Be more tolerant of offline
+if (!Ti.Network.online) {
+	ui.alert('networkErrTitle', 'networkErrMsg');
+}
 
 //create view hierarchy components
 $.login = Alloy.createController('login');
@@ -11,16 +13,21 @@ $.main = Alloy.createController('main');
 
 //Check Login Status
 if (User.confirmLogin()) {
+	$.clouds && ($.index.remove($.clouds));
+	$.index.backgroundImage = '/img/general/bg-interior.png';
 	$.index.add($.main.getView());
 	$.main.init();
 }
 else {
+	$.index.backgroundImage = '/img/general/bg-cloud.png';
 	$.index.add($.login.getView());
 	$.login.init();
 }
 
 //Monitor Login Status
 $.login.on('loginSuccess', function(e) {
+	$.clouds && ($.index.remove($.clouds));
+	$.index.backgroundImage = '/img/general/bg-interior.png';
 	$.index.add($.main.getView());
 	ui.zoom($.login.getView(), function() {
 		ui.unzoom($.main.getView(), function() {
@@ -31,6 +38,8 @@ $.login.on('loginSuccess', function(e) {
 
 //Look for global logout event
 Ti.App.addEventListener('app:logout', function(e) {
+	$.clouds && ($.index.add($.clouds));
+	$.index.backgroundImage = '/img/general/bg-cloud.png';
 	$.index.add($.login.getView());
 	$.login.init();
 	ui.zoom($.main.getView(), function() {
