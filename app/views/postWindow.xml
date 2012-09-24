@@ -9,11 +9,6 @@
 			<View id="underline"/>
 		</View>
 		
-		<View id="postContainer" class="appContent">
-			<TextArea id="post"/>
-			
-			<View id="divider"/>
-			<View class="fauxShadow"/>
-		</View>
+		<Require id="postFormView" src="postFormView"/>
 	</Window>
 </Alloy>

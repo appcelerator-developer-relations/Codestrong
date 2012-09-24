@@ -1,0 +1,99 @@
+'#postContainer': {
+	top:'50dp',
+	left:'5dp',
+	right:'5dp',
+	bottom:'5dp'
+},
+
+'#postContainer[formFactor=tablet]': {
+	top:'5dp'
+},
+
+'#divider': {
+	bottom:'50dp',
+	height:'1dp',
+	backgroundColor:'#cdcdcd',
+	left:'5dp',
+	right:'5dp'
+},
+
+'#post': {
+	top:'5dp',
+	left:'5dp',
+	right:'5dp',
+	bottom:'85dp',
+	font: {
+		fontSize:'14dp'
+	}
+},
+
+'#twitter': {
+	bottom:'10dp',
+	left:'5dp',
+	backgroundImage:'/img/post/btn-twitter-off.png',
+	height:'30dp',
+	width:'30dp'
+},
+
+'#characters': {
+	bottom:'10dp',
+	right:'75dp',
+	height:Ti.UI.SIZE,
+	width:Ti.UI.SIZE,
+	color:'#cdcdcd',
+	font:{
+		fontSize:'10dp'
+	}
+},
+
+'#facebook': {
+	bottom:'10dp',
+	left:'45dp',
+	backgroundImage:'/img/post/btn-facebook-off.png',
+	height:'30dp',
+	width:'30dp'
+},
+
+'#camera': {
+	bottom:'55dp',
+	left:'5dp',
+	height:'30dp',
+	width:'30dp'
+},
+
+'#camicon': {
+	image:'/img/post/btn-add-photo.png'
+},
+
+'#imagePreview': {
+	visible:false,
+	opacity:0,
+	bottom:'55dp',
+	left:'5dp',
+	height:'55dp',
+	width:'55dp'
+},
+
+'#preview': {
+	bottom:0,
+	left:0,
+	height:'44dp',
+	width:'44dp'
+},
+
+'#deleteButton': {
+	top:0,
+	right:0,
+	height:'22dp',
+	width:'22dp',
+	image:'/img/post/close.png'
+},
+
+'#submit': {
+	width:'65dp',
+	height:'30dp',
+	backgroundImage:'/img/post/btn-post-default.png',
+	backgroundSelectedImage:'/img/post/btn-post-pressed.png',
+	bottom:'10dp',
+	right:'5dp'
+}

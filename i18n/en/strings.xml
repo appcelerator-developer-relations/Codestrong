@@ -9,8 +9,8 @@
 	<string name="cancel">Cancel</string>
 	<string name="appcNetwork">LOG IN BELOW WITH YOUR APPCELERATOR.COM CREDENTIALS</string>
 	<string name="noAppcNetwork">Need an account? Get one here ></string>
-	<string name="login">Log In</string>
-	<string name="logout">Log Out</string>
+	<string name="login">LOG IN</string>
+	<string name="logout">LOG OUT</string>
 	<string name="loginError">Login Error</string>
 	<string name="loginErrorText">Oops! There was a problem logging in to your developer account. Please check your e-mail and password and try again.</string>
 	<string name="logoutError">Sign Out Error</string>
@@ -41,4 +41,26 @@
 	
 	<string name="featuredSponsors">FEATURED SPONSORS</string>
 	<string name="sponsorHeader">SPECIAL THANKS TO OUR SPONSORS!</string>
+	
+	<string name="attachPhoto">Attach A Photo...</string>
+	<string name="camera">From Camera</string>
+	<string name="photoGallery">From Photo Gallery</string>
+	<string name="updateSuccessTitle">Oh yeah!</string>
+	<string name="updateSuccessText">Your update has been posted - thanks for sharing!</string>
+	<string name="updateErrorTitle">Whoops!</string>
+	<string name="updateErrorText">There was an error sending your update. Please try again later.</string>
+	<string name="mediaErrorTitle">Error Capturing Media</string>
+	<string name="mediaErrorText">There was a problem capturing media from your chosen source - please try again.</string>
+	
+	<string name="activityStream">ACTIVITY STREAM</string>
+	<string name="activityStreamError">There was an error loading the latest activity stream - please try again later.</string>
+	
+	<string name="myProfile">MY PROFILE</string>
+	<string name="chooseAvatar">Choose a Profile Photo...</string>
+	<string name="connectTwitter">Connect to Twitter</string>
+	<string name="connectFacebook">Connect to Facebook</string>
+	<string name="disconnectTwitter">Disconnect from Twitter</string>
+	<string name="disconnectFacebook">Disconnect from Facebook</string>
+	
+	<string name="working">WORKING</string>
 </resources>

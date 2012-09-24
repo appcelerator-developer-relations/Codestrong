@@ -18,9 +18,13 @@ $.venue.left = tabPositions.venue;
 
 //add tab behavior
 function doTab(name,offset,noEvent) {
-	$.indicator.animate({
-		left:offset,
-		duration:250
+	_.each(['home', 'agenda', 'post', 'stream', 'venue'], function(item) {
+		if (name === item) {
+			$[item+'Icon'].image = '/img/tabs/btn-'+item+'-pressed.png'
+		}
+		else {
+			$[item+'Icon'].image = '/img/tabs/btn-'+item+'-default.png'
+		}
 	});
 	
 	noEvent || ($.trigger('change',{
@@ -37,7 +41,7 @@ $.agenda.on('click', function() {
 });
 
 //post is special, just fire event
-$.post.on('click', function() {
+$.postIcon.on('click', function() {
 	$.trigger('change', {
 		name:'post'
 	});

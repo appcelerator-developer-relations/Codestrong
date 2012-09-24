@@ -9,7 +9,7 @@ Window: {
 },
 
 '#header': {
-	backgroundColor:'#373e47',
+	backgroundImage:'/img/header/bg-title.png',
 	height:'45dp',
 	top:0
 },
@@ -57,10 +57,69 @@ Window: {
 	top:'5dp',
 	left:'5dp',
 	right:'5dp',
-	bottom:'55dp',
+	bottom:'85dp',
 	font: {
 		fontSize:'14dp'
 	}
+},
+
+'#twitter': {
+	bottom:'10dp',
+	left:'5dp',
+	backgroundImage:'/img/post/btn-twitter-off.png',
+	height:'30dp',
+	width:'30dp'
+},
+
+'#facebook': {
+	bottom:'10dp',
+	left:'45dp',
+	backgroundImage:'/img/post/btn-facebook-off.png',
+	height:'30dp',
+	width:'30dp'
+},
+
+'#camera': {
+	bottom:'55dp',
+	left:'5dp',
+	height:'30dp',
+	width:'30dp'
+},
+
+'#camicon': {
+	image:'/img/post/btn-add-photo.png'
+},
+
+'#imagePreview': {
+	visible:false,
+	bottom:'55dp',
+	left:'5dp',
+	height:'60dp',
+	width:'60dp'
+},
+
+'#preview': {
+	bottom:0,
+	left:0,
+	height:'44dp',
+	width:'44dp'
+},
+
+'#deleteButton': {
+	top:0,
+	right:0,
+	height:'22dp',
+	width:'22dp',
+	image:'/img/post/close.png'
+},
+
+'#submit': {
+	width:'65dp',
+	height:'30dp',
+	backgroundImage:'/img/post/btn-post-default.png',
+	backgroundSelectedImage:'/img/post/btn-post-pressed.png',
+	bottom:'10dp',
+	right:'5dp'
 }
 
 

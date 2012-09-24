@@ -23,6 +23,12 @@ Ti.App.addEventListener('app:open.drawer', function(e) {
 	
 	//Open a new drawer, containing the given view controller
 	d.openDrawer(e.controller);
+	
+	d.on('close', function() {
+		Ti.App.fireEvent('app:close.drawer', {
+			controller:e.controller
+		});
+	});
 });
 
 function popDrawer() {
@@ -39,7 +45,8 @@ $.header.on('back', popDrawer);
 var postViewShown = false;
 if (Alloy.isTablet) {
 	$.postView = Alloy.createController('postView');
-	$.postView.on('blur', function() {
+	
+	function dismissForm() {
 		$.postView.hideForm(function() {
 			$.postView.getView().animate({
 				opacity:0,
@@ -49,7 +56,11 @@ if (Alloy.isTablet) {
 				postViewShown = false;
 			});
 		});
-	});
+	}
+	
+	$.postView.on('blur', dismissForm);
+	$.postView.on('success', dismissForm);
+	
 }
 
 //Manage section navigation from either tabs or header
@@ -82,6 +93,8 @@ function sectionNav(e) {
 			currentSection = sections[e.name];
 			currentSection.getView().opacity = 0;
 			$.content.add(currentSection.getView());
+			//trigger focus event 
+			currentSection.trigger('focus');
 			currentSection.getView().animate({
 				opacity:1,
 				duration:250

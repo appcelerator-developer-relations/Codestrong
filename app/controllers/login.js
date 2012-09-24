@@ -1,6 +1,8 @@
 //Dependencies
 var User = require('User'), 
 	ui = require('ui');
+	
+$.loading = Alloy.createController('loading');
 
 //Generic login error - TODO: make these more specific
 function showError() {
@@ -40,12 +42,15 @@ if (OS_IOS) {
 
 //Login using network creds
 $.login.on('click', function() {
+	$.index.add($.loading.getView());
 	$.email.blur();
 	$.password.blur();
 	User.login($.email.value, $.password.value, function(e) {
 		$.trigger('loginSuccess', e);
 		$.password.value = '';
+		$.index.remove($.loading.getView());
 	}, function() {
+		$.index.remove($.loading.getView());
 		showError();
 	});
 });

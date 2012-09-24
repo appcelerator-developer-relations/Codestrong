@@ -1,3 +1,118 @@
-ImageView: {
-	top:0
+'#header': {
+	height:'34dp',
+	right:'140dp',
+	left:'5dp',
+	top:'5dp'
+},
+
+'#myProfile': {
+	color:'#373e47',
+	left:'5dp',
+	width:Ti.UI.SIZE,
+	height:Ti.UI.SIZE,
+	font: {
+		fontFamily:'Quicksand-Bold',
+		fontSize:'14dp'
+	}
+},
+
+'#logout': {
+	top:'5dp',
+	width:'125dp',
+	height:'34dp',
+	right:'5dp',
+	backgroundImage:'/img/profile/logoutButton.png'
+},
+
+'#personal': {
+	top:'49dp',
+	left:'5dp',
+	right:'5dp',
+	height:'85dp',
+},
+
+'#avatar': {
+	image:'/img/profile/no-profile-pic.png',
+	height:'50dp',
+	width:'50dp',
+	borderRadius:'3dp',
+	left:'5dp',
+	top:'8dp'
+},
+
+'#name': {
+	color:'#0574bf',
+	top:'5dp',
+	left:'60dp',
+	font: {
+		fontWeight:'bold',
+		fontSize:'16dp'
+	}
+},
+
+'#email': {
+	color:'#787878',
+	top:'23dp',
+	left:'60dp',
+	font: {
+		fontSize:'12dp'
+	}
+},
+
+'#title': {
+	color:'#787878',
+	top:'38dp',
+	left:'60dp',
+	font: {
+		fontStyle:'italic',
+		fontSize:'12dp'
+	}
+},
+
+'#org': {
+	color:'#787878',
+	top:'53dp',
+	left:'60dp',
+	font: {
+		fontStyle:'italic',
+		fontSize:'12dp'
+	}
+},
+
+'#social': {
+	top:'144dp',
+	left:'5dp',
+	right:'5dp',
+	height:'80dp',
+	layout:'vertical'
+},
+
+'.divider': {
+	height:'1dp',
+	backgroundColor:'#ebebeb'
+},
+
+'.buttonContainer': {
+	height:'39dp'
+},
+
+'.buttonText': {
+	left:'50dp',
+	right:'5dp',
+	font: {
+		fontSize:'14dp',
+		fontWeight:'bold'
+	}
+},
+
+'#twitterIcon': {
+	left:'10dp',
+	image:'/img/post/btn-twitter-off.png'
+},
+
+'#facebookIcon': {
+	left:'10dp',
+	image:'/img/post/btn-facebook-off.png'
 }
+
+

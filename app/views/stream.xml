@@ -1,5 +1,9 @@
 <Alloy>
-	<View class="container">
-		<Label>activity stream</Label>
+	<View id="index">
+		<View id="header" class="appContent">
+			<Label id="headerLabel" textid="activityStream"/>
+			<View class="fauxShadow"/>
+		</View>
+		<TableView id="table"/>
 	</View>
 </Alloy>

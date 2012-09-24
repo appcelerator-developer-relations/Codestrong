@@ -43,6 +43,15 @@ exports.unzoom = function(view, callback) {
 	});
 };
 
+function FauxShadow() {
+	return Ti.UI.createView({
+		bottom:0,
+		height:'1dp',
+		backgroundColor:'#9a9a9a'
+	});
+}
+exports.FauxShadow = FauxShadow;
+
 /*
  * Create a reusable filter header for insertion into a view hierarchy
  * Example:
@@ -70,17 +79,13 @@ exports.HeaderView = function(options) {
 		height:'35dp'
 	}, options.viewArgs || {}));
 	
-	var fauxShadow = Ti.UI.createView({
-		bottom:0,
-		height:'2dp',
-		backgroundColor:'#9a9a9a'
-	});
+	var fauxShadow = new FauxShadow();
 	self.add(fauxShadow);
 	
 	var indicator = Ti.UI.createView({
 		top:0,
 		right:(options.optionWidth*(options.options.length-1))+'dp',
-		bottom:'2dp',
+		bottom:'1dp',
 		width:options.optionWidth+'dp',
 		backgroundColor:'#ffce00'
 	});
@@ -201,6 +206,109 @@ function AgendaRow(session) {
 	return self;
 }
 exports.AgendaRow = AgendaRow;
+
+//Create a status update row
+function StatusRow(status) {
+	var self = Ti.UI.createTableViewRow({
+		height:status.photo ? '375dp' : '140dp',
+		className:status.photo ? 'statusPhotoRow' : 'statusRow',
+		selectedBackgroundColor:'#fff'
+	});
+	
+	var created = moment(status.created_at);
+	
+	var content = Ti.UI.createView({
+		height:status.photo ? '365dp' : '130dp',
+		backgroundColor:'#fff',
+		bottom:'10dp'
+	});
+	self.add(content);
+	
+	var fauxShadow = new FauxShadow();
+	content.add(fauxShadow);
+	
+	var divider = Ti.UI.createView({
+		backgroundColor:'#cdcdcd',
+		bottom:'60dp',
+		left:'5dp',
+		right:'5dp',
+		height:'1dp'
+	});
+	content.add(divider);
+	
+	var avatar = Ti.UI.createImageView({
+		image:status.custom_fields.avatar,
+		defaultImage:'/img/profile/no-profile-pic.png',
+		height:'44dp',
+		width:'44dp',
+		left:'5dp',
+		bottom:'8dp',
+		borderRadius:'3dp'
+	});
+	content.add(avatar);
+	
+	var name = Ti.UI.createLabel({
+		text:status.custom_fields.name,
+		color:'#000',
+		height:Ti.UI.SIZE,
+		width:Ti.UI.SIZE,
+		left:'55dp',
+		bottom:'37dp',
+		font: {
+			fontWeight:'bold',
+			fontSize:'14dp'
+		}
+	});
+	content.add(name);
+	
+	var org = Ti.UI.createLabel({
+		text:status.custom_fields.org,
+		color:'#0574bf',
+		height:Ti.UI.SIZE,
+		width:Ti.UI.SIZE,
+		left:'55dp',
+		bottom:'25dp',
+		font: {
+			fontSize:'12dp',
+			fontWeight:'bold'
+		}
+	});
+	content.add(org);
+	
+	var createdLabel = Ti.UI.createLabel({
+		bottom:'40dp',
+		right:'5dp',
+		color:'#787878',
+		text:created.fromNow(),
+		font: {
+			fontSize:'10dp'
+		}
+	});
+	content.add(createdLabel);
+	
+	content.add(Ti.UI.createLabel({
+		text:status.message,
+		bottom:'70dp',
+		left:'5dp',
+		right:'5dp',
+		height:'60dp',
+		color:'#000',
+		font: {
+			fontSize:'14dp'
+		}
+	}));
+	
+	if (status.photo) {
+		content.add(Ti.UI.createImageView({
+			image:status.photo.urls.medium_500,
+			bottom:'140dp',
+			height:'220dp'
+		}));
+	}
+	
+	return self;
+}
+exports.StatusRow = StatusRow;
 
 
 

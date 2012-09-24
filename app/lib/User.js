@@ -1,5 +1,7 @@
 //dependencies
-var Cloud = require('ti.cloud');
+var Cloud = require('ti.cloud'),
+	Gravitas = require('gravitas'),
+	social = require('alloy/social');
 
 //Empty constructor (for now)
 function User() {}
@@ -13,12 +15,21 @@ User.confirmLogin = function() {
 	var auth = false;
 	if (Ti.App.Properties.hasProperty('sessionId')) {
 		//set up cloud module to use saved session
-		var Cloud = require('ti.cloud');
 		Cloud.sessionId = Ti.App.Properties.getString('sessionId');
 		auth = true;
 	}
 	
 	return auth;
+};
+
+//Link to Facebook
+User.linkToFacebook = function(cb) {
+	
+};
+
+//Link to Twitter
+User.linkToTwitter = function(cb) {
+	
 };
 
 //Log in an Appcelerator network user
@@ -97,11 +108,47 @@ User.getUserDetails = function() {
 	return deets;
 };
 
+//Generate an avatar image associated with this user
+User.generateAvatarURL = function() {
+	//prefer stored property
+	if (Ti.App.Properties.hasProperty('profileImage')) {
+		return Ti.App.Properties.getString('profileImage');
+	}
+	
+	//Fallback to Gravatar URL
+	var deets = User.getUserDetails();
+	return Gravitas.createGravatar({
+		email:deets.email,
+		size:44
+	});
+};
+
 //Log out the current user
 User.logout = function(cb) {
 	Cloud.Users.logout(function(e) {
 		if (e.success) {
 			Ti.App.Properties.removeProperty('sessionId');
+		}
+		cb(e);
+	});
+};
+
+//Assign the given photo as the profile photo for the current user
+User.assignProfilePhoto = function(blob, cb) {
+	Cloud.Users.update({
+		photo:blob
+	}, function(e) {
+		var usr = e.users[0];
+		if (e.success) {
+			//Now, grab the profile image URL...
+			Cloud.Users.showMe(function(ev) {
+				if (ev.success) {
+					var me = ev.users[0]
+					Ti.App.Properties.setString('profileImage', me.photo.urls.square_75);
+				}
+				cb(e);
+			});
+			cb(e);
 		}
 		cb(e);
 	});

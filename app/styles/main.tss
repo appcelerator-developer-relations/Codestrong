@@ -7,7 +7,7 @@
 },
 
 '#content[formFactor=handheld]': {
-	bottom:'52dp'
+	bottom:'46dp'
 },
 
 '#content[formFactor=tablet]': {

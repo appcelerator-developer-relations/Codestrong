@@ -1,8 +1,25 @@
-'.container[formFactor=tablet]': {
-	width:'320dp'
+'#header': {
+	top:'5dp',
+	left:'5dp',
+	right:'5dp',
+	height:'35dp'
 },
 
-ImageView: {
-	height:Ti.UI.FILL,
-	width:Ti.UI.FILL
+'#headerLabel': {
+	color:'#373e47',
+	left:'5dp',
+	width:Ti.UI.SIZE,
+	height:Ti.UI.SIZE,
+	font: {
+		fontFamily:'Quicksand-Bold',
+		fontSize:'14dp'
+	}
+},
+
+'#table': {
+	top:'50dp',
+	left:'5dp',
+	bottom:'5dp',
+	right:'5dp',
+	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE
 }

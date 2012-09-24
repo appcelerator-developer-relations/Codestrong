@@ -1,5 +1,5 @@
 '#container': {
-	backgroundColor:'#373e47',
+	backgroundImage:'/img/header/bg-title.png',
 	height:'45dp',
 	top:'-45dp'
 },
@@ -8,6 +8,10 @@
 	image:'/img/general/codestrong-bar-logo.png',
 	height:'22dp',
 	width:'81dp'
+},
+
+'#logo[formFactor=tablet]': {
+	left:'10dp'
 },
 
 '#underline': {
@@ -20,6 +24,15 @@
 	width:'50dp',
 	right:'10dp',
 	enabled:true
+},
+
+'#profile[formFactor=tablet]': {
+	top:'5dp',
+	right:'75dp',
+	width:'48dp',
+	height:'34dp',
+	backgroundImage:'/img/header/btn-tablet-profile-default.png',
+	backgroundSelectedImage:'/img/header/btn-tablet-profile-pressed.png'
 },
 
 '#profileImage': {
@@ -45,7 +58,7 @@
 },
 
 '#nav': {
-	left:0,
+	left:'95dp',
 	layout:'horizontal',
 	width:'300dp'
 },
@@ -53,7 +66,7 @@
 '#navIndicator': {
 	backgroundImage:'/img/header/nav-ind.png',
 	bottom:'2dp',
-	left:'26dp',
+	left:'120dp',
 	height:'4dp',
 	width:'8dp'
 },
@@ -65,19 +78,19 @@
 },
 
 '#homeIcon': {
-	image:'/img/tabs/53-house.png'
+	image:'/img/header/btn-tablet-home-default.png'
 },
 
 '#agendaIcon': {
-	image:'/img/tabs/11-clock.png'
+	image:'/img/header/btn-tablet-agenda-default.png'
 },
 
 '#streamIcon': {
-	image:'/img/tabs/145-persondot.png'
+	image:'/img/header/btn-tablet-activity-stream-default.png'
 },
 
 '#venueIcon': {
-	image:'/img/tabs/103-map.png'
+	image:'/img/header/btn-tablet-venue-default.png'
 },
 
 '#post': {
@@ -87,7 +100,18 @@
 	borderRadius:'5dp'
 },
 
-'#postIcon': {
-	image:'/img/tabs/275-broadcast.png'
+'#post[formFactor=tablet]': {
+	top:'5dp',
+	right:'10dp',
+	width:'48dp',
+	height:'34dp',
+	backgroundImage:'/img/header/btn-tablet-post-default.png',
+	backgroundSelectedImage:'/img/header/btn-tablet-post-pressed.png'
+},
+
+'#rightControls': {
+	layout:'horizontal',
+	right:'15dp',
+	width:Ti.UI.SIZE
 }
 

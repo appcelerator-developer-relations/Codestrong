@@ -1,5 +1,33 @@
 <Alloy>
-	<View class="container">
-		<Button id="logout" titleid="logout"/>
+	<View id="index" class="container">
+		<View id="header" class="appContent">
+			<Label id="myProfile" textid="myProfile"/>
+			<View class="fauxShadow"/>
+		</View>
+		
+		<Button id="logout"/>
+		
+		<View id="personal" class="appContent">
+			<ImageView id="avatar"/>
+			<Label id="name"/>
+			<Label id="email"/>
+			<Label id="title"/>	
+			<Label id="org"/>
+			<View class="fauxShadow"/>	
+		</View>
+		
+		<View id="social" class="appContent">
+			<View id="twitter" class="buttonContainer">
+				<ImageView id="twitterIcon"/>
+				<Label class="buttonText" textid="connectTwitter"/>
+			</View>
+			<View class="divider"/>
+			<View class="buttonContainer">
+				<ImageView id="facebookIcon"/>
+				<Label class="buttonText" textid="connectFacebook"/>
+			</View>
+			<View class="fauxShadow"/>
+		</View>
+		
 	</View>
 </Alloy>

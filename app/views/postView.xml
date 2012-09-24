@@ -3,9 +3,7 @@
 		<View id="backdrop"/>
 		<View id="tinyShadow"/>
 		<View id="postContainer" class="appContent">
-			<TextArea id="post"/>
-			<View id="divider"/>
-			<View class="fauxShadow"/>
+			<Require id="postFormView" src="postFormView"/>
 		</View>
 	</View>
 </Alloy>

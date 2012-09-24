@@ -1,39 +1,27 @@
 '.container': {
-	height:'52dp',
-	bottom:'-52dp'
-},
-
-'#indicator': {
-    touchEnabled: false,
-    backgroundColor: '#ffff00',
-    width: '20%',
-    height: '2dp',
-    bottom: '0dp',
-    left: '0dp'
+	backgroundImage:'/img/tabs/bg-tab.png',
+	height:'46dp',
+	bottom:'-46dp'
 },
 
 '.tab': {
-	height:'52dp',
-	width:'20%',
-	backgroundImage:'/img/tabs/bg-tab.png'
-},
-
-'#post': {
-	height:'52dp',
-	width:'20%',
-	backgroundImage:'/img/tabs/bg-tab-button.png'
+	zIndex:10,
+	width:'20%'
 },
 
 '#postIcon': {
-	image:'/img/tabs/btn-stream-default.png'
+	height:'46dp',
+	width:'64dp',
+	backgroundImage:'/img/tabs/btn-post-default.png',
+	backgroundSelectedImage:'/img/tabs/btn-post-pressed.png'
 },
 
 '#homeIcon': {
-	image:'/img/tabs/btn-home-default.png'
+	image:'/img/tabs/btn-home-pressed.png'
 },
 
 '#streamIcon': {
-	image:'/img/tabs/btn-activity-stream-default.png'
+	image:'/img/tabs/btn-stream-default.png'
 },
 
 '#agendaIcon': {

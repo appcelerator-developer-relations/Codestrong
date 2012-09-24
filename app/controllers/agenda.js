@@ -1,11 +1,7 @@
 var moment = require('moment'),
 	ui = require('ui'),
 	Session = require('Session');
-
-//Get Agenda data
-var loadingData = [{title:L('sessionData')}];
-$.agendaTable && ($.agendaTable.setData(loadingData));
-
+	
 //Session table view data and conference dates
 var sunday = [],
 	monday = [],
@@ -15,6 +11,7 @@ var sunday = [],
 
 //Load agenda data
 Session.getAll(function(e) {
+	$.index.remove($.loading.getView());
 	if (e.success) {
 		var sessions = e.Session;
 		for (var i = 0, l = sessions.length; i<l; i++) {
@@ -68,4 +65,8 @@ if (!Alloy.isTablet) {
 		}
 	});
 }
+
+$.loading = Alloy.createController('loading');
+$.index.add($.loading.getView());
+
 

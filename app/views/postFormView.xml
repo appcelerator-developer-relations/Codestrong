@@ -1,0 +1,21 @@
+<Alloy>
+	<View id="postContainer" class="appContent">
+		<TextArea id="post"/>
+		
+		<View id="twitter"/>
+		<View id="facebook"/>
+		<View id="camera">
+			<ImageView id="camicon"/>
+		</View>
+		<View id="imagePreview">
+			<ImageView id="preview"/>
+			<ImageView id="deleteButton"/>
+		</View>
+		<Button id="submit"/>
+		
+		<Label id="characters" text="140"/>
+		
+		<View id="divider"/>
+		<View class="fauxShadow" formFactor="handheld"/>
+	</View>
+</Alloy>

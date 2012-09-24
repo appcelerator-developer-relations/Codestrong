@@ -1,0 +1,26 @@
+'#container': {
+	layout:'vertical',
+	height:Ti.UI.SIZE
+},
+
+'#backdrop': {
+	backgroundColor:'#232323',
+	opacity:0.75
+},
+
+'#loader': {
+	width:'75dp',
+	height:'46dp'
+},
+
+'#message': {
+	color:'#ebebeb',
+	textAlign:'center',
+	height:Ti.UI.SIZE,
+	width:Ti.UI.SIZE,
+	font: {
+		fontSize:'12dp',
+		fontWeight:'bold',
+		fontFamily:'Quicksand-Bold'
+	}
+}

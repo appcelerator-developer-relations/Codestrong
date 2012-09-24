@@ -68,7 +68,7 @@ TableView: {
 
 '.fauxShadow': {
 	bottom:0,
-	height:'2dp',
+	height:'1dp',
 	backgroundColor:'#9a9a9a'
 },
 

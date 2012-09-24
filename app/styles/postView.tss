@@ -20,22 +20,8 @@
 	height:'2dp',
 	backgroundColor:'#cdcdcd',
 	zIndex:9999
-},
-
-'#divider': {
-	bottom:'50dp',
-	height:'1dp',
-	backgroundColor:'#cdcdcd',
-	left:'5dp',
-	right:'5dp'
-},
-
-'#post': {
-	top:'5dp',
-	left:'5dp',
-	right:'5dp',
-	bottom:'55dp',
-	font: {
-		fontSize:'14dp'
-	}
 }
+
+
+
+

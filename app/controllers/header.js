@@ -1,6 +1,6 @@
 //Tablet header emits navigation events
 if (Alloy.isTablet) {
-	var tabOffset = 26,
+	var tabOffset = 121,
 		tabWidth = 60;
 		
 	var navOffsets = {
@@ -83,11 +83,28 @@ if ($.back) {
 	});
 }
 
+Ti.App.addEventListener('app:close.drawer', function(e) {
+	if (e.controller === 'profile') {
+		$.profile.animate({
+			opacity:1,
+			duration:250
+		});
+		$.profile.enabled = true;
+		$.profile.visible = true;
+	}
+});
+
 function doProfile() {
 	if ($.profile.enabled) {
 		Ti.App.fireEvent('app:open.drawer', {
 			controller:'profile'
 		});
+		$.profile.animate({
+			opacity:0,
+			duration:250
+		});
+		$.profile.enabled = false;
+		$.profile.visible = false;
 	}
 }
 $.profile.on('click', doProfile);

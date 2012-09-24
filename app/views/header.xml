@@ -1,5 +1,7 @@
 <Alloy>
-	<View id="container">
+	<View id="container">	
+		<ImageView id="logo"/>
+		
 		<View id="back" formFactor="handheld">
 			<ImageView id="backImage"/>
 		</View>
@@ -18,16 +20,18 @@
 			<View id="venue" class="navBtn">
 				<ImageView id="venueIcon"/>
 			</View>
-			<View id="post" class="navBtn">
-				<ImageView id="postIcon"/>
-			</View>
 		</View>
 		<View id="navIndicator" formFactor="tablet"/>
 		
-		<ImageView id="logo"/>
-		<View id="profile">
+		<!-- user profile for handheld -->
+		<View id="profile" formFactor="handheld">
 			<ImageView id="profileImage"/>
 		</View>
+		
+		<!-- right controls for tablet -->
+		<Button id="profile" formFactor="tablet"/>
+		<Button id="post" formFactor="tablet"/>
+		
 		<View id="underline"/>
 	</View>
 </Alloy>

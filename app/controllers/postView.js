@@ -1,10 +1,16 @@
 $.backdrop.on('click', function() {
-	$.post.blur();
+	$.postFormView.blur();
 	$.trigger('blur');
 });
 
-$.post.on('blur', function() {
+$.postFormView.on('blur', function() {
 	$.trigger('blur');
+});
+
+$.postFormView.on('success', function() {
+	$.postFormView.reset();
+	$.postFormView.blur();
+	$.trigger('success');
 });
 
 $.showForm = function(cb) {
@@ -12,7 +18,7 @@ $.showForm = function(cb) {
 		top:0,
 		duration:250
 	}, function() {
-		$.post.focus();
+		$.postFormView.focus();
 		cb && cb();
 	});
 };

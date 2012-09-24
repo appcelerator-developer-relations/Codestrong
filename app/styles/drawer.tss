@@ -19,7 +19,7 @@
 '#close': {
 	left:0,
 	width:'44dp',
-	backgroundColor:'#373e47'
+	backgroundImage:'/img/general/vert-bar.png'
 },
 
 '#closeIcon': {
