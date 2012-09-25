@@ -37,15 +37,17 @@ Status.create = function(args, cb) {
 	});
 };
 
-//Get a complete session listing (this will never top 100)
-Status.getAll = function(cb) {
+//Get status updates
+Status.query = function(cb, limit) {
 	Cloud.Statuses.query({
-		limit:50,
+		limit:limit||50,
 		response_json_depth:8,
 		order:'-created_at'
 	}, function(e) {
 		cb(e);
 	});
 };
+
+
 
 module.exports = Status;

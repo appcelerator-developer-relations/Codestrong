@@ -17,24 +17,39 @@ Session.getAll = function(cb) {
 			sessions:sessions
 		});
 	}
-	Cloud.Objects.query({
-		classname:'Session',
-		page:1,
-		per_page:100
-	}, function(e) {
-		//on the fail case, e will contain ACS error info
-		if (e.success) {
-			sessions = e.Session;
-			e.sessions = sessions;
-		}
-		cb(e);
-	});
+	else {
+		Cloud.Objects.query({
+			classname:'Session',
+			page:1,
+			per_page:100
+		}, function(e) {
+			//on the fail case, e will contain ACS error info
+			if (e.success) {
+				sessions = e.Session;
+				e.sessions = sessions;
+			}
+			cb(e);
+		});
+	}
 };
 
 //Loop through the session information and determine the next one
 //inefficient, but sufficient for this small data set
 Session.getNext = function(cb) {
-	
+	Session.getAll(function(e) {
+		if (e.success) {
+			var now = moment();
+			
+			//TODO: actually sort
+			e.next = e.sessions[0];
+			/*
+			for (var i = 0, l = e.sessions.length; i<l; i++) {
+				
+			}
+			*/
+		}
+		cb(e);
+	});
 };
 
 //Return all sessions for a given day - if before conference, show day 1, if after, show day 3

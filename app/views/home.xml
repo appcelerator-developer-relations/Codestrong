@@ -1,5 +1,5 @@
 <Alloy>
-	<View class="container">
+	<View id="index" class="container">
 		<View id="dashboard" formFactor="handheld">
 			<View id="now">
 				<Label id="title" text="Morning Keynote"/>
@@ -8,26 +8,21 @@
 			</View>
 
 			<View id="stream" class="appContent">
-				<Label left="20dp" right="30dp">Lorem Ipsum some status update goes here.</Label>
+				<ImageView id="avatar"/>
+				<Label id="name"/>
+				<Label id="time"/>
+				<Label id="status"/>
 				<ImageView class="childArrow"/>
-				<View class="fauxShadow"/>
 			</View>
 		</View>
 		
 		<View id="tabletDash" formFactor="tablet">
 			<View id="nowContainer">
 				<!-- Code duplication, should widgetize -->
-				<View id="firstSession">
-					<View id="nowImage">
-						<Label id="title" text="Morning Keynote"/>
-						<Label id="presenter" text="Jeff Haynie, CEO, Appcelerator"/>
-						<Label id="location" text="Grand Ballroom"/>
-					</View>
-					<View id="firstSessionInfo" class="appContent">
-						<Label id="nowSessionInfo" text="Join Jeff Haynie as he fights dragons, tames lions, and chats with the Queen over tea and crumpets."/>
-						<ImageView class="childArrow"/>
-						<View class="fauxShadow"/>
-					</View>
+				<View id="now">
+					<Label id="title" text="Morning Keynote"/>
+					<Label id="presenter" text="Jeff Haynie, CEO, Appcelerator"/>
+					<Label id="location" text="Grand Ballroom"/>
 				</View>
 				
 				<View id="agendaPeek" class="appContent">
@@ -38,9 +33,12 @@
 			</View>
 			
 			<View id="streamContainer">
-				<View id="streamPeek" class="appContent">
-					<Label>embed stream content here - maybe the last photo uploaded, big, plus a few text updates?</Label>
-					<View class="fauxShadow"/>
+				<View id="streamPeek">
+					<View id="streamHeader" class="appContent">
+						<Label id="headerLabel" textid="activityStream"/>
+						<View class="fauxShadow"/>
+					</View>
+					<TableView id="stream"/>
 				</View>
 			</View>
 			

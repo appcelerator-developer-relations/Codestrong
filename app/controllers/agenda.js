@@ -8,12 +8,15 @@ var sunday = [],
 	tuesday = [],
 	monDate = moment('Oct 22, 2012'),
 	tueDate = moment('Oct 23, 2012');
+	
+$.loading = Alloy.createController('loading');
+$.index.add($.loading.getView());
 
 //Load agenda data
 Session.getAll(function(e) {
 	$.index.remove($.loading.getView());
 	if (e.success) {
-		var sessions = e.Session;
+		var sessions = e.sessions;
 		for (var i = 0, l = sessions.length; i<l; i++) {
 			var session = sessions[i],
 				sessionStart = moment(session.start),
@@ -65,8 +68,5 @@ if (!Alloy.isTablet) {
 		}
 	});
 }
-
-$.loading = Alloy.createController('loading');
-$.index.add($.loading.getView());
 
 

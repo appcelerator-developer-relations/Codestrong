@@ -44,7 +44,7 @@ if (OS_IOS) {
 			}
 		}
 	}
-	Ti.Gesture.addEventListener('orientationchange', handleOrientation);
+	//Ti.Gesture.addEventListener('orientationchange', handleOrientation);
 }
 
 $.back.on('click', function() {
@@ -81,7 +81,7 @@ $.win.on('open', function() {
 $.win.on('close', function() {
 	if (OS_IOS) {
 		Ti.App.removeEventListener('keyboardFrameChanged', handleKeyboard);
-		Ti.Gesture.removeEventListener('orientationchange', handleOrientation);
+		//Ti.Gesture.removeEventListener('orientationchange', handleOrientation);
 	}
 });
 

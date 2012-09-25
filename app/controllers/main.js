@@ -8,6 +8,8 @@ var drawers = [],
 //Initialize to home section
 currentSection = sections.home;
 $.content.add(currentSection.getView());
+currentSection.trigger('focus');
+currentSection.on('nav', sectionNav);
 
 //Listen for new drawer events
 Ti.App.addEventListener('app:open.drawer', function(e) {
@@ -88,9 +90,16 @@ function sectionNav(e) {
 			}
 		}
 		else {
+			//Make sure proper tab is set
+			$.tabs && ($.tabs.setTab(e.name));
+			Alloy.isTablet && ($.header.setNav(e.name));
+			
+			//Swap out the current main section of the application
 			sections[e.name] || (sections[e.name] = Alloy.createController(e.name));
 			var oldSection = currentSection;
 			currentSection = sections[e.name];
+			currentSection.on('nav', sectionNav);
+			
 			currentSection.getView().opacity = 0;
 			$.content.add(currentSection.getView());
 			//trigger focus event 
@@ -104,6 +113,7 @@ function sectionNav(e) {
 				duration:250
 			}, function() {
 				$.content.remove(oldSection.getView());
+				oldSection.off('nav', sectionNav);
 			});
 		}
 	}

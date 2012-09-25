@@ -5,7 +5,7 @@ $.loading = Alloy.createController('loading');
 $.index.add($.loading.getView());
 
 function loadRows() {
-	Status.getAll(function(e) {
+	Status.query(function(e) {
 		$.index.remove($.loading.getView());
 		if (e.success) {
 			var td = [];

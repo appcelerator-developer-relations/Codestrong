@@ -94,7 +94,7 @@
 '#nowContainer': {
 	top:0,
 	left:0,
-	width:'50%',
+	width:'320dp',
 	bottom:'100dp'
 },
 
@@ -111,7 +111,7 @@
 },
 
 '#agendaPeek': {
-	top:'155dp',
+	top:'175dp',
 	left:'10dp',
 	bottom:'10dp',
 	right:'10dp'
@@ -147,7 +147,7 @@
 '#streamContainer': {
 	top:0,
 	right:0,
-	width:'50%',
+	left:'320dp',
 	bottom:'100dp'
 },
 
@@ -173,6 +173,81 @@
 
 '.spacer': {
 	width:'15dp'
+},
+
+'#avatar': {
+	defaultImage:'/img/profile/no-profile-pic.png',
+	height:'44dp',
+	width:'44dp',
+	left:'5dp',
+	top:'5dp',
+	borderRadius:'3dp'
+},
+
+'#name': {
+	top:'5dp',
+	left:'55dp',
+	font: {
+		fontWeight:'bold',
+		fontSize:'14dp'
+	},
+	height:Ti.UI.SIZE,
+	width:Ti.UI.SIZE
+},
+
+'#time': {
+	top:'5dp',
+	right:'5dp',
+	color:'#787878',
+	font: {
+		fontSize:'10dp'
+	},
+	height:Ti.UI.SIZE,
+	width:Ti.UI.SIZE
+},
+
+'#status': {
+	top:'25dp',
+	left:'55dp',
+	right:'10dp',
+	font: {
+		fontSize:'12dp'
+	},
+	height:Ti.UI.SIZE
+},
+
+'#divider': {
+	backgroundColor:'#cdcdcd',
+	bottom:'60dp',
+	left:'5dp',
+	right:'5dp',
+	height:'1dp'
+},
+
+'#streamHeader': {
+	top:0,
+	left:0,
+	right:0,
+	height:'35dp'
+},
+
+'#headerLabel': {
+	color:'#373e47',
+	left:'5dp',
+	width:Ti.UI.SIZE,
+	height:Ti.UI.SIZE,
+	font: {
+		fontFamily:'Quicksand-Bold',
+		fontSize:'14dp'
+	}
+},
+
+'#stream[formFactor=tablet]': {
+	top:'50dp',
+	left:0,
+	bottom:0,
+	right:0,
+	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.SINGLE_LINE
 }
 
 
