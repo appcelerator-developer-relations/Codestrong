@@ -18,33 +18,23 @@ function loadContent() {
 		if ($.dailySchedule) {
 			$.dailySchedule.setData([new ui.AgendaRow(session)]);
 		}
-	});
-	
-	//Grab latest status updates
-	Status.query(function(e) {
-		$.index.remove($.loading.getView());
-		if (e.success) {
-			if (Alloy.isTablet) {
+		
+		//Grab latest status updates
+		Status.query(function(e) {
+			$.index.remove($.loading.getView());
+			if (e.success) {
 				var data = [];
 				for (var i = 0, l = e.statuses.length; i<l; i++) {
 					data.push(new ui.StatusRow(e.statuses[i]));
 				}
-				$.stream.setData(data);
+				$.streamTable.setData(data);
 			}
 			else {
-				var s = e.statuses[0];
-				var created = moment(s.created_at);
-				
-				$.avatar.image = s.custom_fields.avatar;
-				$.name.text = s.custom_fields.name;
-				$.time.text = created.fromNow();
-				$.status.text = s.message;
+				ui.alert('networkGenericErrorTitle', 'activityStreamError');
 			}
-		}
-		else {
-			ui.alert('networkGenericErrorTitle', 'activityStreamError');
-		}
-	},Alloy.isTablet ? 10 : 1);
+		},10);
+	});
+	
 }
 
 //Listen for status update, and refresh.
@@ -54,7 +44,7 @@ Ti.App.addEventListener('app:status.update', loadContent);
 $.on('focus', loadContent);
 
 //Go to activity stream
-$.stream.on('click', function() {
+$.streamTable.on('click', function() {
 	$.trigger('nav', {
 		name:'stream'
 	});

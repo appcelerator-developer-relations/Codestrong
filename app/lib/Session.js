@@ -8,11 +8,11 @@ var sessions = [];
 function Session() {}
 
 //Get a complete session listing (this will never top 100)
-Session.getAll = function(cb) {
+Session.getAll = function(callback) {
 	//hit cache first
 	if (sessions.length > 0) {
 		//return a simulated event immediately
-		cb({
+		callback({
 			success:true,
 			sessions:sessions
 		});
@@ -28,27 +28,32 @@ Session.getAll = function(cb) {
 				sessions = e.Session;
 				e.sessions = sessions;
 			}
-			cb(e);
+			
+			try {
+				callback(e);
+			} catch (ex) {
+				alert(ex);
+			}
 		});
 	}
 };
 
-//Loop through the session information and determine the next one
-//inefficient, but sufficient for this small data set
+//TODO: Do an actual query for the next event, based on actual time.
 Session.getNext = function(cb) {
-	Session.getAll(function(e) {
+	Cloud.Objects.query({
+		classname:'Session',
+		page:1,
+		per_page:1
+	}, function(e) {
+		//on the fail case, e will contain ACS error info
+		var next;
 		if (e.success) {
-			var now = moment();
-			
-			//TODO: actually sort
-			e.next = e.sessions[0];
-			/*
-			for (var i = 0, l = e.sessions.length; i<l; i++) {
-				
-			}
-			*/
+			next = e.Session[0];
 		}
-		cb(e);
+		cb({
+			next:next,
+			success:e.success	
+		});
 	});
 };
 

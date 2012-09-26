@@ -7,12 +7,8 @@
 				<Label id="location" text="Grand Ballroom"/>
 			</View>
 
-			<View id="stream" class="appContent">
-				<ImageView id="avatar"/>
-				<Label id="name"/>
-				<Label id="time"/>
-				<Label id="status"/>
-				<ImageView class="childArrow"/>
+			<View id="stream">
+				<TableView id="streamTable"/>
 			</View>
 		</View>
 		
@@ -38,13 +34,13 @@
 						<Label id="headerLabel" textid="activityStream"/>
 						<View class="fauxShadow"/>
 					</View>
-					<TableView id="stream"/>
+					<TableView id="streamTable"/>
 				</View>
 			</View>
 			
 		</View>
 		
-		<View id="sponsorsContainer">
+		<View id="sponsorsContainer" formFactor="tablet">
 				<Label id="sponsorHeader" textid="sponsorHeader"/>
 				<View id="sponsorBox" class="appContent">
 					<ScrollView scrollType="horizontal">

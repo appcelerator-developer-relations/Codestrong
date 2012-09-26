@@ -207,25 +207,14 @@ function AgendaRow(session) {
 }
 exports.AgendaRow = AgendaRow;
 
-//Create a status update row
-function StatusRow(status) {
-	var self = Ti.UI.createTableViewRow({
-		height:status.photo ? '375dp' : '140dp',
-		className:status.photo ? 'statusPhotoRow' : 'statusRow',
-		selectedBackgroundColor:'#fff'
-	});
-	
+function StatusView(status) {
 	var created = moment(status.created_at);
 	
-	var content = Ti.UI.createView({
+	var self = Ti.UI.createView({
 		height:status.photo ? '365dp' : '130dp',
 		backgroundColor:'#fff',
 		bottom:'10dp'
 	});
-	self.add(content);
-	
-	var fauxShadow = new FauxShadow();
-	content.add(fauxShadow);
 	
 	var divider = Ti.UI.createView({
 		backgroundColor:'#cdcdcd',
@@ -234,7 +223,7 @@ function StatusRow(status) {
 		right:'5dp',
 		height:'1dp'
 	});
-	content.add(divider);
+	self.add(divider);
 	
 	var avatar = Ti.UI.createImageView({
 		image:status.custom_fields.avatar,
@@ -245,7 +234,7 @@ function StatusRow(status) {
 		bottom:'8dp',
 		borderRadius:'3dp'
 	});
-	content.add(avatar);
+	self.add(avatar);
 	
 	var name = Ti.UI.createLabel({
 		text:status.custom_fields.name,
@@ -259,7 +248,7 @@ function StatusRow(status) {
 			fontSize:'14dp'
 		}
 	});
-	content.add(name);
+	self.add(name);
 	
 	var org = Ti.UI.createLabel({
 		text:status.custom_fields.org,
@@ -273,7 +262,7 @@ function StatusRow(status) {
 			fontWeight:'bold'
 		}
 	});
-	content.add(org);
+	self.add(org);
 	
 	var createdLabel = Ti.UI.createLabel({
 		bottom:'40dp',
@@ -284,9 +273,9 @@ function StatusRow(status) {
 			fontSize:'10dp'
 		}
 	});
-	content.add(createdLabel);
+	self.add(createdLabel);
 	
-	content.add(Ti.UI.createLabel({
+	self.add(Ti.UI.createLabel({
 		text:status.message,
 		bottom:'70dp',
 		left:'5dp',
@@ -299,12 +288,31 @@ function StatusRow(status) {
 	}));
 	
 	if (status.photo) {
-		content.add(Ti.UI.createImageView({
+		self.add(Ti.UI.createImageView({
 			image:status.photo.urls.medium_500,
 			bottom:'140dp',
 			height:'220dp'
 		}));
 	}
+	
+	return self;
+} 
+exports.StatusView = StatusView;
+
+//Create a status update row
+function StatusRow(status) {
+	var self = Ti.UI.createTableViewRow({
+		height:status.photo ? '375dp' : '140dp',
+		className:status.photo ? 'statusPhotoRow' : 'statusRow',
+		selectedBackgroundColor:'#fff'
+	});
+	
+	var content = new StatusView(status);
+	self.add(content);
+	
+	var fauxShadow = new FauxShadow();
+	fauxShadow.bottom = '10dp';
+	self.add(fauxShadow);
 	
 	return self;
 }

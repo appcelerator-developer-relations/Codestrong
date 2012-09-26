@@ -11,6 +11,7 @@ if (!Ti.Network.online) {
 	ui.alert('networkErrTitle', 'networkErrMsg');
 }
 
+
 //create view hierarchy components
 $.login = Alloy.createController('login');
 $.main = Alloy.createController('main');

@@ -56,7 +56,11 @@
 	top:'170dp',
 	left:'10dp',
 	right:'10dp',
-	bottom:'110dp'
+	bottom:'10dp'
+},
+
+'#streamTable': {
+	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE
 },
 
 '#featured': {

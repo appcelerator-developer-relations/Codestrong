@@ -1,7 +1,7 @@
 '#header': {
-	top:'5dp',
-	left:'5dp',
-	right:'5dp',
+	top:'10dp',
+	left:'10dp',
+	right:'10dp',
 	height:'35dp'
 },
 
@@ -18,8 +18,8 @@
 
 '#table': {
 	top:'50dp',
-	left:'5dp',
-	bottom:'5dp',
-	right:'5dp',
+	left:'10dp',
+	bottom:'10dp',
+	right:'10dp',
 	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE
 }

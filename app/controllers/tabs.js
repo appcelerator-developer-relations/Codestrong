@@ -19,11 +19,13 @@ $.venue.left = tabPositions.venue;
 //add tab behavior
 function doTab(name,offset,noEvent) {
 	_.each(['home', 'agenda', 'post', 'stream', 'venue'], function(item) {
-		if (name === item) {
-			$[item+'Icon'].image = '/img/tabs/btn-'+item+'-pressed.png'
-		}
-		else {
-			$[item+'Icon'].image = '/img/tabs/btn-'+item+'-default.png'
+		if (item !== 'post') {
+			if (name === item) {
+				$[item+'Icon'].image = '/img/tabs/btn-'+item+'-pressed.png'
+			}
+			else {
+				$[item+'Icon'].image = '/img/tabs/btn-'+item+'-default.png'
+			}
 		}
 	});
 	

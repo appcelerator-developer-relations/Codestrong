@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>appicon.png</string>
+	<string>Icon.png</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -39,16 +39,20 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>CFBundleIconFiles</key>
-	<array/>
-	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
+		<string>Icon.png</string>
+		<string>Icon@2x.png</string>
+	</array>
+
+	<key>UISupportedInterfaceOrientations~ipad</key>
+		<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
-	<array>
+		<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UIStatusBarStyle</key>
