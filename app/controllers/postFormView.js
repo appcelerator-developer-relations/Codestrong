@@ -1,5 +1,7 @@
 var ui = require('ui'),
 	Status = require('Status'),
+	User = require('User'),
+	Cloud = require('ti.cloud'),
 	currentBlob = null;
 	
 $.loading = Alloy.createController('loading');
@@ -21,34 +23,6 @@ $.focus = function() {
 $.blur = function() {
 	$.post.blur();
 };
-
-//Track character count
-var count = 140;
-$.post.on('change', function() {
-	count = 140 - $.post.value.length;
-	$.characters.color = (count >= 0) ? '#000' : '#ff0000';
-	$.characters.text = count;
-});
-
-$.submit.on('click', function() {
-	if ($.post.value && count >= 0) {
-		$.postContainer.add($.loading.getView());
-		Status.create({
-			message:$.post.value,
-			photo:currentBlob
-		}, function(e) {
-			$.postContainer.remove($.loading.getView());
-			if (e.success) {
-				ui.alert('updateSuccessTitle', 'updateSuccessText');
-				$.trigger('success');
-				Ti.App.fireEvent('app:status.update');
-			}
-			else {
-				ui.alert('updateErrorTitle', 'updateErrorText');
-			}
-		});
-	}
-});
 
 //Handle image attachment
 $.camera.on('click', function() {
@@ -115,10 +89,158 @@ $.deleteButton.on('click', function() {
 	});
 });
 
+//Manage social connection state
+var fbOn = false;
+$.facebook.on('click', function() {
+	if (!fbOn) {
+		function setOn() {
+			fbOn = true;
+			$.facebook.backgroundImage = '/img/post/btn-facebook-on.png';
+		}
+		
+		if (User.confirmLogin.toFacebook()) {
+			setOn();
+		}
+		else {
+			User.linkToFacebook(function(e) {
+				setOn();
+			});
+		}
+	}
+	else {
+		fbOn = false;
+		$.facebook.backgroundImage = '/img/post/btn-facebook-off.png';
+	}
+});
+
+var twitterOn = false;
+$.twitter.on('click', function() {
+	if (!twitterOn) {
+		function setOn() {
+			twitterOn = true;
+			$.twitter.backgroundImage = '/img/post/btn-twitter-on.png';
+		}
+		
+		if (User.confirmLogin.toTwitter()) {
+			setOn();
+		}
+		else {
+			User.linkToTwitter(function(e) {
+				setOn();
+			});
+		}
+	}
+	else {
+		twitterOn = false;
+		$.twitter.backgroundImage = '/img/post/btn-twitter-off.png';
+	}
+});
+
+//Track character count
+var count = 140;
+$.post.on('change', function() {
+	count = 140 - $.post.value.length;
+	$.characters.color = (count >= 0) ? '#000' : '#ff0000';
+	$.characters.text = count;
+});
+
+//track social post status, don't be done til these come back
+$.submit.on('click', function() {
+	if ($.post.value || currentBlob) {
+		var currentPost = $.post.value;
+		$.postContainer.add($.loading.getView());
+		Status.create({
+			message:currentPost,
+			photo:currentBlob
+		}, function(e) {
+			if (e.success) {				
+				//Cool, it's in ACS, now ship it to any social channels
+				if (twitterOn || fbOn) {
+					var args = {
+						success: function(ev) {
+							$.postContainer.remove($.loading.getView());
+							ui.alert('updateSuccessTitle', 'updateSuccessText');
+							$.trigger('success');
+							Ti.App.fireEvent('app:status.update');
+						},
+						error: function(ev) {
+							$.postContainer.remove($.loading.getView());
+							Ti.API.error('Error on social post: '+ev);
+							ui.alert('updateErrorTitle', 'updateErrorText');
+						}
+					};
+					
+					//Handle twitter posting
+					if (twitterOn) {
+						if (currentBlob) {
+							//For twitter, we need to grab the URL of the original image on ACS
+							//Need to delay in order for ACS to process the images and return us URLs
+							//TODO: Brittle as F - maybe do an interval?
+							setTimeout(function() {
+								Cloud.Statuses.query({
+									limit:1,
+									where:{
+										user_id:e.status.user.id
+									},
+									order:'-created_at'
+								}, function(pe) {
+									if (pe.success) {
+										args.message = currentPost+': '+pe.statuses[0].photo.urls.original
+										User.tweet(args);
+									}
+									else {
+										args.error(pe);
+									}
+								});
+							},5000);
+						}
+						else {
+							args.message = currentPost;
+							User.tweet(args);
+						}
+					}
+					
+					//Handle FB posting
+					if (fbOn) {
+						args.message = currentPost;
+						args.image = currentBlob;
+						User.facebookPost(args);
+					}
+				}
+				else {
+					$.postContainer.remove($.loading.getView());
+					ui.alert('updateSuccessTitle', 'updateSuccessText');
+					$.trigger('success');
+					Ti.App.fireEvent('app:status.update');
+				}
+			}
+			else {
+				$.postContainer.remove($.loading.getView());
+				Ti.API.error('Error on ACS post: '+e);
+				ui.alert('updateErrorTitle', 'updateErrorText');
+			}
+		});
+	}
+});
+
 //Reset UI for next post
 $.reset = function() {
+	//reset social
+	fbOn = false;
+	$.facebook.backgroundImage = '/img/post/btn-facebook-off.png';
+	twitterOn = false;
+	$.twitter.backgroundImage = '/img/post/btn-twitter-off.png';
+	
+	//reset post
 	$.post.value = '';
 	count = 140;
 	$.characters.text = count;
+	
+	//reset image
+	currentBlob = null;
+	$.imagePreview.visible = false;
+	$.imagePreview.opacity = 0;
+	$.preview.image = '';
+	$.camera.opacity = 1;
 };
 

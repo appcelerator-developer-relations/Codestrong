@@ -56,11 +56,15 @@
 	top:'170dp',
 	left:'10dp',
 	right:'10dp',
-	bottom:'10dp'
+	bottom:0
 },
 
 '#streamTable': {
 	separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE
+},
+
+'#streamTable[formFactor=tablet]': {
+	top:'45dp'
 },
 
 '#featured': {

@@ -2,6 +2,12 @@
 var Cloud = require('ti.cloud'),
 	Gravitas = require('gravitas'),
 	social = require('alloy/social');
+	
+//Create a Twitter client for this module
+var twitter = social.create({
+	consumerSecret:Ti.App.Properties.getString('twitter.consumerSecret'),
+	consumerKey:Ti.App.Properties.getString('twitter.consumerKey')
+});
 
 //Empty constructor (for now)
 function User() {}
@@ -22,14 +28,90 @@ User.confirmLogin = function() {
 	return auth;
 };
 
+//Check social login
+User.confirmLogin.toFacebook = function() {
+	return Ti.Facebook.loggedIn;
+};
+
+User.confirmLogin.toTwitter = function() {
+	return twitter.isAuthorized();
+};
+
 //Link to Facebook
 User.linkToFacebook = function(cb) {
-	
+	Ti.Facebook.addEventListener('login', function(e) {
+		cb && cb(e);
+	});
+	Ti.Facebook.authorize();
+};
+User.logoutFacebook = function(cb) {
+	Ti.Facebook.addEventListener('logout', function(e) {
+		cb && cb(e);
+	});
+	Ti.Facebook.logout();
 };
 
 //Link to Twitter
 User.linkToTwitter = function(cb) {
-	
+	twitter.authorize(cb);
+};
+User.logoutTwitter = function(cb) {
+	twitter.deauthorize();
+	cb && cb();
+};
+
+//Hmm, not sure if this REALLY belongs in a user model, but sharing features going here...
+/*
+ * Argument format:
+ * {
+ * 	 message: 'a string to share',
+ *   success: function() {},
+ *   error: function() {}
+ * }
+ */
+User.tweet = function(args) {
+	twitter.share({
+		message:args.message,
+		success:args.success,
+		error:args.error
+	});
+};
+
+/*
+ * Argument format:
+ * {
+ * 	 message: 'a string to share',
+ *   image: aReferenceToATitaniumBlob, //optional
+ *   success: function() {},
+ *   error: function() {}
+ * }
+ */
+User.facebookPost = function(args) {
+	if (args.image) {
+		Ti.Facebook.requestWithGraphPath('me/photos', {
+			message:args.message,
+			picture:args.image
+		}, 'POST', function(e){
+		    if (e.success) {
+		        args.success && args.success(e);
+		    } 
+		    else {
+		        args.error && args.error(e);
+		    }
+		});
+	}
+	else {
+		Ti.Facebook.requestWithGraphPath('me/feed', {
+			message: args.message
+		}, 'POST', function(e) {
+		    if (e.success) {
+		        args.success && args.success(e);
+		    } 
+		    else {
+		        args.error && args.error(e);
+		    }
+		});
+	}
 };
 
 //Log in an Appcelerator network user
@@ -127,6 +209,12 @@ User.generateAvatarURL = function() {
 User.logout = function(cb) {
 	Cloud.Users.logout(function(e) {
 		if (e.success) {
+			if (User.confirmLogin.toFacebook()) {
+				User.logoutFacebook();
+			}
+			if (User.confirmLogin.toTwitter()) {
+				User.logoutTwitter();
+			}
 			Ti.App.Properties.removeProperty('sessionId');
 		}
 		cb(e);
@@ -153,7 +241,6 @@ User.assignProfilePhoto = function(blob, cb) {
 		cb(e);
 	});
 };
-
 
 //Export constructor function as public interface
 module.exports = User;

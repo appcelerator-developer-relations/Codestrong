@@ -19,12 +19,12 @@
 		<View id="social" class="appContent">
 			<View id="twitter" class="buttonContainer">
 				<ImageView id="twitterIcon"/>
-				<Label class="buttonText" textid="connectTwitter"/>
+				<Label id="twitterText" class="buttonText" textid="connectTwitter"/>
 			</View>
 			<View class="divider"/>
-			<View class="buttonContainer">
+			<View id="facebook" class="buttonContainer">
 				<ImageView id="facebookIcon"/>
-				<Label class="buttonText" textid="connectFacebook"/>
+				<Label id="facebookText" class="buttonText" textid="connectFacebook"/>
 			</View>
 			<View class="fauxShadow"/>
 		</View>

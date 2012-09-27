@@ -73,3 +73,63 @@ $.avatar.on('click', function() {
 	}
 
 });
+
+//Update UI state for social connections
+function fbOn() {
+	$.facebookIcon.image = '/img/post/btn-facebook-on.png';
+	$.facebookText.text = L('disconnectFacebook');
+}
+
+function fbOff() {
+	$.facebookIcon.image = '/img/post/btn-facebook-off.png';
+	$.facebookText.text = L('connectFacebook');
+}
+
+function twitterOn() {
+	$.twitterIcon.image = '/img/post/btn-twitter-on.png';
+	$.twitterText.text = L('disconnectTwitter');
+}
+
+function twitterOff() {
+	$.twitterIcon.image = '/img/post/btn-twitter-off.png';
+	$.twitterText.text = L('connectTwitter');
+}
+
+//Check if already logged in to Twitter or Facebook - default UI is disconnected
+if (User.confirmLogin.toFacebook()) {
+	fbOn();
+}
+
+if (User.confirmLogin.toTwitter()) {
+	twitterOn();
+}
+
+//Toggle social connection state
+$.facebook.on('click', function() {
+	if (User.confirmLogin.toFacebook()) {
+		User.logoutFacebook(function(e) {
+			fbOff();
+		});
+	}
+	else {
+		User.linkToFacebook(function(e) {
+			fbOn();
+		});
+	}
+});
+
+$.twitter.on('click', function() {
+	if (User.confirmLogin.toTwitter()) {
+		User.logoutTwitter(function(e) {
+			twitterOff();
+		});
+	}
+	else {
+		User.linkToTwitter(function(e) {
+			twitterOn();
+		});
+	}
+});
+
+
+

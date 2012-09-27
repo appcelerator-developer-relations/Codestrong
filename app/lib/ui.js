@@ -303,7 +303,7 @@ exports.StatusView = StatusView;
 function StatusRow(status) {
 	var self = Ti.UI.createTableViewRow({
 		height:status.photo ? '375dp' : '140dp',
-		className:status.photo ? 'statusPhotoRow' : 'statusRow',
+		className:'statusRow',
 		selectedBackgroundColor:'#fff'
 	});
 	
