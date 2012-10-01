@@ -10,13 +10,34 @@ function loadContent() {
 	//Grab current agenda item
 	Session.getNext(function(e) {
 		var session = e.next;
-		$.title.text = session.title;
-		$.presenter.text = session.presenter;
-		$.location.text = session.location;
+		$.title.text = session.name;
+		$.presenter.text = session.custom_fields.presenter;
+		$.location.text = session.custom_fields.location;
 		
-		//TODO: replace with actually getting full day
 		if ($.dailySchedule) {
-			$.dailySchedule.setData([new ui.AgendaRow(session)]);
+			var now = moment(),
+				monDate = moment('Oct 22, 2012'),
+				tueDate = moment('Oct 23, 2012');
+				day = 'tuesday';
+			if (now.diff(monDate) < 0) {
+				day = 'sunday'
+			}
+			else if (now.diff(tueDate) < 0) {
+				day = 'monday';
+			}
+			
+			Session.getForDay(day, function(ev) {
+				if (e.success) {
+					var data = [];
+					for (var i = 0, l = ev.sessions.length; i<l; i++) {
+						data.push(new ui.AgendaRow(ev.sessions[i]));
+					}
+					$.dailySchedule.setData(data);
+				}
+				else {
+					ui.alert('networkGenericErrorTitle', 'agendaNetworkError');
+				}
+			});
 		}
 		
 		//Grab latest status updates

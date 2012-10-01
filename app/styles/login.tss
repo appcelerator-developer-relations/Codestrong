@@ -74,8 +74,23 @@
 
 '#forgot': {
 	top:'20dp',
+	height:'44dp',
+	width:Ti.UI.SIZE
+},
+
+'#forgotText': {
+	color:'#000',
 	textAlign:'center',
+	height:Ti.UI.SIZE,
+	width:'125dp',
 	font:{
 		fontSize:'12dp'
 	}
+},
+
+'#underline': {
+	bottom:'14dp',
+	backgroundColor:'#000',
+	height:'1dp',
+	width:'125dp'
 }

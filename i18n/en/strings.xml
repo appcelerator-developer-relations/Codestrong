@@ -51,6 +51,8 @@
 	<string name="updateErrorText">There was an error sending your update. Please try again later.</string>
 	<string name="mediaErrorTitle">Error Capturing Media</string>
 	<string name="mediaErrorText">There was a problem capturing media from your chosen source - please try again.</string>
+	<string name="tooLong">Status Update Too Long</string>
+	<string name="tooLongMessage">You've clearly got a lot to say, but keep it under 140 characters for Twitter okay?  Thanks!</string>
 	
 	<string name="activityStream">ACTIVITY STREAM</string>
 	<string name="activityStreamError">There was an error loading the latest activity stream - please try again later.</string>
@@ -62,5 +64,15 @@
 	<string name="disconnectTwitter">Disconnect from Twitter</string>
 	<string name="disconnectFacebook">Disconnect from Facebook</string>
 	
-	<string name="working">WORKING</string>
+	<string name="working">COLLECTING CLOUD DATA IN DIGITAL RAIN BARRELS...</string>
+	
+	<string name="aboutOneOne">This application was built with Appcelerator, the number one platform for cloud service-enabled mobile applications.</string>  
+	<string name="aboutOneTwo">The natve mobile app was built on Titanium, the open source SDK for creating pure native applications in JavaScript.</string>
+	<string name="aboutOneThree">The back end for this app is implemented using Appcelerator Cloud Services, bar-none the fastest way to add a scalable, feature-rich back end to your mobile apps with no server-side code.</string>  
+	<string name="aboutOneFour">Application logic was developed using Alloy, a component-oriented client side MVC framework for Titanium that provides declarative markup for native UI, separation of concerns, and a predictable project structure for Titanium applications</string>
+	<string name="source">OPEN SOURCE</string>
+	<string name="aboutTwo">This application is open source under the Apache 2.0 License, and is available for download at http://bit.ly/codestrong_src</string>
+	<string name="specialThanks">SPECIAL THANKS</string>
+	<string name="aboutThree">We'd like to also give special thanks to Maria Iu, Greg DiPaolo, Monica Malone, Lisa Kohn, Tony Lukasavage, Fred Spencer, and the rest of the Appcelerator team that helped make this application possible. Code Strong!</string>
 </resources>
+

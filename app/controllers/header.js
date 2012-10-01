@@ -7,13 +7,19 @@ if (Alloy.isTablet) {
 		home:0,
 		agenda: tabWidth,
 		stream: tabWidth*2,
-		venue: tabWidth*3
+		venue: tabWidth*3,
+		about: tabWidth*4
 	};
 	
-	function doTab(name,offset,noEvent) {
-		$.navIndicator.animate({
-			left:offset+tabOffset,
-			duration:250
+	function doTab(name,noEvent) {
+		//Loop through tabs and set active/inactive
+		_.each(['home', 'agenda', 'stream', 'venue', 'about'], function(item) {
+			if (name === item) {
+				$[item+'Icon'].image = '/img/header/btn-tablet-'+item+'-pressed.png'
+			}
+			else {
+				$[item+'Icon'].image = '/img/header/btn-tablet-'+item+'-default.png'
+			}
 		});
 		
 		noEvent || ($.trigger('change',{
@@ -22,11 +28,19 @@ if (Alloy.isTablet) {
 	}
 	
 	$.home.on('click', function() {
-		doTab('home', navOffsets.home);
+		doTab('home');
 	});
 	
 	$.agenda.on('click', function() {
-		doTab('agenda', navOffsets.agenda);
+		doTab('agenda');
+	});
+	
+	$.stream.on('click', function() {
+		doTab('stream');
+	});
+	
+	$.venue.on('click', function() {
+		doTab('venue');
 	});
 	
 	//post is special, just fire event
@@ -36,17 +50,9 @@ if (Alloy.isTablet) {
 		});
 	});
 	
-	$.stream.on('click', function() {
-		doTab('stream', navOffsets.stream);
-	});
-	
-	$.venue.on('click', function() {
-		doTab('venue', navOffsets.venue);
-	});
-	
 	//Public API to manually set the tablet nav position
 	$.setNav = function(name) {
-		doTab(name,navOffsets[name],true);
+		doTab(name,true);
 	};
 }
 
@@ -58,7 +64,12 @@ $.setBackVisible = function(toggle) {
 				opacity:1,
 				duration:250
 			});
+			$.aboutSmallIcon.animate({
+				opacity:0,
+				duration:250
+			});
 			$.back.enabled = true;
+			$.about.enabled = false;
 			$.profile.visible = false;
 			$.profile.enabled = false;
 		}
@@ -67,7 +78,12 @@ $.setBackVisible = function(toggle) {
 				opacity:0,
 				duration:250
 			});
+			$.aboutSmallIcon.animate({
+				opacity:1,
+				duration:250
+			});
 			$.back.enabled = false;
+			$.about.enabled = true;
 			$.profile.visible = true;
 			$.profile.enabled = true;
 		}
@@ -84,13 +100,23 @@ if ($.back) {
 }
 
 Ti.App.addEventListener('app:close.drawer', function(e) {
-	if (e.controller === 'profile') {
+	//Right now we only go one level deep with the drawer on handheld
+	if (e.controller === 'profile' || !Alloy.isTablet) {
 		$.profile.animate({
 			opacity:1,
 			duration:250
 		});
 		$.profile.enabled = true;
 		$.profile.visible = true;
+	}
+	
+	if (e.controller === 'about' || !Alloy.isTablet) {
+		$.about.animate({
+			opacity:1,
+			duration:250
+		});
+		$.about.enabled = true;
+		$.about.visible = true;
 	}
 });
 
@@ -105,7 +131,40 @@ function doProfile() {
 		});
 		$.profile.enabled = false;
 		$.profile.visible = false;
+		
+		if (!Alloy.isTablet) {
+			$.about.animate({
+				opacity:0,
+				duration:250
+			});
+			$.about.enabled = false;
+			$.about.visible = false;
+		}
 	}
 }
 $.profile.on('click', doProfile);
+
+function doAbout() {
+	if ($.about.enabled) {
+		Ti.App.fireEvent('app:open.drawer', {
+			controller:'about'
+		});
+		if (!Alloy.isTablet) {
+			$.profile.animate({
+				opacity:0,
+				duration:250
+			});
+			$.profile.enabled = false;
+			$.profile.visible = false;
+		}
+		
+		$.about.animate({
+			opacity:0,
+			duration:250
+		});
+		$.about.enabled = false;
+		$.about.visible = false;
+	}
+}
+$.about.on('click', doAbout);
 

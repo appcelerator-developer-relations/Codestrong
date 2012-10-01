@@ -19,7 +19,7 @@ Session.getAll(function(e) {
 		var sessions = e.sessions;
 		for (var i = 0, l = sessions.length; i<l; i++) {
 			var session = sessions[i],
-				sessionStart = moment(session.start),
+				sessionStart = moment(session.start_time, 'YYYY-MM-DDTHH:mm:ssz'),
 				row = new ui.AgendaRow(session);
 			
 			if (sessionStart.diff(monDate) < 0) {

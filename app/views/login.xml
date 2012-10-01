@@ -13,7 +13,10 @@
 				<Button id="create"/>
 				<Button id="login"/>
 			</View>
-			<Label id="forgot" textid="forgot"/>
+			<View id="forgot">
+				<Label id="forgotText" textid="forgot"/>
+				<View id="underline"/>
+			</View>
 		</View>
 	</View>
 </Alloy>

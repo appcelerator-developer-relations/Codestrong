@@ -157,19 +157,17 @@ exports.HeaderView = function(options) {
 function AgendaRow(session) {
 	var self = Ti.UI.createTableViewRow({
 		height:'55dp',
-		backgroundSelectedColor:'#cdcdcd',
-		selectedBackgroundColor:'#cdcdcd', //I know, right? :/
+		selectedBackgroundColor:'#cdcdcd',
 		className:'agendaRow'
 	});
 	
 	//Convert session date strings into moment objects
-	var start = moment(session.start),
-		end = moment(session.end);
+	var start = moment(session.start_time);
 	
 	self.add(Ti.UI.createLabel({
-		text:session.title,
+		text:session.name,
 		top:0,
-		left:'100dp',
+		left:'60dp',
 		right:0,
 		height:'18dp',
 		ellipsize:true,
@@ -199,9 +197,9 @@ function AgendaRow(session) {
 		});
 	}
 	
-	self.add(smallText(session.presenter, '17dp', '100dp'));
-	self.add(smallText(session.location, '32dp', '100dp'));
-	self.add(smallText(start.format('h:mma') + ' - ' + end.format('h:mma'), 0, 0, 'bold', '#373e47'));
+	self.add(smallText(session.custom_fields.presenter, '17dp', '60dp'));
+	self.add(smallText(session.custom_fields.location, '32dp', '60dp'));
+	self.add(smallText(start.format('h:mma'), 0, 0, 'bold', '#373e47'));
 	
 	return self;
 }

@@ -46,6 +46,7 @@ $.camera.on('click', function() {
 						opacity:1,
 						duration:250
 					});
+					updateCount();
 				});
 			},
 			error: function(e) {
@@ -85,6 +86,7 @@ $.deleteButton.on('click', function() {
 			$.imagePreview.visible = false;
 			$.preview.image = '';
 			currentBlob = null;
+			updateCount();
 		});
 	});
 });
@@ -119,6 +121,8 @@ $.twitter.on('click', function() {
 		function setOn() {
 			twitterOn = true;
 			$.twitter.backgroundImage = '/img/post/btn-twitter-on.png';
+			updateCount();
+			$.characters.visible = true;
 		}
 		
 		if (User.confirmLogin.toTwitter()) {
@@ -132,25 +136,38 @@ $.twitter.on('click', function() {
 	}
 	else {
 		twitterOn = false;
+		$.characters.visible = true;
 		$.twitter.backgroundImage = '/img/post/btn-twitter-off.png';
+		updateCount();
+		$.characters.visible = false;
 	}
 });
 
 //Track character count
 var count = 140;
-$.post.on('change', function() {
-	count = 140 - $.post.value.length;
+function updateCount() {
+	var startNumber = (currentBlob) ? 118 : 140
+	count = startNumber - $.post.value.length;
 	$.characters.color = (count >= 0) ? '#000' : '#ff0000';
 	$.characters.text = count;
-});
+}
+$.post.on('change', updateCount);
 
 //track social post status, don't be done til these come back
 $.submit.on('click', function() {
 	if ($.post.value || currentBlob) {
+		
+		//exit if content is not valid - TODO: put in better validation and feedback
+		if ((twitterOn && currentBlob && $.post.value.length > 118) ||
+			(twitterOn && !currentBlob && $.post.value.length > 140)) {
+			ui.alert('tooLong', 'tooLongMessage');
+			return;
+		}
+		
 		var currentPost = $.post.value;
 		$.postContainer.add($.loading.getView());
 		Status.create({
-			message:currentPost,
+			message:(currentPost === '') ? 'Just uploaded from @codestrong 2012!' : currentPost, //empty string - status update tangram requires a message
 			photo:currentBlob
 		}, function(e) {
 			if (e.success) {				
@@ -208,6 +225,7 @@ $.submit.on('click', function() {
 					}
 				}
 				else {
+					Ti.API.error(e);
 					$.postContainer.remove($.loading.getView());
 					ui.alert('updateSuccessTitle', 'updateSuccessText');
 					$.trigger('success');
@@ -235,6 +253,7 @@ $.reset = function() {
 	$.post.value = '';
 	count = 140;
 	$.characters.text = count;
+	$.cahracters.visible = false;
 	
 	//reset image
 	currentBlob = null;

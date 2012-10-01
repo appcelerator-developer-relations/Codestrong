@@ -1,0 +1,55 @@
+'#madeWith': {
+	top:'10dp',
+	image:'/img/about/about-app-love.png'
+},
+
+'#divider': {
+	top:'35dp',
+	width:Ti.UI.FILL,
+	height:'4dp',
+	backgroundImage:'/img/about/divider-line-inset.png'
+},
+
+'#content': {
+	top:'50dp',
+	left:'10dp',
+	right:'10dp',
+	bottom:'10dp'
+},
+
+'#imgContainer': {
+	top:'10dp',
+	bottom:'15dp',
+	height:Ti.UI.SIZE
+},
+
+'#appcelerator': {
+	image:'/img/about/about-appc-logo.png'
+},
+
+'.paragraph': {
+	top:'5dp',
+	left:'10dp',
+	right:'10dp',
+	bottom:'5dp',
+	color:'#607080',
+	textAlign:'left',
+	font: {
+		fontSize:'14dp'
+	}
+},
+
+'.header': {
+	top:'15dp',
+	left:'10dp',
+	right:'10dp',
+	color:'#232323',
+	textAlign:'left',
+	font: {
+		fontWeight:'bold',
+		fontFamily:'Quicksand-Bold',
+		fontSize:'18dp'
+	}
+}
+
+

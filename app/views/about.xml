@@ -1,0 +1,23 @@
+<Alloy>
+	<View id="container">
+		<ImageView id="madeWith"/>
+		<View id="divider"/>
+		<View id="content" class="appContent">
+			<View id="innerContent">
+				<ScrollView id="scroller" scrollType="vertical" layout="vertical">
+					<View id="imgContainer"><ImageView id="appcelerator"/></View>
+					<Label textid="aboutOneOne" class="paragraph"/>
+					<Label textid="aboutOneTwo" class="paragraph"/>
+					<Label textid="aboutOneThree" class="paragraph"/>
+					<Label textid="aboutOneFour" class="paragraph"/>
+					
+					<Label textid="source" class="header"/>
+					<Label textid="aboutTwo" class="paragraph"/>
+					
+					<Label textid="specialThanks" class="header"/>
+					<Label textid="aboutThree" class="paragraph"/>
+				</ScrollView>
+			</View>
+		</View>
+	</View>
+</Alloy>

@@ -43,7 +43,8 @@
 	color:'#cdcdcd',
 	font:{
 		fontSize:'10dp'
-	}
+	},
+	visible:false
 },
 
 '#facebook': {

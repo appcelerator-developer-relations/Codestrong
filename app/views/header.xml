@@ -5,6 +5,9 @@
 		<View id="back" formFactor="handheld">
 			<ImageView id="backImage"/>
 		</View>
+		<View id="about" formFactor="handheld">
+			<ImageView id="aboutSmallIcon"/>
+		</View>
 		
 		<!-- Tablet only nav structure -->
 		<View id="nav" formFactor="tablet">
@@ -20,8 +23,10 @@
 			<View id="venue" class="navBtn">
 				<ImageView id="venueIcon"/>
 			</View>
+			<View id="about" class="navBtn">
+				<ImageView id="aboutIcon"/>
+			</View>
 		</View>
-		<View id="navIndicator" formFactor="tablet"/>
 		
 		<!-- user profile for handheld -->
 		<View id="profile" formFactor="handheld">

@@ -57,6 +57,18 @@
 	opacity:0
 },
 
+'#about': {
+	left:'10dp',
+	width:'50dp',
+	enabled:true
+},
+
+'#aboutSmallIcon': {
+	left:0,
+	image:'/img/header/btn-about.png',
+	opacity:1
+},
+
 '#nav': {
 	left:'95dp',
 	layout:'horizontal',
@@ -78,7 +90,7 @@
 },
 
 '#homeIcon': {
-	image:'/img/header/btn-tablet-home-default.png'
+	image:'/img/header/btn-tablet-home-pressed.png'
 },
 
 '#agendaIcon': {
@@ -86,11 +98,15 @@
 },
 
 '#streamIcon': {
-	image:'/img/header/btn-tablet-activity-stream-default.png'
+	image:'/img/header/btn-tablet-stream-default.png'
 },
 
 '#venueIcon': {
 	image:'/img/header/btn-tablet-venue-default.png'
+},
+
+'#aboutIcon': {
+	image:'/img/header/btn-tablet-about-default.png'
 },
 
 '#post': {
