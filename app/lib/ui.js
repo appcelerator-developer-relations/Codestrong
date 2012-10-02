@@ -160,6 +160,7 @@ function AgendaRow(session) {
 		selectedBackgroundColor:'#cdcdcd',
 		className:'agendaRow'
 	});
+	self.sessionObject = session;
 	
 	//Convert session date strings into moment objects
 	var start = moment(session.start_time);
@@ -304,6 +305,7 @@ function StatusRow(status) {
 		className:'statusRow',
 		selectedBackgroundColor:'#fff'
 	});
+	self.statusObject = status;
 	
 	var content = new StatusView(status);
 	self.add(content);

@@ -24,7 +24,7 @@ Ti.App.addEventListener('app:open.drawer', function(e) {
 	}
 	
 	//Open a new drawer, containing the given view controller
-	d.openDrawer(e.controller);
+	d.openDrawer(e.controller, e.contextData);
 	
 	d.on('close', function() {
 		Ti.App.fireEvent('app:close.drawer', {
@@ -62,7 +62,6 @@ if (Alloy.isTablet) {
 	
 	$.postView.on('blur', dismissForm);
 	$.postView.on('success', dismissForm);
-	
 }
 
 //Manage section navigation from either tabs or header

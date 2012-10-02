@@ -18,9 +18,9 @@ $.closeDrawer = function(cb) {
 	});
 };
 
-$.openDrawer = function(controller, cb) {
+$.openDrawer = function(controller, contextData) {
 	//create the requested controller, and add it to the drawer
-	var c = Alloy.createController(controller);
+	var c = Alloy.createController(controller, contextData);
 	$.content.add(c.getView());
 	
 	//handle animation of self
@@ -29,7 +29,6 @@ $.openDrawer = function(controller, cb) {
 		duration:250
 	}, function() {
 		$.trigger('open');
-		cb && cb();
 	});
 };
 

@@ -70,6 +70,7 @@ $.setBackVisible = function(toggle) {
 			});
 			$.back.enabled = true;
 			$.about.enabled = false;
+			$.about.visible = false;
 			$.profile.visible = false;
 			$.profile.enabled = false;
 		}
@@ -84,6 +85,7 @@ $.setBackVisible = function(toggle) {
 			});
 			$.back.enabled = false;
 			$.about.enabled = true;
+			$.about.visible = true;
 			$.profile.visible = true;
 			$.profile.enabled = true;
 		}
@@ -92,7 +94,7 @@ $.setBackVisible = function(toggle) {
 
 //Back isn't there on tablet
 if ($.back) {
-	$.back.on('click', function goBack() {
+	$.back.on('click', function() {
 		if ($.back.enabled) {
 			$.trigger('back');
 		}

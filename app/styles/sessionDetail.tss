@@ -1,0 +1,35 @@
+'#index': {
+	layout:'vertical'
+},
+
+'#name': {
+	color:'#787878',
+	top:'10dp',
+	left:'10dp',
+	right:'10dp',
+	font: {
+		fontSize:'18dp',
+		fontWeight:'bold'
+	}
+},
+
+'.subtitle': {
+	color:'#787878',
+	top:'2dp',
+	left:'10dp',
+	right:'10dp',
+	font: {
+		fontSize:'12dp',
+		fontStyle:'italic'
+	}
+},
+
+'#description': {
+	top:'20dp',
+	left:'10dp',
+	right:'10dp',
+	color:'#000',
+	font:{
+		fontSize:'14dp'
+	}
+}

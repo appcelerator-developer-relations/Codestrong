@@ -42,15 +42,15 @@ if (OS_IOS) {
 
 //Login using network creds
 $.login.on('click', function() {
-	$.index.add($.loading.getView());
+	$.index.parent.add($.loading.getView());
 	$.email.blur();
 	$.password.blur();
 	User.login($.email.value, $.password.value, function(e) {
 		$.trigger('loginSuccess', e);
 		$.password.value = '';
-		$.index.remove($.loading.getView());
+		$.index.parent.remove($.loading.getView());
 	}, function() {
-		$.index.remove($.loading.getView());
+		$.index.parent.remove($.loading.getView());
 		showError();
 	});
 });

@@ -69,4 +69,16 @@ if (!Alloy.isTablet) {
 	});
 }
 
+//show session detail drawer
+function showDetail(e) {
+	Ti.App.fireEvent('app:open.drawer', {
+		controller:'sessionDetail',
+		contextData:e.rowData.sessionObject
+	});
+}
+$.agendaTable && ($.agendaTable.addEventListener('click', showDetail));
+$.sundayTable && ($.sundayTable.addEventListener('click', showDetail));
+$.mondayTable && ($.mondayTable.addEventListener('click', showDetail));
+$.tuesdayTable && ($.tuesdayTable.addEventListener('click', showDetail));
+
 

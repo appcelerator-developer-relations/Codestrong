@@ -225,7 +225,6 @@ $.submit.on('click', function() {
 					}
 				}
 				else {
-					Ti.API.error(e);
 					$.postContainer.remove($.loading.getView());
 					ui.alert('updateSuccessTitle', 'updateSuccessText');
 					$.trigger('success');
@@ -253,7 +252,7 @@ $.reset = function() {
 	$.post.value = '';
 	count = 140;
 	$.characters.text = count;
-	$.cahracters.visible = false;
+	$.characters.visible = false;
 	
 	//reset image
 	currentBlob = null;

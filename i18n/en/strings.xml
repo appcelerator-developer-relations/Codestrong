@@ -64,7 +64,7 @@
 	<string name="disconnectTwitter">Disconnect from Twitter</string>
 	<string name="disconnectFacebook">Disconnect from Facebook</string>
 	
-	<string name="working">COLLECTING CLOUD DATA IN DIGITAL RAIN BARRELS...</string>
+	<string name="working">COLLECTING DATA IN DIGITAL RAIN BARRELS...</string>
 	
 	<string name="aboutOneOne">This application was built with Appcelerator, the number one platform for cloud service-enabled mobile applications.</string>  
 	<string name="aboutOneTwo">The natve mobile app was built on Titanium, the open source SDK for creating pure native applications in JavaScript.</string>
@@ -73,6 +73,6 @@
 	<string name="source">OPEN SOURCE</string>
 	<string name="aboutTwo">This application is open source under the Apache 2.0 License, and is available for download at http://bit.ly/codestrong_src</string>
 	<string name="specialThanks">SPECIAL THANKS</string>
-	<string name="aboutThree">We'd like to also give special thanks to Maria Iu, Greg DiPaolo, Monica Malone, Lisa Kohn, Tony Lukasavage, Fred Spencer, and the rest of the Appcelerator team that helped make this application possible. Code Strong!</string>
+	<string name="aboutThree">We'd like to also give special thanks to Maria Iu, Greg DiPaolo, Monica Malone, Lisa Kohn, Tony Lukasavage, Fred Spencer, Kevin Whinnery, and the rest of the Appcelerator team that helped make this application possible. Code Strong!</string>
 </resources>
 
