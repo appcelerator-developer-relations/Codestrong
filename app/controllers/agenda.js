@@ -71,9 +71,23 @@ if (!Alloy.isTablet) {
 
 //show session detail drawer
 function showDetail(e) {
+	var sessionData;
+	if (OS_IOS) {
+		sessionData = e.rowData.sessionObject;
+	}
+	else {
+		//On android we have no row data, so we have to dig for it a bit...
+		if (e.source.sessionObject) {
+			sessionData = e.source.sessionObject;
+		}
+		else if (e.source.parent.sessionObject) {
+			sessionData = e.source.parent.sessionObject;
+		}
+	}
+	
 	Ti.App.fireEvent('app:open.drawer', {
 		controller:'sessionDetail',
-		contextData:e.rowData.sessionObject
+		contextData:sessionData
 	});
 }
 $.agendaTable && ($.agendaTable.addEventListener('click', showDetail));

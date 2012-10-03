@@ -1,7 +1,7 @@
 '.container': {
 	backgroundImage:'/img/tabs/bg-tab.png',
 	height:'46dp',
-	bottom:'-46dp'
+	bottom:0
 },
 
 '.tab': {

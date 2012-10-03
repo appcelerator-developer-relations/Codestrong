@@ -63,5 +63,9 @@
 		<string>/fonts/Quicksand-Light.ttf</string>
 		<string>/fonts/Quicksand-Reguar.ttf</string>
 	</array>
+	<key>UIRequiredDeviceCapabilities</key> 
+	<array> 
+		<string>armv7</string>
+	</array>
 </dict>
 </plist>

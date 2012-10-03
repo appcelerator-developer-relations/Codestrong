@@ -26,9 +26,16 @@ $.blur = function() {
 
 //Handle image attachment
 $.camera.on('click', function() {
+	//for now, need to disable "choose from gallery" for android
+	var options = [L('camera')];
+	if (OS_IOS) {
+		options.push(L('photoGallery'));
+	}
+	options.push(L('cancel'));
+	
 	var od = Ti.UI.createOptionDialog({
-		options:[L('photoGallery'), L('camera'), L('cancel')],
-		cancel:2,
+		options:options,
+		cancel:options.length > 2 ? 2 : 1,
 		title:L('attachPhoto')
 	});
 	
@@ -56,10 +63,10 @@ $.camera.on('click', function() {
 		
 		//decide which media API to call
 		if (e.index === 0) {
-			Ti.Media.openPhotoGallery(callbacks);
-		}
-		else if (e.index === 1) {
 			Ti.Media.showCamera(callbacks);
+		}
+		else if (e.index === 1 && options.length > 2) {
+			Ti.Media.openPhotoGallery(callbacks);
 		}
 	});
 
@@ -178,7 +185,9 @@ $.submit.on('click', function() {
 							$.postContainer.remove($.loading.getView());
 							ui.alert('updateSuccessTitle', 'updateSuccessText');
 							$.trigger('success');
-							Ti.App.fireEvent('app:status.update');
+							Ti.App.fireEvent('app:status.update', {
+								withPhoto:(currentBlob) ? true : false //don't want to pass a reference to the blob
+							});
 						},
 						error: function(ev) {
 							$.postContainer.remove($.loading.getView());
@@ -228,7 +237,9 @@ $.submit.on('click', function() {
 					$.postContainer.remove($.loading.getView());
 					ui.alert('updateSuccessTitle', 'updateSuccessText');
 					$.trigger('success');
-					Ti.App.fireEvent('app:status.update');
+					Ti.App.fireEvent('app:status.update', {
+						withPhoto:(currentBlob) ? true : false //don't want to pass a reference to the blob
+					});
 				}
 			}
 			else {

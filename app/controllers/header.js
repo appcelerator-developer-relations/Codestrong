@@ -60,30 +60,16 @@ if (Alloy.isTablet) {
 $.setBackVisible = function(toggle) {
 	if (!Alloy.isTablet) {
 		if (toggle) {
-			$.backImage.animate({
-				opacity:1,
-				duration:250
-			});
-			$.aboutSmallIcon.animate({
-				opacity:0,
-				duration:250
-			});
 			$.back.enabled = true;
+			$.back.visible = true;
 			$.about.enabled = false;
 			$.about.visible = false;
 			$.profile.visible = false;
 			$.profile.enabled = false;
 		}
 		else {
-			$.backImage.animate({
-				opacity:0,
-				duration:250
-			});
-			$.aboutSmallIcon.animate({
-				opacity:1,
-				duration:250
-			});
 			$.back.enabled = false;
+			$.back.visible = false;
 			$.about.enabled = true;
 			$.about.visible = true;
 			$.profile.visible = true;
@@ -101,24 +87,30 @@ if ($.back) {
 	});
 }
 
+function profileOn() {
+	$.profile.enabled = true;
+	$.profile.visible = true;
+}
+
+function aboutOn() {
+	$.about.enabled = true;
+	$.about.visible = true;
+}
+
 Ti.App.addEventListener('app:close.drawer', function(e) {
 	//Right now we only go one level deep with the drawer on handheld
 	if (e.controller === 'profile' || !Alloy.isTablet) {
-		$.profile.animate({
-			opacity:1,
-			duration:250
-		});
-		$.profile.enabled = true;
-		$.profile.visible = true;
+		profileOn();
 	}
 	
-	if (e.controller === 'about' || !Alloy.isTablet) {
-		$.about.animate({
-			opacity:1,
-			duration:250
-		});
-		$.about.enabled = true;
-		$.about.visible = true;
+	else if (e.controller === 'about' || !Alloy.isTablet) {
+		aboutOn();
+	}
+	
+	//On all others, assume we need to re-enable both
+	else {
+		profileOn();
+		aboutOn();
 	}
 });
 
@@ -127,18 +119,10 @@ function doProfile() {
 		Ti.App.fireEvent('app:open.drawer', {
 			controller:'profile'
 		});
-		$.profile.animate({
-			opacity:0,
-			duration:250
-		});
 		$.profile.enabled = false;
 		$.profile.visible = false;
 		
 		if (!Alloy.isTablet) {
-			$.about.animate({
-				opacity:0,
-				duration:250
-			});
 			$.about.enabled = false;
 			$.about.visible = false;
 		}
@@ -152,18 +136,10 @@ function doAbout() {
 			controller:'about'
 		});
 		if (!Alloy.isTablet) {
-			$.profile.animate({
-				opacity:0,
-				duration:250
-			});
 			$.profile.enabled = false;
 			$.profile.visible = false;
 		}
 		
-		$.about.animate({
-			opacity:0,
-			duration:250
-		});
 		$.about.enabled = false;
 		$.about.visible = false;
 	}

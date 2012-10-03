@@ -59,7 +59,14 @@ function loadContent() {
 }
 
 //Listen for status update, and refresh.
-Ti.App.addEventListener('app:status.update', loadContent);
+Ti.App.addEventListener('app:status.update', function(e) {
+	if (e.withPhoto && Ti.Platform.osname === 'android') {
+		//swallow this for now - if we try to assign a URL to an image view we crash, so avoid doing it for now
+	}
+	else {
+		loadContent();
+	}
+});
 
 //Fire manually when this view receives "focus"
 $.on('focus', loadContent);

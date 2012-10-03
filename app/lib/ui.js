@@ -7,10 +7,18 @@ var _ = require('alloy/underscore'),
 
 //Display a localized alert dialog
 exports.alert = function(titleid, textid) {
-	Ti.UI.createAlertDialog({
-		title:L(titleid),
-		message:L(textid)
-	}).show();
+	if (OS_IOS) {
+		Ti.UI.createAlertDialog({
+			title:L(titleid),
+			message:L(textid)
+		}).show();
+	}
+	else {
+		Ti.UI.createNotification({
+			message:L(textid),
+			duration:Ti.UI.NOTIFICATION_DURATION_SHORT
+		}).show();
+	}
 };
 
 //Zoom a view and dissipate it
@@ -94,7 +102,7 @@ exports.HeaderView = function(options) {
 	var title = Ti.UI.createLabel({
 		text:L(options.title),
 		color:'#373e47',
-		left:'5dp',
+		left:'10dp',
 		width:Ti.UI.SIZE,
 		height:Ti.UI.SIZE,
 		font: {
@@ -302,8 +310,8 @@ exports.StatusView = StatusView;
 function StatusRow(status) {
 	var self = Ti.UI.createTableViewRow({
 		height:status.photo ? '375dp' : '140dp',
-		className:'statusRow',
-		selectedBackgroundColor:'#fff'
+		selectedBackgroundColor:'#fff',
+		className:status.photo ? 'photoRow' : 'statusRow'
 	});
 	self.statusObject = status;
 	

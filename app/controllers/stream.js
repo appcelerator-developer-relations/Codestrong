@@ -22,14 +22,42 @@ function loadRows() {
 }
 
 //Listen for status update, and refresh.
-Ti.App.addEventListener('app:status.update', loadRows);
+Ti.App.addEventListener('app:status.update', function(e) {
+	if (e.withPhoto && Ti.Platform.osname === 'android') {
+		//swallow this for now - if we try to assign a URL to an image view we crash, so avoid doing it for now
+	}
+	else {
+		loadRows();
+	}
+});
 
 //Fire manually when this view receives "focus"
 $.on('focus', loadRows);
 
 //Show a detail view for rows with an image
 $.table.on('click', function(e) {
-	if (e.rowData.statusObject.photo) {
+	var statusObject;
+	
+	if (OS_IOS) {
+		statusObject = e.rowData.statusObject;
+	}
+	else {
+		//On android we have no row data, so we have to dig for it a bit - holy crap is this ridiculous, we'll fix this
+		if (e.source.statusObject) {
+			statusObject = e.source.statusObject;
+		}
+		else if (e.source.parent.sessionObject) {
+			statusObject = e.source.parent.statusObject;
+		}
+		else if (e.source.parent.parent && e.source.parent.parent.sessionObject) {
+			statusObject = e.source.parent.parent.statusObject;
+		}
+		else if (e.source.parent.parent.parent && e.source.parent.parent.parent.sessionObject) {
+			statusObject = e.source.parent.parent.parent.statusObject;
+		}
+	}
+	
+	if (statusObject.photo) {
 		var w = Ti.UI.createView({
 			top:'5dp',
 			left:'5dp',
@@ -62,14 +90,14 @@ $.table.on('click', function(e) {
 				minZoomScale:0.75
 			});
 			scroll.add(Ti.UI.createImageView({
-				image:e.rowData.statusObject.photo.urls.medium_640
+				image:statusObject.photo.urls.medium_640
 			}));
 			container.add(scroll);
 		}
 		else {
 			var web = Ti.UI.createWebView({
 				backgroundColor:'#000',
-				html:'<html style="width:1024px;height:1024px;"><body style="background-color:#000;width:1024px;;height:1024px;"><img src="'+ e.rowData.statusObject.photo.urls.medium_640 +'"/></body></html>',
+				html:'<html style="width:1024px;height:1024px;"><body style="background-color:#000;width:1024px;;height:1024px;"><img src="'+ statusObject.photo.urls.medium_640 +'"/></body></html>',
 				scalesPageToFit:true
 			});
 			container.add(web);

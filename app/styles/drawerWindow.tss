@@ -1,0 +1,42 @@
+Window: {
+	modal:true,
+	navBarHidden:true,
+	backgroundImage:'/img/general/bg-interior.png'
+},
+
+'#header': {
+	backgroundImage:'/img/header/bg-title.png',
+	height:'45dp',
+	top:0
+},
+
+'#logo': {
+	image:'/img/general/codestrong-bar-logo.png',
+	height:'22dp',
+	width:'81dp'
+},
+
+'#underline': {
+	backgroundColor:'#0574bf',
+	bottom:0,
+	height:'2dp'
+},
+
+'#back': {
+	left:'10dp',
+	width:'50dp'
+},
+
+'#backImage': {
+	left:0,
+	width:'18dp',
+	height:'19dp',
+	image:'/img/general/btn-back.png'
+},
+
+'#contentView': {
+	top:'50dp',
+	left:'5dp',
+	right:'5dp',
+	bottom:'5dp'
+}

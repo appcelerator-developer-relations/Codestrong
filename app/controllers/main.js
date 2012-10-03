@@ -99,21 +99,14 @@ function sectionNav(e) {
 			currentSection = sections[e.name];
 			currentSection.on('nav', sectionNav);
 			
-			currentSection.getView().opacity = 0;
+			currentSection.getView().visible = false;
 			$.content.add(currentSection.getView());
 			//trigger focus event 
 			currentSection.trigger('focus');
-			currentSection.getView().animate({
-				opacity:1,
-				duration:250
-			});
-			oldSection.getView().animate({
-				opacity:0,
-				duration:250
-			}, function() {
-				$.content.remove(oldSection.getView());
-				oldSection.off('nav', sectionNav);
-			});
+			currentSection.getView().visible = true;
+			oldSection.getView().visible = false;
+			$.content.remove(oldSection.getView());
+			oldSection.off('nav', sectionNav);
 		}
 	}
 }
@@ -145,6 +138,8 @@ $.init = function(ready) {
 		opacity:1,
 		duration:250
 	}, function() {
+		//Disabling the header and tab animations for now, looks like booty on Android
+		/*
 		$.header.getView().animate({
 			top:0,
 			duration:250
@@ -156,5 +151,6 @@ $.init = function(ready) {
 				duration:250
 			});
 		}
+		*/
 	});
 };

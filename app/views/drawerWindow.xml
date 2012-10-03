@@ -1,0 +1,14 @@
+<Alloy>
+	<Window id="win">
+		<View id="header">
+			<View id="back">
+				<ImageView id="backImage"/>
+			</View>
+			
+			<ImageView id="logo"/>
+			<View id="underline"/>
+		</View>
+		
+		<View id="contentView"/>
+	</Window>
+</Alloy>

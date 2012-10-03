@@ -24,7 +24,9 @@
 	bottom:'85dp',
 	font: {
 		fontSize:'14dp'
-	}
+	},
+	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
+    autocorrect: true
 },
 
 '#twitter': {

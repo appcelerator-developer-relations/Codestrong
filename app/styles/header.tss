@@ -1,7 +1,7 @@
 '#container': {
 	backgroundImage:'/img/header/bg-title.png',
 	height:'45dp',
-	top:'-45dp'
+	top:0
 },
 
 '#logo': {
@@ -46,15 +46,15 @@
 '#back': {
 	left:'10dp',
 	width:'50dp',
-	enabled:false
+	enabled:false,
+	visible:false
 },
 
 '#backImage': {
 	left:0,
 	width:'18dp',
 	height:'19dp',
-	image:'/img/general/btn-back.png',
-	opacity:0
+	image:'/img/general/btn-back.png'
 },
 
 '#about': {
@@ -65,8 +65,7 @@
 
 '#aboutSmallIcon': {
 	left:0,
-	image:'/img/header/btn-about.png',
-	opacity:1
+	image:'/img/header/btn-about.png'
 },
 
 '#nav': {
