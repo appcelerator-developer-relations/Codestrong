@@ -11,9 +11,11 @@ var sunday = [],
 	
 $.loading = Alloy.createController('loading');
 $.index.add($.loading.getView());
+$.loading.start();
 
 //Load agenda data
 Session.getAll(function(e) {
+	$.loading.stop();
 	$.index.remove($.loading.getView());
 	if (e.success) {
 		var sessions = e.sessions;
@@ -65,6 +67,14 @@ if (!Alloy.isTablet) {
 		}
 		else {
 			$.agendaTable.setData(tuesday);
+		}
+	});
+	
+	//reset to day one if need be, since Android will not retain animation positions when a view has been unloaded from the hierarchy
+	$.on('focus', function() {
+		if ($.agendaTable && sunday.length > 0) {
+			$.agendaTable && ($.agendaTable.setData(sunday));
+			$.headerView.goTo(0);
 		}
 	});
 }

@@ -19,8 +19,10 @@ if (userDetails.attributes.title) {
 $.avatar.image = User.generateAvatarURL();
 
 $.logout.on('click', function() {
+	$.loading.start();
 	$.index.add($.loading.getView());
 	User.logout(function(e) {
+		$.loading.stop();
 		$.index.remove($.loading.getView());
 		if (e.success) {
 			Ti.App.fireEvent('app:logout');
@@ -33,12 +35,21 @@ $.logout.on('click', function() {
 
 //Handle image attachment
 $.avatar.on('click', function() {
+	//TODO: Support image attachment - partially implemented, needs more testing for production.
+		
 	var od = Ti.UI.createOptionDialog({
-		options:[L('photoGallery'), L('camera'), L('cancel')],
-		cancel:2,
-		title:L('chooseAvatar')
+		options:['Go', L('cancel')],
+		cancel:1,
+		title:L('gravatar')
 	});
+	od.addEventListener('click', function(e) {
+		if (e.index === 0) {
+			Ti.Platform.openURL('http://gravatar.com');
+		}
+	});
+	od.show();
 	
+	/*
 	od.addEventListener('click', function(e) {
 		var callbacks = {
 			success: function(e) {
@@ -71,6 +82,7 @@ $.avatar.on('click', function() {
 	else {
 		od.show();
 	}
+	*/
 
 });
 

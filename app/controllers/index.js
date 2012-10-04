@@ -11,13 +11,12 @@ if (!Ti.Network.online) {
 	ui.alert('networkErrTitle', 'networkErrMsg');
 }
 
-
 //create view hierarchy components
 $.login = Alloy.createController('login');
-$.main = Alloy.createController('main');
 
 //Check Login Status
 if (User.confirmLogin()) {
+	$.main = Alloy.createController('main');
 	$.clouds && ($.index.remove($.clouds));
 	$.index.backgroundImage = '/img/general/bg-interior.png';
 	$.index.add($.main.getView());
@@ -31,6 +30,7 @@ else {
 
 //Monitor Login Status
 $.login.on('loginSuccess', function(e) {
+	$.main = Alloy.createController('main');
 	$.clouds && ($.index.remove($.clouds));
 	$.index.backgroundImage = '/img/general/bg-interior.png';
 	$.index.add($.main.getView());

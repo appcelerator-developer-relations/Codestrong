@@ -173,6 +173,7 @@ $.submit.on('click', function() {
 		
 		var currentPost = $.post.value;
 		$.postContainer.add($.loading.getView());
+		$.loading.start();
 		Status.create({
 			message:(currentPost === '') ? 'Just uploaded from @codestrong 2012!' : currentPost, //empty string - status update tangram requires a message
 			photo:currentBlob
@@ -182,6 +183,7 @@ $.submit.on('click', function() {
 				if (twitterOn || fbOn) {
 					var args = {
 						success: function(ev) {
+							$.loading.stop();
 							$.postContainer.remove($.loading.getView());
 							ui.alert('updateSuccessTitle', 'updateSuccessText');
 							$.trigger('success');
@@ -190,6 +192,7 @@ $.submit.on('click', function() {
 							});
 						},
 						error: function(ev) {
+							$.loading.stop();
 							$.postContainer.remove($.loading.getView());
 							Ti.API.error('Error on social post: '+ev);
 							ui.alert('updateErrorTitle', 'updateErrorText');
@@ -234,6 +237,7 @@ $.submit.on('click', function() {
 					}
 				}
 				else {
+					$.loading.stop();
 					$.postContainer.remove($.loading.getView());
 					ui.alert('updateSuccessTitle', 'updateSuccessText');
 					$.trigger('success');
@@ -243,6 +247,7 @@ $.submit.on('click', function() {
 				}
 			}
 			else {
+				$.loading.stop();
 				$.postContainer.remove($.loading.getView());
 				Ti.API.error('Error on ACS post: '+e);
 				ui.alert('updateErrorTitle', 'updateErrorText');

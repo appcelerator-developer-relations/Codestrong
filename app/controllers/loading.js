@@ -10,8 +10,6 @@ $.loader.images = [
 	'/img/loading/load-cloud9.png'
 ];
 
-$.loader.start();
-
 $.start = function() {
 	$.loader.start();
 };

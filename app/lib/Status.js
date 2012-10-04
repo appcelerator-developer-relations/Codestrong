@@ -15,6 +15,13 @@ function Status() {}
  * }
  */
 Status.create = function(args, cb) {	
+	if (!Ti.Network.online) {
+		cb({
+			success:false
+		});
+		return;
+	}
+	
 	var avatar = User.generateAvatarURL(),
 		user = User.getUserDetails();
 		
@@ -39,6 +46,13 @@ Status.create = function(args, cb) {
 
 //Get status updates
 Status.query = function(cb, limit) {
+	if (!Ti.Network.online) {
+		cb({
+			success:false
+		});
+		return;
+	}
+	
 	Cloud.Statuses.query({
 		limit:limit||50,
 		response_json_depth:8,

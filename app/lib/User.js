@@ -87,6 +87,13 @@ User.tweet = function(args) {
  * }
  */
 User.facebookPost = function(args) {
+	if (!Ti.Network.online) {
+		args.error({
+			success:false
+		});
+		return;
+	}
+	
 	if (args.image) {
 		Ti.Facebook.requestWithGraphPath('me/photos', {
 			message:args.message,
@@ -116,6 +123,13 @@ User.facebookPost = function(args) {
 
 //Log in an Appcelerator network user
 User.login = function(username, password, success, error) {
+	if (!Ti.Network.online) {
+		error({
+			success:false
+		});
+		return;
+	}
+	
 	var xhr = Ti.Network.createHTTPClient();
 
 	//Parity issue: iOS fires onload for 4xx and 3xx status codes, so need to manually check onload
@@ -207,6 +221,13 @@ User.generateAvatarURL = function() {
 
 //Log out the current user
 User.logout = function(cb) {
+	if (!Ti.Network.online) {
+		cb({
+			success:false
+		});
+		return;
+	}
+	
 	Cloud.Users.logout(function(e) {
 		if (e.success) {
 			if (User.confirmLogin.toFacebook()) {
@@ -223,6 +244,13 @@ User.logout = function(cb) {
 
 //Assign the given photo as the profile photo for the current user
 User.assignProfilePhoto = function(blob, cb) {
+	if (!Ti.Network.online) {
+		cb({
+			success:false
+		});
+		return;
+	}
+	
 	Cloud.Users.update({
 		photo:blob
 	}, function(e) {

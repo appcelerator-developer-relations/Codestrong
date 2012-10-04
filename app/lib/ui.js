@@ -16,7 +16,7 @@ exports.alert = function(titleid, textid) {
 	else {
 		Ti.UI.createNotification({
 			message:L(textid),
-			duration:Ti.UI.NOTIFICATION_DURATION_SHORT
+			duration:Ti.UI.NOTIFICATION_DURATION_LONG
 		}).show();
 	}
 };
@@ -156,6 +156,12 @@ exports.HeaderView = function(options) {
 	//Add common shortcut to addEventListener
 	self.on = function(ev,cb) {
 		self.addEventListener(ev,cb);
+	};
+	
+	//Shift indicator to desired index
+	self.goTo = function(idx) {
+		var rightOffset = (options.optionWidth*(Math.abs(idx-(options.options.length-1))))+'dp';
+		indicator.right = rightOffset;
 	};
 	
 	return self;

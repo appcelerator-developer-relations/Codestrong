@@ -5,12 +5,19 @@ $.loading = Alloy.createController('loading');
 $.index.add($.loading.getView());
 
 function loadRows() {
+	if (OS_ANDROID) {
+		$.table.setData([
+			{title:L('loadingLatest'), color:'#000'}
+		]);
+	}
 	Status.query(function(e) {
+		$.loading.stop();
 		$.index.remove($.loading.getView());
 		if (e.success) {
 			var td = [];
 			for (var i = 0, l = e.statuses.length; i<l; i++) {
 				var status = e.statuses[i];
+				if (status.photo && !status.photo.processed) continue;
 				td.push(new ui.StatusRow(status));
 			}
 			$.table.setData(td);
@@ -21,18 +28,20 @@ function loadRows() {
 	});
 }
 
+function startRefresh() {
+	$.index.add($.loading.getView());
+	$.loading.start();
+	loadRows();
+}
+
 //Listen for status update, and refresh.
-Ti.App.addEventListener('app:status.update', function(e) {
-	if (e.withPhoto && Ti.Platform.osname === 'android') {
-		//swallow this for now - if we try to assign a URL to an image view we crash, so avoid doing it for now
-	}
-	else {
-		loadRows();
-	}
-});
+Ti.App.addEventListener('app:status.update', startRefresh);
 
 //Fire manually when this view receives "focus"
-$.on('focus', loadRows);
+$.on('focus', startRefresh);
+
+//Refresh when requested
+$.refresh.on('click', startRefresh);
 
 //Show a detail view for rows with an image
 $.table.on('click', function(e) {
@@ -46,13 +55,13 @@ $.table.on('click', function(e) {
 		if (e.source.statusObject) {
 			statusObject = e.source.statusObject;
 		}
-		else if (e.source.parent.sessionObject) {
+		else if (e.source.parent.statusObject) {
 			statusObject = e.source.parent.statusObject;
 		}
-		else if (e.source.parent.parent && e.source.parent.parent.sessionObject) {
+		else if (e.source.parent.parent && e.source.parent.parent.statusObject) {
 			statusObject = e.source.parent.parent.statusObject;
 		}
-		else if (e.source.parent.parent.parent && e.source.parent.parent.parent.sessionObject) {
+		else if (e.source.parent.parent.parent && e.source.parent.parent.parent.statusObject) {
 			statusObject = e.source.parent.parent.parent.statusObject;
 		}
 	}
@@ -113,5 +122,12 @@ $.table.on('click', function(e) {
 			web = null;
 			close = null;
 		});
+		
+		if (OS_ANDROID) {
+			Ti.UI.createNotification({
+				message:L('pinch'),
+				duration:Ti.UI.NOTIFICATION_DURATION_LONG
+			}).show();
+		}
 	}
 });

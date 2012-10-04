@@ -16,6 +16,18 @@
 	}
 },
 
+'#refresh': {
+	width:'50dp',
+	right:0
+},
+
+'#refreshIcon': {
+	right:'10dp',
+	image:'/img/general/refresh.png',
+	height:'20dp',
+	width:'20dp'
+},
+
 '#table': {
 	top:'50dp',
 	left:'10dp',

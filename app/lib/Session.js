@@ -16,6 +16,13 @@ function Session() {}
 
 //Get a complete session listing (this will never top 100)
 Session.getAll = function(callback) {
+	if (!Ti.Network.online) {
+		callback({
+			success:false
+		});
+		return;
+	}
+	
 	//hit cache first
 	if (sessions.length > 0) {
 		//return a simulated event immediately
@@ -42,6 +49,13 @@ Session.getAll = function(callback) {
 
 //TODO: Figure out how to sort of date fields in ACS
 Session.getNext = function(cb) {
+	if (!Ti.Network.online) {
+		cb({
+			success:false
+		});
+		return;
+	}
+	
 	Cloud.Events.query({
 		page:1,
 		per_page:100,
@@ -68,6 +82,13 @@ Session.getNext = function(cb) {
 
 //Return all sessions for a given day - if before conference, show day 1, if after, show day 3
 Session.getForDay = function(dateString, cb) {
+	if (!Ti.Network.online) {
+		cb({
+			success:false
+		});
+		return;
+	}
+	
 	if (days[dateString].length > 0) {
 		cb({
 			success:true,
