@@ -46,19 +46,19 @@
 					<ScrollView scrollType="horizontal">
 						<View id="horizontalContainer">
 							<View class="spacer"/>
-							<ImageView image="/img/home/sponsors/redhat.png"/>
+							<ImageView image="/img/home/sponsors/redhat.png" height="28" width="156dp"/>
 							<View class="spacer"/>
-							<ImageView image="/img/home/sponsors/denso.png"/>
+							<ImageView image="/img/home/sponsors/denso.png" width="76dp" height="28dp"/>
 							<View class="spacer"/>
-							<ImageView image="/img/home/sponsors/box.png"/>
+							<ImageView image="/img/home/sponsors/box.png" width="42dp" height="30dp"/>
 							<View class="spacer"/>
-							<ImageView image="/img/home/sponsors/utest.png"/>
+							<ImageView image="/img/home/sponsors/utest.png" width="65dp" height="26dp"/>
 							<View class="spacer"/>
-							<ImageView image="/img/home/sponsors/venturebeat.png"/>
+							<ImageView image="/img/home/sponsors/venturebeat.png" width="136dp" height="26dp"/>
 							<View class="spacer"/>
-							<ImageView image="/img/home/sponsors/challengepost.png"/>
+							<ImageView image="/img/home/sponsors/challengepost.png" width="116dp" height="33dp"/>
 							<View class="spacer"/>
-							<ImageView image="/img/home/sponsors/centrify.png"/>
+							<ImageView image="/img/home/sponsors/centrify.png" width="95dp" height="33dp"/>
 							<View class="spacer"/>
 						</View>
 					</ScrollView>

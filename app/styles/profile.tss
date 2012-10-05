@@ -107,12 +107,16 @@
 
 '#twitterIcon': {
 	left:'10dp',
-	image:'/img/post/btn-twitter-off.png'
+	image:'/img/post/btn-twitter-off.png',
+	height:'30dp',
+	width:'30dp'
 },
 
 '#facebookIcon': {
 	left:'10dp',
-	image:'/img/post/btn-facebook-off.png'
+	image:'/img/post/btn-facebook-off.png',
+	height:'30dp',
+	width:'30dp'
 }
 
 

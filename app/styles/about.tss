@@ -1,6 +1,8 @@
 '#madeWith': {
 	top:'10dp',
-	image:'/img/about/about-app-love.png'
+	image:'/img/about/about-app-love.png',
+	height:'13dp',
+	width:'174dp'
 },
 
 '#divider': {
@@ -24,7 +26,9 @@
 },
 
 '#appcelerator': {
-	image:'/img/about/about-appc-logo.png'
+	image:'/img/about/about-appc-logo.png',
+	height:'32dp',
+	width:'158dp'
 },
 
 '.paragraph': {

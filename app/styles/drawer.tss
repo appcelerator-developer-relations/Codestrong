@@ -23,7 +23,9 @@
 },
 
 '#closeIcon': {
-	image:'/img/drawer/btn-close.png'
+	image:'/img/drawer/btn-close.png',
+	height:'18dp',
+	width:'18dp'
 },
 
 '#content[formFactor=tablet]': {
