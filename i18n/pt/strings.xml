@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="codestrong">Codestrong</string>
+	<string name="email">E-mail</string>
+	<string name="password">Senha</string>
+	<string name="authenticating">Autenticando...</string>
+	<string name="leave">Sair da aplicação?</string>
+	<string name="ok">OK</string>
+	<string name="cancel">Cancelar</string>
+	<string name="appcNetwork">EFETUE O LOGIN ABAIXO COM AS CREDENCIAIS DA APPCELERATOR.COM</string>
+	<string name="noAppcNetwork">Não tem uma conta? Crie aqui ></string>
+	<string name="login">ENTRAR</string>
+	<string name="logout">SAIR</string>
+	<string name="loginError">Erro no Login</string>
+	<string name="loginErrorText">Oops! Ocorrou algum erro ao tentar logar em sua conta. Verifique seu e-mail e senha e tente novamente.</string>
+	<string name="logoutError">Erro ao sair</string>
+	<string name="logoutErrorText">Não estamos conseguindo contatar os nossos servidores para finalizar sua conexão. Por favor, verifique a sua conexão.</string>
+	<string name="uhwhat">Eu não tenho nenhum destes...</string>
+	<string name="alreadyDid">Eu acabei de criar uma nova conta.</string>
+	<string name="thatscool">Não tem conta? OK! crie uma agora mesmo...</string>
+	<string name="ohnice">Já tem uma conta? Legal, faça seu login.</string>
+	<string name="signup">Criar uma conta</string>
+	<string name="forgot">Esqueceu sua senha?</string>
+	<string name="networkErrTitle">Acesso a internet requerido</string>
+	<string name="networkErrMsg">Parece que o seu dispositivo está sem conexão à internet. Por favor, cheque sua conexão e tente novamente.</string>
+	<string name="networkGenericErrorTitle">Erro de conexão</string>
+
+	<string name="venueCaps">VENUE</string>
+	<string name="thirdFloor">3RD FLOOR</string>
+	<string name="fourthFloor">4TH FLOOR</string>
+
+	<string name="agendaCaps">AGENDA</string>
+	<string name="sun">DOM</string>
+	<string name="mon">SEG</string>
+	<string name="tue">TER</string>
+	<string name="sunday">DOMINGO</string>
+	<string name="monday">SEGUNDA-FEIRA</string>
+	<string name="tuesday">TERÇA-FEIRA</string>
+	<string name="sessionData">Buscando dados das sessões...</string>
+	<string name="agendaNetworkError">Não estamos conseguindo pegar os dados, por favor, cheque a sua conexão.</string>
+
+	<string name="featuredSponsors">PATROCINADORES EM DESTAQUE</string>
+	<string name="sponsorHeader">AGRADECIMENTO ESPECIAL AOS NOSSOS PATROCINADORES!</string>
+
+	<string name="attachPhoto">Anexe uma foto...</string>
+	<string name="camera">Câmera</string>
+	<string name="photoGallery">Galeria de Fotos</string>
+	<string name="updateSuccessTitle">Oh yeah!</string>
+	<string name="updateSuccessText">Sua atualização foi postada - Obrigado por compartilhar!</string>
+	<string name="updateErrorTitle">Whoops!</string>
+	<string name="updateErrorText">Ocorreu um erro em seu update. Por favor, tente novamente.</string>
+	<string name="mediaErrorTitle">Erro capturando media</string>
+	<string name="mediaErrorText">Ocorreu um erro ao tentar capturar a media, por favor, tente novamente.</string>
+	<string name="tooLong">Status extenso demais</string>
+	<string name="tooLongMessage">Você tem muito a dizer, mas escreva no máximo 140 caracteres para integrarmos com o Twitter, OK? Obrigado!</string>
+
+	<string name="activityStream">Atividade</string>
+	<string name="activityStreamError">Ocorreu um erro tentando baixar as últimas atividades - por favor, tente novamente mais tarde.</string>
+
+	<string name="myProfile">MEU PERFIL</string>
+	<string name="chooseAvatar">Escolha uma foto para seu perfil...</string>
+	<string name="connectTwitter">Conectar ao Twitter</string>
+	<string name="connectFacebook">Conectar ao Facebook</string>
+	<string name="disconnectTwitter">Disconectar do Twitter</string>
+	<string name="disconnectFacebook">Disconectar do Facebook</string>
+
+	<string name="working">COLETANDO DADOS...</string>
+	<string name="loadingLatest">CARREGANDO ÚLTIMOS UPDATES....</string>
+
+	<string name="aboutOneOne">Esta aplicação foi desenvolvida com Titanium Appcelerator, a plataforma número um de serviços cloud para aplicações móveis.</string>  
+	<string name="aboutOneTwo">O aplicativo nativo foi feito com o Titanium, a SDK open source para criação de aplicações nativos com apenas JavaScript.</string>
+	<string name="aboutOneThree">O back-end desta aplicação foi desenvolvida utilizando serviços de Cloud da Appcelerator, a maneira mais rápida de escalar, um servidor cheio de funcionalidades, sem escrever uma linha de código para o back-end.</string>  
+	<string name="aboutOneFour">A lógica da aplicação foi desenvolvida com o Alloy, um framework MVC para o Titanium Appcelerator que permite escrever uma UI nativa apenas com linguagem de marcação.</string>
+	<string name="source">OPEN SOURCE</string>
+	<string name="aboutTwo">Esta aplicação é open source através da licença Apache 2.0, e você pode fazer o download em http://bit.ly/codestrong_src</string>
+	<string name="specialThanks">OBRIGADO ESPECIAL</string>
+	<string name="aboutThree">Nós gostaríamos de fazer um agradecimento especial à Maria Iu, Greg DiPaolo, Monica Malone, Lisa Kohn, Tony Lukasavage, Fred Spencer, Kevin Whinnery, e o resto da equipe da Appcelerator, que fizeram deste aplicativo, algo possível. Code Strong!</string>
+
+	<string name="pinch">Toque na tela para dar zoom</string>
+	<string name="gravatar">Sua conta na Appcelerator usa Gravatar - troque sua foto em gravatar.com</string>
+
+</resources>
