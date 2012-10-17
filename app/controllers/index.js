@@ -79,8 +79,3 @@ if (Ti.Platform.osname === 'android') {
 
 //Open initial window
 $.index.open();
-
-//TODO: Add android tablet support
-if (Ti.Platform.osname === 'android' && Alloy.isTablet) {
-	ui.alert('Android Tablet Support', 'This experience has not yet been optimized for Android tablets.  Check back soon...');
-}
