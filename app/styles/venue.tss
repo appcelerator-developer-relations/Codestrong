@@ -1,7 +1,3 @@
-'#container[formFactor=tablet]': {
-	layout:'horizontal'
-},
-
 '#maps': {
 	top:'55dp',
 	left:'10dp',
@@ -9,10 +5,17 @@
 	bottom:'10dp'
 },
 
-'#scroller[platform=android]': {
+'#scroller': {
+	zoomScale:0.5,
+	maxZoomScale:4,
+	minZoomScale:0.25,
 	scrollType:'horizontal',
 	contentWidth:1376,
 	contentHeight:553
+},
+
+'#scroller[formFactor=tablet]': {
+	zoomScale:1
 },
 
 '#venue': {

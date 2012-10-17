@@ -1,21 +1,8 @@
 <Alloy>
 	<View id="container">
-		<View id="headerViewContainer" formFactor="handheld"/>
-		
-		<View class="mapContainer appContent" formFactor="tablet">
-			<Label class="blueHeader venueHeader" textid="thirdFloor"/>
-			<ImageView id="venueThird"/>
-			<View class="fauxShadow"/>
-		</View>
-		
-		<View class="mapContainer appContent" formFactor="tablet">
-			<Label class="blueHeader venueHeader" textid="fourthFloor"/>
-			<ImageView id="venueFourth"/>
-			<View class="fauxShadow"/>
-		</View>
-		
-		<View id="maps" class="appContent" formFactor="handheld">
-			<ScrollView id="scroller" formFactor="handheld">
+		<View id="headerViewContainer"/>
+		<View id="maps" class="appContent">
+			<ScrollView id="scroller">
 				<ImageView id="venue"/>
 			</ScrollView>
 			<View class="fauxShadow"/>

@@ -25,7 +25,7 @@ function loadRows() {
 		else {
 			ui.alert('networkGenericErrorTitle', 'activityStreamError');
 		}
-	});
+	},30);
 }
 
 function startRefresh() {

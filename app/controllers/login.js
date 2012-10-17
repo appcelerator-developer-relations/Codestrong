@@ -38,6 +38,11 @@ if (OS_IOS) {
 	$.password.on('focus', moveScrollerUp);
 	$.email.on('blur', moveScrollerDown);
 	$.password.on('blur', moveScrollerDown);
+	
+	//for iPhone 5, put the logo just a smidge lower
+	if (!Alloy.isTablet && Ti.Platform.displayCaps.platformHeight > 480) {
+		$.logo.top = '90dp';
+	}
 }
 
 //Login using network creds

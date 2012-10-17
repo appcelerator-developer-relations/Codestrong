@@ -16,7 +16,7 @@
 
 '#title': {
 	left:'5dp',
-	right:'15dp',
+	right:'20dp',
 	color:'#ffffff',
 	font: {
 		fontWeight:'bold',

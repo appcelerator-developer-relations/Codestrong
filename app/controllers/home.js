@@ -60,7 +60,7 @@ function loadContent() {
 			},10);
 		}
 		else {
-			Ti.API.error('error fetching initial content: '+e);
+			Ti.API.error('error fetching initial content: '+JSON.stringify(e));
 			ui.alert('networkGenericErrorTitle', 'agendaNetworkError');
 		}
 	});
