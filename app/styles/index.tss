@@ -4,4 +4,9 @@
 	bottom:0,
 	image:'/img/general/bg-clouds-tablet.png',
 	zIndex:-1
+},
+
+'#clouds[platform=android]': {
+	height:2048,
+	width:2048
 }

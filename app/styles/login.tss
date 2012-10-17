@@ -41,6 +41,10 @@
 	top:'10dp'
 },
 
+'#email': {
+	keyboardType:Ti.UI.KEYBOARD_EMAIL
+},
+
 '#passwordWrapper': {
 	top:'10dp'
 },

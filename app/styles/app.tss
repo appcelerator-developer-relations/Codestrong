@@ -3,6 +3,10 @@ Window: {
 	backgroundImage:'/img/general/bg-interior.png'
 },
 
+'Window[platform=android]': {
+	windowSoftInputMode:Ti.UI.Android.SOFT_INPUT_ADJUST_RESIZE
+},
+
 TextField: {
 	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
     borderStyle:Ti.UI.INPUT_BORDERSTYLE_NONE,

@@ -4,10 +4,6 @@ Window: {
 	backgroundImage:'/img/general/bg-interior.png'
 },
 
-'Window[platform=android]': {
-	windowSoftInputMode:Ti.UI.Android.SOFT_INPUT_ADJUST_RESIZE
-},
-
 '#header': {
 	backgroundImage:'/img/header/bg-title.png',
 	height:'45dp',
