@@ -28,7 +28,7 @@
 	top:'49dp',
 	left:'5dp',
 	right:'5dp',
-	height:'85dp',
+	height:'85dp'
 },
 
 '#avatar': {
