@@ -41,10 +41,10 @@ Ti.App.addEventListener('app:status.update', startRefresh);
 $.on('focus', startRefresh);
 
 //Refresh when requested
-$.refresh.on('click', startRefresh);
+$.refresh.addEventListener('click', startRefresh);
 
 //Show a detail view for rows with an image
-$.table.on('click', function(e) {
+$.table.addEventListener('click', function(e) {
 	var statusObject;
 	
 	if (OS_IOS) {

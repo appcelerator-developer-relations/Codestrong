@@ -34,26 +34,26 @@ function doTab(name,offset,noEvent) {
 	}));
 }
 
-$.home.on('click', function() {
+$.home.addEventListener('click', function() {
 	doTab('home', tabPositions.home);
 });
 
-$.agenda.on('click', function() {
+$.agenda.addEventListener('click', function() {
 	doTab('agenda', tabPositions.agenda);
 });
 
 //post is special, just fire event
-$.postIcon.on('click', function() {
+$.postIcon.addEventListener('click', function() {
 	$.trigger('change', {
 		name:'post'
 	});
 });
 
-$.stream.on('click', function() {
+$.stream.addEventListener('click', function() {
 	doTab('stream', tabPositions.stream);
 });
 
-$.venue.on('click', function() {
+$.venue.addEventListener('click', function() {
 	doTab('venue', tabPositions.venue);
 });
 

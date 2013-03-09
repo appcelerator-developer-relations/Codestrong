@@ -4,7 +4,7 @@ $.win.orientationModes = [
 	Ti.UI.UPSIDE_PORTRAIT
 ];
 
-$.back.on('click', function() {
+$.back.addEventListener('click', function() {
 	$.win.close();
 });
 

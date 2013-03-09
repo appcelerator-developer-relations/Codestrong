@@ -47,7 +47,7 @@ if (OS_IOS) {
 	//Ti.Gesture.addEventListener('orientationchange', handleOrientation);
 }
 
-$.back.on('click', function() {
+$.back.addEventListener('click', function() {
 	$.win.close();
 });
 
@@ -73,12 +73,12 @@ $.postFormView.on('success', function() {
 	$.win.close();
 });
 
-$.win.on('open', function() {
+$.win.addEventListener('open', function() {
 	$.postFormView.focus();
 });
 
 //Clean up - remember to remove global event handlers if you don't need them anymore!
-$.win.on('close', function() {
+$.win.addEventListener('close', function() {
 	if (OS_IOS) {
 		Ti.App.removeEventListener('keyboardFrameChanged', handleKeyboard);
 		//Ti.Gesture.removeEventListener('orientationchange', handleOrientation);

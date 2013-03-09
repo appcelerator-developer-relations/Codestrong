@@ -34,10 +34,10 @@ if (OS_IOS) {
 		doScroll(180);
 	}
 	
-	$.email.on('focus', moveScrollerUp);
-	$.password.on('focus', moveScrollerUp);
-	$.email.on('blur', moveScrollerDown);
-	$.password.on('blur', moveScrollerDown);
+	$.email.addEventListener('focus', moveScrollerUp);
+	$.password.addEventListener('focus', moveScrollerUp);
+	$.email.addEventListener('blur', moveScrollerDown);
+	$.password.addEventListener('blur', moveScrollerDown);
 	
 	//for iPhone 5, put the logo just a smidge lower
 	if (!Alloy.isTablet && Ti.Platform.displayCaps.platformHeight > 480) {
@@ -46,7 +46,7 @@ if (OS_IOS) {
 }
 
 //Login using network creds
-$.login.on('click', function() {
+$.login.addEventListener('click', function() {
 	$.index.parent.add($.loading.getView());
 	$.loading.start();
 	$.email.blur();
@@ -64,14 +64,14 @@ $.login.on('click', function() {
 });
 
 //Go to signup page
-$.create.on('click', function() {
+$.create.addEventListener('click', function() {
 	$.email.blur();
 	$.password.blur();
 	Ti.Platform.openURL('https://my.appcelerator.com/auth/signup');
 });
 
 //Password reset 
-$.forgot.on('click', function() {
+$.forgot.addEventListener('click', function() {
 	$.email.blur();
 	$.password.blur();
 	Ti.Platform.openURL('https://my.appcelerator.com/auth/reset');

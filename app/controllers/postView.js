@@ -1,4 +1,4 @@
-$.backdrop.on('click', function() {
+$.backdrop.addEventListener('click', function() {
 	$.postFormView.blur();
 	$.trigger('blur');
 });

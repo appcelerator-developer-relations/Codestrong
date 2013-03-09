@@ -7,11 +7,11 @@ var ui = require('ui'),
 $.loading = Alloy.createController('loading');
 
 //Bubble focus event
-$.post.on('focus', function(e) {
+$.post.addEventListener('focus', function(e) {
 	$.trigger('focus', e);
 });
 
-$.post.on('blur', function(e) {
+$.post.addEventListener('blur', function(e) {
 	$.trigger('blur', e);
 });
 
@@ -25,7 +25,7 @@ $.blur = function() {
 };
 
 //Handle image attachment
-$.camera.on('click', function() {
+$.camera.addEventListener('click', function() {
 	//for now, need to disable "choose from gallery" for android
 	var options = [L('camera')];
 	if (OS_IOS) {
@@ -81,7 +81,7 @@ $.camera.on('click', function() {
 
 });
 
-$.deleteButton.on('click', function() {
+$.deleteButton.addEventListener('click', function() {
 	$.imagePreview.animate({
 		opacity:0,
 		duration:250
@@ -100,7 +100,7 @@ $.deleteButton.on('click', function() {
 
 //Manage social connection state
 var fbOn = false;
-$.facebook.on('click', function() {
+$.facebook.addEventListener('click', function() {
 	if (!fbOn) {
 		function setOn() {
 			fbOn = true;
@@ -123,7 +123,7 @@ $.facebook.on('click', function() {
 });
 
 var twitterOn = false;
-$.twitter.on('click', function() {
+$.twitter.addEventListener('click', function() {
 	if (!twitterOn) {
 		function setOn() {
 			twitterOn = true;
@@ -158,10 +158,10 @@ function updateCount() {
 	$.characters.color = (count >= 0) ? '#000' : '#ff0000';
 	$.characters.text = count;
 }
-$.post.on('change', updateCount);
+$.post.addEventListener('change', updateCount);
 
 //track social post status, don't be done til these come back
-$.submit.on('click', function() {
+$.submit.addEventListener('click', function() {
 	if ($.post.value || currentBlob) {
 		
 		//exit if content is not valid - TODO: put in better validation and feedback

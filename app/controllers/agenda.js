@@ -58,7 +58,7 @@ if (!Alloy.isTablet) {
 	});
 	$.headerViewContainer.add($.headerView);
 	
-	$.headerView.on('change', function(e) {
+	$.headerView.addEventListener('change', function(e) {
 		if (e.selection === 'sun') {
 			$.agendaTable.setData(sunday);
 		}

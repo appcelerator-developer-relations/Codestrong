@@ -34,7 +34,7 @@ $.openDrawer = function(controller, contextData) {
 
 //internal event handling
 if ($.close) {
-	$.close.on('click', function() {
+	$.close.addEventListener('click', function() {
 		$.closeDrawer();
 	});
 }

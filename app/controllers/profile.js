@@ -18,7 +18,7 @@ if (userDetails.attributes.title) {
 //Attempt to grab and use the current profile image
 $.avatar.image = User.generateAvatarURL();
 
-$.logout.on('click', function() {
+$.logout.addEventListener('click', function() {
 	$.loading.start();
 	$.index.add($.loading.getView());
 	User.logout(function(e) {
@@ -34,7 +34,7 @@ $.logout.on('click', function() {
 });
 
 //Handle image attachment
-$.avatar.on('click', function() {
+$.avatar.addEventListener('click', function() {
 	//TODO: Support image attachment - partially implemented, needs more testing for production.
 		
 	var od = Ti.UI.createOptionDialog({
@@ -117,7 +117,7 @@ if (User.confirmLogin.toTwitter()) {
 }
 
 //Toggle social connection state
-$.facebook.on('click', function() {
+$.facebook.addEventListener('click', function() {
 	if (User.confirmLogin.toFacebook()) {
 		User.logoutFacebook(function(e) {
 			fbOff();
@@ -130,7 +130,7 @@ $.facebook.on('click', function() {
 	}
 });
 
-$.twitter.on('click', function() {
+$.twitter.addEventListener('click', function() {
 	if (User.confirmLogin.toTwitter()) {
 		User.logoutTwitter(function(e) {
 			twitterOff();

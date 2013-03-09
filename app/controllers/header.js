@@ -27,24 +27,24 @@ if (Alloy.isTablet) {
 		}));
 	}
 	
-	$.home.on('click', function() {
+	$.home.addEventListener('click', function() {
 		doTab('home');
 	});
 	
-	$.agenda.on('click', function() {
+	$.agenda.addEventListener('click', function() {
 		doTab('agenda');
 	});
 	
-	$.stream.on('click', function() {
+	$.stream.addEventListener('click', function() {
 		doTab('stream');
 	});
 	
-	$.venue.on('click', function() {
+	$.venue.addEventListener('click', function() {
 		doTab('venue');
 	});
 	
 	//post is special, just fire event
-	$.post.on('click', function() {
+	$.post.addEventListener('click', function() {
 		$.trigger('change', {
 			name:'post'
 		});
@@ -80,7 +80,7 @@ $.setBackVisible = function(toggle) {
 
 //Back isn't there on tablet
 if ($.back) {
-	$.back.on('click', function() {
+	$.back.addEventListener('click', function() {
 		if ($.back.enabled) {
 			$.trigger('back');
 		}
@@ -128,7 +128,7 @@ function doProfile() {
 		}
 	}
 }
-$.profile.on('click', doProfile);
+$.profile.addEventListener('click', doProfile);
 
 function doAbout() {
 	if ($.about.enabled) {
@@ -144,5 +144,5 @@ function doAbout() {
 		$.about.visible = false;
 	}
 }
-$.about.on('click', doAbout);
+$.about.addEventListener('click', doAbout);
 

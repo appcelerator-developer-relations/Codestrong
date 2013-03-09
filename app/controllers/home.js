@@ -79,14 +79,14 @@ Ti.App.addEventListener('app:status.update', startRefresh);
 $.on('focus', startRefresh);
 
 //Go to activity stream
-$.streamTable.on('click', function() {
+$.streamTable.addEventListener('click', function() {
 	$.trigger('nav', {
 		name:'stream'
 	});
 });
 
 //Go to agenda
-$.now.on('click', function() {
+$.now.addEventListener('click', function() {
 	$.trigger('nav', {
 		name:'agenda'
 	});
